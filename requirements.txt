@@ -7,3 +7,4 @@ plotly
 groq
 feedparser
 twstock
+lxml
