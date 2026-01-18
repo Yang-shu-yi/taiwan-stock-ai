@@ -5,7 +5,7 @@
         "price": 1740.0,
         "pct_change": 2.96,
         "status": "RED",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "2454": {
         "code": "2454",
@@ -13,7 +13,7 @@
         "price": 1505.0,
         "pct_change": 1.01,
         "status": "RED",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "2303": {
         "code": "2303",
@@ -21,7 +21,7 @@
         "price": 58.5,
         "pct_change": 6.95,
         "status": "RED",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "2308": {
         "code": "2308",
@@ -29,7 +29,7 @@
         "price": 1125.0,
         "pct_change": 7.66,
         "status": "RED",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "2379": {
         "code": "2379",
@@ -37,7 +37,7 @@
         "price": 509.0,
         "pct_change": -0.78,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "3711": {
         "code": "3711",
@@ -45,7 +45,7 @@
         "price": 303.5,
         "pct_change": 1.68,
         "status": "RED",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "3443": {
         "code": "3443",
@@ -53,7 +53,7 @@
         "price": 2510.0,
         "pct_change": 0.2,
         "status": "RED",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "3661": {
         "code": "3661",
@@ -61,7 +61,7 @@
         "price": 3340.0,
         "pct_change": 0.6,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "3034": {
         "code": "3034",
@@ -69,7 +69,7 @@
         "price": 378.0,
         "pct_change": -0.4,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "2344": {
         "code": "2344",
@@ -77,7 +77,7 @@
         "price": 106.5,
         "pct_change": 7.36,
         "status": "RED",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "3035": {
         "code": "3035",
@@ -85,7 +85,7 @@
         "price": 166.5,
         "pct_change": -0.89,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "3529": {
         "code": "3529",
@@ -93,7 +93,7 @@
         "price": 1675.0,
         "pct_change": -0.3,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "3231": {
         "code": "3231",
@@ -101,7 +101,7 @@
         "price": 145.0,
         "pct_change": 1.05,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "2382": {
         "code": "2382",
@@ -109,7 +109,7 @@
         "price": 289.5,
         "pct_change": 2.3,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "2356": {
         "code": "2356",
@@ -117,7 +117,7 @@
         "price": 44.3,
         "pct_change": 0.45,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "2357": {
         "code": "2357",
@@ -125,7 +125,7 @@
         "price": 510.0,
         "pct_change": -2.11,
         "status": "GREEN",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "2353": {
         "code": "2353",
@@ -133,7 +133,7 @@
         "price": 27.1,
         "pct_change": 0.18,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "2376": {
         "code": "2376",
@@ -141,7 +141,7 @@
         "price": 246.5,
         "pct_change": 0.61,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "2377": {
         "code": "2377",
@@ -149,7 +149,7 @@
         "price": 99.0,
         "pct_change": -1.0,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "6669": {
         "code": "6669",
@@ -157,7 +157,7 @@
         "price": 3825.0,
         "pct_change": -3.04,
         "status": "GREEN",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "3017": {
         "code": "3017",
@@ -165,7 +165,7 @@
         "price": 1360.0,
         "pct_change": -1.45,
         "status": "GREEN",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "2408": {
         "code": "2408",
@@ -173,7 +173,7 @@
         "price": 250.0,
         "pct_change": 5.26,
         "status": "RED",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "3008": {
         "code": "3008",
@@ -181,7 +181,7 @@
         "price": 2430.0,
         "pct_change": 1.04,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "8069": {
         "code": "8069",
@@ -189,7 +189,7 @@
         "price": 174.5,
         "pct_change": 0.87,
         "status": "GREEN",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "8299": {
         "code": "8299",
@@ -197,7 +197,7 @@
         "price": 1890.0,
         "pct_change": 5.29,
         "status": "RED",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "6515": {
         "code": "6515",
@@ -205,7 +205,7 @@
         "price": 3535.0,
         "pct_change": 2.46,
         "status": "RED",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "5269": {
         "code": "5269",
@@ -213,7 +213,7 @@
         "price": 1300.0,
         "pct_change": -2.62,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "5274": {
         "code": "5274",
@@ -221,7 +221,7 @@
         "price": 8700.0,
         "pct_change": -0.63,
         "status": "RED",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "2881": {
         "code": "2881",
@@ -229,7 +229,7 @@
         "price": 95.0,
         "pct_change": 0.96,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "2882": {
         "code": "2882",
@@ -237,7 +237,7 @@
         "price": 76.2,
         "pct_change": 1.33,
         "status": "RED",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "2891": {
         "code": "2891",
@@ -245,7 +245,7 @@
         "price": 50.5,
         "pct_change": 0.2,
         "status": "RED",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "2886": {
         "code": "2886",
@@ -253,7 +253,7 @@
         "price": 40.9,
         "pct_change": 0.62,
         "status": "RED",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "2884": {
         "code": "2884",
@@ -261,7 +261,7 @@
         "price": 32.7,
         "pct_change": 0.62,
         "status": "GREEN",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "2885": {
         "code": "2885",
@@ -269,7 +269,7 @@
         "price": 41.8,
         "pct_change": -0.12,
         "status": "RED",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "2892": {
         "code": "2892",
@@ -277,7 +277,7 @@
         "price": 29.8,
         "pct_change": 0.0,
         "status": "RED",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "2880": {
         "code": "2880",
@@ -285,7 +285,7 @@
         "price": 33.2,
         "pct_change": 0.76,
         "status": "RED",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "2890": {
         "code": "2890",
@@ -293,7 +293,7 @@
         "price": 29.3,
         "pct_change": 1.03,
         "status": "RED",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "2883": {
         "code": "2883",
@@ -301,7 +301,7 @@
         "price": 17.8,
         "pct_change": 1.14,
         "status": "RED",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "2887": {
         "code": "2887",
@@ -309,7 +309,7 @@
         "price": 21.9,
         "pct_change": 1.16,
         "status": "RED",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "5880": {
         "code": "5880",
@@ -317,7 +317,7 @@
         "price": 24.0,
         "pct_change": -0.42,
         "status": "GREEN",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "5876": {
         "code": "5876",
@@ -325,7 +325,7 @@
         "price": 39.6,
         "pct_change": -0.63,
         "status": "GREEN",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "5871": {
         "code": "5871",
@@ -333,7 +333,7 @@
         "price": 104.0,
         "pct_change": -0.48,
         "status": "GREEN",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "2801": {
         "code": "2801",
@@ -341,7 +341,7 @@
         "price": 20.4,
         "pct_change": -0.25,
         "status": "GREEN",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "2812": {
         "code": "2812",
@@ -349,7 +349,7 @@
         "price": 20.8,
         "pct_change": 0.0,
         "status": "GREEN",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "2834": {
         "code": "2834",
@@ -357,7 +357,7 @@
         "price": 15.9,
         "pct_change": 0.0,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "2845": {
         "code": "2845",
@@ -365,7 +365,7 @@
         "price": 12.8,
         "pct_change": 0.0,
         "status": "GREEN",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "2867": {
         "code": "2867",
@@ -373,7 +373,7 @@
         "price": 7.8,
         "pct_change": 0.26,
         "status": "GREEN",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:32"
     },
     "2603": {
         "code": "2603",
@@ -381,7 +381,7 @@
         "price": 190.0,
         "pct_change": -2.56,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "2609": {
         "code": "2609",
@@ -389,7 +389,7 @@
         "price": 54.5,
         "pct_change": -1.8,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "2615": {
         "code": "2615",
@@ -397,7 +397,7 @@
         "price": 77.2,
         "pct_change": -1.91,
         "status": "GREEN",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "2618": {
         "code": "2618",
@@ -405,7 +405,7 @@
         "price": 37.5,
         "pct_change": 0.13,
         "status": "RED",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "2610": {
         "code": "2610",
@@ -413,7 +413,7 @@
         "price": 21.5,
         "pct_change": 0.7,
         "status": "RED",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "2637": {
         "code": "2637",
@@ -421,7 +421,7 @@
         "price": 70.9,
         "pct_change": -1.12,
         "status": "RED",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "1101": {
         "code": "1101",
@@ -429,7 +429,7 @@
         "price": 25.0,
         "pct_change": 0.0,
         "status": "RED",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "1102": {
         "code": "1102",
@@ -437,7 +437,7 @@
         "price": 36.8,
         "pct_change": 0.14,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "1301": {
         "code": "1301",
@@ -445,7 +445,7 @@
         "price": 43.0,
         "pct_change": 0.94,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "1303": {
         "code": "1303",
@@ -453,7 +453,7 @@
         "price": 73.8,
         "pct_change": 5.88,
         "status": "RED",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "1326": {
         "code": "1326",
@@ -461,7 +461,7 @@
         "price": 34.5,
         "pct_change": 0.15,
         "status": "RED",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "6505": {
         "code": "6505",
@@ -469,7 +469,7 @@
         "price": 48.3,
         "pct_change": -3.4,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "2002": {
         "code": "2002",
@@ -477,7 +477,7 @@
         "price": 19.2,
         "pct_change": -1.03,
         "status": "RED",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "1216": {
         "code": "1216",
@@ -485,7 +485,7 @@
         "price": 75.4,
         "pct_change": -0.79,
         "status": "GREEN",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "1402": {
         "code": "1402",
@@ -493,7 +493,7 @@
         "price": 28.4,
         "pct_change": -0.35,
         "status": "RED",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "9910": {
         "code": "9910",
@@ -501,7 +501,7 @@
         "price": 104.0,
         "pct_change": -2.35,
         "status": "GREEN",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "2105": {
         "code": "2105",
@@ -509,7 +509,7 @@
         "price": 31.0,
         "pct_change": 0.49,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "1504": {
         "code": "1504",
@@ -517,7 +517,7 @@
         "price": 88.9,
         "pct_change": 3.61,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "1590": {
         "code": "1590",
@@ -525,7 +525,7 @@
         "price": 1020.0,
         "pct_change": 0.49,
         "status": "RED",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "1605": {
         "code": "1605",
@@ -533,7 +533,7 @@
         "price": 43.0,
         "pct_change": -3.05,
         "status": "RED",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "2412": {
         "code": "2412",
@@ -541,7 +541,7 @@
         "price": 133.0,
         "pct_change": -0.37,
         "status": "RED",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "3045": {
         "code": "3045",
@@ -549,7 +549,7 @@
         "price": 108.0,
         "pct_change": 0.0,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "4904": {
         "code": "4904",
@@ -557,7 +557,7 @@
         "price": 91.1,
         "pct_change": 0.11,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "2912": {
         "code": "2912",
@@ -565,7 +565,7 @@
         "price": 220.0,
         "pct_change": -2.0,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "5903": {
         "code": "5903",
@@ -573,7 +573,7 @@
         "price": 190.5,
         "pct_change": -0.26,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "5904": {
         "code": "5904",
@@ -581,7 +581,7 @@
         "price": 427.5,
         "pct_change": -1.84,
         "status": "GREEN",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "6415": {
         "code": "6415",
@@ -589,7 +589,7 @@
         "price": 217.0,
         "pct_change": 2.84,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "6409": {
         "code": "6409",
@@ -597,7 +597,7 @@
         "price": 1000.0,
         "pct_change": 0.0,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "4966": {
         "code": "4966",
@@ -605,7 +605,7 @@
         "price": 575.0,
         "pct_change": -1.37,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "3629": {
         "code": "3629",
@@ -613,7 +613,7 @@
         "price": 21.7,
         "pct_change": -1.59,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "6176": {
         "code": "6176",
@@ -621,7 +621,7 @@
         "price": 124.5,
         "pct_change": 1.22,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "6274": {
         "code": "6274",
@@ -629,7 +629,7 @@
         "price": 492.0,
         "pct_change": 2.29,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "8046": {
         "code": "8046",
@@ -637,7 +637,7 @@
         "price": 289.5,
         "pct_change": 9.87,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "3293": {
         "code": "3293",
@@ -645,7 +645,7 @@
         "price": 749.0,
         "pct_change": -0.79,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "6446": {
         "code": "6446",
@@ -653,7 +653,7 @@
         "price": 587.0,
         "pct_change": 9.93,
         "status": "RED",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "6472": {
         "code": "6472",
@@ -661,7 +661,7 @@
         "price": 547.0,
         "pct_change": 3.99,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "6239": {
         "code": "6239",
@@ -669,7 +669,7 @@
         "price": 263.0,
         "pct_change": 2.14,
         "status": "RED",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "6269": {
         "code": "6269",
@@ -677,7 +677,7 @@
         "price": 59.0,
         "pct_change": 0.68,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "8454": {
         "code": "8454",
@@ -685,7 +685,7 @@
         "price": 200.5,
         "pct_change": -2.43,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "9914": {
         "code": "9914",
@@ -693,7 +693,7 @@
         "price": 92.1,
         "pct_change": 5.5,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "9921": {
         "code": "9921",
@@ -701,7 +701,7 @@
         "price": 95.0,
         "pct_change": 2.7,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "9941": {
         "code": "9941",
@@ -709,7 +709,7 @@
         "price": 80.1,
         "pct_change": -0.37,
         "status": "GREEN",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "9945": {
         "code": "9945",
@@ -717,7 +717,7 @@
         "price": 29.7,
         "pct_change": -1.82,
         "status": "GREEN",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     },
     "2317": {
         "code": "2317",
@@ -725,6 +725,6 @@
         "price": 234.5,
         "pct_change": 0.43,
         "status": "YELLOW",
-        "update_time": "2026-01-16 22:36"
+        "update_time": "2026-01-18 14:33"
     }
 }
