@@ -4,161 +4,137 @@ import twstock
 import json
 import time
 import os
+import random
 from datetime import datetime
+import ta
 
 # ==========================================
-# 1. 設定掃描清單：台灣前 100 大權值股 (含上市/上櫃熱門)
+# 🚀 設定掃描參數
 # ==========================================
-
-# 這份清單包含了：
-# 1. 台灣 50 (0050) 成分股 - 台股最大 50 家
-# 2. 中型 100 (0051) 前段班 - 成長性高的中型股
-# 3. 熱門 AI / 航運 / 金融 / 高股息指標股
-TOP_100_CODES = [
-    # --- 半導體與 AI 權值 ---
-    '2330', '2454', '2303', '2308', '2379', '3711', '3443', '3661', '3034', '2344', # 台積電, 聯發科, 聯電...
-    '3035', '3529', '3231', '2382', '2356', '2357', '2353', '2376', '2377', '6669', # 緯創, 廣達, 技嘉, 華碩...
-    '3017', '2408', '3008', '8069', '8299', '6515', '5269', '5274', # 奇鋐, 大立光...
-
-    # --- 金融股 (存股族最愛) ---
-    '2881', '2882', '2891', '2886', '2884', '2885', '2892', '2880', '2890', '2883',
-    '2887', '5880', '5876', '5871', '2801', '2812', '2834', '2845', '2867', '2809',
-
-    # --- 航運三雄與航空 ---
-    '2603', '2609', '2615', '2618', '2610', '2637', # 長榮, 陽明, 萬海, 長榮航...
-
-    # --- 傳產龍頭 (塑化/水泥/鋼鐵/食品) ---
-    '1101', '1102', '1301', '1303', '1326', '6505', '2002', '1216', '1402', '9910', # 台泥, 台塑, 中鋼, 統一...
-    '2105', '1504', '1590', '1605', # 正新, 東元, 亞德客, 華新
-
-    # --- 電信與百貨 ---
-    '2412', '3045', '4904', '2912', # 中華電, 台灣大, 遠傳, 統一超
-
-    # --- 熱門高價與上櫃潛力 (包含 3629) ---
-    '5903', '5904', '6415', '6409', '4966', '3629', '6176', '6274', '8046', '3293', # 鈊象, 瑞昱...
-    '6446', '6472', '6239', '6269', '8454', '9914', '9921', '9941', '9945', '2317'  # 鴻海(補上)
-]
-
-# 設定目標為這份清單
-TARGET_CODES = TOP_100_CODES
-
-print(f"✅ 已載入「台灣市值前 100 大」清單，共 {len(TARGET_CODES)} 檔，準備掃描...")
+# 設定要掃描的數量上限 (上市普通股約 980 檔)
+# 如果想掃全台股，可以設為 1200
+SCAN_LIMIT = 500 
 
 # ==========================================
-# 2. 核心分析邏輯 (智慧判斷上市/上櫃)
+# 1. 取得目標股票清單 (上市 + 股票)
 # ==========================================
-
-def get_yahoo_symbol(code):
-    """
-    自動判斷是上市 (.TW) 還是上櫃 (.TWO)
-    """
-    try:
-        if code not in twstock.codes:
-            # 如果 twstock 找不到 (例如剛上市)，預設嘗試 .TW
-            return f"{code}.TW"
-            
+def get_target_stocks():
+    print("🔍 正在篩選股票清單...")
+    targets = []
+    
+    # 遍歷 twstock 所有代碼
+    for code in twstock.codes:
         info = twstock.codes[code]
-        if info.market == "上市":
-            return f"{code}.TW"
-        elif info.market == "上櫃":
-            return f"{code}.TWO"
-        else:
-            return f"{code}.TW"
-    except:
-        return f"{code}.TW"
+        
+        # 篩選條件：
+        # 1. type 必須是 "股票" (排除權證、ETF)
+        # 2. market 必須是 "上市" (也可以改成包含 "上櫃")
+        if info.type == "股票" and info.market == "上市":
+            targets.append({
+                "code": code,
+                "name": info.name,
+                "market": "TW" # 上市後綴
+            })
+            
+    print(f"✅ 篩選出 {len(targets)} 檔上市普通股，將掃描前 {SCAN_LIMIT} 檔。")
+    return targets[:SCAN_LIMIT]
 
-def analyze_stock_logic(code):
+# ==========================================
+# 2. 核心分析邏輯 (紅綠燈策略)
+# ==========================================
+def analyze_stock(ticker, code, name):
     try:
-        # 1. 取得正確代號
-        symbol = get_yahoo_symbol(code)
+        # 抓取 1 年資料 (計算 MA60 需要)
+        df = ticker.history(period="1y")
         
-        # 2. 取得名稱 (防呆: 若 twstock 沒資料就用代號)
-        try:
-            stock_name = twstock.codes[code].name
-        except:
-            stock_name = code
+        if len(df) < 60:
+            return None # 資料不足
 
-        # 3. 抓取資料
-        stock = yf.Ticker(symbol)
-        df = stock.history(period="3mo") 
+        # ---------------------------
+        # 指標計算
+        # ---------------------------
+        close = df['Close']
         
-        # 資料防呆
-        if df.empty or len(df) < 50: # 放寬一點，有些剛上市的資料較少
-            return None
+        # 1. 移動平均線 (MA)
+        ma20 = ta.trend.sma_indicator(close, window=20).iloc[-1]
+        ma60 = ta.trend.sma_indicator(close, window=60).iloc[-1]
+        
+        # 2. RSI (相對強弱指標)
+        rsi = ta.momentum.rsi(close, window=14).iloc[-1]
+        
+        # 3. 最新價量
+        latest_price = close.iloc[-1]
+        latest_vol = df['Volume'].iloc[-1]
+        
+        # 漲跌幅計算
+        prev_close = close.iloc[-2]
+        pct_change = ((latest_price - prev_close) / prev_close) * 100
 
-        latest = df.iloc[-1]
-        prev = df.iloc[-2]
+        # ---------------------------
+        # 🚦 紅綠燈判斷邏輯
+        # ---------------------------
+        status = "YELLOW" # 預設觀望
         
-        close = latest['Close']
-        volume = latest['Volume']
-        pct_change = (close - prev['Close']) / prev['Close'] * 100
-        
-        # RSI 計算
-        delta = df['Close'].diff()
-        gain = (delta.where(delta > 0, 0)).rolling(window=14).mean()
-        loss = (-delta.where(delta < 0, 0)).rolling(window=14).mean()
-        rs = gain / loss
-        rsi = 100 - (100 / (1 + rs)).iloc[-1]
-        
-        # MA 計算
-        ma20 = df['Close'].rolling(window=20).mean().iloc[-1]
-        ma60 = df['Close'].rolling(window=60).mean().iloc[-1]
-
-        # --- 🚦 燈號判斷邏輯 ---
-        status = "YELLOW"
-        
-        # [綠燈] 避雷/賣出
-        if volume < 50 or (pct_change <= -9.5 and close == latest['Low']) or (close < ma20 and rsi < 40):
-            status = "GREEN"
-        
-        # [紅燈] 關注/買進
-        elif close > ma20 and rsi > 55 and ma20 > ma60:
+        # 🔴 RED (強勢多頭)：站上月線 + 均線多頭排列 + RSI 強勢 (>55)
+        if latest_price > ma20 and ma20 > ma60 and rsi > 55:
             status = "RED"
+            
+        # 🟢 GREEN (避雷/弱勢)：跌破季線 或 流動性太差 (<50張)
+        elif latest_price < ma60 or latest_vol < 50000: # 50000股 = 50張
+            status = "GREEN"
             
         return {
             "code": code,
-            "name": stock_name,
-            "price": round(close, 1),
+            "name": name,
+            "price": round(latest_price, 2),
             "pct_change": round(pct_change, 2),
+            "volume": int(latest_vol),
+            "rsi": round(rsi, 1),
             "status": status,
             "update_time": datetime.now().strftime("%Y-%m-%d %H:%M")
         }
         
     except Exception as e:
-        # print(f"Error {code}: {e}") # debug 用，平常可關閉
+        # print(f"❌ {code} 分析失敗: {e}")
         return None
 
 # ==========================================
-# 3. 主程式
+# 3. 主程式執行
 # ==========================================
-
-def main():
-    results = {}
-    count = 0
-    success_count = 0
-    
-    print(f"🚀 開始掃描台灣 Top 100 權值股...")
-    
-    for code in TARGET_CODES:
-        data = analyze_stock_logic(code)
-        count += 1
-        
-        if data:
-            results[code] = data
-            success_count += 1
-            # 格式化輸出，看起來比較整齊
-            print(f"[{data['status']}] {code:<4} {data['name']:<6} ${data['price']:<7} ({data['pct_change']:+.2f}%)")
-        
-        # 雖然只有 100 檔，但還是稍微休息一下比較保險
-        if count % 20 == 0:
-            print(f"⏳ 進度: {count} / {len(TARGET_CODES)}... 休息 1 秒")
-            time.sleep(1) 
-            
-    with open("stock_database.json", "w", encoding="utf-8") as f:
-        json.dump(results, f, ensure_ascii=False, indent=4)
-    
-    print(f"\n🎉 掃描完成！成功率: {success_count}/{len(TARGET_CODES)}")
-    print("📁 資料已儲存，請重新整理你的戰情室網頁。")
-
 if __name__ == "__main__":
-    main()
+    targets = get_target_stocks()
+    database = {}
+    
+    print("🚀 開始批量掃描 (此過程約需 5-10 分鐘)...")
+    start_time = time.time()
+    
+    for i, stock in enumerate(targets):
+        code = stock['code']
+        suffix = ".TW" if stock['market'] == "TW" else ".TWO"
+        symbol = f"{code}{suffix}"
+        
+        # 呼叫 yfinance
+        ticker = yf.Ticker(symbol)
+        result = analyze_stock(ticker, code, stock['name'])
+        
+        if result:
+            database[code] = result
+            # 即時印出進度 (只印出強勢股 RED，減少雜訊)
+            if result['status'] == "RED":
+                print(f"🔥 發現強勢股: {code} {stock['name']} RSI={result['rsi']}")
+        
+        # 進度條
+        if i % 50 == 0:
+            print(f"進度: {i}/{len(targets)}...")
+
+        # ⚠️ 關鍵：加上延遲，避免被 Yahoo 封鎖 IP
+        time.sleep(0.3) 
+
+    # 存檔
+    with open("stock_database.json", "w", encoding="utf-8") as f:
+        json.dump(database, f, ensure_ascii=False, indent=4)
+        
+    end_time = time.time()
+    duration = end_time - start_time
+    print(f"✅ 掃描完成！共分析 {len(database)} 檔股票。")
+    print(f"⏱️ 總耗時: {int(duration // 60)} 分 {int(duration % 60)} 秒")
