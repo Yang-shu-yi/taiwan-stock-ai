@@ -1,0 +1,7 @@
+# 忽略 Streamlit 的密碼檔 (絕對不能上傳)
+.streamlit/secrets.toml
+
+# 忽略 Python 編譯檔與快取
+__pycache__/
+*.pyc
+.DS_Store

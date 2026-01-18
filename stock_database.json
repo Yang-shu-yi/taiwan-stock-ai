@@ -1,0 +1,730 @@
+{
+    "2330": {
+        "code": "2330",
+        "name": "台積電",
+        "price": 1740.0,
+        "pct_change": 2.96,
+        "status": "RED",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2454": {
+        "code": "2454",
+        "name": "聯發科",
+        "price": 1505.0,
+        "pct_change": 1.01,
+        "status": "RED",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2303": {
+        "code": "2303",
+        "name": "聯電",
+        "price": 58.5,
+        "pct_change": 6.95,
+        "status": "RED",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2308": {
+        "code": "2308",
+        "name": "台達電",
+        "price": 1125.0,
+        "pct_change": 7.66,
+        "status": "RED",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2379": {
+        "code": "2379",
+        "name": "瑞昱",
+        "price": 509.0,
+        "pct_change": -0.78,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "3711": {
+        "code": "3711",
+        "name": "日月光投控",
+        "price": 303.5,
+        "pct_change": 1.68,
+        "status": "RED",
+        "update_time": "2026-01-16 22:36"
+    },
+    "3443": {
+        "code": "3443",
+        "name": "創意",
+        "price": 2510.0,
+        "pct_change": 0.2,
+        "status": "RED",
+        "update_time": "2026-01-16 22:36"
+    },
+    "3661": {
+        "code": "3661",
+        "name": "世芯-KY",
+        "price": 3340.0,
+        "pct_change": 0.6,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "3034": {
+        "code": "3034",
+        "name": "聯詠",
+        "price": 378.0,
+        "pct_change": -0.4,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2344": {
+        "code": "2344",
+        "name": "華邦電",
+        "price": 106.5,
+        "pct_change": 7.36,
+        "status": "RED",
+        "update_time": "2026-01-16 22:36"
+    },
+    "3035": {
+        "code": "3035",
+        "name": "智原",
+        "price": 166.5,
+        "pct_change": -0.89,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "3529": {
+        "code": "3529",
+        "name": "力旺",
+        "price": 1675.0,
+        "pct_change": -0.3,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "3231": {
+        "code": "3231",
+        "name": "緯創",
+        "price": 145.0,
+        "pct_change": 1.05,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2382": {
+        "code": "2382",
+        "name": "廣達",
+        "price": 289.5,
+        "pct_change": 2.3,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2356": {
+        "code": "2356",
+        "name": "英業達",
+        "price": 44.3,
+        "pct_change": 0.45,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2357": {
+        "code": "2357",
+        "name": "華碩",
+        "price": 510.0,
+        "pct_change": -2.11,
+        "status": "GREEN",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2353": {
+        "code": "2353",
+        "name": "宏碁",
+        "price": 27.1,
+        "pct_change": 0.18,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2376": {
+        "code": "2376",
+        "name": "技嘉",
+        "price": 246.5,
+        "pct_change": 0.61,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2377": {
+        "code": "2377",
+        "name": "微星",
+        "price": 99.0,
+        "pct_change": -1.0,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "6669": {
+        "code": "6669",
+        "name": "緯穎",
+        "price": 3825.0,
+        "pct_change": -3.04,
+        "status": "GREEN",
+        "update_time": "2026-01-16 22:36"
+    },
+    "3017": {
+        "code": "3017",
+        "name": "奇鋐",
+        "price": 1360.0,
+        "pct_change": -1.45,
+        "status": "GREEN",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2408": {
+        "code": "2408",
+        "name": "南亞科",
+        "price": 250.0,
+        "pct_change": 5.26,
+        "status": "RED",
+        "update_time": "2026-01-16 22:36"
+    },
+    "3008": {
+        "code": "3008",
+        "name": "大立光",
+        "price": 2430.0,
+        "pct_change": 1.04,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "8069": {
+        "code": "8069",
+        "name": "元太",
+        "price": 174.5,
+        "pct_change": 0.87,
+        "status": "GREEN",
+        "update_time": "2026-01-16 22:36"
+    },
+    "8299": {
+        "code": "8299",
+        "name": "群聯",
+        "price": 1890.0,
+        "pct_change": 5.29,
+        "status": "RED",
+        "update_time": "2026-01-16 22:36"
+    },
+    "6515": {
+        "code": "6515",
+        "name": "穎崴",
+        "price": 3535.0,
+        "pct_change": 2.46,
+        "status": "RED",
+        "update_time": "2026-01-16 22:36"
+    },
+    "5269": {
+        "code": "5269",
+        "name": "祥碩",
+        "price": 1300.0,
+        "pct_change": -2.62,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "5274": {
+        "code": "5274",
+        "name": "信驊",
+        "price": 8700.0,
+        "pct_change": -0.63,
+        "status": "RED",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2881": {
+        "code": "2881",
+        "name": "富邦金",
+        "price": 95.0,
+        "pct_change": 0.96,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2882": {
+        "code": "2882",
+        "name": "國泰金",
+        "price": 76.2,
+        "pct_change": 1.33,
+        "status": "RED",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2891": {
+        "code": "2891",
+        "name": "中信金",
+        "price": 50.5,
+        "pct_change": 0.2,
+        "status": "RED",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2886": {
+        "code": "2886",
+        "name": "兆豐金",
+        "price": 40.9,
+        "pct_change": 0.62,
+        "status": "RED",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2884": {
+        "code": "2884",
+        "name": "玉山金",
+        "price": 32.7,
+        "pct_change": 0.62,
+        "status": "GREEN",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2885": {
+        "code": "2885",
+        "name": "元大金",
+        "price": 41.8,
+        "pct_change": -0.12,
+        "status": "RED",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2892": {
+        "code": "2892",
+        "name": "第一金",
+        "price": 29.8,
+        "pct_change": 0.0,
+        "status": "RED",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2880": {
+        "code": "2880",
+        "name": "華南金",
+        "price": 33.2,
+        "pct_change": 0.76,
+        "status": "RED",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2890": {
+        "code": "2890",
+        "name": "永豐金",
+        "price": 29.3,
+        "pct_change": 1.03,
+        "status": "RED",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2883": {
+        "code": "2883",
+        "name": "開發金",
+        "price": 17.8,
+        "pct_change": 1.14,
+        "status": "RED",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2887": {
+        "code": "2887",
+        "name": "台新金",
+        "price": 21.9,
+        "pct_change": 1.16,
+        "status": "RED",
+        "update_time": "2026-01-16 22:36"
+    },
+    "5880": {
+        "code": "5880",
+        "name": "合庫金",
+        "price": 24.0,
+        "pct_change": -0.42,
+        "status": "GREEN",
+        "update_time": "2026-01-16 22:36"
+    },
+    "5876": {
+        "code": "5876",
+        "name": "上海商銀",
+        "price": 39.6,
+        "pct_change": -0.63,
+        "status": "GREEN",
+        "update_time": "2026-01-16 22:36"
+    },
+    "5871": {
+        "code": "5871",
+        "name": "中租-KY",
+        "price": 104.0,
+        "pct_change": -0.48,
+        "status": "GREEN",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2801": {
+        "code": "2801",
+        "name": "彰銀",
+        "price": 20.4,
+        "pct_change": -0.25,
+        "status": "GREEN",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2812": {
+        "code": "2812",
+        "name": "台中銀",
+        "price": 20.8,
+        "pct_change": 0.0,
+        "status": "GREEN",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2834": {
+        "code": "2834",
+        "name": "臺企銀",
+        "price": 15.9,
+        "pct_change": 0.0,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2845": {
+        "code": "2845",
+        "name": "遠東銀",
+        "price": 12.8,
+        "pct_change": 0.0,
+        "status": "GREEN",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2867": {
+        "code": "2867",
+        "name": "三商壽",
+        "price": 7.8,
+        "pct_change": 0.26,
+        "status": "GREEN",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2603": {
+        "code": "2603",
+        "name": "長榮",
+        "price": 190.0,
+        "pct_change": -2.56,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2609": {
+        "code": "2609",
+        "name": "陽明",
+        "price": 54.5,
+        "pct_change": -1.8,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2615": {
+        "code": "2615",
+        "name": "萬海",
+        "price": 77.2,
+        "pct_change": -1.91,
+        "status": "GREEN",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2618": {
+        "code": "2618",
+        "name": "長榮航",
+        "price": 37.5,
+        "pct_change": 0.13,
+        "status": "RED",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2610": {
+        "code": "2610",
+        "name": "華航",
+        "price": 21.5,
+        "pct_change": 0.7,
+        "status": "RED",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2637": {
+        "code": "2637",
+        "name": "慧洋-KY",
+        "price": 70.9,
+        "pct_change": -1.12,
+        "status": "RED",
+        "update_time": "2026-01-16 22:36"
+    },
+    "1101": {
+        "code": "1101",
+        "name": "台泥",
+        "price": 25.0,
+        "pct_change": 0.0,
+        "status": "RED",
+        "update_time": "2026-01-16 22:36"
+    },
+    "1102": {
+        "code": "1102",
+        "name": "亞泥",
+        "price": 36.8,
+        "pct_change": 0.14,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "1301": {
+        "code": "1301",
+        "name": "台塑",
+        "price": 43.0,
+        "pct_change": 0.94,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "1303": {
+        "code": "1303",
+        "name": "南亞",
+        "price": 73.8,
+        "pct_change": 5.88,
+        "status": "RED",
+        "update_time": "2026-01-16 22:36"
+    },
+    "1326": {
+        "code": "1326",
+        "name": "台化",
+        "price": 34.5,
+        "pct_change": 0.15,
+        "status": "RED",
+        "update_time": "2026-01-16 22:36"
+    },
+    "6505": {
+        "code": "6505",
+        "name": "台塑化",
+        "price": 48.3,
+        "pct_change": -3.4,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2002": {
+        "code": "2002",
+        "name": "中鋼",
+        "price": 19.2,
+        "pct_change": -1.03,
+        "status": "RED",
+        "update_time": "2026-01-16 22:36"
+    },
+    "1216": {
+        "code": "1216",
+        "name": "統一",
+        "price": 75.4,
+        "pct_change": -0.79,
+        "status": "GREEN",
+        "update_time": "2026-01-16 22:36"
+    },
+    "1402": {
+        "code": "1402",
+        "name": "遠東新",
+        "price": 28.4,
+        "pct_change": -0.35,
+        "status": "RED",
+        "update_time": "2026-01-16 22:36"
+    },
+    "9910": {
+        "code": "9910",
+        "name": "豐泰",
+        "price": 104.0,
+        "pct_change": -2.35,
+        "status": "GREEN",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2105": {
+        "code": "2105",
+        "name": "正新",
+        "price": 31.0,
+        "pct_change": 0.49,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "1504": {
+        "code": "1504",
+        "name": "東元",
+        "price": 88.9,
+        "pct_change": 3.61,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "1590": {
+        "code": "1590",
+        "name": "亞德客-KY",
+        "price": 1020.0,
+        "pct_change": 0.49,
+        "status": "RED",
+        "update_time": "2026-01-16 22:36"
+    },
+    "1605": {
+        "code": "1605",
+        "name": "華新",
+        "price": 43.0,
+        "pct_change": -3.05,
+        "status": "RED",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2412": {
+        "code": "2412",
+        "name": "中華電",
+        "price": 133.0,
+        "pct_change": -0.37,
+        "status": "RED",
+        "update_time": "2026-01-16 22:36"
+    },
+    "3045": {
+        "code": "3045",
+        "name": "台灣大",
+        "price": 108.0,
+        "pct_change": 0.0,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "4904": {
+        "code": "4904",
+        "name": "遠傳",
+        "price": 91.1,
+        "pct_change": 0.11,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2912": {
+        "code": "2912",
+        "name": "統一超",
+        "price": 220.0,
+        "pct_change": -2.0,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "5903": {
+        "code": "5903",
+        "name": "全家",
+        "price": 190.5,
+        "pct_change": -0.26,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "5904": {
+        "code": "5904",
+        "name": "寶雅",
+        "price": 427.5,
+        "pct_change": -1.84,
+        "status": "GREEN",
+        "update_time": "2026-01-16 22:36"
+    },
+    "6415": {
+        "code": "6415",
+        "name": "矽力*-KY",
+        "price": 217.0,
+        "pct_change": 2.84,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "6409": {
+        "code": "6409",
+        "name": "旭隼",
+        "price": 1000.0,
+        "pct_change": 0.0,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "4966": {
+        "code": "4966",
+        "name": "譜瑞-KY",
+        "price": 575.0,
+        "pct_change": -1.37,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "3629": {
+        "code": "3629",
+        "name": "地心引力",
+        "price": 21.7,
+        "pct_change": -1.59,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "6176": {
+        "code": "6176",
+        "name": "瑞儀",
+        "price": 124.5,
+        "pct_change": 1.22,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "6274": {
+        "code": "6274",
+        "name": "台燿",
+        "price": 492.0,
+        "pct_change": 2.29,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "8046": {
+        "code": "8046",
+        "name": "南電",
+        "price": 289.5,
+        "pct_change": 9.87,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "3293": {
+        "code": "3293",
+        "name": "鈊象",
+        "price": 749.0,
+        "pct_change": -0.79,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "6446": {
+        "code": "6446",
+        "name": "藥華藥",
+        "price": 587.0,
+        "pct_change": 9.93,
+        "status": "RED",
+        "update_time": "2026-01-16 22:36"
+    },
+    "6472": {
+        "code": "6472",
+        "name": "保瑞",
+        "price": 547.0,
+        "pct_change": 3.99,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "6239": {
+        "code": "6239",
+        "name": "力成",
+        "price": 263.0,
+        "pct_change": 2.14,
+        "status": "RED",
+        "update_time": "2026-01-16 22:36"
+    },
+    "6269": {
+        "code": "6269",
+        "name": "台郡",
+        "price": 59.0,
+        "pct_change": 0.68,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "8454": {
+        "code": "8454",
+        "name": "富邦媒",
+        "price": 200.5,
+        "pct_change": -2.43,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "9914": {
+        "code": "9914",
+        "name": "美利達",
+        "price": 92.1,
+        "pct_change": 5.5,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "9921": {
+        "code": "9921",
+        "name": "巨大",
+        "price": 95.0,
+        "pct_change": 2.7,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    },
+    "9941": {
+        "code": "9941",
+        "name": "裕融",
+        "price": 80.1,
+        "pct_change": -0.37,
+        "status": "GREEN",
+        "update_time": "2026-01-16 22:36"
+    },
+    "9945": {
+        "code": "9945",
+        "name": "潤泰新",
+        "price": 29.7,
+        "pct_change": -1.82,
+        "status": "GREEN",
+        "update_time": "2026-01-16 22:36"
+    },
+    "2317": {
+        "code": "2317",
+        "name": "鴻海",
+        "price": 234.5,
+        "pct_change": 0.43,
+        "status": "YELLOW",
+        "update_time": "2026-01-16 22:36"
+    }
+}

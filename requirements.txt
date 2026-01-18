@@ -1,0 +1,9 @@
+streamlit
+yfinance
+ta
+pandas
+numpy
+plotly
+groq
+feedparser
+twstock
