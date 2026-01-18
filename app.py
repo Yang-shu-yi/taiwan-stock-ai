@@ -191,12 +191,14 @@ def plot_chart(df, symbol):
     fig.update_layout(xaxis_rangeslider_visible=False, height=700, margin=dict(l=10, r=10, t=30, b=10), showlegend=False, dragmode='pan')
     return fig
 
+# 🔥 AI 分析優化：加入「具體價位」指令
 def ask_llama(df, symbol, key, fundamentals, risk_status, scan_status, news_list, chip_data):
     client = Groq(api_key=key)
     latest = df.iloc[-1]
     news_text = "無重大新聞"
     if news_list: news_text = "\n".join([f"- {n.title}" for n in news_list])
 
+    # 計算技術數據供 AI 參考
     high_60d = df['Close'].tail(60).max()
     low_60d = df['Close'].tail(60).min()
     price_pos = (latest['Close'] - low_60d) / (high_60d - low_60d) * 100 
@@ -209,6 +211,7 @@ def ask_llama(df, symbol, key, fundamentals, risk_status, scan_status, news_list
     vol_ratio = latest['Volume'] / avg_vol if avg_vol > 0 else 0
     vol_desc = "量能放大" if vol_ratio > 1.3 else "量能正常"
 
+    # 組合 Prompt
     prompt = f"""
     角色：台股操盤手。目標：分析 {symbol}。
     
@@ -218,10 +221,12 @@ def ask_llama(df, symbol, key, fundamentals, risk_status, scan_status, news_list
     籌碼：{chip_data}
 
     【📈 數據】
+    現價：{latest['Close']:.2f}
     位置：{trend_desc} (Pos: {price_pos:.0f}%)
     量能：{vol_desc}
     RSI：{latest['RSI']:.0f}
-    均線：{"站上" if latest['Close'] > latest['MA20'] else "跌破"}月線
+    均線：{"站上" if latest['Close'] > latest['MA20'] else "跌破"}月線 (MA20: {latest['MA20']:.2f})，{"站上" if latest['Close'] > latest['MA60'] else "跌破"}季線 (MA60: {latest['MA60']:.2f})。
+    前高/前低：近60日高點 {high_60d:.2f} / 低點 {low_60d:.2f}
 
     【⚠️ 嚴格格式】
     第一行：[建議：強力買進 / 拉回買進 / 觀望持有 / 分批賣出] (四選一)
@@ -232,8 +237,9 @@ def ask_llama(df, symbol, key, fundamentals, risk_status, scan_status, news_list
     - 重點2
     📈 **技術分析**
     - 重點3
-    💡 **操作建議**
-    - 具體建議
+    💡 **操作建議 (務必包含數值)**
+    - 請明確給出「支撐價位」與「壓力價位」的預估數值（例如：支撐看 50.5 元，壓力看 55 元）。
+    - 結合 MA20、MA60 或前高前低給出具體操作區間。
     """
     try:
         completion = client.chat.completions.create(
