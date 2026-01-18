@@ -1,50 +1,41 @@
-name: Daily Stock Scan 📈
+name: Daily Stock Scan
 
-# 設定觸發時機
 on:
   schedule:
-    # 設定每天下午 15:00 (台灣時間) 執行
-    # GitHub 使用 UTC 時間，台灣是 UTC+8，所以 15:00 - 8 = 07:00
-    # 格式: 分 時 日 月 星期 (1-5 代表週一到週五)
-    - cron: '0 7 * * 1-5'
-  
-  # 允許手動點擊按鈕觸發 (方便測試用)
+    - cron: '15 7 * * *' # 台灣時間下午 3:15
   workflow_dispatch:
-
-permissions:
-  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    # 1. 下載你的程式碼
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # 2. 設定 Python 環境
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.11'
+        python-version: '3.9'
 
-    # 3. 安裝套件 (包含 lxml)
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+        pip install requests groq # 確保有裝這兩個
 
-    # 4. 執行掃描程式
-    - name: Run Batch Scan
+    - name: Run Scan Script
+      # 👇 這裡就是關鍵！把 Secrets 注入給 Python 程式
+      env:
+        GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
+        LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
+        WEB_APP_URL: ${{ secrets.WEB_APP_URL }}
       run: python batch_scan.py
 
-    # 5. 檢查是否有資料變動，並自動存檔 (Commit & Push)
-    - name: Commit and Push changes
+    - name: Commit and push if database changed
       run: |
-        git config --global user.name "GitHub Action Bot"
+        git config --global user.name "GitHub Actions"
         git config --global user.email "actions@github.com"
         git add stock_database.json
-        # 如果有變動才 Commit，沒變動就不做任何事 (避免報錯)
-        git commit -m "🤖 Auto-update stock data $(date +'%Y-%m-%d')" || exit 0
-        git push
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Update stock database" && git push)
