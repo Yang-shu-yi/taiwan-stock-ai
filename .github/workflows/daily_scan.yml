@@ -3,7 +3,7 @@ name: Daily Stock Scan
 on:
   schedule:
     - cron: '15 7 * * *' # 台灣時間下午 3:15
-  workflow_dispatch:
+  workflow_dispatch:      # 允許手動按按鈕執行
 
 jobs:
   build:
@@ -22,10 +22,11 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install requests groq # 確保有裝這兩個
+        # 雙重保險：強制再裝一次 requests 和 groq
+        pip install requests groq 
 
     - name: Run Scan Script
-      # 👇 這裡就是關鍵！把 Secrets 注入給 Python 程式
+      # 👇 注意這裡的縮排：env 與 run 是切齊的 (都在同一層)
       env:
         GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
