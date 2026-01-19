@@ -14,51 +14,38 @@ from datetime import datetime
 # ==========================================
 st.set_page_config(page_title="台股 AI 戰情室", layout="wide", page_icon="📈")
 
-# 嘗試從 Secrets 讀取 (Streamlit Cloud)，如果沒有則讀取環境變數 (Local)
+# 嘗試讀取 API Key
 try:
     GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
 except:
     GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
 
 # ==========================================
-# 2. 核心功能函數
+# 2. 核心功能函數 (升級版)
 # ==========================================
-def get_stock_name(code):
-    """輸入代號，回傳中文股名 (使用 twstock)"""
-    try:
-        return twstock.codes[code].name
-    except:
-        return code
-
 def resolve_stock_code(query):
-    """智慧解析：輸入 '2330' 或 '台積電'，回傳 '2330' 與市場別"""
-    query = query.strip() # 去除前後空白
-    
+    """智慧解析：輸入 '2330' 或 '台積電'，都能找到代號"""
+    query = query.strip()
     target_code = None
     market_type = "上市" # 預設
-    
-    # 情況 A: 輸入的是代號 (如 2330)
-    if query.isdigit():
+
+    if query.isdigit(): # 如果輸入數字
         target_code = query
         if target_code in twstock.codes:
             market_type = twstock.codes[target_code].market
-            
-    # 情況 B: 輸入的是中文 (如 台積電)
-    else:
+    else: # 如果輸入中文
         for code in twstock.codes:
             if twstock.codes[code].name == query:
                 target_code = code
                 market_type = twstock.codes[code].market
                 break
-                
+    
     if target_code:
         suffix = ".TW" if market_type == "上市" else ".TWO"
         return target_code, suffix, twstock.codes[target_code].name
-    else:
-        return None, None, None
+    return None, None, None
 
 def get_ai_analysis(code, name, df):
-    """呼叫 Groq AI 進行即時分析"""
     if not GROQ_API_KEY:
         return "⚠️ 請先設定 GROQ_API_KEY 才能使用 AI 分析功能。"
     
@@ -70,123 +57,140 @@ def get_ai_analysis(code, name, df):
     client = Groq(api_key=GROQ_API_KEY)
     prompt = f"""
     你是一位專業操盤手。請分析 {name} ({code})。
-    技術數據：
-    - 現價: {price:.2f}
-    - MA20: {ma20:.2f} (判斷支撐/壓力)
-    - RSI: {rsi:.1f} (判斷過熱/背離)
-    - 趨勢: {"多頭" if price > ma20 else "空頭/整理"}
-    
-    請給出：
-    1. 短評 (趨勢判斷)
-    2. 支撐與壓力位建議
-    3. 操作建議 (買進/觀望/減碼)
-    (請用條列式，語氣專業簡潔)
+    技術數據：現價 {price:.2f}, MA20 {ma20:.2f}, RSI {rsi:.1f}。
+    請給出：1. 趨勢判斷 2. 支撐壓力 3. 操作建議 (買進/觀望/賣出)。
+    請用繁體中文，條列式回答。
     """
-    
     try:
         completion = client.chat.completions.create(
             model="llama-3.3-70b-versatile",
             messages=[{"role": "user", "content": prompt}],
-            temperature=0.3, max_tokens=400
+            temperature=0.3, max_tokens=450
         )
         return completion.choices[0].message.content
     except Exception as e:
-        return f"AI 分析連線失敗: {str(e)}"
+        return f"AI 連線失敗: {e}"
 
 # ==========================================
-# 3. 側邊欄：讀取掃描報告 (靜態)
+# 3. 初始化 Session State (記憶搜尋狀態)
+# ==========================================
+if 'current_stock' not in st.session_state:
+    st.session_state['current_stock'] = None
+
+# ==========================================
+# 4. 側邊欄 UI (維持原版排版)
 # ==========================================
 st.sidebar.title("📂 戰情室資料庫")
 
-# 讀取 JSON 資料庫
+if st.sidebar.button("🔄 重新讀取檔案"):
+    st.rerun()
+
+# 讀取資料庫
 db = {}
 try:
     with open("stock_database.json", "r", encoding="utf-8") as f:
         db = json.load(f)
-        
-    # 顯示更新時間 (防呆機制)
+    # 防呆：抓取更新時間
     if db:
-        first_key = next(iter(db))
-        update_time = db[first_key].get('update_time', '時間未知')
+        first_item = next(iter(db.values()))
+        update_time = first_item.get('update_time', '時間未知')
         st.sidebar.caption(f"上次更新: {update_time}")
     else:
-        st.sidebar.warning("資料庫為空")
+        st.sidebar.warning("資料庫目前為空")
 except:
-    st.sidebar.error("尚未讀取到資料庫 (請等待 GitHub Actions 執行)")
+    st.sidebar.error("讀取資料庫失敗")
 
-# 分類統計
+# 資料分類
 red_list = [v for k,v in db.items() if v.get('status') == 'RED']
 green_list = [v for k,v in db.items() if v.get('status') == 'GREEN']
 yellow_list = [v for k,v in db.items() if v.get('status') == 'YELLOW']
 
-# 側邊欄選單
+# --- 列表顯示區 (點擊後把股票代號存入 Session) ---
 with st.sidebar:
-    st.info(f"📊 掃描總數: {len(db)}")
-    
+    # 紅燈區
     with st.expander(f"🔴 強力關注 ({len(red_list)})", expanded=True):
         for item in red_list:
-            # 這裡按鈕點擊後，可以自動填入搜尋欄 (需配合 Session State，這裡先做簡單顯示)
-            st.write(f"**{item['code']} {item['name']}** ${item['price']}")
-            
+            # 這裡用 pct_change 防呆，如果沒有就顯示 0
+            change = item.get('pct_change', 0)
+            btn_label = f"{item['code']} {item['name']} ${item['price']} ({change}%)"
+            if st.button(btn_label, key=f"btn_{item['code']}"):
+                st.session_state['current_stock'] = item['code'] # 記住點了誰
+
+    # 綠燈區
     with st.expander(f"🟢 避雷/賣出 ({len(green_list)})"):
         for item in green_list:
-            st.write(f"{item['code']} {item['name']} ${item['price']}")
+            if st.button(f"{item['code']} {item['name']}", key=f"btn_{item['code']}"):
+                st.session_state['current_stock'] = item['code']
+
+    # 黃燈區
+    with st.expander(f"🟡 觀望持有 ({len(yellow_list)})"):
+        for item in yellow_list:
+            if st.button(f"{item['code']} {item['name']}", key=f"btn_{item['code']}"):
+                st.session_state['current_stock'] = item['code']
+
+    st.sidebar.markdown("---")
+    
+    # --- 搜尋區 (這裡就是你要的「補齊搜尋功能」) ---
+    st.sidebar.write("輸入代號或中文股名 (如: 國碩)")
+    search_query = st.sidebar.text_input("Search Box", label_visibility="collapsed")
+    
+    if st.sidebar.button("🚀 AI 深度分析", type="primary", use_container_width=True):
+        if search_query:
+            # 呼叫解析函數，把「國碩」轉成「2406」
+            resolved_code, _, _ = resolve_stock_code(search_query)
+            if resolved_code:
+                st.session_state['current_stock'] = resolved_code
+            else:
+                st.sidebar.error("❌ 找不到該股票，請確認名稱")
 
 # ==========================================
-# 4. 主畫面：全市場搜尋 (動態)
+# 5. 主畫面 UI (顯示分析結果)
 # ==========================================
 st.title("📈 台股 AI 全方位戰情室")
-st.markdown("---")
 
-col1, col2 = st.columns([3, 1])
-with col1:
-    query = st.text_input("🔍 輸入代號或中文股名 (例如: 鴻海, 2330, 國碩)", placeholder="支援全台股搜尋...")
+# 檢查是否有選中股票 (無論是點列表 還是 搜尋來的)
+target = st.session_state['current_stock']
 
-with col2:
-    st.write("") # 排版用
-    st.write("") 
-    search_btn = st.button("🚀 AI 深度分析", use_container_width=True)
-
-if search_btn and query:
-    code, suffix, name = resolve_stock_code(query)
+if target:
+    # 解析代號與名稱
+    code, suffix, name = resolve_stock_code(target)
     
     if code:
-        st.success(f"✅ 成功鎖定: {code} {name} ({'上市' if suffix=='.TW' else '上櫃'})")
-        
-        # 1. 抓取即時資料 (Live Data)
         try:
-            with st.spinner(f"正在連線證交所抓取 {name} 資料..."):
+            st.subheader(f"📊 {name} ({code}) 即時分析")
+            
+            # 1. 抓取即時資料 (不依賴 JSON，直接抓最新的)
+            with st.spinner(f"正在連線抓取 {name} 最新數據..."):
                 ticker = yf.Ticker(f"{code}{suffix}")
-                df = ticker.history(period="6mo") # 抓半年資料畫圖
-                
+                df = ticker.history(period="6mo")
+            
             if len(df) < 5:
-                st.error("❌ 資料不足，可能為新股或暫停交易。")
+                st.error("無法取得該股資料 (可能暫停交易或代號錯誤)")
             else:
-                # 2. 繪製 K 線圖
-                st.subheader(f"📊 {name} ({code}) 技術走勢")
-                
-                # 計算均線
+                # 2. 畫圖 (K線 + 均線)
                 df['MA20'] = ta.trend.sma_indicator(df['Close'], window=20)
                 df['MA60'] = ta.trend.sma_indicator(df['Close'], window=60)
                 
-                fig = go.Figure(data=[go.Candlestick(x=df.index,
-                                open=df['Open'], high=df['High'],
-                                low=df['Low'], close=df['Close'], name="K線"),
-                                go.Scatter(x=df.index, y=df['MA20'], line=dict(color='orange', width=1), name="月線"),
-                                go.Scatter(x=df.index, y=df['MA60'], line=dict(color='green', width=1), name="季線")
-                                ])
-                fig.update_layout(xaxis_rangeslider_visible=False, height=400)
+                fig = go.Figure(data=[
+                    go.Candlestick(x=df.index, open=df['Open'], high=df['High'], low=df['Low'], close=df['Close'], name="K線"),
+                    go.Scatter(x=df.index, y=df['MA20'], line=dict(color='orange', width=1), name="MA20"),
+                    go.Scatter(x=df.index, y=df['MA60'], line=dict(color='green', width=1), name="MA60")
+                ])
+                fig.update_layout(xaxis_rangeslider_visible=False, height=450)
                 st.plotly_chart(fig, use_container_width=True)
-                
-                # 3. AI 分析報告
-                st.subheader("🤖 AI 操盤手觀點")
+
+                # 3. AI 分析
+                st.markdown("### 🤖 AI 操盤手觀點")
                 with st.chat_message("assistant"):
-                    with st.spinner("AI 正在思考策略..."):
+                    with st.spinner("AI 正在分析技術型態..."):
                         analysis = get_ai_analysis(code, name, df)
-                        st.markdown(analysis)
+                        st.write(analysis)
                         
         except Exception as e:
-            st.error(f"❌ 數據抓取失敗: {e}")
-            
+            st.error(f"發生錯誤: {e}")
     else:
-        st.error(f"❌ 找不到 '{query}'，請確認輸入正確 (例如試試輸入代號)。")
+        st.error("無效的股票代號")
+
+else:
+    # 預設畫面 (沒選股票時顯示)
+    st.info("👈 請從左側側邊欄選擇股票，或輸入代號/中文名稱進行搜尋。")
