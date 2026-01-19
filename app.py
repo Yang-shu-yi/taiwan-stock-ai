@@ -43,7 +43,13 @@ with st.sidebar:
     green_list = [v for k, v in db.items() if v['status'] == 'GREEN']
     yellow_list = [v for k, v in db.items() if v['status'] == 'YELLOW']
 
-    st.caption(f"上次更新: {list(db.values())[0]['update_time'] if db else '無資料'}")
+    # 修改原本的 st.caption 那一行，改成這樣：
+    if db:
+        first_key = next(iter(db)) # 抓第一筆資料的 Key
+        update_time = db[first_key].get('update_time', '時間未知')
+        st.caption(f"上次更新: {update_time}")
+    else:
+        st.caption("上次更新: 無資料 (請等待 AI 掃描完成)")
 
     with st.expander(f"🔴 強力關注 ({len(red_list)})", expanded=True):
         for item in red_list:
