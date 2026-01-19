@@ -85,7 +85,7 @@ def analyze_stock(ticker, code, name):
         # 1. 股價 > 月線 (MA20)
         # 2. 月線 > 季線 (MA60) -> 多頭排列
         # 3. RSI > 55 -> 動能強勢
-        if latest > ma20 and ma20 > ma60 and rsi > 55:
+        if latest > ma20 and ma20 > ma60 and rsi > 60:
             status = "RED"
             
         # 🟢 弱勢/避雷標準：
