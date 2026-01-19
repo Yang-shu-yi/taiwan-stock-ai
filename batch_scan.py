@@ -63,20 +63,30 @@ def analyze_stock(ticker, code, name):
         df = ticker.history(period="1y")
         if len(df) < 60: return None
         close = df['Close']
+        
+        # 技術指標
         ma20 = ta.trend.sma_indicator(close, window=20).iloc[-1]
         ma60 = ta.trend.sma_indicator(close, window=60).iloc[-1]
         rsi = ta.momentum.rsi(close, window=14).iloc[-1]
         latest = close.iloc[-1]
         vol = df['Volume'].iloc[-1]
+
+        # 🔥 補回關鍵數據：漲跌幅 (Pct Change)
+        prev_close = close.iloc[-2]
+        pct_change = (latest - prev_close) / prev_close * 100
         
         status = "YELLOW"
         if latest > ma20 and ma20 > ma60 and rsi > 55: status = "RED"
         elif latest < ma60 or vol < 50000: status = "GREEN"
             
         return {
-            "code": code, "name": name, "price": round(latest, 2),
-            "rsi": round(rsi, 1), "status": status,
-            "update_time": datetime.now().strftime("%Y-%m-%d %H:%M") # 關鍵：確保有這個欄位
+            "code": code, 
+            "name": name, 
+            "price": round(latest, 2),
+            "pct_change": round(pct_change, 2), # 👈 關鍵修復：把這一行加回來！
+            "rsi": round(rsi, 1), 
+            "status": status,
+            "update_time": datetime.now().strftime("%Y-%m-%d %H:%M")
         }
     except: return None
 
@@ -98,10 +108,11 @@ if __name__ == "__main__":
                 database[stock['code']] = res
                 if res['status'] == "RED":
                     print(f"🔥 強勢: {stock['code']}")
+                    # 為了避免頻繁呼叫 AI 導致過慢，這邊簡單過濾
                     time.sleep(0.5)
                     ai_msg = quick_ai_check(stock['code'], stock['name'], res['price'], res['status'], res['rsi'])
                     if ai_msg and ("買進" in ai_msg):
-                        report.append(f"🚀 {stock['code']} {stock['name']} ${res['price']}\nAI: {ai_msg}")
+                        report.append(f"🚀 {stock['code']} {stock['name']} ${res['price']} ({res['pct_change']}%)\nAI: {ai_msg}")
             
             if i % 50 == 0: print(f"進度 {i}...")
             time.sleep(0.2)
