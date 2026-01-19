@@ -15,7 +15,7 @@ from datetime import datetime, timedelta
 
 # --- 1. 頁面設定 ---
 st.set_page_config(page_title="台股 AI 戰情室", layout="wide", initial_sidebar_state="expanded")
-st.title("📈 台股 AI 全方位戰情室 (v3.2 中文搜尋優化版)")
+st.title("📈 台股 AI 全方位戰情室")
 
 # --- 讀取本地資料庫 ---
 def load_database():
