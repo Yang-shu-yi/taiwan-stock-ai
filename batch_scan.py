@@ -80,10 +80,17 @@ def analyze_stock(ticker, code, name):
         pct_change = (latest - prev_close) / prev_close * 100
         
         status = "YELLOW"
-        # 🔥 測試用：條件放寬，只要 RSI > 50 就抓出來！
-        if rsi > 50: 
+        
+        # 🟢 正式版嚴格策略：
+        # 1. 股價 > 月線 (MA20)
+        # 2. 月線 > 季線 (MA60) -> 多頭排列
+        # 3. RSI > 55 -> 動能強勢
+        if latest > ma20 and ma20 > ma60 and rsi > 55:
             status = "RED"
-        elif latest < ma60: 
+            
+        # 🟢 弱勢/避雷標準：
+        # 跌破季線 (MA60) 或 成交量太低 (< 500張)
+        elif latest < ma60 or vol < 500000: 
             status = "GREEN"
             
         date_str, time_str = get_tw_time()
