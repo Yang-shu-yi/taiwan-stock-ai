@@ -2,4951 +2,3466 @@
     "1101": {
         "code": "1101",
         "name": "台泥",
-        "price": 25.0,
-        "pct_change": 0.0,
-        "volume": 35913609,
-        "rsi": 73.0,
-        "status": "RED",
-        "update_time": "2026-01-18 16:28"
+        "price": 26.2,
+        "rsi": 80.3,
+        "status": "RED"
     },
     "1102": {
         "code": "1102",
         "name": "亞泥",
         "price": 36.8,
-        "pct_change": 0.14,
-        "volume": 4643570,
         "rsi": 45.1,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "status": "GREEN"
     },
     "1103": {
         "code": "1103",
         "name": "嘉泥",
-        "price": 14.15,
-        "pct_change": 0.0,
-        "volume": 206562,
-        "rsi": 60.1,
-        "status": "RED",
-        "update_time": "2026-01-18 16:28"
+        "price": 14.1,
+        "rsi": 57.4,
+        "status": "RED"
     },
     "1104": {
         "code": "1104",
         "name": "環泥",
         "price": 30.25,
-        "pct_change": -0.82,
-        "volume": 417662,
         "rsi": 48.6,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "status": "GREEN"
     },
     "1108": {
         "code": "1108",
         "name": "幸福",
-        "price": 15.1,
-        "pct_change": 0.0,
-        "volume": 154345,
-        "rsi": 67.3,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:28"
+        "price": 15.15,
+        "rsi": 70.9,
+        "status": "YELLOW"
     },
     "1109": {
         "code": "1109",
         "name": "信大",
         "price": 15.55,
-        "pct_change": 0.65,
-        "volume": 151470,
         "rsi": 54.7,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:28"
+        "status": "YELLOW"
     },
     "1110": {
         "code": "1110",
         "name": "東泥",
-        "price": 16.5,
-        "pct_change": 0.3,
-        "volume": 760000,
-        "rsi": 51.3,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 16.55,
+        "rsi": 52.9,
+        "status": "YELLOW"
     },
     "1201": {
         "code": "1201",
         "name": "味全",
-        "price": 14.45,
-        "pct_change": -0.34,
-        "volume": 269273,
-        "rsi": 42.5,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 14.6,
+        "rsi": 50.6,
+        "status": "GREEN"
     },
     "1203": {
         "code": "1203",
         "name": "味王",
-        "price": 39.6,
-        "pct_change": -0.75,
-        "volume": 9189,
-        "rsi": 48.0,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 39.5,
+        "rsi": 45.9,
+        "status": "GREEN"
     },
     "1210": {
         "code": "1210",
         "name": "大成",
-        "price": 52.2,
-        "pct_change": -0.38,
-        "volume": 1164385,
-        "rsi": 58.5,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:28"
+        "price": 52.3,
+        "rsi": 59.6,
+        "status": "YELLOW"
     },
     "1213": {
         "code": "1213",
         "name": "大飲",
-        "price": 10.0,
-        "pct_change": -4.31,
-        "volume": 18035,
-        "rsi": 43.6,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 9.99,
+        "rsi": 43.4,
+        "status": "GREEN"
     },
     "1215": {
         "code": "1215",
         "name": "卜蜂",
-        "price": 155.5,
-        "pct_change": 4.71,
-        "volume": 2729362,
-        "rsi": 72.8,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:28"
+        "price": 150.5,
+        "rsi": 63.1,
+        "status": "YELLOW"
     },
     "1216": {
         "code": "1216",
         "name": "統一",
-        "price": 75.4,
-        "pct_change": -0.79,
-        "volume": 14378998,
-        "rsi": 44.2,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 74.7,
+        "rsi": 40.8,
+        "status": "GREEN"
     },
     "1217": {
         "code": "1217",
         "name": "愛之味",
         "price": 10.6,
-        "pct_change": -0.47,
-        "volume": 544668,
         "rsi": 59.8,
-        "status": "RED",
-        "update_time": "2026-01-18 16:28"
+        "status": "RED"
     },
     "1218": {
         "code": "1218",
         "name": "泰山",
-        "price": 18.35,
-        "pct_change": -0.27,
-        "volume": 454061,
-        "rsi": 57.8,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:28"
+        "price": 18.5,
+        "rsi": 64.4,
+        "status": "YELLOW"
     },
     "1219": {
         "code": "1219",
         "name": "福壽",
-        "price": 13.55,
-        "pct_change": -1.09,
-        "volume": 408455,
-        "rsi": 51.7,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 13.5,
+        "rsi": 48.9,
+        "status": "GREEN"
     },
     "1220": {
         "code": "1220",
         "name": "台榮",
-        "price": 12.55,
-        "pct_change": 0.0,
-        "volume": 173360,
-        "rsi": 51.1,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 13.05,
+        "rsi": 79.3,
+        "status": "YELLOW"
     },
     "1225": {
         "code": "1225",
         "name": "福懋油",
-        "price": 28.55,
-        "pct_change": -0.35,
-        "volume": 177024,
-        "rsi": 41.8,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 28.3,
+        "rsi": 38.0,
+        "status": "GREEN"
     },
     "1227": {
         "code": "1227",
         "name": "佳格",
-        "price": 29.5,
-        "pct_change": -0.34,
-        "volume": 1006582,
-        "rsi": 31.6,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 29.45,
+        "rsi": 30.7,
+        "status": "GREEN"
     },
     "1229": {
         "code": "1229",
         "name": "聯華",
-        "price": 46.75,
-        "pct_change": -0.43,
-        "volume": 1423450,
-        "rsi": 46.6,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 46.7,
+        "rsi": 46.1,
+        "status": "GREEN"
     },
     "1231": {
         "code": "1231",
         "name": "聯華食",
-        "price": 94.9,
-        "pct_change": -0.84,
-        "volume": 350640,
-        "rsi": 41.7,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 94.2,
+        "rsi": 39.3,
+        "status": "GREEN"
     },
     "1232": {
         "code": "1232",
         "name": "大統益",
-        "price": 146.5,
-        "pct_change": 0.34,
-        "volume": 33028,
-        "rsi": 59.6,
-        "status": "RED",
-        "update_time": "2026-01-18 16:28"
+        "price": 146.0,
+        "rsi": 55.6,
+        "status": "RED"
     },
     "1233": {
         "code": "1233",
         "name": "天仁",
         "price": 32.35,
-        "pct_change": 0.15,
-        "volume": 12000,
         "rsi": 64.0,
-        "status": "RED",
-        "update_time": "2026-01-18 16:28"
+        "status": "RED"
     },
     "1234": {
         "code": "1234",
         "name": "黑松",
-        "price": 37.45,
-        "pct_change": -0.13,
-        "volume": 122231,
-        "rsi": 44.8,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 37.2,
+        "rsi": 38.8,
+        "status": "GREEN"
     },
     "1235": {
         "code": "1235",
         "name": "興泰",
-        "price": 44.75,
-        "pct_change": -1.43,
-        "volume": 14000,
-        "rsi": 36.7,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 43.5,
+        "rsi": 29.9,
+        "status": "GREEN"
     },
     "1236": {
         "code": "1236",
         "name": "宏亞",
-        "price": 24.7,
-        "pct_change": 0.0,
-        "volume": 61472,
-        "rsi": 37.0,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 24.55,
+        "rsi": 34.6,
+        "status": "GREEN"
     },
     "1256": {
         "code": "1256",
         "name": "鮮活果汁-KY",
-        "price": 165.0,
-        "pct_change": -1.2,
-        "volume": 54064,
-        "rsi": 72.8,
-        "status": "RED",
-        "update_time": "2026-01-18 16:28"
+        "price": 157.0,
+        "rsi": 58.0,
+        "status": "RED"
     },
     "1301": {
         "code": "1301",
         "name": "台塑",
-        "price": 43.0,
-        "pct_change": 0.94,
-        "volume": 42626066,
-        "rsi": 63.0,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:28"
+        "price": 43.7,
+        "rsi": 65.6,
+        "status": "RED"
     },
     "1303": {
         "code": "1303",
         "name": "南亞",
-        "price": 73.8,
-        "pct_change": 5.88,
-        "volume": 368866842,
-        "rsi": 68.2,
-        "status": "RED",
-        "update_time": "2026-01-18 16:28"
+        "price": 79.4,
+        "rsi": 72.8,
+        "status": "RED"
     },
     "1304": {
         "code": "1304",
         "name": "台聚",
-        "price": 11.6,
-        "pct_change": -2.52,
-        "volume": 5219311,
-        "rsi": 56.2,
-        "status": "RED",
-        "update_time": "2026-01-18 16:28"
+        "price": 11.85,
+        "rsi": 59.7,
+        "status": "RED"
     },
     "1305": {
         "code": "1305",
         "name": "華夏",
-        "price": 11.9,
-        "pct_change": -3.64,
-        "volume": 4030673,
-        "rsi": 58.8,
-        "status": "RED",
-        "update_time": "2026-01-18 16:28"
+        "price": 12.35,
+        "rsi": 63.8,
+        "status": "RED"
     },
     "1307": {
         "code": "1307",
         "name": "三芳",
-        "price": 31.95,
-        "pct_change": -0.62,
-        "volume": 554827,
-        "rsi": 48.0,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 32.8,
+        "rsi": 55.0,
+        "status": "YELLOW"
     },
     "1308": {
         "code": "1308",
         "name": "亞聚",
-        "price": 13.8,
-        "pct_change": -1.78,
-        "volume": 1986650,
-        "rsi": 56.0,
-        "status": "RED",
-        "update_time": "2026-01-18 16:28"
+        "price": 14.0,
+        "rsi": 58.4,
+        "status": "RED"
     },
     "1309": {
         "code": "1309",
         "name": "台達化",
-        "price": 11.9,
-        "pct_change": -2.06,
-        "volume": 1416430,
-        "rsi": 58.4,
-        "status": "RED",
-        "update_time": "2026-01-18 16:28"
+        "price": 12.05,
+        "rsi": 60.8,
+        "status": "RED"
     },
     "1310": {
         "code": "1310",
         "name": "台苯",
-        "price": 8.82,
-        "pct_change": -4.13,
-        "volume": 6867096,
-        "rsi": 50.9,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:28"
+        "price": 8.96,
+        "rsi": 54.0,
+        "status": "YELLOW"
     },
     "1312": {
         "code": "1312",
         "name": "國喬",
-        "price": 13.5,
-        "pct_change": -1.82,
-        "volume": 14922932,
-        "rsi": 68.9,
-        "status": "RED",
-        "update_time": "2026-01-18 16:28"
+        "price": 13.55,
+        "rsi": 69.3,
+        "status": "RED"
     },
     "1313": {
         "code": "1313",
         "name": "聯成",
-        "price": 10.5,
-        "pct_change": -2.78,
-        "volume": 3309567,
-        "rsi": 53.4,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:28"
+        "price": 10.75,
+        "rsi": 57.9,
+        "status": "YELLOW"
     },
     "1314": {
         "code": "1314",
         "name": "中石化",
-        "price": 8.13,
-        "pct_change": -1.69,
-        "volume": 18919086,
-        "rsi": 54.9,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:28"
+        "price": 8.33,
+        "rsi": 60.4,
+        "status": "YELLOW"
     },
     "1315": {
         "code": "1315",
         "name": "達新",
-        "price": 65.0,
-        "pct_change": 1.72,
-        "volume": 56693,
-        "rsi": 62.8,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:28"
+        "price": 64.7,
+        "rsi": 57.0,
+        "status": "YELLOW"
     },
     "1316": {
         "code": "1316",
         "name": "上曜",
-        "price": 14.25,
-        "pct_change": -3.06,
-        "volume": 5322007,
-        "rsi": 39.2,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 14.45,
+        "rsi": 42.6,
+        "status": "GREEN"
     },
     "1319": {
         "code": "1319",
         "name": "東陽",
-        "price": 112.0,
-        "pct_change": 6.67,
-        "volume": 15799194,
-        "rsi": 78.3,
-        "status": "RED",
-        "update_time": "2026-01-18 16:28"
+        "price": 110.0,
+        "rsi": 72.7,
+        "status": "RED"
     },
     "1321": {
         "code": "1321",
         "name": "大洋",
-        "price": 34.2,
-        "pct_change": 0.0,
-        "volume": 110000,
-        "rsi": 26.4,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 33.3,
+        "rsi": 16.9,
+        "status": "GREEN"
     },
     "1323": {
         "code": "1323",
         "name": "永裕",
-        "price": 18.85,
-        "pct_change": -0.26,
-        "volume": 49050,
-        "rsi": 18.4,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 18.7,
+        "rsi": 15.4,
+        "status": "GREEN"
     },
     "1324": {
         "code": "1324",
         "name": "地球",
-        "price": 11.15,
-        "pct_change": -1.33,
-        "volume": 49095,
-        "rsi": 56.8,
-        "status": "RED",
-        "update_time": "2026-01-18 16:28"
+        "price": 11.2,
+        "rsi": 58.0,
+        "status": "RED"
     },
     "1325": {
         "code": "1325",
         "name": "恆大",
-        "price": 29.75,
-        "pct_change": -0.34,
-        "volume": 281001,
-        "rsi": 41.3,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 29.05,
+        "rsi": 35.6,
+        "status": "GREEN"
     },
     "1326": {
         "code": "1326",
         "name": "台化",
-        "price": 34.5,
-        "pct_change": 0.15,
-        "volume": 31624795,
-        "rsi": 60.6,
-        "status": "RED",
-        "update_time": "2026-01-18 16:28"
+        "price": 34.9,
+        "rsi": 62.1,
+        "status": "RED"
     },
     "1337": {
         "code": "1337",
         "name": "再生-KY",
-        "price": 4.78,
-        "pct_change": -1.85,
-        "volume": 606131,
-        "rsi": 39.4,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 4.89,
+        "rsi": 53.0,
+        "status": "GREEN"
     },
     "1338": {
         "code": "1338",
         "name": "廣華-KY",
-        "price": 21.05,
-        "pct_change": 1.69,
-        "volume": 385002,
-        "rsi": 63.9,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:28"
+        "price": 21.2,
+        "rsi": 66.1,
+        "status": "YELLOW"
     },
     "1339": {
         "code": "1339",
         "name": "昭輝",
-        "price": 46.5,
-        "pct_change": 7.51,
-        "volume": 389169,
-        "rsi": 67.9,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:28"
+        "price": 45.9,
+        "rsi": 63.4,
+        "status": "YELLOW"
     },
     "1340": {
         "code": "1340",
         "name": "勝悅-KY",
-        "price": 6.74,
-        "pct_change": 0.6,
-        "volume": 205000,
-        "rsi": 40.7,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 7.0,
+        "rsi": 48.5,
+        "status": "GREEN"
     },
     "1341": {
         "code": "1341",
         "name": "富林-KY",
-        "price": 58.5,
-        "pct_change": -0.34,
-        "volume": 6000,
-        "rsi": 51.5,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 58.0,
+        "rsi": 47.0,
+        "status": "GREEN"
     },
     "1342": {
         "code": "1342",
         "name": "八貫",
-        "price": 96.3,
-        "pct_change": 0.0,
-        "volume": 124215,
-        "rsi": 72.9,
-        "status": "RED",
-        "update_time": "2026-01-18 16:28"
+        "price": 97.0,
+        "rsi": 74.4,
+        "status": "RED"
     },
     "1402": {
         "code": "1402",
         "name": "遠東新",
-        "price": 28.4,
-        "pct_change": -0.35,
-        "volume": 7693784,
-        "rsi": 56.5,
-        "status": "RED",
-        "update_time": "2026-01-18 16:28"
+        "price": 28.65,
+        "rsi": 60.9,
+        "status": "RED"
     },
     "1409": {
         "code": "1409",
         "name": "新纖",
-        "price": 15.5,
-        "pct_change": 0.32,
-        "volume": 4656106,
-        "rsi": 59.7,
-        "status": "RED",
-        "update_time": "2026-01-18 16:28"
+        "price": 15.75,
+        "rsi": 64.0,
+        "status": "RED"
     },
     "1410": {
         "code": "1410",
         "name": "南染",
-        "price": 33.9,
-        "pct_change": -0.15,
-        "volume": 14363,
-        "rsi": 44.4,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 33.8,
+        "rsi": 42.6,
+        "status": "GREEN"
     },
     "1413": {
         "code": "1413",
         "name": "宏洲",
         "price": 9.95,
-        "pct_change": 0.3,
-        "volume": 31786,
         "rsi": 47.4,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "status": "GREEN"
     },
     "1414": {
         "code": "1414",
         "name": "東和",
-        "price": 19.85,
-        "pct_change": 0.25,
-        "volume": 328700,
-        "rsi": 60.1,
-        "status": "RED",
-        "update_time": "2026-01-18 16:28"
+        "price": 19.75,
+        "rsi": 58.9,
+        "status": "RED"
     },
     "1416": {
         "code": "1416",
         "name": "廣豐",
         "price": 11.75,
-        "pct_change": -1.26,
-        "volume": 275587,
         "rsi": 46.8,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:28"
+        "status": "YELLOW"
     },
     "1417": {
         "code": "1417",
         "name": "嘉裕",
-        "price": 8.79,
-        "pct_change": -1.01,
-        "volume": 124288,
-        "rsi": 45.0,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:28"
+        "price": 8.8,
+        "rsi": 45.8,
+        "status": "YELLOW"
     },
     "1418": {
         "code": "1418",
         "name": "東華",
-        "price": 19.9,
-        "pct_change": -0.5,
-        "volume": 27900,
-        "rsi": 50.1,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 19.85,
+        "rsi": 48.5,
+        "status": "GREEN"
     },
     "1419": {
         "code": "1419",
         "name": "新紡",
-        "price": 72.4,
-        "pct_change": -1.23,
-        "volume": 76120,
-        "rsi": 58.9,
-        "status": "RED",
-        "update_time": "2026-01-18 16:28"
+        "price": 75.5,
+        "rsi": 67.3,
+        "status": "RED"
     },
     "1423": {
         "code": "1423",
         "name": "利華",
-        "price": 38.15,
-        "pct_change": 0.13,
-        "volume": 13000,
-        "rsi": 47.4,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 38.05,
+        "rsi": 45.8,
+        "status": "GREEN"
     },
     "1432": {
         "code": "1432",
         "name": "大魯閣",
-        "price": 18.25,
-        "pct_change": -0.82,
-        "volume": 204138,
-        "rsi": 54.9,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:28"
+        "price": 18.15,
+        "rsi": 52.1,
+        "status": "YELLOW"
     },
     "1434": {
         "code": "1434",
         "name": "福懋",
-        "price": 16.3,
-        "pct_change": -0.31,
-        "volume": 2643867,
-        "rsi": 55.3,
-        "status": "RED",
-        "update_time": "2026-01-18 16:28"
+        "price": 16.75,
+        "rsi": 61.7,
+        "status": "RED"
     },
     "1435": {
         "code": "1435",
         "name": "中福",
-        "price": 21.7,
-        "pct_change": -0.46,
-        "volume": 2002,
-        "rsi": 41.2,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 22.1,
+        "rsi": 47.1,
+        "status": "GREEN"
     },
     "1436": {
         "code": "1436",
         "name": "華友聯",
-        "price": 61.8,
-        "pct_change": -1.44,
-        "volume": 224749,
-        "rsi": 42.9,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 61.5,
+        "rsi": 41.5,
+        "status": "GREEN"
     },
     "1437": {
         "code": "1437",
         "name": "勤益控",
-        "price": 32.95,
-        "pct_change": 0.3,
-        "volume": 79042,
-        "rsi": 34.4,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:28"
+        "price": 32.7,
+        "rsi": 30.0,
+        "status": "GREEN"
     },
     "1438": {
         "code": "1438",
         "name": "三地開發",
-        "price": 32.85,
-        "pct_change": -1.2,
-        "volume": 67000,
-        "rsi": 37.6,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 33.35,
+        "rsi": 47.4,
+        "status": "GREEN"
     },
     "1439": {
         "code": "1439",
         "name": "雋揚",
-        "price": 30.2,
-        "pct_change": -0.98,
-        "volume": 247000,
-        "rsi": 60.4,
-        "status": "RED",
-        "update_time": "2026-01-18 16:28"
+        "price": 30.25,
+        "rsi": 60.8,
+        "status": "RED"
     },
     "1440": {
         "code": "1440",
         "name": "南紡",
-        "price": 13.6,
-        "pct_change": 0.0,
-        "volume": 1103984,
-        "rsi": 55.0,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:28"
+        "price": 13.7,
+        "rsi": 57.9,
+        "status": "YELLOW"
     },
     "1441": {
         "code": "1441",
         "name": "大東",
-        "price": 10.3,
-        "pct_change": -0.48,
-        "volume": 112549,
-        "rsi": 42.8,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 10.4,
+        "rsi": 48.5,
+        "status": "GREEN"
     },
     "1442": {
         "code": "1442",
         "name": "名軒",
-        "price": 29.85,
-        "pct_change": -1.16,
-        "volume": 685000,
-        "rsi": 43.4,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 30.05,
+        "rsi": 45.4,
+        "status": "GREEN"
     },
     "1443": {
         "code": "1443",
         "name": "立益物流",
-        "price": 27.05,
-        "pct_change": 0.74,
-        "volume": 10052,
-        "rsi": 49.2,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 26.85,
+        "rsi": 46.3,
+        "status": "GREEN"
     },
     "1444": {
         "code": "1444",
         "name": "力麗",
-        "price": 6.15,
-        "pct_change": -0.49,
-        "volume": 845985,
-        "rsi": 53.8,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 6.24,
+        "rsi": 60.0,
+        "status": "YELLOW"
     },
     "1445": {
         "code": "1445",
         "name": "大宇",
-        "price": 12.3,
-        "pct_change": 0.0,
-        "volume": 61228,
-        "rsi": 25.2,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 12.35,
+        "rsi": 27.9,
+        "status": "GREEN"
     },
     "1446": {
         "code": "1446",
         "name": "宏和",
-        "price": 18.1,
-        "pct_change": -0.82,
-        "volume": 210050,
-        "rsi": 47.5,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 18.3,
+        "rsi": 54.3,
+        "status": "YELLOW"
     },
     "1447": {
         "code": "1447",
         "name": "力鵬",
-        "price": 5.24,
-        "pct_change": -0.76,
-        "volume": 875635,
-        "rsi": 40.8,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:28"
+        "price": 5.3,
+        "rsi": 46.4,
+        "status": "GREEN"
     },
     "1449": {
         "code": "1449",
         "name": "佳和",
-        "price": 12.15,
-        "pct_change": -0.82,
-        "volume": 1503133,
-        "rsi": 66.1,
-        "status": "RED",
-        "update_time": "2026-01-18 16:28"
+        "price": 12.4,
+        "rsi": 69.3,
+        "status": "RED"
     },
     "1451": {
         "code": "1451",
         "name": "年興",
-        "price": 17.6,
-        "pct_change": -0.56,
-        "volume": 107354,
-        "rsi": 61.0,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 17.95,
+        "rsi": 70.6,
+        "status": "RED"
     },
     "1452": {
         "code": "1452",
         "name": "宏益",
-        "price": 11.8,
-        "pct_change": -0.42,
-        "volume": 88042,
-        "rsi": 49.0,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 11.7,
+        "rsi": 43.2,
+        "status": "GREEN"
     },
     "1453": {
         "code": "1453",
         "name": "大將",
-        "price": 12.25,
-        "pct_change": 0.0,
-        "volume": 63378,
-        "rsi": 43.7,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 12.2,
+        "rsi": 41.4,
+        "status": "GREEN"
     },
     "1454": {
         "code": "1454",
         "name": "台富",
-        "price": 12.9,
-        "pct_change": 0.39,
-        "volume": 28644,
-        "rsi": 45.9,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 13.0,
+        "rsi": 48.9,
+        "status": "GREEN"
     },
     "1455": {
         "code": "1455",
         "name": "集盛",
-        "price": 7.92,
-        "pct_change": 0.13,
-        "volume": 424807,
-        "rsi": 60.8,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 8.12,
+        "rsi": 69.4,
+        "status": "YELLOW"
     },
     "1456": {
         "code": "1456",
         "name": "怡華",
-        "price": 13.4,
-        "pct_change": 0.0,
-        "volume": 36000,
-        "rsi": 56.4,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 12.95,
+        "rsi": 46.7,
+        "status": "YELLOW"
     },
     "1457": {
         "code": "1457",
         "name": "宜進",
-        "price": 15.6,
-        "pct_change": -0.32,
-        "volume": 66226,
-        "rsi": 42.9,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 15.5,
+        "rsi": 38.6,
+        "status": "GREEN"
     },
     "1459": {
         "code": "1459",
         "name": "聯發",
-        "price": 11.8,
-        "pct_change": 0.0,
-        "volume": 98000,
-        "rsi": 47.3,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 11.75,
+        "rsi": 43.3,
+        "status": "GREEN"
     },
     "1460": {
         "code": "1460",
         "name": "宏遠",
-        "price": 6.49,
-        "pct_change": -0.15,
-        "volume": 503192,
-        "rsi": 76.0,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 6.45,
+        "rsi": 68.4,
+        "status": "RED"
     },
     "1463": {
         "code": "1463",
         "name": "強盛",
-        "price": 17.55,
-        "pct_change": -0.57,
-        "volume": 40000,
-        "rsi": 29.9,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 17.45,
+        "rsi": 28.4,
+        "status": "GREEN"
     },
     "1464": {
         "code": "1464",
         "name": "得力",
-        "price": 11.85,
-        "pct_change": 0.42,
-        "volume": 1525536,
-        "rsi": 74.8,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 11.9,
+        "rsi": 75.8,
+        "status": "RED"
     },
     "1465": {
         "code": "1465",
         "name": "偉全",
         "price": 12.5,
-        "pct_change": 0.0,
-        "volume": 79000,
         "rsi": 41.0,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "status": "GREEN"
     },
     "1466": {
         "code": "1466",
         "name": "聚隆",
-        "price": 14.3,
-        "pct_change": 0.0,
-        "volume": 56000,
-        "rsi": 51.0,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 14.45,
+        "rsi": 54.3,
+        "status": "GREEN"
     },
     "1467": {
         "code": "1467",
         "name": "南緯",
-        "price": 8.0,
-        "pct_change": 0.13,
-        "volume": 134730,
-        "rsi": 77.9,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 7.89,
+        "rsi": 69.4,
+        "status": "RED"
     },
     "1468": {
         "code": "1468",
         "name": "昶和",
-        "price": 12.0,
-        "pct_change": 0.42,
-        "volume": 32000,
-        "rsi": 56.3,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 12.15,
+        "rsi": 61.1,
+        "status": "RED"
     },
     "1470": {
         "code": "1470",
         "name": "大統新創",
         "price": 23.0,
-        "pct_change": 0.0,
-        "volume": 0,
         "rsi": 54.8,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "status": "GREEN"
     },
     "1471": {
         "code": "1471",
         "name": "首利",
-        "price": 9.8,
-        "pct_change": 0.51,
-        "volume": 363594,
-        "rsi": 63.5,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 10.15,
+        "rsi": 68.8,
+        "status": "RED"
     },
     "1472": {
         "code": "1472",
         "name": "三洋實業",
-        "price": 89.9,
-        "pct_change": 0.9,
-        "volume": 35015,
-        "rsi": 55.6,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 89.2,
+        "rsi": 50.2,
+        "status": "GREEN"
     },
     "1473": {
         "code": "1473",
         "name": "台南",
-        "price": 24.1,
-        "pct_change": -0.82,
-        "volume": 144005,
-        "rsi": 44.8,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 24.2,
+        "rsi": 46.5,
+        "status": "GREEN"
     },
     "1474": {
         "code": "1474",
         "name": "弘裕",
-        "price": 10.35,
-        "pct_change": 0.49,
-        "volume": 66050,
-        "rsi": 36.0,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 10.4,
+        "rsi": 38.5,
+        "status": "GREEN"
     },
     "1475": {
         "code": "1475",
         "name": "業旺",
-        "price": 33.5,
-        "pct_change": 0.75,
-        "volume": 50000,
-        "rsi": 65.3,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 32.8,
+        "rsi": 56.7,
+        "status": "GREEN"
     },
     "1476": {
         "code": "1476",
         "name": "儒鴻",
-        "price": 420.0,
-        "pct_change": 1.33,
-        "volume": 1369286,
-        "rsi": 63.5,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 419.5,
+        "rsi": 63.0,
+        "status": "YELLOW"
     },
     "1477": {
         "code": "1477",
         "name": "聚陽",
-        "price": 326.0,
-        "pct_change": -3.69,
-        "volume": 1471235,
-        "rsi": 60.9,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 320.5,
+        "rsi": 57.4,
+        "status": "RED"
     },
     "1503": {
         "code": "1503",
         "name": "士電",
-        "price": 197.0,
-        "pct_change": 0.0,
-        "volume": 16325935,
-        "rsi": 78.4,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 207.0,
+        "rsi": 83.2,
+        "status": "RED"
     },
     "1504": {
         "code": "1504",
         "name": "東元",
-        "price": 88.9,
-        "pct_change": 3.61,
-        "volume": 60338765,
-        "rsi": 54.6,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 87.9,
+        "rsi": 52.7,
+        "status": "GREEN"
     },
     "1506": {
         "code": "1506",
         "name": "正道",
-        "price": 12.9,
-        "pct_change": 9.79,
-        "volume": 1292001,
-        "rsi": 78.1,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 13.6,
+        "rsi": 84.0,
+        "status": "YELLOW"
     },
     "1512": {
         "code": "1512",
         "name": "瑞利",
-        "price": 7.91,
-        "pct_change": 9.1,
-        "volume": 447386,
-        "rsi": 65.8,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 8.54,
+        "rsi": 76.9,
+        "status": "YELLOW"
     },
     "1513": {
         "code": "1513",
         "name": "中興電",
-        "price": 160.0,
-        "pct_change": 5.96,
-        "volume": 21871275,
-        "rsi": 64.8,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 160.5,
+        "rsi": 65.3,
+        "status": "RED"
     },
     "1514": {
         "code": "1514",
         "name": "亞力",
-        "price": 114.0,
-        "pct_change": 9.62,
-        "volume": 27974603,
-        "rsi": 71.0,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 120.0,
+        "rsi": 75.6,
+        "status": "RED"
     },
     "1515": {
         "code": "1515",
         "name": "力山",
-        "price": 28.1,
-        "pct_change": 2.74,
-        "volume": 651183,
-        "rsi": 57.5,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 29.0,
+        "rsi": 65.9,
+        "status": "YELLOW"
     },
     "1516": {
         "code": "1516",
         "name": "川飛",
-        "price": 21.95,
-        "pct_change": -1.13,
-        "volume": 35763,
-        "rsi": 54.1,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 21.65,
+        "rsi": 51.3,
+        "status": "YELLOW"
     },
     "1517": {
         "code": "1517",
         "name": "利奇",
-        "price": 12.25,
-        "pct_change": 6.99,
-        "volume": 1580756,
-        "rsi": 70.4,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 13.45,
+        "rsi": 80.1,
+        "status": "YELLOW"
     },
     "1519": {
         "code": "1519",
         "name": "華城",
-        "price": 965.0,
-        "pct_change": 6.39,
-        "volume": 14525751,
-        "rsi": 78.3,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 963.0,
+        "rsi": 77.8,
+        "status": "RED"
     },
     "1521": {
         "code": "1521",
         "name": "大億",
-        "price": 26.75,
-        "pct_change": 9.86,
-        "volume": 194017,
-        "rsi": 78.6,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 29.4,
+        "rsi": 86.5,
+        "status": "YELLOW"
     },
     "1522": {
         "code": "1522",
         "name": "堤維西",
-        "price": 51.1,
-        "pct_change": 5.14,
-        "volume": 8805469,
-        "rsi": 69.2,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 52.0,
+        "rsi": 71.6,
+        "status": "YELLOW"
     },
     "1524": {
         "code": "1524",
         "name": "耿鼎",
-        "price": 32.95,
-        "pct_change": 6.63,
-        "volume": 12855993,
-        "rsi": 74.5,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 35.15,
+        "rsi": 80.4,
+        "status": "YELLOW"
     },
     "1525": {
         "code": "1525",
         "name": "江申",
-        "price": 62.7,
-        "pct_change": -0.16,
-        "volume": 17000,
-        "rsi": 41.2,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 62.3,
+        "rsi": 38.6,
+        "status": "GREEN"
     },
     "1526": {
         "code": "1526",
         "name": "日馳",
-        "price": 18.7,
-        "pct_change": 10.0,
-        "volume": 681022,
-        "rsi": 78.9,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 20.55,
+        "rsi": 87.0,
+        "status": "YELLOW"
     },
     "1527": {
         "code": "1527",
         "name": "鑽全",
-        "price": 35.55,
-        "pct_change": 7.4,
-        "volume": 3682333,
-        "rsi": 72.7,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 37.15,
+        "rsi": 79.0,
+        "status": "YELLOW"
     },
     "1528": {
         "code": "1528",
         "name": "恩德",
-        "price": 28.35,
-        "pct_change": 9.88,
-        "volume": 12063722,
-        "rsi": 81.6,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 31.15,
+        "rsi": 85.1,
+        "status": "RED"
     },
     "1529": {
         "code": "1529",
         "name": "樂事綠能",
-        "price": 22.3,
-        "pct_change": 5.19,
-        "volume": 5128471,
-        "rsi": 70.8,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 22.85,
+        "rsi": 73.3,
+        "status": "RED"
     },
     "1530": {
         "code": "1530",
         "name": "亞崴",
         "price": 30.1,
-        "pct_change": 3.79,
-        "volume": 170210,
         "rsi": 78.9,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "status": "RED"
     },
     "1531": {
         "code": "1531",
         "name": "高林股",
-        "price": 12.55,
-        "pct_change": 3.72,
-        "volume": 585130,
-        "rsi": 67.5,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 12.8,
+        "rsi": 71.9,
+        "status": "RED"
     },
     "1532": {
         "code": "1532",
         "name": "勤美",
-        "price": 25.15,
-        "pct_change": 0.0,
-        "volume": 710000,
-        "rsi": 31.8,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 25.35,
+        "rsi": 36.5,
+        "status": "GREEN"
     },
     "1533": {
         "code": "1533",
         "name": "車王電",
-        "price": 32.35,
-        "pct_change": 0.31,
-        "volume": 218040,
-        "rsi": 49.7,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 33.4,
+        "rsi": 56.5,
+        "status": "RED"
     },
     "1535": {
         "code": "1535",
         "name": "中宇",
-        "price": 53.5,
-        "pct_change": -0.37,
-        "volume": 42000,
-        "rsi": 53.4,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 53.6,
+        "rsi": 55.1,
+        "status": "GREEN"
     },
     "1536": {
         "code": "1536",
         "name": "和大",
-        "price": 64.7,
-        "pct_change": 8.92,
-        "volume": 14775524,
-        "rsi": 73.2,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 63.7,
+        "rsi": 68.7,
+        "status": "YELLOW"
     },
     "1537": {
         "code": "1537",
         "name": "廣隆",
-        "price": 124.0,
-        "pct_change": 0.0,
-        "volume": 54106,
-        "rsi": 49.7,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 125.0,
+        "rsi": 55.2,
+        "status": "RED"
     },
     "1538": {
         "code": "1538",
         "name": "正峰",
-        "price": 26.4,
-        "pct_change": -0.19,
-        "volume": 26000,
-        "rsi": 52.6,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 26.35,
+        "rsi": 52.0,
+        "status": "GREEN"
     },
     "1539": {
         "code": "1539",
         "name": "巨庭",
-        "price": 19.6,
-        "pct_change": 9.8,
-        "volume": 1258501,
-        "rsi": 86.6,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 21.55,
+        "rsi": 91.8,
+        "status": "RED"
     },
     "1540": {
         "code": "1540",
         "name": "喬福",
-        "price": 28.0,
-        "pct_change": 6.87,
-        "volume": 7434490,
-        "rsi": 83.0,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 27.3,
+        "rsi": 75.1,
+        "status": "RED"
     },
     "1541": {
         "code": "1541",
         "name": "錩泰",
-        "price": 25.5,
-        "pct_change": 9.91,
-        "volume": 363001,
-        "rsi": 71.7,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 28.05,
+        "rsi": 81.7,
+        "status": "YELLOW"
     },
     "1558": {
         "code": "1558",
         "name": "伸興",
-        "price": 104.0,
-        "pct_change": 1.96,
-        "volume": 83310,
-        "rsi": 58.8,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 102.0,
+        "rsi": 50.4,
+        "status": "GREEN"
     },
     "1560": {
         "code": "1560",
         "name": "中砂",
-        "price": 423.5,
-        "pct_change": -1.51,
-        "volume": 10505456,
-        "rsi": 67.6,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 422.5,
+        "rsi": 66.8,
+        "status": "RED"
     },
     "1563": {
         "code": "1563",
         "name": "巧新",
-        "price": 48.8,
-        "pct_change": 1.67,
-        "volume": 1617162,
-        "rsi": 66.7,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 48.0,
+        "rsi": 60.8,
+        "status": "RED"
     },
     "1568": {
         "code": "1568",
         "name": "倉佑",
-        "price": 25.75,
-        "pct_change": 9.81,
-        "volume": 1795011,
-        "rsi": 81.9,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 26.8,
+        "rsi": 85.2,
+        "status": "RED"
     },
     "1582": {
         "code": "1582",
         "name": "信錦",
-        "price": 65.0,
-        "pct_change": -0.61,
-        "volume": 501755,
-        "rsi": 48.0,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 69.4,
+        "rsi": 66.2,
+        "status": "YELLOW"
     },
     "1583": {
         "code": "1583",
         "name": "程泰",
-        "price": 48.7,
-        "pct_change": 4.62,
-        "volume": 145030,
-        "rsi": 72.6,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 50.8,
+        "rsi": 78.9,
+        "status": "YELLOW"
     },
     "1587": {
         "code": "1587",
         "name": "吉茂",
-        "price": 54.1,
-        "pct_change": 9.96,
-        "volume": 3036807,
-        "rsi": 60.2,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 53.2,
+        "rsi": 57.7,
+        "status": "RED"
     },
     "1589": {
         "code": "1589",
         "name": "永冠-KY",
-        "price": 17.75,
-        "pct_change": 0.0,
-        "volume": 1309001,
-        "rsi": 55.9,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 18.45,
+        "rsi": 61.7,
+        "status": "YELLOW"
     },
     "1590": {
         "code": "1590",
         "name": "亞德客-KY",
-        "price": 1020.0,
-        "pct_change": 0.49,
-        "volume": 295501,
-        "rsi": 66.8,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 1015.0,
+        "rsi": 65.0,
+        "status": "RED"
     },
     "1597": {
         "code": "1597",
         "name": "直得",
-        "price": 81.5,
-        "pct_change": 3.69,
-        "volume": 2397701,
-        "rsi": 73.1,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 83.0,
+        "rsi": 75.5,
+        "status": "RED"
     },
     "1598": {
         "code": "1598",
         "name": "岱宇",
-        "price": 21.0,
-        "pct_change": -4.11,
-        "volume": 488489,
-        "rsi": 49.3,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 20.95,
+        "rsi": 48.9,
+        "status": "GREEN"
     },
     "1603": {
         "code": "1603",
         "name": "華電",
-        "price": 39.6,
-        "pct_change": 0.25,
-        "volume": 903214,
-        "rsi": 67.0,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 39.9,
+        "rsi": 69.1,
+        "status": "RED"
     },
     "1604": {
         "code": "1604",
         "name": "聲寶",
-        "price": 24.05,
-        "pct_change": -0.21,
-        "volume": 152456,
-        "rsi": 40.5,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 24.0,
+        "rsi": 38.7,
+        "status": "GREEN"
     },
     "1605": {
         "code": "1605",
         "name": "華新",
-        "price": 42.95,
-        "pct_change": -3.05,
-        "volume": 297621314,
-        "rsi": 71.3,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 42.05,
+        "rsi": 67.8,
+        "status": "RED"
     },
     "1608": {
         "code": "1608",
         "name": "華榮",
-        "price": 38.6,
-        "pct_change": -1.28,
-        "volume": 7708051,
-        "rsi": 54.9,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 38.55,
+        "rsi": 54.6,
+        "status": "YELLOW"
     },
     "1609": {
         "code": "1609",
         "name": "大亞",
-        "price": 40.55,
-        "pct_change": 1.12,
-        "volume": 8932742,
-        "rsi": 60.9,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 41.0,
+        "rsi": 63.2,
+        "status": "YELLOW"
     },
     "1611": {
         "code": "1611",
         "name": "中電",
-        "price": 13.7,
-        "pct_change": -0.36,
-        "volume": 1166136,
-        "rsi": 64.1,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 14.1,
+        "rsi": 69.4,
+        "status": "RED"
     },
     "1612": {
         "code": "1612",
         "name": "宏泰",
-        "price": 35.5,
-        "pct_change": 0.85,
-        "volume": 1607667,
-        "rsi": 60.8,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 37.4,
+        "rsi": 74.8,
+        "status": "YELLOW"
     },
     "1614": {
         "code": "1614",
         "name": "三洋電",
-        "price": 34.0,
-        "pct_change": -0.15,
-        "volume": 47000,
-        "rsi": 43.0,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 33.9,
+        "rsi": 39.4,
+        "status": "GREEN"
     },
     "1615": {
         "code": "1615",
         "name": "大山",
-        "price": 48.75,
-        "pct_change": -0.41,
-        "volume": 131281,
-        "rsi": 48.5,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 49.05,
+        "rsi": 51.9,
+        "status": "YELLOW"
     },
     "1616": {
         "code": "1616",
         "name": "億泰",
-        "price": 28.75,
-        "pct_change": 0.88,
-        "volume": 1576590,
-        "rsi": 51.4,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 29.2,
+        "rsi": 55.1,
+        "status": "GREEN"
     },
     "1617": {
         "code": "1617",
         "name": "榮星",
-        "price": 16.8,
-        "pct_change": 4.02,
-        "volume": 2513304,
-        "rsi": 81.8,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 17.15,
+        "rsi": 83.6,
+        "status": "RED"
     },
     "1618": {
         "code": "1618",
         "name": "合機",
-        "price": 43.7,
-        "pct_change": 2.1,
-        "volume": 2506058,
-        "rsi": 59.6,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 44.6,
+        "rsi": 64.0,
+        "status": "YELLOW"
     },
     "1626": {
         "code": "1626",
         "name": "艾美特-KY",
         "price": 11.1,
-        "pct_change": 0.0,
-        "volume": 194856,
         "rsi": 39.6,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "status": "GREEN"
     },
     "1702": {
         "code": "1702",
         "name": "南僑",
-        "price": 37.9,
-        "pct_change": -0.66,
-        "volume": 518620,
-        "rsi": 39.9,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 37.7,
+        "rsi": 37.8,
+        "status": "GREEN"
     },
     "1707": {
         "code": "1707",
         "name": "葡萄王",
-        "price": 123.5,
-        "pct_change": 0.0,
-        "volume": 101059,
-        "rsi": 42.7,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 122.5,
+        "rsi": 36.8,
+        "status": "GREEN"
     },
     "1708": {
         "code": "1708",
         "name": "東鹼",
-        "price": 33.45,
-        "pct_change": 1.21,
-        "volume": 1871235,
-        "rsi": 60.3,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 33.3,
+        "rsi": 58.2,
+        "status": "RED"
     },
     "1709": {
         "code": "1709",
         "name": "和益",
-        "price": 17.25,
-        "pct_change": 0.58,
-        "volume": 752554,
-        "rsi": 74.8,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 17.2,
+        "rsi": 70.6,
+        "status": "RED"
     },
     "1710": {
         "code": "1710",
         "name": "東聯",
-        "price": 12.75,
-        "pct_change": -2.3,
-        "volume": 2099322,
-        "rsi": 56.5,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 13.0,
+        "rsi": 60.8,
+        "status": "RED"
     },
     "1711": {
         "code": "1711",
         "name": "永光",
-        "price": 23.05,
-        "pct_change": -3.76,
-        "volume": 22551840,
-        "rsi": 64.7,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 23.25,
+        "rsi": 65.6,
+        "status": "RED"
     },
     "1712": {
         "code": "1712",
         "name": "興農",
-        "price": 45.5,
-        "pct_change": -0.87,
-        "volume": 633784,
-        "rsi": 67.4,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 45.6,
+        "rsi": 68.4,
+        "status": "RED"
     },
     "1713": {
         "code": "1713",
         "name": "國化",
-        "price": 51.5,
-        "pct_change": -1.15,
-        "volume": 3243981,
-        "rsi": 64.8,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 50.5,
+        "rsi": 60.5,
+        "status": "RED"
     },
     "1714": {
         "code": "1714",
         "name": "和桐",
-        "price": 9.08,
-        "pct_change": -1.09,
-        "volume": 5105374,
-        "rsi": 70.4,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 9.17,
+        "rsi": 72.3,
+        "status": "RED"
     },
     "1717": {
         "code": "1717",
         "name": "長興",
-        "price": 67.3,
-        "pct_change": 0.3,
-        "volume": 137022655,
-        "rsi": 83.8,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 70.3,
+        "rsi": 85.5,
+        "status": "RED"
     },
     "1718": {
         "code": "1718",
         "name": "中纖",
-        "price": 7.13,
-        "pct_change": -2.6,
-        "volume": 5642274,
-        "rsi": 57.0,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 7.34,
+        "rsi": 63.3,
+        "status": "RED"
     },
     "1720": {
         "code": "1720",
         "name": "生達",
         "price": 61.4,
-        "pct_change": 0.82,
-        "volume": 376163,
         "rsi": 61.5,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "status": "YELLOW"
     },
     "1721": {
         "code": "1721",
         "name": "三晃",
-        "price": 20.6,
-        "pct_change": 9.87,
-        "volume": 19805967,
-        "rsi": 76.9,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 22.05,
+        "rsi": 79.7,
+        "status": "RED"
     },
     "1722": {
         "code": "1722",
         "name": "台肥",
-        "price": 47.0,
-        "pct_change": -0.32,
-        "volume": 2143700,
-        "rsi": 49.6,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 47.45,
+        "rsi": 55.7,
+        "status": "YELLOW"
     },
     "1723": {
         "code": "1723",
         "name": "中碳",
-        "price": 71.5,
-        "pct_change": -0.42,
-        "volume": 365101,
-        "rsi": 57.5,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 71.6,
+        "rsi": 58.0,
+        "status": "GREEN"
     },
     "1725": {
         "code": "1725",
         "name": "元禎",
-        "price": 29.15,
-        "pct_change": -1.69,
-        "volume": 121000,
-        "rsi": 56.7,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 29.95,
+        "rsi": 60.1,
+        "status": "RED"
     },
     "1726": {
         "code": "1726",
         "name": "永記",
-        "price": 76.3,
-        "pct_change": 0.0,
-        "volume": 54065,
-        "rsi": 56.5,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 76.0,
+        "rsi": 49.9,
+        "status": "GREEN"
     },
     "1727": {
         "code": "1727",
         "name": "中華化",
-        "price": 46.95,
-        "pct_change": -1.05,
-        "volume": 4771982,
-        "rsi": 56.3,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 47.85,
+        "rsi": 58.3,
+        "status": "RED"
     },
     "1730": {
         "code": "1730",
         "name": "花仙子",
         "price": 52.7,
-        "pct_change": -0.19,
-        "volume": 28020,
         "rsi": 48.5,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "status": "GREEN"
     },
     "1731": {
         "code": "1731",
         "name": "美吾華",
-        "price": 21.95,
-        "pct_change": 0.46,
-        "volume": 88063,
-        "rsi": 59.4,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 21.9,
+        "rsi": 55.1,
+        "status": "YELLOW"
     },
     "1732": {
         "code": "1732",
         "name": "毛寶",
-        "price": 27.95,
-        "pct_change": 0.0,
-        "volume": 175102,
-        "rsi": 45.5,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 27.5,
+        "rsi": 38.7,
+        "status": "GREEN"
     },
     "1733": {
         "code": "1733",
         "name": "五鼎",
-        "price": 29.55,
-        "pct_change": -0.67,
-        "volume": 182013,
-        "rsi": 38.1,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 29.5,
+        "rsi": 37.5,
+        "status": "GREEN"
     },
     "1734": {
         "code": "1734",
         "name": "杏輝",
-        "price": 31.0,
-        "pct_change": 0.49,
-        "volume": 279432,
-        "rsi": 61.9,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 30.9,
+        "rsi": 58.2,
+        "status": "YELLOW"
     },
     "1735": {
         "code": "1735",
         "name": "日勝化",
-        "price": 17.95,
-        "pct_change": -3.23,
-        "volume": 294168,
-        "rsi": 56.2,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 17.7,
+        "rsi": 54.1,
+        "status": "YELLOW"
     },
     "1736": {
         "code": "1736",
         "name": "喬山",
-        "price": 160.5,
-        "pct_change": 2.88,
-        "volume": 1306163,
-        "rsi": 63.8,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 153.0,
+        "rsi": 51.4,
+        "status": "GREEN"
     },
     "1737": {
         "code": "1737",
         "name": "臺鹽",
         "price": 31.7,
-        "pct_change": -0.16,
-        "volume": 139375,
         "rsi": 53.8,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "status": "YELLOW"
     },
     "1752": {
         "code": "1752",
         "name": "南光",
-        "price": 36.45,
-        "pct_change": -0.41,
-        "volume": 203000,
-        "rsi": 30.1,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 36.4,
+        "rsi": 29.4,
+        "status": "GREEN"
     },
     "1760": {
         "code": "1760",
         "name": "寶齡富錦",
-        "price": 65.6,
-        "pct_change": -0.46,
-        "volume": 193516,
-        "rsi": 57.8,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 64.5,
+        "rsi": 50.4,
+        "status": "GREEN"
     },
     "1762": {
         "code": "1762",
         "name": "中化生",
-        "price": 25.0,
-        "pct_change": 0.0,
-        "volume": 128010,
-        "rsi": 53.9,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 25.9,
+        "rsi": 70.8,
+        "status": "YELLOW"
     },
     "1773": {
         "code": "1773",
         "name": "勝一",
-        "price": 159.5,
-        "pct_change": 1.59,
-        "volume": 2055825,
-        "rsi": 63.2,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 160.5,
+        "rsi": 64.2,
+        "status": "RED"
     },
     "1776": {
         "code": "1776",
         "name": "展宇",
-        "price": 15.4,
-        "pct_change": -0.96,
-        "volume": 55595,
-        "rsi": 52.0,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 15.7,
+        "rsi": 59.4,
+        "status": "RED"
     },
     "1783": {
         "code": "1783",
         "name": "和康生",
-        "price": 46.6,
-        "pct_change": 0.32,
-        "volume": 111060,
-        "rsi": 73.7,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 47.2,
+        "rsi": 76.4,
+        "status": "RED"
     },
     "1786": {
         "code": "1786",
         "name": "科妍",
-        "price": 79.3,
-        "pct_change": -0.63,
-        "volume": 245350,
-        "rsi": 60.7,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 81.8,
+        "rsi": 67.6,
+        "status": "YELLOW"
     },
     "1789": {
         "code": "1789",
         "name": "神隆",
-        "price": 26.25,
-        "pct_change": 2.74,
-        "volume": 2504286,
-        "rsi": 91.0,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 27.1,
+        "rsi": 92.0,
+        "status": "RED"
     },
     "1795": {
         "code": "1795",
         "name": "美時",
-        "price": 337.5,
-        "pct_change": 5.97,
-        "volume": 14298989,
-        "rsi": 75.2,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 319.5,
+        "rsi": 62.7,
+        "status": "YELLOW"
     },
     "1802": {
         "code": "1802",
         "name": "台玻",
-        "price": 41.8,
-        "pct_change": 10.0,
-        "volume": 195153291,
-        "rsi": 71.1,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 45.95,
+        "rsi": 77.3,
+        "status": "RED"
     },
     "1805": {
         "code": "1805",
         "name": "寶徠",
-        "price": 12.05,
-        "pct_change": -2.43,
-        "volume": 264095,
-        "rsi": 53.0,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 12.0,
+        "rsi": 51.9,
+        "status": "YELLOW"
     },
     "1806": {
         "code": "1806",
         "name": "冠軍",
-        "price": 9.12,
-        "pct_change": 0.66,
-        "volume": 1279002,
-        "rsi": 55.2,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 9.25,
+        "rsi": 60.4,
+        "status": "YELLOW"
     },
     "1808": {
         "code": "1808",
         "name": "潤隆",
-        "price": 33.0,
-        "pct_change": -1.64,
-        "volume": 2108769,
-        "rsi": 43.5,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 33.45,
+        "rsi": 46.6,
+        "status": "GREEN"
     },
     "1809": {
         "code": "1809",
         "name": "中釉",
-        "price": 22.75,
-        "pct_change": 9.9,
-        "volume": 9524408,
-        "rsi": 76.6,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 25.0,
+        "rsi": 82.1,
+        "status": "RED"
     },
     "1810": {
         "code": "1810",
         "name": "和成",
-        "price": 19.5,
-        "pct_change": -2.01,
-        "volume": 3511152,
-        "rsi": 61.2,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 20.4,
+        "rsi": 66.6,
+        "status": "RED"
     },
     "1817": {
         "code": "1817",
         "name": "凱撒衛",
-        "price": 38.55,
-        "pct_change": 0.0,
-        "volume": 44001,
-        "rsi": 55.5,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 38.5,
+        "rsi": 53.3,
+        "status": "YELLOW"
     },
     "1903": {
         "code": "1903",
         "name": "士紙",
-        "price": 55.3,
-        "pct_change": -1.95,
-        "volume": 224006,
-        "rsi": 50.0,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 57.1,
+        "rsi": 59.5,
+        "status": "YELLOW"
     },
     "1904": {
         "code": "1904",
         "name": "正隆",
-        "price": 17.9,
-        "pct_change": -1.38,
-        "volume": 1215677,
-        "rsi": 54.4,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 18.15,
+        "rsi": 59.6,
+        "status": "YELLOW"
     },
     "1905": {
         "code": "1905",
         "name": "華紙",
-        "price": 12.2,
-        "pct_change": -2.4,
-        "volume": 2270856,
-        "rsi": 56.4,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 12.6,
+        "rsi": 63.6,
+        "status": "YELLOW"
     },
     "1906": {
         "code": "1906",
         "name": "寶隆",
         "price": 12.1,
-        "pct_change": 0.41,
-        "volume": 42001,
         "rsi": 53.4,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "status": "GREEN"
     },
     "1907": {
         "code": "1907",
         "name": "永豐餘",
-        "price": 25.55,
-        "pct_change": -1.92,
-        "volume": 1164813,
-        "rsi": 43.0,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 25.7,
+        "rsi": 45.9,
+        "status": "GREEN"
     },
     "1909": {
         "code": "1909",
         "name": "榮成",
-        "price": 10.0,
-        "pct_change": -1.96,
-        "volume": 2560434,
-        "rsi": 47.3,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "price": 10.25,
+        "rsi": 54.2,
+        "status": "YELLOW"
     },
     "2002": {
         "code": "2002",
         "name": "中鋼",
-        "price": 19.25,
-        "pct_change": -1.03,
-        "volume": 35282486,
-        "rsi": 55.0,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 19.65,
+        "rsi": 60.5,
+        "status": "RED"
     },
     "2006": {
         "code": "2006",
         "name": "東和鋼鐵",
-        "price": 70.2,
-        "pct_change": -0.85,
-        "volume": 1487554,
-        "rsi": 63.1,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 70.8,
+        "rsi": 65.0,
+        "status": "RED"
     },
     "2007": {
         "code": "2007",
         "name": "燁興",
         "price": 8.16,
-        "pct_change": -2.28,
-        "volume": 409236,
         "rsi": 60.7,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "status": "RED"
     },
     "2008": {
         "code": "2008",
         "name": "高興昌",
         "price": 29.05,
-        "pct_change": -0.17,
-        "volume": 44700,
         "rsi": 49.7,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:29"
+        "status": "GREEN"
     },
     "2009": {
         "code": "2009",
         "name": "第一銅",
-        "price": 49.3,
-        "pct_change": -1.79,
-        "volume": 6919040,
-        "rsi": 55.2,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 50.4,
+        "rsi": 57.9,
+        "status": "RED"
     },
     "2010": {
         "code": "2010",
         "name": "春源",
-        "price": 21.35,
-        "pct_change": -0.93,
-        "volume": 2140803,
-        "rsi": 61.3,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 21.25,
+        "rsi": 58.6,
+        "status": "RED"
     },
     "2012": {
         "code": "2012",
         "name": "春雨",
-        "price": 17.35,
-        "pct_change": -0.86,
-        "volume": 50102,
-        "rsi": 67.9,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 17.5,
+        "rsi": 69.5,
+        "status": "RED"
     },
     "2013": {
         "code": "2013",
         "name": "中鋼構",
-        "price": 42.65,
-        "pct_change": -0.23,
-        "volume": 122236,
-        "rsi": 57.7,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 42.45,
+        "rsi": 53.6,
+        "status": "YELLOW"
     },
     "2014": {
         "code": "2014",
         "name": "中鴻",
-        "price": 16.6,
-        "pct_change": -1.48,
-        "volume": 7235500,
-        "rsi": 58.4,
-        "status": "RED",
-        "update_time": "2026-01-18 16:29"
+        "price": 16.9,
+        "rsi": 61.6,
+        "status": "RED"
     },
     "2015": {
         "code": "2015",
         "name": "豐興",
-        "price": 63.9,
-        "pct_change": -0.47,
-        "volume": 178300,
-        "rsi": 55.4,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:29"
+        "price": 64.2,
+        "rsi": 57.0,
+        "status": "YELLOW"
     },
     "2017": {
         "code": "2017",
         "name": "官田鋼",
-        "price": 9.02,
-        "pct_change": -0.88,
-        "volume": 977191,
-        "rsi": 60.6,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 9.01,
+        "rsi": 60.2,
+        "status": "RED"
     },
     "2020": {
         "code": "2020",
         "name": "美亞",
-        "price": 23.9,
-        "pct_change": -1.24,
-        "volume": 295401,
-        "rsi": 55.5,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 23.8,
+        "rsi": 53.6,
+        "status": "YELLOW"
     },
     "2022": {
         "code": "2022",
         "name": "聚亨",
-        "price": 8.93,
-        "pct_change": -2.08,
-        "volume": 1247256,
-        "rsi": 65.3,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 9.05,
+        "rsi": 67.5,
+        "status": "RED"
     },
     "2023": {
         "code": "2023",
         "name": "燁輝",
         "price": 14.8,
-        "pct_change": -1.66,
-        "volume": 1508665,
         "rsi": 47.2,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "status": "GREEN"
     },
     "2024": {
         "code": "2024",
         "name": "志聯",
-        "price": 16.6,
-        "pct_change": 2.47,
-        "volume": 17599,
-        "rsi": 54.7,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 16.15,
+        "rsi": 49.4,
+        "status": "GREEN"
     },
     "2025": {
         "code": "2025",
         "name": "千興",
-        "price": 14.05,
-        "pct_change": 5.24,
-        "volume": 1805889,
-        "rsi": 75.8,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 14.0,
+        "rsi": 75.2,
+        "status": "RED"
     },
     "2027": {
         "code": "2027",
         "name": "大成鋼",
-        "price": 36.5,
-        "pct_change": -1.48,
-        "volume": 16892579,
-        "rsi": 51.0,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 36.75,
+        "rsi": 52.7,
+        "status": "YELLOW"
     },
     "2028": {
         "code": "2028",
         "name": "威致",
-        "price": 19.2,
-        "pct_change": 0.52,
-        "volume": 276420,
-        "rsi": 64.1,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 19.0,
+        "rsi": 61.8,
+        "status": "RED"
     },
     "2029": {
         "code": "2029",
         "name": "盛餘",
-        "price": 21.2,
-        "pct_change": -0.7,
-        "volume": 107125,
-        "rsi": 52.7,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 21.15,
+        "rsi": 51.4,
+        "status": "YELLOW"
     },
     "2030": {
         "code": "2030",
         "name": "彰源",
-        "price": 16.45,
-        "pct_change": -2.95,
-        "volume": 2710004,
-        "rsi": 69.1,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 16.4,
+        "rsi": 68.3,
+        "status": "RED"
     },
     "2031": {
         "code": "2031",
         "name": "新光鋼",
-        "price": 38.9,
-        "pct_change": -1.39,
-        "volume": 855009,
-        "rsi": 53.0,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 39.35,
+        "rsi": 55.7,
+        "status": "RED"
     },
     "2032": {
         "code": "2032",
         "name": "新鋼",
-        "price": 16.8,
-        "pct_change": -2.33,
-        "volume": 1006141,
-        "rsi": 65.4,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 16.7,
+        "rsi": 64.0,
+        "status": "RED"
     },
     "2033": {
         "code": "2033",
         "name": "佳大",
-        "price": 16.35,
-        "pct_change": -0.91,
-        "volume": 254000,
-        "rsi": 56.6,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 16.3,
+        "rsi": 55.5,
+        "status": "RED"
     },
     "2034": {
         "code": "2034",
         "name": "允強",
-        "price": 21.0,
-        "pct_change": -3.0,
-        "volume": 3173388,
-        "rsi": 52.3,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 20.9,
+        "rsi": 51.2,
+        "status": "YELLOW"
     },
     "2038": {
         "code": "2038",
         "name": "海光",
-        "price": 15.3,
-        "pct_change": -2.55,
-        "volume": 840989,
-        "rsi": 58.6,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 15.35,
+        "rsi": 59.2,
+        "status": "RED"
     },
     "2049": {
         "code": "2049",
         "name": "上銀",
-        "price": 219.5,
-        "pct_change": 3.05,
-        "volume": 9652100,
-        "rsi": 73.2,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 230.0,
+        "rsi": 78.8,
+        "status": "YELLOW"
     },
     "2059": {
         "code": "2059",
         "name": "川湖",
-        "price": 3410.0,
-        "pct_change": 0.29,
-        "volume": 883382,
-        "rsi": 46.8,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 3310.0,
+        "rsi": 42.6,
+        "status": "GREEN"
     },
     "2062": {
         "code": "2062",
         "name": "橋椿",
-        "price": 22.5,
-        "pct_change": 0.45,
-        "volume": 534000,
-        "rsi": 67.6,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 23.65,
+        "rsi": 75.2,
+        "status": "RED"
     },
     "2069": {
         "code": "2069",
         "name": "運錩",
-        "price": 19.4,
-        "pct_change": -0.77,
-        "volume": 328006,
-        "rsi": 72.1,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 19.5,
+        "rsi": 73.0,
+        "status": "RED"
     },
     "2101": {
         "code": "2101",
         "name": "南港",
-        "price": 37.05,
-        "pct_change": -1.33,
-        "volume": 1647635,
-        "rsi": 45.2,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 37.0,
+        "rsi": 44.6,
+        "status": "GREEN"
     },
     "2102": {
         "code": "2102",
         "name": "泰豐",
-        "price": 20.2,
-        "pct_change": -0.25,
-        "volume": 543513,
-        "rsi": 58.6,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 20.25,
+        "rsi": 59.5,
+        "status": "YELLOW"
     },
     "2103": {
         "code": "2103",
         "name": "台橡",
-        "price": 15.15,
-        "pct_change": -1.94,
-        "volume": 2324274,
-        "rsi": 46.8,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 15.65,
+        "rsi": 54.3,
+        "status": "YELLOW"
     },
     "2104": {
         "code": "2104",
         "name": "國際中橡",
-        "price": 12.0,
-        "pct_change": 1.27,
-        "volume": 5673042,
-        "rsi": 61.2,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 12.5,
+        "rsi": 66.4,
+        "status": "RED"
     },
     "2105": {
         "code": "2105",
         "name": "正新",
-        "price": 31.0,
-        "pct_change": 0.49,
-        "volume": 7013211,
-        "rsi": 58.4,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 31.8,
+        "rsi": 67.1,
+        "status": "YELLOW"
     },
     "2106": {
         "code": "2106",
         "name": "建大",
-        "price": 19.85,
-        "pct_change": 1.02,
-        "volume": 1285949,
-        "rsi": 51.4,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 20.55,
+        "rsi": 64.0,
+        "status": "YELLOW"
     },
     "2107": {
         "code": "2107",
         "name": "厚生",
-        "price": 25.0,
-        "pct_change": 0.0,
-        "volume": 202179,
-        "rsi": 69.2,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 24.9,
+        "rsi": 64.0,
+        "status": "RED"
     },
     "2108": {
         "code": "2108",
         "name": "南帝",
-        "price": 24.35,
-        "pct_change": -0.2,
-        "volume": 777201,
-        "rsi": 58.9,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 24.6,
+        "rsi": 61.1,
+        "status": "RED"
     },
     "2109": {
         "code": "2109",
         "name": "華豐",
-        "price": 14.95,
-        "pct_change": -0.66,
-        "volume": 137297,
-        "rsi": 43.1,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 15.05,
+        "rsi": 51.7,
+        "status": "GREEN"
     },
     "2114": {
         "code": "2114",
         "name": "鑫永銓",
         "price": 90.2,
-        "pct_change": 0.22,
-        "volume": 25104,
         "rsi": 55.0,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "status": "GREEN"
     },
     "2115": {
         "code": "2115",
         "name": "六暉-KY",
-        "price": 24.5,
-        "pct_change": 0.41,
-        "volume": 150231,
-        "rsi": 44.9,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 26.95,
+        "rsi": 87.1,
+        "status": "YELLOW"
     },
     "2201": {
         "code": "2201",
         "name": "裕隆",
-        "price": 32.1,
-        "pct_change": -0.31,
-        "volume": 3144858,
-        "rsi": 43.9,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 32.4,
+        "rsi": 46.0,
+        "status": "GREEN"
     },
     "2204": {
         "code": "2204",
         "name": "中華",
-        "price": 58.6,
-        "pct_change": 0.86,
-        "volume": 1546420,
-        "rsi": 47.2,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 58.7,
+        "rsi": 48.0,
+        "status": "GREEN"
     },
     "2206": {
         "code": "2206",
         "name": "三陽工業",
         "price": 60.0,
-        "pct_change": -0.33,
-        "volume": 1298157,
         "rsi": 43.0,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "status": "GREEN"
     },
     "2207": {
         "code": "2207",
         "name": "和泰車",
-        "price": 548.0,
-        "pct_change": -0.72,
-        "volume": 241228,
-        "rsi": 40.5,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 542.0,
+        "rsi": 37.1,
+        "status": "GREEN"
     },
     "2208": {
         "code": "2208",
         "name": "台船",
-        "price": 21.5,
-        "pct_change": -0.69,
-        "volume": 4692496,
-        "rsi": 63.7,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 21.6,
+        "rsi": 64.7,
+        "status": "RED"
     },
     "2211": {
         "code": "2211",
         "name": "長榮鋼",
-        "price": 102.5,
-        "pct_change": -0.49,
-        "volume": 1004100,
-        "rsi": 46.1,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 102.0,
+        "rsi": 44.8,
+        "status": "GREEN"
     },
     "2227": {
         "code": "2227",
         "name": "裕日車",
-        "price": 55.0,
-        "pct_change": -1.79,
-        "volume": 69047,
-        "rsi": 49.2,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 54.8,
+        "rsi": 47.8,
+        "status": "GREEN"
     },
     "2228": {
         "code": "2228",
         "name": "劍麟",
-        "price": 108.0,
-        "pct_change": 1.89,
-        "volume": 910365,
-        "rsi": 53.4,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 106.5,
+        "rsi": 50.1,
+        "status": "YELLOW"
     },
     "2231": {
         "code": "2231",
         "name": "為升",
-        "price": 98.6,
-        "pct_change": 1.65,
-        "volume": 599047,
-        "rsi": 56.4,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 102.5,
+        "rsi": 63.7,
+        "status": "YELLOW"
     },
     "2233": {
         "code": "2233",
         "name": "宇隆",
-        "price": 238.0,
-        "pct_change": -1.65,
-        "volume": 1778873,
-        "rsi": 67.6,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 232.0,
+        "rsi": 62.1,
+        "status": "RED"
     },
     "2236": {
         "code": "2236",
         "name": "百達-KY",
-        "price": 114.5,
-        "pct_change": 0.0,
-        "volume": 159152,
-        "rsi": 56.2,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 110.5,
+        "rsi": 47.6,
+        "status": "YELLOW"
     },
     "2239": {
         "code": "2239",
         "name": "英利-KY",
-        "price": 30.7,
-        "pct_change": 0.16,
-        "volume": 67000,
-        "rsi": 33.5,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 30.65,
+        "rsi": 33.3,
+        "status": "GREEN"
     },
     "2241": {
         "code": "2241",
         "name": "艾姆勒",
-        "price": 37.2,
-        "pct_change": 2.48,
-        "volume": 1024014,
-        "rsi": 56.2,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 37.3,
+        "rsi": 56.7,
+        "status": "YELLOW"
     },
     "2243": {
         "code": "2243",
         "name": "宏旭-KY",
-        "price": 11.8,
-        "pct_change": 4.42,
-        "volume": 550000,
-        "rsi": 59.7,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 12.0,
+        "rsi": 63.6,
+        "status": "RED"
     },
     "2247": {
         "code": "2247",
         "name": "汎德永業",
-        "price": 279.0,
-        "pct_change": -2.45,
-        "volume": 522789,
-        "rsi": 50.5,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 276.5,
+        "rsi": 46.9,
+        "status": "GREEN"
     },
     "2250": {
         "code": "2250",
         "name": "IKKA-KY",
-        "price": 77.3,
-        "pct_change": 2.93,
-        "volume": 206200,
-        "rsi": 63.0,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 75.8,
+        "rsi": 57.1,
+        "status": "YELLOW"
     },
     "2301": {
         "code": "2301",
         "name": "光寶科",
-        "price": 166.0,
-        "pct_change": 0.61,
-        "volume": 22274298,
-        "rsi": 54.0,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 163.0,
+        "rsi": 49.7,
+        "status": "GREEN"
     },
     "2302": {
         "code": "2302",
         "name": "麗正",
-        "price": 19.1,
-        "pct_change": 2.14,
-        "volume": 1448750,
-        "rsi": 64.2,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 20.5,
+        "rsi": 74.6,
+        "status": "YELLOW"
     },
     "2303": {
         "code": "2303",
         "name": "聯電",
-        "price": 58.5,
-        "pct_change": 6.95,
-        "volume": 304570619,
-        "rsi": 76.1,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 62.5,
+        "rsi": 81.6,
+        "status": "RED"
     },
     "2305": {
         "code": "2305",
         "name": "全友",
-        "price": 14.85,
-        "pct_change": -6.6,
-        "volume": 6257217,
-        "rsi": 72.3,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 15.4,
+        "rsi": 74.6,
+        "status": "RED"
     },
     "2308": {
         "code": "2308",
         "name": "台達電",
-        "price": 1125.0,
-        "pct_change": 7.66,
-        "volume": 22782095,
-        "rsi": 70.8,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 1120.0,
+        "rsi": 69.6,
+        "status": "RED"
     },
     "2312": {
         "code": "2312",
         "name": "金寶",
-        "price": 33.7,
-        "pct_change": 1.2,
-        "volume": 405324044,
-        "rsi": 85.9,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 35.4,
+        "rsi": 87.7,
+        "status": "RED"
     },
     "2313": {
         "code": "2313",
         "name": "華通",
-        "price": 142.0,
-        "pct_change": 0.71,
-        "volume": 70949381,
-        "rsi": 78.3,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 143.5,
+        "rsi": 78.8,
+        "status": "RED"
     },
     "2314": {
         "code": "2314",
         "name": "台揚",
-        "price": 23.25,
-        "pct_change": -3.12,
-        "volume": 236167,
-        "rsi": 55.6,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 22.5,
+        "rsi": 50.8,
+        "status": "GREEN"
     },
     "2316": {
         "code": "2316",
         "name": "楠梓電",
-        "price": 101.5,
-        "pct_change": 1.0,
-        "volume": 4092331,
-        "rsi": 51.0,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 98.8,
+        "rsi": 46.1,
+        "status": "GREEN"
     },
     "2317": {
         "code": "2317",
         "name": "鴻海",
-        "price": 234.5,
-        "pct_change": 0.43,
-        "volume": 47340006,
-        "rsi": 55.6,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 229.5,
+        "rsi": 49.3,
+        "status": "GREEN"
     },
     "2321": {
         "code": "2321",
         "name": "東訊",
         "price": 16.95,
-        "pct_change": -2.87,
-        "volume": 12275,
         "rsi": 46.8,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "status": "GREEN"
     },
     "2323": {
         "code": "2323",
         "name": "中環",
-        "price": 11.0,
-        "pct_change": -0.45,
-        "volume": 7849230,
-        "rsi": 55.9,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 11.1,
+        "rsi": 57.5,
+        "status": "RED"
     },
     "2324": {
         "code": "2324",
         "name": "仁寶",
-        "price": 30.85,
-        "pct_change": -0.64,
-        "volume": 30507123,
-        "rsi": 54.3,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 32.25,
+        "rsi": 65.0,
+        "status": "YELLOW"
     },
     "2327": {
         "code": "2327",
         "name": "國巨",
-        "price": 283.0,
-        "pct_change": 3.47,
-        "volume": 80940978,
-        "rsi": 72.4,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 295.5,
+        "rsi": 75.9,
+        "status": "RED"
     },
     "2328": {
         "code": "2328",
         "name": "廣宇",
-        "price": 51.0,
-        "pct_change": 1.39,
-        "volume": 14263173,
-        "rsi": 62.0,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 53.1,
+        "rsi": 68.4,
+        "status": "YELLOW"
     },
     "2329": {
         "code": "2329",
         "name": "華泰",
-        "price": 61.9,
-        "pct_change": 3.34,
-        "volume": 46085046,
-        "rsi": 73.0,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 68.0,
+        "rsi": 80.8,
+        "status": "RED"
     },
     "2330": {
         "code": "2330",
         "name": "台積電",
-        "price": 1740.0,
-        "pct_change": 2.96,
-        "volume": 53551629,
-        "rsi": 75.2,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 1760.0,
+        "rsi": 76.8,
+        "status": "RED"
     },
     "2331": {
         "code": "2331",
         "name": "精英",
-        "price": 27.25,
-        "pct_change": -5.87,
-        "volume": 22900732,
-        "rsi": 65.0,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 29.95,
+        "rsi": 72.0,
+        "status": "RED"
     },
     "2332": {
         "code": "2332",
         "name": "友訊",
-        "price": 16.15,
-        "pct_change": -3.0,
-        "volume": 6794823,
-        "rsi": 55.6,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 16.8,
+        "rsi": 61.4,
+        "status": "YELLOW"
     },
     "2337": {
         "code": "2337",
         "name": "旺宏",
-        "price": 67.0,
-        "pct_change": 8.24,
-        "volume": 69517417,
-        "rsi": 79.5,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 73.7,
+        "rsi": 83.3,
+        "status": "RED"
     },
     "2338": {
         "code": "2338",
         "name": "光罩",
-        "price": 39.95,
-        "pct_change": 3.23,
-        "volume": 5077919,
-        "rsi": 64.9,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 41.7,
+        "rsi": 70.1,
+        "status": "RED"
     },
     "2340": {
         "code": "2340",
         "name": "台亞",
-        "price": 27.85,
-        "pct_change": 0.18,
-        "volume": 2592491,
-        "rsi": 57.0,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 28.65,
+        "rsi": 62.3,
+        "status": "RED"
     },
     "2342": {
         "code": "2342",
         "name": "茂矽",
-        "price": 33.85,
-        "pct_change": 1.35,
-        "volume": 4950576,
-        "rsi": 59.9,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 35.65,
+        "rsi": 65.0,
+        "status": "RED"
     },
     "2344": {
         "code": "2344",
         "name": "華邦電",
-        "price": 106.5,
-        "pct_change": 7.36,
-        "volume": 50187737,
-        "rsi": 71.0,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 116.5,
+        "rsi": 76.2,
+        "status": "RED"
     },
     "2345": {
         "code": "2345",
         "name": "智邦",
-        "price": 1230.0,
-        "pct_change": -0.81,
-        "volume": 3257786,
-        "rsi": 57.9,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 1165.0,
+        "rsi": 49.2,
+        "status": "YELLOW"
     },
     "2347": {
         "code": "2347",
         "name": "聯強",
-        "price": 65.3,
-        "pct_change": -1.06,
-        "volume": 6974921,
-        "rsi": 68.9,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 65.1,
+        "rsi": 67.5,
+        "status": "RED"
     },
     "2348": {
         "code": "2348",
         "name": "海悅",
-        "price": 79.4,
-        "pct_change": -2.1,
-        "volume": 892298,
-        "rsi": 42.8,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 78.7,
+        "rsi": 40.9,
+        "status": "GREEN"
     },
     "2349": {
         "code": "2349",
         "name": "錸德",
-        "price": 16.2,
-        "pct_change": 1.25,
-        "volume": 22497905,
-        "rsi": 61.4,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 16.0,
+        "rsi": 59.9,
+        "status": "RED"
     },
     "2351": {
         "code": "2351",
         "name": "順德",
-        "price": 77.4,
-        "pct_change": 1.84,
-        "volume": 1256341,
-        "rsi": 52.6,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 78.3,
+        "rsi": 55.2,
+        "status": "GREEN"
     },
     "2352": {
         "code": "2352",
         "name": "佳世達",
-        "price": 25.1,
-        "pct_change": -1.18,
-        "volume": 6093950,
-        "rsi": 49.1,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 25.5,
+        "rsi": 53.3,
+        "status": "GREEN"
     },
     "2353": {
         "code": "2353",
         "name": "宏碁",
-        "price": 27.15,
-        "pct_change": 0.18,
-        "volume": 23678651,
-        "rsi": 53.7,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 27.3,
+        "rsi": 55.0,
+        "status": "GREEN"
     },
     "2354": {
         "code": "2354",
         "name": "鴻準",
-        "price": 59.8,
-        "pct_change": 0.5,
-        "volume": 5228795,
-        "rsi": 41.2,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 59.4,
+        "rsi": 39.4,
+        "status": "GREEN"
     },
     "2355": {
         "code": "2355",
         "name": "敬鵬",
-        "price": 34.8,
-        "pct_change": -2.79,
-        "volume": 5643373,
-        "rsi": 61.4,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 35.4,
+        "rsi": 63.7,
+        "status": "RED"
     },
     "2356": {
         "code": "2356",
         "name": "英業達",
-        "price": 44.35,
-        "pct_change": 0.45,
-        "volume": 11950890,
-        "rsi": 56.0,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 44.65,
+        "rsi": 57.9,
+        "status": "YELLOW"
     },
     "2357": {
         "code": "2357",
         "name": "華碩",
         "price": 510.0,
-        "pct_change": -2.11,
-        "volume": 6574560,
         "rsi": 31.9,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "status": "GREEN"
     },
     "2359": {
         "code": "2359",
         "name": "所羅門",
         "price": 131.5,
-        "pct_change": 0.77,
-        "volume": 1660109,
         "rsi": 52.8,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "status": "YELLOW"
     },
     "2360": {
         "code": "2360",
         "name": "致茂",
-        "price": 989.0,
-        "pct_change": 2.38,
-        "volume": 1798781,
-        "rsi": 75.1,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 950.0,
+        "rsi": 65.1,
+        "status": "RED"
     },
     "2362": {
         "code": "2362",
         "name": "藍天",
-        "price": 38.85,
-        "pct_change": -0.38,
-        "volume": 387636,
-        "rsi": 46.9,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 39.45,
+        "rsi": 52.7,
+        "status": "GREEN"
     },
     "2363": {
         "code": "2363",
         "name": "矽統",
-        "price": 49.5,
-        "pct_change": 1.43,
-        "volume": 5284184,
-        "rsi": 56.8,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 52.0,
+        "rsi": 67.4,
+        "status": "YELLOW"
     },
     "2364": {
         "code": "2364",
         "name": "倫飛",
-        "price": 65.3,
-        "pct_change": -0.15,
-        "volume": 117229,
-        "rsi": 40.3,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 65.8,
+        "rsi": 43.5,
+        "status": "GREEN"
     },
     "2365": {
         "code": "2365",
         "name": "昆盈",
-        "price": 36.2,
-        "pct_change": 0.56,
-        "volume": 3615479,
-        "rsi": 54.3,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 36.6,
+        "rsi": 56.5,
+        "status": "YELLOW"
     },
     "2367": {
         "code": "2367",
         "name": "燿華",
-        "price": 36.65,
-        "pct_change": -1.21,
-        "volume": 100576347,
-        "rsi": 72.1,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 37.1,
+        "rsi": 72.9,
+        "status": "RED"
     },
     "2368": {
         "code": "2368",
         "name": "金像電",
-        "price": 677.0,
-        "pct_change": 1.35,
-        "volume": 6697352,
-        "rsi": 59.3,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 624.0,
+        "rsi": 47.0,
+        "status": "YELLOW"
     },
     "2369": {
         "code": "2369",
         "name": "菱生",
-        "price": 28.15,
-        "pct_change": 2.18,
-        "volume": 42265827,
-        "rsi": 70.7,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 30.95,
+        "rsi": 77.5,
+        "status": "RED"
     },
     "2371": {
         "code": "2371",
         "name": "大同",
-        "price": 38.85,
-        "pct_change": 2.51,
-        "volume": 169115172,
-        "rsi": 73.5,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 40.15,
+        "rsi": 76.1,
+        "status": "YELLOW"
     },
     "2373": {
         "code": "2373",
         "name": "震旦行",
-        "price": 55.6,
-        "pct_change": -0.36,
-        "volume": 33946,
-        "rsi": 36.8,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 55.2,
+        "rsi": 31.7,
+        "status": "GREEN"
     },
     "2374": {
         "code": "2374",
         "name": "佳能",
-        "price": 82.3,
-        "pct_change": 3.78,
-        "volume": 23618805,
-        "rsi": 58.2,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 80.6,
+        "rsi": 53.4,
+        "status": "YELLOW"
     },
     "2375": {
         "code": "2375",
         "name": "凱美",
-        "price": 104.5,
-        "pct_change": 6.42,
-        "volume": 21533382,
-        "rsi": 66.2,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 107.0,
+        "rsi": 68.5,
+        "status": "RED"
     },
     "2376": {
         "code": "2376",
         "name": "技嘉",
-        "price": 246.5,
-        "pct_change": 0.61,
-        "volume": 4965360,
-        "rsi": 52.6,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 240.0,
+        "rsi": 46.1,
+        "status": "GREEN"
     },
     "2377": {
         "code": "2377",
         "name": "微星",
-        "price": 99.0,
-        "pct_change": -1.0,
-        "volume": 5924825,
-        "rsi": 49.1,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 99.8,
+        "rsi": 51.3,
+        "status": "GREEN"
     },
     "2379": {
         "code": "2379",
         "name": "瑞昱",
-        "price": 509.0,
-        "pct_change": -0.78,
-        "volume": 3213034,
-        "rsi": 48.0,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 515.0,
+        "rsi": 49.8,
+        "status": "YELLOW"
     },
     "2380": {
         "code": "2380",
         "name": "虹光",
         "price": 5.11,
-        "pct_change": -1.73,
-        "volume": 209461,
         "rsi": 51.9,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "status": "YELLOW"
     },
     "2382": {
         "code": "2382",
         "name": "廣達",
-        "price": 289.5,
-        "pct_change": 2.3,
-        "volume": 23531351,
-        "rsi": 60.0,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 282.0,
+        "rsi": 52.6,
+        "status": "GREEN"
     },
     "2383": {
         "code": "2383",
         "name": "台光電",
-        "price": 1625.0,
-        "pct_change": 3.5,
-        "volume": 4021039,
-        "rsi": 53.8,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 1580.0,
+        "rsi": 50.0,
+        "status": "YELLOW"
     },
     "2385": {
         "code": "2385",
         "name": "群光",
         "price": 119.0,
-        "pct_change": 0.0,
-        "volume": 3992625,
         "rsi": 55.8,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "status": "GREEN"
     },
     "2387": {
         "code": "2387",
         "name": "精元",
-        "price": 39.55,
-        "pct_change": -0.38,
-        "volume": 409982,
-        "rsi": 55.2,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 39.75,
+        "rsi": 57.3,
+        "status": "GREEN"
     },
     "2388": {
         "code": "2388",
         "name": "威盛",
-        "price": 52.1,
-        "pct_change": 0.0,
-        "volume": 2349415,
-        "rsi": 45.8,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 53.7,
+        "rsi": 52.4,
+        "status": "YELLOW"
     },
     "2390": {
         "code": "2390",
         "name": "云辰",
-        "price": 10.75,
-        "pct_change": 1.9,
-        "volume": 866718,
-        "rsi": 67.3,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 11.0,
+        "rsi": 70.7,
+        "status": "RED"
     },
     "2392": {
         "code": "2392",
         "name": "正崴",
-        "price": 39.65,
-        "pct_change": 1.54,
-        "volume": 3703041,
-        "rsi": 61.2,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 41.3,
+        "rsi": 69.7,
+        "status": "YELLOW"
     },
     "2393": {
         "code": "2393",
         "name": "億光",
-        "price": 56.1,
-        "pct_change": 0.0,
-        "volume": 1689170,
-        "rsi": 57.2,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 55.5,
+        "rsi": 53.4,
+        "status": "YELLOW"
     },
     "2395": {
         "code": "2395",
         "name": "研華",
-        "price": 287.5,
-        "pct_change": 0.0,
-        "volume": 1703675,
-        "rsi": 50.2,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 287.0,
+        "rsi": 49.4,
+        "status": "GREEN"
     },
     "2397": {
         "code": "2397",
         "name": "友通",
         "price": 60.8,
-        "pct_change": -0.49,
-        "volume": 150016,
         "rsi": 46.5,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "status": "GREEN"
     },
     "2399": {
         "code": "2399",
         "name": "映泰",
-        "price": 25.85,
-        "pct_change": -3.18,
-        "volume": 4868603,
-        "rsi": 52.9,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 26.65,
+        "rsi": 56.4,
+        "status": "RED"
     },
     "2401": {
         "code": "2401",
         "name": "凌陽",
-        "price": 21.75,
-        "pct_change": 1.4,
-        "volume": 6098908,
-        "rsi": 60.3,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 23.1,
+        "rsi": 68.7,
+        "status": "RED"
     },
     "2402": {
         "code": "2402",
         "name": "毅嘉",
-        "price": 55.9,
-        "pct_change": 0.72,
-        "volume": 7679867,
-        "rsi": 45.0,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 55.4,
+        "rsi": 43.9,
+        "status": "YELLOW"
     },
     "2404": {
         "code": "2404",
         "name": "漢唐",
-        "price": 1100.0,
-        "pct_change": -4.35,
-        "volume": 9101693,
-        "rsi": 65.6,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 1095.0,
+        "rsi": 64.7,
+        "status": "RED"
     },
     "2405": {
         "code": "2405",
         "name": "輔信",
-        "price": 17.25,
-        "pct_change": 0.0,
-        "volume": 1550214,
-        "rsi": 42.8,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 17.8,
+        "rsi": 51.0,
+        "status": "GREEN"
     },
     "2406": {
         "code": "2406",
         "name": "國碩",
-        "price": 30.6,
-        "pct_change": -5.7,
-        "volume": 31028231,
-        "rsi": 65.1,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 30.8,
+        "rsi": 65.6,
+        "status": "RED"
     },
     "2408": {
         "code": "2408",
         "name": "南亞科",
-        "price": 250.0,
-        "pct_change": 5.26,
-        "volume": 15747022,
-        "rsi": 72.5,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 275.0,
+        "rsi": 77.9,
+        "status": "RED"
     },
     "2409": {
         "code": "2409",
         "name": "友達",
-        "price": 15.7,
-        "pct_change": 2.95,
-        "volume": 346453729,
-        "rsi": 68.7,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 17.25,
+        "rsi": 75.3,
+        "status": "RED"
     },
     "2412": {
         "code": "2412",
         "name": "中華電",
-        "price": 133.0,
-        "pct_change": -0.37,
-        "volume": 11578802,
-        "rsi": 57.3,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 134.0,
+        "rsi": 63.2,
+        "status": "RED"
     },
     "2413": {
         "code": "2413",
         "name": "環科",
-        "price": 48.15,
-        "pct_change": -0.21,
-        "volume": 2262627,
-        "rsi": 71.4,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 51.5,
+        "rsi": 76.0,
+        "status": "RED"
     },
     "2414": {
         "code": "2414",
         "name": "精技",
-        "price": 41.2,
-        "pct_change": 0.24,
-        "volume": 80103,
-        "rsi": 55.2,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 41.0,
+        "rsi": 49.7,
+        "status": "GREEN"
     },
     "2415": {
         "code": "2415",
         "name": "錩新",
-        "price": 27.8,
-        "pct_change": 2.58,
-        "volume": 334760,
-        "rsi": 71.8,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 28.0,
+        "rsi": 73.4,
+        "status": "RED"
     },
     "2417": {
         "code": "2417",
         "name": "圓剛",
-        "price": 39.45,
-        "pct_change": -1.37,
-        "volume": 595200,
-        "rsi": 54.4,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 40.0,
+        "rsi": 56.8,
+        "status": "RED"
     },
     "2419": {
         "code": "2419",
         "name": "仲琦",
-        "price": 31.35,
-        "pct_change": -6.14,
-        "volume": 13276746,
-        "rsi": 68.7,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 31.3,
+        "rsi": 68.4,
+        "status": "RED"
     },
     "2420": {
         "code": "2420",
         "name": "新巨",
         "price": 52.5,
-        "pct_change": 0.57,
-        "volume": 307750,
         "rsi": 66.3,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "status": "RED"
     },
     "2421": {
         "code": "2421",
         "name": "建準",
-        "price": 153.0,
-        "pct_change": 0.0,
-        "volume": 1792995,
-        "rsi": 43.1,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 150.0,
+        "rsi": 39.1,
+        "status": "GREEN"
     },
     "2423": {
         "code": "2423",
         "name": "固緯",
-        "price": 54.7,
-        "pct_change": 0.18,
-        "volume": 129801,
-        "rsi": 50.1,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 55.0,
+        "rsi": 51.7,
+        "status": "YELLOW"
     },
     "2424": {
         "code": "2424",
         "name": "隴華",
-        "price": 37.25,
-        "pct_change": -3.12,
-        "volume": 113028,
-        "rsi": 53.0,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 35.75,
+        "rsi": 49.0,
+        "status": "GREEN"
     },
     "2425": {
         "code": "2425",
         "name": "承啟",
-        "price": 30.95,
-        "pct_change": -1.75,
-        "volume": 223117,
-        "rsi": 54.4,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:30"
+        "price": 33.15,
+        "rsi": 65.7,
+        "status": "RED"
     },
     "2426": {
         "code": "2426",
         "name": "鼎元",
-        "price": 17.65,
-        "pct_change": 0.57,
-        "volume": 615774,
-        "rsi": 56.5,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 18.35,
+        "rsi": 62.7,
+        "status": "RED"
     },
     "2427": {
         "code": "2427",
         "name": "三商電",
-        "price": 26.65,
-        "pct_change": -0.19,
-        "volume": 468040,
-        "rsi": 47.5,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 26.9,
+        "rsi": 52.0,
+        "status": "YELLOW"
     },
     "2428": {
         "code": "2428",
         "name": "興勤",
-        "price": 178.0,
-        "pct_change": 0.28,
-        "volume": 577170,
-        "rsi": 51.4,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 180.0,
+        "rsi": 54.4,
+        "status": "GREEN"
     },
     "2429": {
         "code": "2429",
         "name": "銘旺科",
-        "price": 75.6,
-        "pct_change": -1.95,
-        "volume": 451034,
-        "rsi": 44.1,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 74.3,
+        "rsi": 41.9,
+        "status": "GREEN"
     },
     "2430": {
         "code": "2430",
         "name": "燦坤",
         "price": 22.8,
-        "pct_change": -0.65,
-        "volume": 73133,
         "rsi": 43.6,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "status": "GREEN"
     },
     "2431": {
         "code": "2431",
         "name": "聯昌",
-        "price": 12.7,
-        "pct_change": 0.79,
-        "volume": 1075470,
-        "rsi": 68.5,
-        "status": "RED",
-        "update_time": "2026-01-18 16:30"
+        "price": 13.2,
+        "rsi": 74.1,
+        "status": "RED"
     },
     "2433": {
         "code": "2433",
         "name": "互盛電",
-        "price": 46.8,
-        "pct_change": 0.21,
-        "volume": 46000,
-        "rsi": 30.2,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:30"
+        "price": 46.75,
+        "rsi": 29.0,
+        "status": "GREEN"
     },
     "2434": {
         "code": "2434",
         "name": "統懋",
         "price": 30.15,
-        "pct_change": -0.33,
-        "volume": 17050,
         "rsi": 43.5,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "status": "GREEN"
     },
     "2436": {
         "code": "2436",
         "name": "偉詮電",
-        "price": 48.35,
-        "pct_change": -0.92,
-        "volume": 1200773,
-        "rsi": 51.3,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "price": 49.8,
+        "rsi": 57.6,
+        "status": "RED"
     },
     "2438": {
         "code": "2438",
         "name": "翔耀",
-        "price": 21.9,
-        "pct_change": -0.23,
-        "volume": 66095,
-        "rsi": 46.2,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 22.35,
+        "rsi": 53.7,
+        "status": "GREEN"
     },
     "2439": {
         "code": "2439",
         "name": "美律",
-        "price": 106.5,
-        "pct_change": -2.29,
-        "volume": 1574131,
-        "rsi": 61.6,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "price": 106.0,
+        "rsi": 60.2,
+        "status": "YELLOW"
     },
     "2440": {
         "code": "2440",
         "name": "太空梭",
-        "price": 15.8,
-        "pct_change": 2.93,
-        "volume": 882890,
-        "rsi": 71.2,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 16.15,
+        "rsi": 73.9,
+        "status": "RED"
     },
     "2441": {
         "code": "2441",
         "name": "超豐",
         "price": 102.0,
-        "pct_change": 6.03,
-        "volume": 28385587,
         "rsi": 76.7,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "status": "RED"
     },
     "2442": {
         "code": "2442",
         "name": "新美齊",
-        "price": 23.75,
-        "pct_change": -3.85,
-        "volume": 2291973,
-        "rsi": 41.4,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 23.0,
+        "rsi": 35.9,
+        "status": "GREEN"
     },
     "2444": {
         "code": "2444",
         "name": "兆勁",
-        "price": 12.65,
-        "pct_change": 3.69,
-        "volume": 1078237,
-        "rsi": 64.5,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 12.9,
+        "rsi": 66.8,
+        "status": "RED"
     },
     "2449": {
         "code": "2449",
         "name": "京元電子",
-        "price": 273.5,
-        "pct_change": 2.24,
-        "volume": 26188105,
-        "rsi": 70.9,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 271.5,
+        "rsi": 68.6,
+        "status": "RED"
     },
     "2450": {
         "code": "2450",
         "name": "神腦",
-        "price": 28.9,
-        "pct_change": 0.17,
-        "volume": 91053,
-        "rsi": 53.2,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 28.95,
+        "rsi": 55.4,
+        "status": "GREEN"
     },
     "2451": {
         "code": "2451",
         "name": "創見",
-        "price": 254.0,
-        "pct_change": 6.72,
-        "volume": 20888373,
-        "rsi": 72.3,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 256.5,
+        "rsi": 73.0,
+        "status": "RED"
     },
     "2453": {
         "code": "2453",
         "name": "凌群",
-        "price": 55.5,
-        "pct_change": -1.6,
-        "volume": 685030,
-        "rsi": 58.7,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "price": 55.4,
+        "rsi": 58.0,
+        "status": "YELLOW"
     },
     "2454": {
         "code": "2454",
         "name": "聯發科",
-        "price": 1505.0,
-        "pct_change": 1.01,
-        "volume": 10170235,
-        "rsi": 64.8,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 1485.0,
+        "rsi": 60.4,
+        "status": "RED"
     },
     "2455": {
         "code": "2455",
         "name": "全新",
-        "price": 170.5,
-        "pct_change": 1.19,
-        "volume": 19323993,
-        "rsi": 67.3,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 168.0,
+        "rsi": 64.3,
+        "status": "RED"
     },
     "2457": {
         "code": "2457",
         "name": "飛宏",
-        "price": 32.25,
-        "pct_change": 9.88,
-        "volume": 21741362,
-        "rsi": 66.0,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "price": 30.6,
+        "rsi": 56.5,
+        "status": "YELLOW"
     },
     "2458": {
         "code": "2458",
         "name": "義隆",
-        "price": 115.5,
-        "pct_change": -1.28,
-        "volume": 1461314,
-        "rsi": 33.5,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 117.0,
+        "rsi": 39.1,
+        "status": "GREEN"
     },
     "2459": {
         "code": "2459",
         "name": "敦吉",
         "price": 67.8,
-        "pct_change": -0.15,
-        "volume": 63000,
         "rsi": 69.7,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "status": "RED"
     },
     "2460": {
         "code": "2460",
         "name": "建通",
-        "price": 22.6,
-        "pct_change": -0.88,
-        "volume": 509083,
-        "rsi": 58.5,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 23.25,
+        "rsi": 61.8,
+        "status": "RED"
     },
     "2461": {
         "code": "2461",
         "name": "光群雷",
-        "price": 16.9,
-        "pct_change": -1.74,
-        "volume": 510700,
-        "rsi": 61.1,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 17.0,
+        "rsi": 62.1,
+        "status": "RED"
     },
     "2462": {
         "code": "2462",
         "name": "良得電",
         "price": 24.9,
-        "pct_change": -4.23,
-        "volume": 1514350,
         "rsi": 60.8,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "status": "RED"
     },
     "2464": {
         "code": "2464",
         "name": "盟立",
-        "price": 66.9,
-        "pct_change": 0.15,
-        "volume": 3440105,
-        "rsi": 57.5,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 68.6,
+        "rsi": 61.2,
+        "status": "RED"
     },
     "2465": {
         "code": "2465",
         "name": "麗臺",
-        "price": 58.1,
-        "pct_change": -0.68,
-        "volume": 361495,
-        "rsi": 46.6,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 58.4,
+        "rsi": 47.8,
+        "status": "GREEN"
     },
     "2466": {
         "code": "2466",
         "name": "冠西電",
-        "price": 65.1,
-        "pct_change": 0.15,
-        "volume": 1235000,
-        "rsi": 52.4,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "price": 63.6,
+        "rsi": 47.3,
+        "status": "YELLOW"
     },
     "2467": {
         "code": "2467",
         "name": "志聖",
-        "price": 250.0,
-        "pct_change": -2.34,
-        "volume": 3150156,
-        "rsi": 55.0,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 245.0,
+        "rsi": 51.2,
+        "status": "YELLOW"
     },
     "2468": {
         "code": "2468",
         "name": "華經",
-        "price": 40.5,
-        "pct_change": -0.98,
-        "volume": 278000,
-        "rsi": 43.2,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 40.75,
+        "rsi": 44.8,
+        "status": "GREEN"
     },
     "2471": {
         "code": "2471",
         "name": "資通",
-        "price": 52.2,
-        "pct_change": 0.38,
-        "volume": 181500,
-        "rsi": 66.0,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 52.6,
+        "rsi": 68.5,
+        "status": "RED"
     },
     "2472": {
         "code": "2472",
         "name": "立隆電",
-        "price": 120.5,
-        "pct_change": -0.41,
-        "volume": 6786662,
-        "rsi": 64.1,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 121.5,
+        "rsi": 65.1,
+        "status": "RED"
     },
     "2474": {
         "code": "2474",
         "name": "可成",
-        "price": 211.0,
-        "pct_change": 0.0,
-        "volume": 3344552,
-        "rsi": 63.6,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 209.5,
+        "rsi": 60.4,
+        "status": "RED"
     },
     "2476": {
         "code": "2476",
         "name": "鉅祥",
-        "price": 90.9,
-        "pct_change": -2.05,
-        "volume": 1909069,
-        "rsi": 52.7,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "price": 95.5,
+        "rsi": 64.2,
+        "status": "YELLOW"
     },
     "2477": {
         "code": "2477",
         "name": "美隆電",
-        "price": 25.25,
-        "pct_change": -2.13,
-        "volume": 409128,
-        "rsi": 58.4,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 25.35,
+        "rsi": 59.2,
+        "status": "RED"
     },
     "2478": {
         "code": "2478",
         "name": "大毅",
-        "price": 70.4,
-        "pct_change": -0.28,
-        "volume": 6577676,
-        "rsi": 69.9,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "price": 72.2,
+        "rsi": 72.4,
+        "status": "RED"
     },
     "2480": {
         "code": "2480",
         "name": "敦陽科",
-        "price": 141.5,
-        "pct_change": -1.39,
-        "volume": 412499,
-        "rsi": 31.4,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 139.0,
+        "rsi": 27.8,
+        "status": "GREEN"
     },
     "2481": {
         "code": "2481",
         "name": "強茂",
-        "price": 91.5,
-        "pct_change": 4.69,
-        "volume": 52337862,
-        "rsi": 66.2,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "price": 88.8,
+        "rsi": 60.0,
+        "status": "YELLOW"
     },
     "2482": {
         "code": "2482",
         "name": "連宇",
         "price": 18.45,
-        "pct_change": 0.0,
-        "volume": 117217,
         "rsi": 65.5,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "status": "YELLOW"
     },
     "2483": {
         "code": "2483",
         "name": "百容",
-        "price": 19.6,
-        "pct_change": -1.26,
-        "volume": 309000,
-        "rsi": 60.4,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "price": 19.8,
+        "rsi": 63.1,
+        "status": "YELLOW"
     },
     "2484": {
         "code": "2484",
         "name": "希華",
-        "price": 26.45,
-        "pct_change": -2.04,
-        "volume": 4435148,
-        "rsi": 80.3,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 29.05,
+        "rsi": 85.4,
+        "status": "RED"
     },
     "2485": {
         "code": "2485",
         "name": "兆赫",
-        "price": 35.45,
-        "pct_change": -3.01,
-        "volume": 132609241,
-        "rsi": 72.9,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 37.35,
+        "rsi": 75.6,
+        "status": "RED"
     },
     "2486": {
         "code": "2486",
         "name": "一詮",
-        "price": 91.7,
-        "pct_change": 2.34,
-        "volume": 5151014,
-        "rsi": 49.1,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "price": 93.8,
+        "rsi": 53.0,
+        "status": "YELLOW"
     },
     "2488": {
         "code": "2488",
         "name": "漢平",
-        "price": 45.25,
-        "pct_change": 0.33,
-        "volume": 94134,
-        "rsi": 45.7,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 45.45,
+        "rsi": 48.6,
+        "status": "GREEN"
     },
     "2489": {
         "code": "2489",
         "name": "瑞軒",
-        "price": 16.4,
-        "pct_change": 0.61,
-        "volume": 3565554,
-        "rsi": 60.8,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 18.0,
+        "rsi": 71.9,
+        "status": "RED"
     },
     "2491": {
         "code": "2491",
         "name": "吉祥全",
-        "price": 20.85,
-        "pct_change": -3.25,
-        "volume": 846350,
-        "rsi": 56.7,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 20.45,
+        "rsi": 54.5,
+        "status": "YELLOW"
     },
     "2492": {
         "code": "2492",
         "name": "華新科",
-        "price": 133.5,
-        "pct_change": -0.37,
-        "volume": 14994319,
-        "rsi": 64.0,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 146.5,
+        "rsi": 73.7,
+        "status": "RED"
     },
     "2493": {
         "code": "2493",
         "name": "揚博",
-        "price": 123.0,
-        "pct_change": -3.15,
-        "volume": 1744636,
-        "rsi": 58.8,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 120.5,
+        "rsi": 55.5,
+        "status": "RED"
     },
     "2495": {
         "code": "2495",
         "name": "普安",
-        "price": 30.7,
-        "pct_change": -2.69,
-        "volume": 6737353,
-        "rsi": 50.5,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "price": 33.75,
+        "rsi": 62.4,
+        "status": "RED"
     },
     "2496": {
         "code": "2496",
         "name": "卓越",
-        "price": 69.4,
-        "pct_change": 0.0,
-        "volume": 18000,
-        "rsi": 66.4,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 69.3,
+        "rsi": 64.1,
+        "status": "RED"
     },
     "2497": {
         "code": "2497",
         "name": "怡利電",
-        "price": 53.8,
-        "pct_change": 4.06,
-        "volume": 1163936,
-        "rsi": 62.7,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 53.5,
+        "rsi": 61.3,
+        "status": "RED"
     },
     "2498": {
         "code": "2498",
         "name": "宏達電",
-        "price": 46.15,
-        "pct_change": -0.32,
-        "volume": 6032152,
-        "rsi": 38.3,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 46.65,
+        "rsi": 41.6,
+        "status": "GREEN"
     },
     "2501": {
         "code": "2501",
         "name": "國建",
-        "price": 22.95,
-        "pct_change": -1.08,
-        "volume": 2719889,
-        "rsi": 45.1,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "price": 22.8,
+        "rsi": 42.9,
+        "status": "YELLOW"
     },
     "2504": {
         "code": "2504",
         "name": "國產",
-        "price": 37.65,
-        "pct_change": -1.7,
-        "volume": 1919589,
-        "rsi": 54.5,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "price": 37.7,
+        "rsi": 54.9,
+        "status": "YELLOW"
     },
     "2505": {
         "code": "2505",
         "name": "國揚",
-        "price": 20.0,
-        "pct_change": 0.25,
-        "volume": 303709,
-        "rsi": 63.5,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 19.9,
+        "rsi": 59.0,
+        "status": "RED"
     },
     "2506": {
         "code": "2506",
         "name": "太設",
-        "price": 9.1,
-        "pct_change": 0.11,
-        "volume": 124837,
-        "rsi": 29.8,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 9.06,
+        "rsi": 27.0,
+        "status": "GREEN"
     },
     "2509": {
         "code": "2509",
         "name": "全坤建",
         "price": 15.15,
-        "pct_change": -0.66,
-        "volume": 195638,
         "rsi": 45.2,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "status": "YELLOW"
     },
     "2511": {
         "code": "2511",
         "name": "太子",
-        "price": 8.42,
-        "pct_change": -1.17,
-        "volume": 1519721,
-        "rsi": 54.4,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 8.45,
+        "rsi": 56.2,
+        "status": "YELLOW"
     },
     "2514": {
         "code": "2514",
         "name": "龍邦",
-        "price": 15.2,
-        "pct_change": -0.33,
-        "volume": 80933,
-        "rsi": 62.4,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 15.15,
+        "rsi": 60.1,
+        "status": "RED"
     },
     "2515": {
         "code": "2515",
         "name": "中工",
-        "price": 13.45,
-        "pct_change": 0.37,
-        "volume": 7171602,
-        "rsi": 51.8,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 13.5,
+        "rsi": 52.7,
+        "status": "GREEN"
     },
     "2516": {
         "code": "2516",
         "name": "新建",
-        "price": 14.75,
-        "pct_change": -1.34,
-        "volume": 227034,
-        "rsi": 50.0,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 14.65,
+        "rsi": 47.7,
+        "status": "GREEN"
     },
     "2520": {
         "code": "2520",
         "name": "冠德",
-        "price": 32.45,
-        "pct_change": -1.67,
-        "volume": 2224983,
-        "rsi": 42.9,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 32.7,
+        "rsi": 45.3,
+        "status": "GREEN"
     },
     "2524": {
         "code": "2524",
         "name": "京城",
-        "price": 41.95,
-        "pct_change": -2.44,
-        "volume": 158527,
-        "rsi": 48.5,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 43.2,
+        "rsi": 56.4,
+        "status": "RED"
     },
     "2527": {
         "code": "2527",
         "name": "宏璟",
-        "price": 30.9,
-        "pct_change": 2.32,
-        "volume": 550695,
-        "rsi": 60.8,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 30.25,
+        "rsi": 55.8,
+        "status": "RED"
     },
     "2528": {
         "code": "2528",
         "name": "皇普",
-        "price": 29.7,
-        "pct_change": -0.17,
-        "volume": 1376020,
-        "rsi": 44.8,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 29.9,
+        "rsi": 47.4,
+        "status": "GREEN"
     },
     "2530": {
         "code": "2530",
         "name": "華建",
-        "price": 28.35,
-        "pct_change": -0.7,
-        "volume": 799058,
-        "rsi": 48.2,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "price": 28.15,
+        "rsi": 46.1,
+        "status": "YELLOW"
     },
     "2534": {
         "code": "2534",
         "name": "宏盛",
         "price": 20.3,
-        "pct_change": -0.49,
-        "volume": 683435,
         "rsi": 43.8,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "status": "GREEN"
     },
     "2535": {
         "code": "2535",
         "name": "達欣工",
-        "price": 69.4,
-        "pct_change": 2.97,
-        "volume": 798012,
-        "rsi": 80.2,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 68.3,
+        "rsi": 70.9,
+        "status": "RED"
     },
     "2536": {
         "code": "2536",
         "name": "宏普",
-        "price": 24.0,
-        "pct_change": -1.03,
-        "volume": 798000,
-        "rsi": 19.0,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 23.9,
+        "rsi": 18.2,
+        "status": "GREEN"
     },
     "2537": {
         "code": "2537",
         "name": "聯上發",
         "price": 10.85,
-        "pct_change": -6.47,
-        "volume": 4672871,
         "rsi": 40.2,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "status": "GREEN"
     },
     "2538": {
         "code": "2538",
         "name": "基泰",
         "price": 10.9,
-        "pct_change": -1.36,
-        "volume": 283078,
         "rsi": 41.4,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "status": "GREEN"
     },
     "2539": {
         "code": "2539",
         "name": "櫻花建",
-        "price": 47.9,
-        "pct_change": -1.44,
-        "volume": 933220,
-        "rsi": 49.2,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "price": 48.15,
+        "rsi": 51.3,
+        "status": "YELLOW"
     },
     "2540": {
         "code": "2540",
         "name": "愛山林",
-        "price": 49.5,
-        "pct_change": 1.02,
-        "volume": 1442690,
-        "rsi": 56.1,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 49.9,
+        "rsi": 57.8,
+        "status": "RED"
     },
     "2542": {
         "code": "2542",
         "name": "興富發",
-        "price": 38.7,
-        "pct_change": -1.9,
-        "volume": 8208264,
-        "rsi": 45.4,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "price": 38.4,
+        "rsi": 42.4,
+        "status": "GREEN"
     },
     "2543": {
         "code": "2543",
         "name": "皇昌",
-        "price": 62.9,
-        "pct_change": 0.8,
-        "volume": 1225357,
-        "rsi": 51.3,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 63.3,
+        "rsi": 52.7,
+        "status": "YELLOW"
     },
     "2545": {
         "code": "2545",
         "name": "皇翔",
-        "price": 37.95,
-        "pct_change": -1.94,
-        "volume": 866020,
-        "rsi": 40.2,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 38.15,
+        "rsi": 42.7,
+        "status": "GREEN"
     },
     "2546": {
         "code": "2546",
         "name": "根基",
-        "price": 89.2,
-        "pct_change": 0.22,
-        "volume": 131755,
-        "rsi": 57.7,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "price": 89.8,
+        "rsi": 60.7,
+        "status": "YELLOW"
     },
     "2547": {
         "code": "2547",
         "name": "日勝生",
-        "price": 10.85,
-        "pct_change": -1.81,
-        "volume": 2185534,
-        "rsi": 50.9,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "price": 11.0,
+        "rsi": 56.7,
+        "status": "RED"
     },
     "2548": {
         "code": "2548",
         "name": "華固",
-        "price": 108.5,
-        "pct_change": -3.56,
-        "volume": 2351399,
-        "rsi": 41.2,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "price": 107.5,
+        "rsi": 39.1,
+        "status": "YELLOW"
     },
     "2597": {
         "code": "2597",
         "name": "潤弘",
-        "price": 180.0,
-        "pct_change": -1.1,
-        "volume": 564960,
-        "rsi": 70.7,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 174.0,
+        "rsi": 53.2,
+        "status": "YELLOW"
     },
     "2601": {
         "code": "2601",
         "name": "益航",
-        "price": 5.55,
-        "pct_change": -1.77,
-        "volume": 1177890,
-        "rsi": 50.8,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 5.61,
+        "rsi": 54.4,
+        "status": "YELLOW"
     },
     "2603": {
         "code": "2603",
         "name": "長榮",
-        "price": 190.0,
-        "pct_change": -2.56,
-        "volume": 22744081,
-        "rsi": 50.5,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "price": 187.5,
+        "rsi": 45.7,
+        "status": "YELLOW"
     },
     "2605": {
         "code": "2605",
         "name": "新興",
-        "price": 27.85,
-        "pct_change": -2.28,
-        "volume": 7851990,
-        "rsi": 56.2,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 28.65,
+        "rsi": 60.1,
+        "status": "RED"
     },
     "2606": {
         "code": "2606",
         "name": "裕民",
-        "price": 61.0,
-        "pct_change": -0.49,
-        "volume": 3775373,
-        "rsi": 51.0,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "price": 62.0,
+        "rsi": 54.9,
+        "status": "YELLOW"
     },
     "2607": {
         "code": "2607",
         "name": "榮運",
-        "price": 57.8,
-        "pct_change": -1.2,
-        "volume": 739665,
-        "rsi": 50.3,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "price": 57.6,
+        "rsi": 48.8,
+        "status": "GREEN"
     },
     "2608": {
         "code": "2608",
         "name": "嘉里大榮",
-        "price": 33.2,
-        "pct_change": 0.15,
-        "volume": 220100,
-        "rsi": 47.9,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 33.0,
+        "rsi": 40.9,
+        "status": "GREEN"
     },
     "2609": {
         "code": "2609",
         "name": "陽明",
-        "price": 54.5,
-        "pct_change": -1.8,
-        "volume": 22815015,
-        "rsi": 49.2,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "price": 54.0,
+        "rsi": 46.4,
+        "status": "YELLOW"
     },
     "2610": {
         "code": "2610",
         "name": "華航",
-        "price": 21.5,
-        "pct_change": 0.7,
-        "volume": 35263593,
-        "rsi": 69.9,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 21.45,
+        "rsi": 68.8,
+        "status": "RED"
     },
     "2611": {
         "code": "2611",
         "name": "志信",
-        "price": 15.0,
-        "pct_change": 0.0,
-        "volume": 285103,
-        "rsi": 52.9,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "price": 15.15,
+        "rsi": 57.0,
+        "status": "YELLOW"
     },
     "2612": {
         "code": "2612",
         "name": "中航",
-        "price": 59.7,
-        "pct_change": -1.97,
-        "volume": 1206520,
-        "rsi": 48.0,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "price": 60.4,
+        "rsi": 50.3,
+        "status": "YELLOW"
     },
     "2613": {
         "code": "2613",
         "name": "中櫃",
-        "price": 24.5,
-        "pct_change": -1.41,
-        "volume": 328335,
-        "rsi": 56.0,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "price": 24.55,
+        "rsi": 56.6,
+        "status": "YELLOW"
     },
     "2614": {
         "code": "2614",
         "name": "東森",
-        "price": 22.2,
-        "pct_change": -1.11,
-        "volume": 1587643,
-        "rsi": 47.9,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "price": 22.35,
+        "rsi": 49.3,
+        "status": "YELLOW"
     },
     "2615": {
         "code": "2615",
         "name": "萬海",
-        "price": 77.2,
-        "pct_change": -1.91,
-        "volume": 13195674,
-        "rsi": 40.7,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 76.0,
+        "rsi": 36.3,
+        "status": "GREEN"
     },
     "2616": {
         "code": "2616",
         "name": "山隆",
         "price": 13.8,
-        "pct_change": 0.36,
-        "volume": 117430,
         "rsi": 60.9,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "status": "YELLOW"
     },
     "2617": {
         "code": "2617",
         "name": "台航",
-        "price": 30.95,
-        "pct_change": -1.9,
-        "volume": 742503,
-        "rsi": 52.1,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "price": 31.35,
+        "rsi": 55.3,
+        "status": "RED"
     },
     "2618": {
         "code": "2618",
         "name": "長榮航",
-        "price": 37.55,
-        "pct_change": 0.13,
-        "volume": 31425515,
-        "rsi": 65.2,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 37.15,
+        "rsi": 59.1,
+        "status": "RED"
     },
     "2630": {
         "code": "2630",
         "name": "亞航",
         "price": 54.0,
-        "pct_change": -1.82,
-        "volume": 2639977,
         "rsi": 55.7,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "status": "RED"
     },
     "2633": {
         "code": "2633",
         "name": "台灣高鐵",
-        "price": 27.35,
-        "pct_change": 0.0,
-        "volume": 5174126,
-        "rsi": 37.1,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 27.25,
+        "rsi": 34.6,
+        "status": "GREEN"
     },
     "2634": {
         "code": "2634",
         "name": "漢翔",
-        "price": 55.4,
-        "pct_change": -1.07,
-        "volume": 10860489,
-        "rsi": 62.0,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 55.8,
+        "rsi": 63.3,
+        "status": "RED"
     },
     "2636": {
         "code": "2636",
         "name": "台驊投控",
         "price": 66.2,
-        "pct_change": -1.34,
-        "volume": 466787,
         "rsi": 46.4,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "status": "GREEN"
     },
     "2637": {
         "code": "2637",
         "name": "慧洋-KY",
-        "price": 70.9,
-        "pct_change": -1.12,
-        "volume": 2562530,
-        "rsi": 58.1,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 71.0,
+        "rsi": 58.4,
+        "status": "RED"
     },
     "2642": {
         "code": "2642",
         "name": "宅配通",
-        "price": 25.9,
-        "pct_change": -0.38,
-        "volume": 102100,
-        "rsi": 42.8,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 25.85,
+        "rsi": 41.7,
+        "status": "GREEN"
     },
     "2645": {
         "code": "2645",
         "name": "長榮航太",
-        "price": 154.0,
-        "pct_change": -0.65,
-        "volume": 4044816,
-        "rsi": 60.1,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 153.5,
+        "rsi": 59.2,
+        "status": "RED"
     },
     "2701": {
         "code": "2701",
         "name": "萬企",
-        "price": 11.0,
-        "pct_change": -0.45,
-        "volume": 82793,
-        "rsi": 46.8,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 11.05,
+        "rsi": 50.4,
+        "status": "GREEN"
     },
     "2702": {
         "code": "2702",
         "name": "華園",
-        "price": 11.85,
-        "pct_change": 0.0,
-        "volume": 67346,
-        "rsi": 50.7,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "price": 11.95,
+        "rsi": 56.0,
+        "status": "RED"
     },
     "2704": {
         "code": "2704",
         "name": "國賓",
-        "price": 43.2,
-        "pct_change": -0.23,
-        "volume": 148800,
-        "rsi": 51.5,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "price": 43.0,
+        "rsi": 48.5,
+        "status": "GREEN"
     },
     "2705": {
         "code": "2705",
         "name": "六福",
-        "price": 16.6,
-        "pct_change": 0.0,
-        "volume": 144125,
-        "rsi": 51.1,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 16.45,
+        "rsi": 42.6,
+        "status": "GREEN"
     },
     "2706": {
         "code": "2706",
         "name": "第一店",
         "price": 12.9,
-        "pct_change": -0.39,
-        "volume": 99100,
         "rsi": 47.7,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "status": "GREEN"
     },
     "2707": {
         "code": "2707",
         "name": "晶華",
-        "price": 189.5,
-        "pct_change": -0.26,
-        "volume": 122000,
-        "rsi": 48.4,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 189.0,
+        "rsi": 45.8,
+        "status": "GREEN"
     },
     "2712": {
         "code": "2712",
         "name": "遠雄來",
-        "price": 18.0,
-        "pct_change": -0.28,
-        "volume": 19000,
-        "rsi": 39.2,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 17.85,
+        "rsi": 34.6,
+        "status": "GREEN"
     },
     "2722": {
         "code": "2722",
         "name": "夏都",
-        "price": 25.55,
-        "pct_change": -2.11,
-        "volume": 43365,
-        "rsi": 42.8,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 25.35,
+        "rsi": 40.7,
+        "status": "GREEN"
     },
     "2723": {
         "code": "2723",
         "name": "美食-KY",
         "price": 75.4,
-        "pct_change": 1.89,
-        "volume": 521100,
         "rsi": 67.3,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "status": "RED"
     },
     "2727": {
         "code": "2727",
         "name": "王品",
-        "price": 220.0,
-        "pct_change": 0.0,
-        "volume": 305362,
-        "rsi": 61.7,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 219.0,
+        "rsi": 57.3,
+        "status": "RED"
     },
     "2731": {
         "code": "2731",
         "name": "雄獅",
-        "price": 172.5,
-        "pct_change": -0.29,
-        "volume": 417106,
-        "rsi": 61.2,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "price": 172.0,
+        "rsi": 59.8,
+        "status": "YELLOW"
     },
     "2739": {
         "code": "2739",
         "name": "寒舍",
-        "price": 34.65,
-        "pct_change": -0.57,
-        "volume": 153000,
-        "rsi": 34.7,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 34.45,
+        "rsi": 32.2,
+        "status": "GREEN"
     },
     "2748": {
         "code": "2748",
         "name": "雲品",
-        "price": 41.8,
-        "pct_change": -0.83,
-        "volume": 147000,
-        "rsi": 35.4,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 41.15,
+        "rsi": 29.2,
+        "status": "GREEN"
     },
     "2753": {
         "code": "2753",
         "name": "八方雲集",
-        "price": 185.5,
-        "pct_change": -0.8,
-        "volume": 373400,
-        "rsi": 41.0,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 184.5,
+        "rsi": 39.2,
+        "status": "GREEN"
     },
     "2762": {
         "code": "2762",
         "name": "世界健身-KY",
-        "price": 76.0,
-        "pct_change": -1.55,
-        "volume": 53000,
-        "rsi": 42.7,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 75.0,
+        "rsi": 36.5,
+        "status": "GREEN"
     },
     "2801": {
         "code": "2801",
         "name": "彰銀",
-        "price": 20.35,
-        "pct_change": -0.25,
-        "volume": 15621985,
-        "rsi": 43.6,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 20.4,
+        "rsi": 46.0,
+        "status": "YELLOW"
     },
     "2812": {
         "code": "2812",
         "name": "台中銀",
-        "price": 20.8,
-        "pct_change": 0.0,
-        "volume": 10671757,
-        "rsi": 38.5,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 20.7,
+        "rsi": 34.0,
+        "status": "GREEN"
     },
     "2816": {
         "code": "2816",
         "name": "旺旺保",
-        "price": 29.55,
-        "pct_change": -1.34,
-        "volume": 108259,
-        "rsi": 57.3,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 29.5,
+        "rsi": 56.1,
+        "status": "RED"
     },
     "2820": {
         "code": "2820",
         "name": "華票",
         "price": 16.35,
-        "pct_change": -0.61,
-        "volume": 908503,
         "rsi": 31.0,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "status": "GREEN"
     },
     "2832": {
         "code": "2832",
         "name": "台產",
         "price": 50.0,
-        "pct_change": -0.2,
-        "volume": 167343,
         "rsi": 44.1,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "status": "GREEN"
     },
     "2834": {
         "code": "2834",
         "name": "臺企銀",
         "price": 15.9,
-        "pct_change": 0.0,
-        "volume": 13102425,
         "rsi": 45.4,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "status": "YELLOW"
     },
     "2836": {
         "code": "2836",
         "name": "高雄銀",
         "price": 12.1,
-        "pct_change": -0.41,
-        "volume": 1094897,
         "rsi": 43.1,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "status": "GREEN"
     },
     "2838": {
         "code": "2838",
         "name": "聯邦銀",
-        "price": 18.85,
-        "pct_change": 0.0,
-        "volume": 1529730,
-        "rsi": 37.8,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 18.7,
+        "rsi": 33.9,
+        "status": "GREEN"
     },
     "2845": {
         "code": "2845",
         "name": "遠東銀",
-        "price": 12.75,
-        "pct_change": 0.0,
-        "volume": 6505838,
-        "rsi": 46.2,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "price": 12.7,
+        "rsi": 42.6,
+        "status": "GREEN"
     },
     "2849": {
         "code": "2849",
         "name": "安泰銀",
-        "price": 13.4,
-        "pct_change": -0.37,
-        "volume": 8293,
-        "rsi": 49.9,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:31"
+        "price": 13.35,
+        "rsi": 47.0,
+        "status": "YELLOW"
     },
     "2850": {
         "code": "2850",
         "name": "新產",
         "price": 117.0,
-        "pct_change": 0.43,
-        "volume": 410180,
         "rsi": 51.1,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "status": "YELLOW"
     },
     "2851": {
         "code": "2851",
         "name": "中再保",
-        "price": 26.95,
-        "pct_change": -1.1,
-        "volume": 1232464,
-        "rsi": 61.6,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 27.4,
+        "rsi": 68.9,
+        "status": "RED"
     },
     "2852": {
         "code": "2852",
         "name": "第一保",
         "price": 28.05,
-        "pct_change": -0.71,
-        "volume": 452500,
         "rsi": 57.3,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "status": "RED"
     },
     "2855": {
         "code": "2855",
         "name": "統一證",
-        "price": 28.05,
-        "pct_change": 2.94,
-        "volume": 9578992,
-        "rsi": 77.5,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 28.35,
+        "rsi": 78.9,
+        "status": "RED"
     },
     "2867": {
         "code": "2867",
         "name": "三商壽",
-        "price": 7.78,
-        "pct_change": 0.26,
-        "volume": 8037179,
-        "rsi": 52.3,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "price": 7.9,
+        "rsi": 60.0,
+        "status": "RED"
     },
     "2880": {
         "code": "2880",
         "name": "華南金",
-        "price": 33.15,
-        "pct_change": 0.76,
-        "volume": 11624081,
-        "rsi": 71.6,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 33.3,
+        "rsi": 72.8,
+        "status": "RED"
     },
     "2881": {
         "code": "2881",
         "name": "富邦金",
         "price": 95.0,
-        "pct_change": 0.96,
-        "volume": 18788635,
         "rsi": 48.3,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:31"
+        "status": "YELLOW"
     },
     "2882": {
         "code": "2882",
         "name": "國泰金",
-        "price": 76.2,
-        "pct_change": 1.33,
-        "volume": 23074947,
-        "rsi": 59.7,
-        "status": "RED",
-        "update_time": "2026-01-18 16:31"
+        "price": 77.4,
+        "rsi": 63.6,
+        "status": "RED"
     },
     "2883": {
         "code": "2883",
         "name": "開發金",
-        "price": 17.75,
-        "pct_change": 1.14,
-        "volume": 33050543,
-        "rsi": 63.8,
-        "status": "RED",
-        "update_time": "2026-01-18 16:32"
+        "price": 18.1,
+        "rsi": 69.6,
+        "status": "RED"
     },
     "2884": {
         "code": "2884",
         "name": "玉山金",
-        "price": 32.65,
-        "pct_change": 0.62,
-        "volume": 27570684,
-        "rsi": 48.6,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:32"
+        "price": 33.0,
+        "rsi": 53.5,
+        "status": "YELLOW"
     },
     "2885": {
         "code": "2885",
         "name": "元大金",
-        "price": 41.8,
-        "pct_change": -0.12,
-        "volume": 14158414,
-        "rsi": 69.4,
-        "status": "RED",
-        "update_time": "2026-01-18 16:32"
+        "price": 42.4,
+        "rsi": 72.5,
+        "status": "RED"
     },
     "2886": {
         "code": "2886",
         "name": "兆豐金",
-        "price": 40.9,
-        "pct_change": 0.62,
-        "volume": 19401410,
-        "rsi": 56.6,
-        "status": "RED",
-        "update_time": "2026-01-18 16:32"
+        "price": 40.55,
+        "rsi": 50.5,
+        "status": "YELLOW"
     },
     "2887": {
         "code": "2887",
         "name": "台新金",
-        "price": 21.85,
-        "pct_change": 1.16,
-        "volume": 75806206,
-        "rsi": 74.0,
-        "status": "RED",
-        "update_time": "2026-01-18 16:32"
+        "price": 22.85,
+        "rsi": 81.2,
+        "status": "RED"
     },
     "2889": {
         "code": "2889",
         "name": "國票金",
-        "price": 16.9,
-        "pct_change": -0.29,
-        "volume": 3053535,
-        "rsi": 60.0,
-        "status": "RED",
-        "update_time": "2026-01-18 16:32"
+        "price": 16.35,
+        "rsi": 45.2,
+        "status": "YELLOW"
     },
     "2890": {
         "code": "2890",
         "name": "永豐金",
-        "price": 29.3,
-        "pct_change": 1.03,
-        "volume": 24789355,
-        "rsi": 65.0,
-        "status": "RED",
-        "update_time": "2026-01-18 16:32"
+        "price": 29.35,
+        "rsi": 65.7,
+        "status": "RED"
     },
     "2891": {
         "code": "2891",
         "name": "中信金",
-        "price": 50.5,
-        "pct_change": 0.2,
-        "volume": 32203580,
-        "rsi": 66.3,
-        "status": "RED",
-        "update_time": "2026-01-18 16:32"
+        "price": 51.2,
+        "rsi": 70.1,
+        "status": "RED"
     },
     "2892": {
         "code": "2892",
         "name": "第一金",
-        "price": 29.8,
-        "pct_change": 0.0,
-        "volume": 13539877,
-        "rsi": 59.4,
-        "status": "RED",
-        "update_time": "2026-01-18 16:32"
+        "price": 29.75,
+        "rsi": 58.3,
+        "status": "RED"
     },
     "2897": {
         "code": "2897",
         "name": "王道銀行",
         "price": 9.12,
-        "pct_change": -0.11,
-        "volume": 3184467,
         "rsi": 47.0,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:32"
+        "status": "YELLOW"
     },
     "2901": {
         "code": "2901",
         "name": "欣欣",
-        "price": 24.5,
-        "pct_change": -1.01,
-        "volume": 5026,
-        "rsi": 43.1,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:32"
+        "price": 24.75,
+        "rsi": 49.2,
+        "status": "GREEN"
     },
     "2903": {
         "code": "2903",
         "name": "遠百",
-        "price": 22.0,
-        "pct_change": -0.45,
-        "volume": 2016602,
-        "rsi": 43.1,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:32"
+        "price": 21.95,
+        "rsi": 42.2,
+        "status": "GREEN"
     },
     "2904": {
         "code": "2904",
         "name": "匯僑",
-        "price": 17.0,
-        "pct_change": -0.58,
-        "volume": 29203,
-        "rsi": 43.2,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:32"
+        "price": 17.05,
+        "rsi": 47.1,
+        "status": "GREEN"
     },
     "2905": {
         "code": "2905",
         "name": "三商",
-        "price": 15.8,
-        "pct_change": -0.32,
-        "volume": 922289,
-        "rsi": 48.4,
-        "status": "YELLOW",
-        "update_time": "2026-01-18 16:32"
+        "price": 15.75,
+        "rsi": 47.1,
+        "status": "YELLOW"
     },
     "2906": {
         "code": "2906",
         "name": "高林",
-        "price": 12.6,
-        "pct_change": -0.4,
-        "volume": 225127,
-        "rsi": 43.1,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:32"
+        "price": 12.55,
+        "rsi": 41.4,
+        "status": "GREEN"
     },
     "2908": {
         "code": "2908",
         "name": "特力",
-        "price": 20.3,
-        "pct_change": 0.25,
-        "volume": 84291,
-        "rsi": 51.8,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:32"
+        "price": 20.25,
+        "rsi": 48.0,
+        "status": "GREEN"
     },
     "2910": {
         "code": "2910",
         "name": "統領",
-        "price": 20.95,
-        "pct_change": 0.0,
-        "volume": 16523,
-        "rsi": 52.5,
-        "status": "GREEN",
-        "update_time": "2026-01-18 16:32"
+        "price": 20.7,
+        "rsi": 42.9,
+        "status": "GREEN"
     },
     "2911": {
         "code": "2911",
         "name": "麗嬰房",
-        "price": 5.15,
-        "pct_change": 0.78,
-        "volume": 39612,
-        "rsi": 57.3,
-        "status": "RED",
-        "update_time": "2026-01-18 16:32"
+        "price": 5.17,
+        "rsi": 57.9,
+        "status": "RED"
     }
 }
