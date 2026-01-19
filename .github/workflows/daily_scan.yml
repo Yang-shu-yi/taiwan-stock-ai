@@ -32,7 +32,7 @@ jobs:
         LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
         LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
         WEB_APP_URL: ${{ secrets.WEB_APP_URL }}
-      run: python test_line.py
+      run: python batch_scan.py
 
     - name: Commit and push if database changed
       run: |
