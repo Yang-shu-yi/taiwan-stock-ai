@@ -21,9 +21,9 @@ except:
     GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
 
 # ==========================================
-# 2. 數據獲取 (全面改用 FinMind API)
+# 2. 數據獲取 (FinMind 修正版)
 # ==========================================
-def get_finmind_data(dataset, code, days=60):
+def get_finmind_data(dataset, code, days=90): # 擴大抓取範圍到 90 天，避免資料漏失
     """通用 FinMind API 呼叫函數"""
     try:
         url = "https://api.finmindtrade.com/api/v4/data"
@@ -33,7 +33,7 @@ def get_finmind_data(dataset, code, days=60):
             "data_id": code,
             "start_date": start_date
         }
-        r = requests.get(url, params=parameter, timeout=5)
+        r = requests.get(url, params=parameter, timeout=6) # 稍微延長 timeout
         data = r.json()
         if data['msg'] == 'success' and data['data']:
             return pd.DataFrame(data['data'])
@@ -43,7 +43,7 @@ def get_finmind_data(dataset, code, days=60):
 
 def get_chip_data(code):
     """籌碼面：三大法人買賣超"""
-    df = get_finmind_data("TaiwanStockInstitutionalInvestorBuySell", code)
+    df = get_finmind_data("TaiwanStockInstitutionalInvestorBuySell", code, days=60)
     if df is not None:
         df['name'] = df['name'].map({
             'Foreign_Investor': '外資', 'Investment_Trust': '投信',
@@ -54,21 +54,21 @@ def get_chip_data(code):
     return None
 
 def get_fundamental_data(code):
-    """基本面：本益比(PER)、股價淨值比(PBR)、殖利率"""
-    # 使用 FinMind 的 'TaiwanStockPER' 資料集 (這比 yfinance 準確多了)
-    df = get_finmind_data("TaiwanStockPER", code, days=30)
+    """基本面：本益比、殖利率 (欄位名稱修正)"""
+    df = get_finmind_data("TaiwanStockPER", code, days=90)
     
     if df is not None and not df.empty:
+        # 取最新的一筆資料
         latest = df.iloc[-1]
         return {
-            "pe_ratio": latest.get('PER', 0),        # 本益比
-            "pb_ratio": latest.get('PBR', 0),        # 股價淨值比
-            "yield": latest.get('yield_ratio', 0)    # 殖利率
+            "pe_ratio": latest.get('PER', 0),           # 本益比
+            "pb_ratio": latest.get('PBR', 0),           # 股價淨值比
+            "yield": latest.get('dividend_yield', 0)    # 👈 修正：正確欄位是 dividend_yield
         }
     return {}
 
 # ==========================================
-# 3. 量化評分引擎 (邏輯調整)
+# 3. 量化評分引擎 (根據真實數據評分)
 # ==========================================
 def calculate_quant_score(df_tech, df_chip, fundamentals):
     scores = {}
@@ -79,50 +79,53 @@ def calculate_quant_score(df_tech, df_chip, fundamentals):
     ma60 = ta.trend.sma_indicator(close, 60).iloc[-1]
     rsi = ta.momentum.rsi(close, 14).iloc[-1]
     
-    tech_score = 50 # 基準分
+    tech_score = 50 
     if close.iloc[-1] > ma20: tech_score += 15
     if ma20 > ma60: tech_score += 15
-    if 50 < rsi < 75: tech_score += 20 # 健康的多頭
-    elif rsi >= 75: tech_score += 10   # 過熱，加分減少
-    elif rsi < 30: tech_score -= 10    # 過冷
+    if 50 < rsi < 75: tech_score += 20 
+    elif rsi >= 75: tech_score += 10
+    elif rsi < 30: tech_score -= 10
     scores['技術'] = min(max(tech_score, 0), 100)
 
     # 2. 籌碼面 (Chips)
     chip_score = 50
     if df_chip is not None:
         try:
-            # 計算近 5 日主力動向
             f_sum = df_chip['外資'].tail(5).sum() if '外資' in df_chip else 0
             t_sum = df_chip['投信'].tail(5).sum() if '投信' in df_chip else 0
             
             if f_sum > 0: chip_score += 10
-            if t_sum > 0: chip_score += 20 # 投信買超權重高
-            if t_sum > 1000: chip_score += 10 # 投信大買
-            if f_sum < -5000: chip_score -= 20 # 外資大賣扣分
+            if t_sum > 0: chip_score += 20
+            if t_sum > 1000: chip_score += 10
+            if f_sum < -5000: chip_score -= 20
         except: pass
     scores['籌碼'] = min(max(chip_score, 0), 100)
 
-    # 3. 價值面 (Value) - 使用 FinMind 數據
+    # 3. 價值面 (Value)
     val_score = 50
     pe = fundamentals.get('pe_ratio', 0)
-    if 0 < pe < 12: val_score += 30      # 便宜
-    elif 12 <= pe < 20: val_score += 10  # 合理
-    elif pe > 30: val_score -= 20        # 太貴
+    if pe > 0: # 只有在賺錢時才評分
+        if pe < 12: val_score += 30      
+        elif pe < 20: val_score += 10  
+        elif pe > 30: val_score -= 20
+    else:
+        val_score = 30 # 虧損或無數據，給低分
+        
     scores['價值'] = min(max(val_score, 0), 100)
 
     # 4. 股息/防禦 (Yield)
     div_score = 50
-    dy = fundamentals.get('yield', 0) # FinMind 單位通常是小數 (0.05) 或百分比，需確認
-    # FinMind yield_ratio 通常是 5.2 代表 5.2%
+    dy = fundamentals.get('yield', 0) 
+    # FinMind 若回傳 5.2 代表 5.2%
     if dy > 5: div_score += 30
     elif dy > 3: div_score += 10
     elif dy < 1: div_score -= 10
     scores['股息'] = min(max(div_score, 0), 100)
     
-    # 5. 綜合基本面 (用 PBR 來補)
+    # 5. 基本面 (PBR)
     fund_score = 50
     pbr = fundamentals.get('pb_ratio', 0)
-    if 0 < pbr < 1.5: fund_score += 30
+    if 0 < pbr < 1.2: fund_score += 30 # 股價淨值比低
     elif pbr > 4: fund_score -= 10
     scores['基本'] = min(max(fund_score, 0), 100)
 
@@ -156,32 +159,40 @@ def get_ai_analysis(code, name, df_tech, df_chip, quant_scores, fundamentals):
     price = df_tech['Close'].iloc[-1]
     
     # 籌碼摘要
-    chip_msg = "籌碼中性"
+    chip_msg = "籌碼數據不明"
     if df_chip is not None:
         f = df_chip['外資'].tail(5).sum() if '外資' in df_chip else 0
         t = df_chip['投信'].tail(5).sum() if '投信' in df_chip else 0
         chip_msg = f"近5日外資{int(f/1000)}張/投信{int(t/1000)}張"
 
-    # 基本面摘要
-    pe = fundamentals.get('pe_ratio', 'N/A')
-    dy = fundamentals.get('yield', 'N/A')
+    # 基本面摘要 (防呆文字)
+    pe_val = fundamentals.get('pe_ratio', 0)
+    dy_val = fundamentals.get('yield', 0)
+    
+    if pe_val > 0:
+        pe_str = f"{pe_val:.1f}倍"
+    else:
+        pe_str = "虧損或無數據"
+        
+    dy_str = f"{dy_val:.1f}%"
 
     client = Groq(api_key=GROQ_API_KEY)
     
     prompt = f"""
     角色：量化分析師。分析 {name} ({code})。
-    【數據】價{price:.2f} / PE {pe} / 殖利率 {dy}%
+    【基本】股價{price:.2f} / 本益比: {pe_str} / 殖利率: {dy_str}
     【籌碼】{chip_msg}
-    【評分】技術{quant_scores['技術']}/籌碼{quant_scores['籌碼']}/價值{quant_scores['價值']} (滿分100)
+    【評分】技術{quant_scores['技術']}/籌碼{quant_scores['籌碼']}/價值{quant_scores['價值']}/股息{quant_scores['股息']} (滿分100)
     
-    請嚴格依照 Markdown 格式輸出：
+    請依照 Markdown 格式輸出：
     # 建議：[強力買進 / 拉回買進 / 觀望 / 減碼]
-    ### 📊 量化雷達解析
-    * (請依據評分，指出該股是「價值低估型」、「投信認養型」還是「技術強勢型」)
+    ### 📊 量化數據解析
+    * (請明確引用上面的 PE 和 殖利率 數據進行評價，例如「殖利率高達X%」或「本益比偏低」)
+    * (解讀量化評分的高低項)
     ### ⚖️ 綜合分析
-    * (結合 PE 位階與籌碼動向進行判斷)
+    * (結合基本面價值與技術面趨勢)
     ### 💡 操作建議
-    * (支撐與壓力)
+    * (支撐/壓力)
     """
     try:
         completion = client.chat.completions.create(
@@ -244,10 +255,8 @@ if target:
             # 1. 數據獲取
             ticker = yf.Ticker(f"{code}{suffix}")
             df_tech = ticker.history(period="6mo")
-            
-            # 🔥 關鍵修改：用 FinMind 抓所有重要數據
             df_chip = get_chip_data(code)
-            fundamentals = get_fundamental_data(code) # 這裡修復了 50 分的問題
+            fundamentals = get_fundamental_data(code) # 修復版基本面
             
             if len(df_tech) < 5:
                 st.error("❌ 無法取得數據")
@@ -258,22 +267,28 @@ if target:
                 # 3. 儀表板
                 latest = df_tech['Close'].iloc[-1]
                 change = latest - df_tech['Close'].iloc[-2]
-                pct = (change / df_tech['Close'].iloc[-2]) * 100
                 color = "#ff2b2b" if change > 0 else "#2dc937"
                 
                 st.markdown(f"## {name} ({code})")
                 col1, col2, col3, col4 = st.columns(4)
+                
                 with col1:
                     st.markdown("##### 股價")
                     st.markdown(f"<h2 style='color:{color}'>${latest:.2f}</h2>", unsafe_allow_html=True)
+                
                 with col2:
                     st.markdown("##### 本益比 (PE)")
                     pe = fundamentals.get('pe_ratio', 0)
-                    st.markdown(f"### {pe if pe > 0 else 'N/A'}")
+                    # 顯示邏輯優化：如果是 0 顯示 N/A 或 虧損
+                    pe_display = f"{pe:.1f}" if pe > 0 else "N/A"
+                    st.markdown(f"### {pe_display}")
+                
                 with col3:
                     st.markdown("##### 殖利率")
                     dy = fundamentals.get('yield', 0)
-                    st.markdown(f"### {dy}%" if dy > 0 else "-")
+                    dy_display = f"{dy:.1f}%" if dy > 0 else "-"
+                    st.markdown(f"### {dy_display}")
+                
                 with col4:
                     st.markdown("##### 量化總分")
                     avg_score = sum(quant_scores.values()) / len(quant_scores)
@@ -323,7 +338,7 @@ if target:
                 # 5. AI 分析
                 st.markdown("---")
                 with st.chat_message("assistant"):
-                    with st.spinner("AI 正在結合量化數據分析..."):
+                    with st.spinner("AI 正在分析 (已修復基本面數據)..."):
                         full_analysis = get_ai_analysis(code, name, df_tech, df_chip, quant_scores, fundamentals)
                         try:
                             parts = full_analysis.split('\n', 1)
