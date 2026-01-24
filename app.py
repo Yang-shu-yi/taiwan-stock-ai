@@ -73,7 +73,7 @@ def get_fundamental_data(code, ticker):
     return data
 
 def calculate_technicals(df):
-    """🔥 新增：計算 KD, MACD, RSI"""
+    """計算 KD, MACD, RSI"""
     close = df['Close']
     
     # RSI
@@ -83,9 +83,9 @@ def calculate_technicals(df):
     macd = ta.trend.MACD(close)
     macd_line = macd.macd().iloc[-1]
     macd_signal = macd.macd_signal().iloc[-1]
-    macd_hist = macd.macd_diff().iloc[-1] # 柱狀圖 (正=多頭增強, 負=空頭)
+    macd_hist = macd.macd_diff().iloc[-1] 
     
-    # KD (Stochastic)
+    # KD
     stoch = ta.momentum.StochasticOscillator(df['High'], df['Low'], close, window=9, smooth_window=3)
     k = stoch.stoch().iloc[-1]
     d = stoch.stoch_signal().iloc[-1]
@@ -110,13 +110,13 @@ def calculate_technicals(df):
 def calculate_quant_score(df_tech, df_chip, fundamentals, techs):
     scores = {}
     
-    # 1. 技術面 (加入 KD/MACD 判斷)
+    # 1. 技術面
     tech_score = 50
     if techs['Trend'] == "多頭": tech_score += 10
-    if techs['MACD_Hist'] > 0: tech_score += 10 # 動能向上
-    if techs['K'] > techs['D']: tech_score += 10 # 黃金交叉狀態
-    if techs['RSI'] > 80: tech_score -= 10 # 過熱
-    elif techs['RSI'] < 20: tech_score += 10 # 超賣反彈機會
+    if techs['MACD_Hist'] > 0: tech_score += 10 
+    if techs['K'] > techs['D']: tech_score += 10 
+    if techs['RSI'] > 80: tech_score -= 10 
+    elif techs['RSI'] < 20: tech_score += 10 
     scores['技術'] = min(max(tech_score, 0), 100)
 
     # 2. 籌碼面
@@ -138,9 +138,7 @@ def calculate_quant_score(df_tech, df_chip, fundamentals, techs):
     
     if pb > 0 and pb < 1.0: val_score += 20
     if pe > 0 and pe < 15: val_score += 20
-    
-    # 🔥 價值陷阱扣分：如果便宜但趨勢是空頭，分數要打折
-    if techs['Trend'] == "空頭" and val_score > 60:
+    if techs['Trend'] == "空頭" and val_score > 60: # 價值陷阱扣分
         val_score -= 20 
         
     scores['價值'] = min(max(val_score, 0), 100)
@@ -152,12 +150,11 @@ def calculate_quant_score(df_tech, df_chip, fundamentals, techs):
     return scores
 
 # ==========================================
-# 4. AI 分析 (注入靈魂)
+# 4. AI 分析 (v7.0 戰術動能版)
 # ==========================================
 def get_ai_analysis(code, name, price, techs, quant, fund, chip_msg):
     if not GROQ_API_KEY: return "⚠️ 請設定 API Key"
     
-    # 轉換技術指標為白話文
     kd_status = "黃金交叉(偏多)" if techs['K'] > techs['D'] else "死亡交叉(偏空)"
     macd_status = "紅柱(動能強)" if techs['MACD_Hist'] > 0 else "綠柱(動能弱)"
     ma_status = "站上季線(長多)" if price > techs['MA60'] else "跌破季線(長空)"
@@ -183,8 +180,8 @@ def get_ai_analysis(code, name, price, techs, quant, fund, chip_msg):
     # 決策：[強力買進 / 拉回布局 / 觀望 / 反彈減碼 / 放空] (請選最嚴格的一個)
     
     ### ⚔️ 技術動能判讀 (最重要)
-    * **KD 與 MACD 解析**：(解讀目前的動能是增強還是減弱？KD 是金叉還是死叉？)
-    * **趨勢確認**：(確認股價與季線 MA60 的關係，這是多空分水嶺)。
+    * **KD 與 MACD 解析**：(解讀目前的動能是增強還是減弱？)
+    * **趨勢確認**：(確認股價與季線 MA60 的關係)。
     
     ### 🏢 估值陷阱檢測
     * (若 PB 低但技術面弱，請直言「可能是價值陷阱，不宜過早接刀」)。
@@ -206,7 +203,7 @@ def get_ai_analysis(code, name, price, techs, quant, fund, chip_msg):
     except Exception as e: return f"Error: {e}"
 
 # ==========================================
-# 5. 主程式
+# 5. 主程式 (UI 回歸版)
 # ==========================================
 def resolve_stock_code(query):
     query = query.strip()
@@ -229,13 +226,48 @@ def resolve_stock_code(query):
 
 if 'current_stock' not in st.session_state: st.session_state['current_stock'] = None
 
-st.sidebar.title("📂 戰情室")
-q = st.sidebar.text_input("搜尋代號/名稱")
-if st.sidebar.button("🚀 分析") and q:
-    c, _, _ = resolve_stock_code(q)
-    if c: st.session_state['current_stock'] = c
+# --- 🟢 這裡把側邊欄邏輯找回來了！ ---
+st.sidebar.title("📂 戰情室資料庫")
+if st.sidebar.button("🔄 重新讀取"): st.rerun()
 
-st.title("📈 台股 AI 戰情室 (v7.0 動能戰術版)")
+db = {}
+try:
+    with open("stock_database.json", "r", encoding="utf-8") as f:
+        db = json.load(f)
+    if db: st.sidebar.caption(f"上次更新: {next(iter(db.values())).get('update_time', '未知')}")
+except: st.sidebar.warning("尚未讀取到資料庫 (請等待 GitHub Actions 執行)")
+
+red_list = [v for k,v in db.items() if v.get('status') == 'RED']
+green_list = [v for k,v in db.items() if v.get('status') == 'GREEN']
+yellow_list = [v for k,v in db.items() if v.get('status') == 'YELLOW']
+
+with st.sidebar:
+    with st.expander(f"🔴 強力關注 ({len(red_list)})", expanded=True):
+        for item in red_list:
+            # 這裡用 pct_change 防呆
+            c = item.get('pct_change', 0)
+            if st.button(f"{item['code']} {item['name']} ${item['price']} ({c}%)", key=f"r_{item['code']}"):
+                st.session_state['current_stock'] = item['code']
+
+    with st.expander(f"🟢 避雷/賣出 ({len(green_list)})"):
+        for item in green_list:
+            if st.button(f"{item['code']} {item['name']}", key=f"g_{item['code']}"):
+                st.session_state['current_stock'] = item['code']
+
+    with st.expander(f"🟡 觀望持有 ({len(yellow_list)})"):
+        for item in yellow_list:
+            if st.button(f"{item['code']} {item['name']}", key=f"y_{item['code']}"):
+                st.session_state['current_stock'] = item['code']
+
+    st.markdown("---")
+    # 搜尋框放在選單下面
+    q = st.text_input("搜尋代號/名稱", label_visibility="collapsed")
+    if st.button("🚀 AI 深度分析", type="primary", use_container_width=True) and q:
+        c, _, _ = resolve_stock_code(q)
+        if c: st.session_state['current_stock'] = c
+
+# --- 主畫面 ---
+st.title("📈 台股 AI 戰情室 (v7.1 完全體)")
 
 target = st.session_state['current_stock']
 
@@ -249,10 +281,10 @@ if target:
             if len(df_tech) < 20:
                 st.error("❌ 資料不足")
             else:
-                # 計算
+                # 執行 v7.0 的核心計算
                 df_chip = get_chip_data(code)
                 fund = get_fundamental_data(code, ticker)
-                techs = calculate_technicals(df_tech) # 🔥 算出 KD, MACD
+                techs = calculate_technicals(df_tech) # 包含 KD, MACD
                 quant = calculate_quant_score(df_tech, df_chip, fund, techs)
                 
                 # 準備 AI 訊息
@@ -284,7 +316,6 @@ if target:
                 fig.add_trace(go.Candlestick(x=df_tech.index, open=df_tech['Open'], high=df_tech['High'], low=df_tech['Low'], close=df_tech['Close'], name="K線"), row=1, col=1)
                 fig.add_trace(go.Scatter(x=df_tech.index, y=df_tech['MA60'], line=dict(color='green', width=1), name="季線"), row=1, col=1)
                 
-                # 下方改畫 MACD 或是 籌碼
                 if df_chip is not None:
                     df_chip = df_chip.reindex(df_tech.index).fillna(0)
                     fig.add_trace(go.Bar(x=df_chip.index, y=df_chip['投信'], marker_color='red', name='投信'), row=2, col=1)
@@ -296,14 +327,13 @@ if target:
                     with st.spinner("AI 正在進行多空動能審查..."):
                         analysis = get_ai_analysis(code, name, latest, techs, quant, fund, chip_msg)
                         
-                        # 標題變色邏輯
                         parts = analysis.split('\n', 1)
                         header = parts[0].replace('#', '').strip()
                         body = parts[1] if len(parts)>1 else ""
                         
                         if "買進" in header: st.error(f"### {header}")
-                        elif "放空" in header or "減碼" in header: st.success(f"### {header}") # 綠色
-                        else: st.warning(f"### {header}") # 黃色觀望
+                        elif "放空" in header or "減碼" in header: st.success(f"### {header}") 
+                        else: st.warning(f"### {header}") 
                         
                         st.markdown(body)
 
