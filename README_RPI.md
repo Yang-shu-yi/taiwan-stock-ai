@@ -48,6 +48,21 @@ python3 rpi_main.py
 ```
 檢查您的 LINE 和 Telegram 是否收到訊息。
 
+### 3.1 盤中偵察 (選填)
+盤中監控會持續運行，建議使用 tmux 或 systemd 常駐。
+```bash
+python3 rpi_intraday.py
+```
+可在 `.env` 設定：`WATCHLIST_CODES`、`INTRADAY_*` 相關參數。
+
+### 3.2 Telegram 動態清單
+在 Telegram 直接管理監控清單：
+- `/add 2330,2317`
+- `/del 2330`
+- `/list`
+
+清單會寫入 `watchlist.json`，立即生效。
+
 ## 4. 設定自動化排程 (Crontab)
 
 我們可以使用 `cron` 來設定每天自動執行。
@@ -58,7 +73,7 @@ crontab -e
 ```
 
 ### 4.2 加入排程
-在檔案末尾加入以下內容 (假設路徑為 `/home/pi/taiwan-stock-ai`)：
+在檔案末尾加入以下內容 (請將路徑替換為你的使用者資料夾)：
 
 ```cron
 # 每天早上 08:35 執行盤前快訊
@@ -70,6 +85,26 @@ crontab -e
 
 *注意：`1-5` 表示週一至週五執行。*
 
-## 5. 疑難排解
+## 5. systemd 常駐 (建議)
+若要讓盤中偵察在開機後自動啟動，請使用 systemd：
+
+```bash
+sudo cp ~/taiwan-stock-ai/pi_intraday.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now pi-intraday
+```
+
+檢查狀態：
+```bash
+sudo systemctl status pi-intraday
+```
+
+停止/重新啟動：
+```bash
+sudo systemctl stop pi-intraday
+sudo systemctl restart pi-intraday
+```
+
+## 6. 疑難排解
 - **時區問題**：如果執行時間不對，請檢查樹莓派時區 (`sudo raspi-config` -> Localisation Options -> Timezone)。
 - **日誌檢查**：查看 `cron_log.log` 了解報錯資訊。

@@ -1,0 +1,16 @@
+[Unit]
+Description=Taiwan Stock Intraday Scout
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=shu2891
+WorkingDirectory=/home/shu2891/taiwan-stock-ai
+EnvironmentFile=/home/shu2891/taiwan-stock-ai/.env
+ExecStart=/home/shu2891/taiwan-stock-ai/venv/bin/python /home/shu2891/taiwan-stock-ai/rpi_intraday.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
