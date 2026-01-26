@@ -87,6 +87,7 @@ sudo systemctl enable --now pi_intraday
 
 - `stock_database.json`：每日掃描結果
 - `watchlist.json`：盤中監控清單（自動建立）
+- Google Sheets `watchlist` 工作表：盤中監控清單（雲端同步）
 
 ## 環境變數
 
@@ -101,8 +102,13 @@ cp .env.example .env
 - `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`
 - `SPREADSHEET_ID`, `GOOGLE_SERVICE_ACCOUNT_FILE`
 
+Streamlit Cloud 需要在 Secrets 設定：
+- `SPREADSHEET_ID`
+- `gcp_service_account` (JSON 內容)
+
 盤中參數：
 - `WATCHLIST_CODES`
+- `WATCHLIST_SHEET_NAME`
 - `INTRADAY_CHECK_INTERVAL_SEC`
 - `INTRADAY_PRICE_UP_PCT` / `INTRADAY_PRICE_DOWN_PCT`
 - `INTRADAY_RSI_OVERBOUGHT` / `INTRADAY_RSI_OVERSOLD`

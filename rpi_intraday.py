@@ -8,12 +8,20 @@ import ta
 import twstock
 from dotenv import load_dotenv
 
+try:
+    import gspread
+except Exception:
+    gspread = None
+
 load_dotenv()
 
 LINE_CHANNEL_TOKEN = os.getenv("LINE_CHANNEL_TOKEN")
 LINE_TARGET_ID = os.getenv("LINE_TARGET_ID")
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
+SPREADSHEET_ID = os.getenv("SPREADSHEET_ID")
+GOOGLE_SERVICE_ACCOUNT_FILE = os.getenv("GOOGLE_SERVICE_ACCOUNT_FILE")
+WATCHLIST_SHEET_NAME = os.getenv("WATCHLIST_SHEET_NAME", "watchlist")
 
 WATCHLIST_CODES = os.getenv("WATCHLIST_CODES", "")
 CHECK_INTERVAL_SEC = int(os.getenv("INTRADAY_CHECK_INTERVAL_SEC", "60"))
@@ -106,6 +114,37 @@ def save_watchlist(codes):
     try:
         with open(WATCHLIST_FILE, "w", encoding="utf-8") as f:
             json.dump(sorted(list(set(codes))), f, ensure_ascii=False, indent=2)
+    except Exception:
+        return
+    sync_watchlist_to_sheet(codes)
+
+
+def get_sheet_client():
+    if not gspread:
+        return None
+    if not SPREADSHEET_ID or not GOOGLE_SERVICE_ACCOUNT_FILE:
+        return None
+    if not os.path.exists(GOOGLE_SERVICE_ACCOUNT_FILE):
+        return None
+    try:
+        return gspread.service_account(filename=GOOGLE_SERVICE_ACCOUNT_FILE)
+    except Exception:
+        return None
+
+
+def sync_watchlist_to_sheet(codes):
+    client = get_sheet_client()
+    if not client:
+        return
+    try:
+        sh = client.open_by_key(SPREADSHEET_ID)
+        try:
+            ws = sh.worksheet(WATCHLIST_SHEET_NAME)
+        except Exception:
+            ws = sh.add_worksheet(title=WATCHLIST_SHEET_NAME, rows=1000, cols=1)
+        ws.clear()
+        if codes:
+            ws.update("A1", [[c] for c in sorted(list(set(codes)))])
     except Exception:
         return
 

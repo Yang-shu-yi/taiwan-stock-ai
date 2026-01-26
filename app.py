@@ -11,6 +11,11 @@ from plotly.subplots import make_subplots
 from groq import Groq
 from datetime import datetime, timedelta
 
+try:
+    import gspread
+except Exception:
+    gspread = None
+
 # ==========================================
 # 1. 設定與金鑰
 # ==========================================
@@ -19,6 +24,18 @@ try:
     GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
 except:
     GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
+
+try:
+    SPREADSHEET_ID = st.secrets["SPREADSHEET_ID"]
+except:
+    SPREADSHEET_ID = os.environ.get("SPREADSHEET_ID")
+
+try:
+    SERVICE_ACCOUNT_INFO = st.secrets["gcp_service_account"]
+except:
+    SERVICE_ACCOUNT_INFO = None
+
+WATCHLIST_SHEET_NAME = os.environ.get("WATCHLIST_SHEET_NAME", "watchlist")
 
 
 # ==========================================
@@ -36,6 +53,25 @@ def get_finmind_data(dataset, code, days=90):
         return None
     except:
         return None
+
+
+def load_watchlist_from_sheet():
+    if not gspread or not SPREADSHEET_ID:
+        return []
+    try:
+        if SERVICE_ACCOUNT_INFO:
+            gc = gspread.service_account_from_dict(SERVICE_ACCOUNT_INFO)
+        else:
+            creds_path = os.environ.get("GOOGLE_SERVICE_ACCOUNT_FILE")
+            if not creds_path or not os.path.exists(creds_path):
+                return []
+            gc = gspread.service_account(filename=creds_path)
+        sh = gc.open_by_key(SPREADSHEET_ID)
+        ws = sh.worksheet(WATCHLIST_SHEET_NAME)
+        values = ws.col_values(1)
+        return [v.strip() for v in values if v.strip().isdigit()]
+    except:
+        return []
 
 
 def get_chip_data(code):
@@ -271,13 +307,31 @@ try:
 except:
     st.sidebar.warning("尚未讀取到資料庫 (請等待 GitHub Actions 執行)")
 
+watchlist_codes = load_watchlist_from_sheet()
+if not watchlist_codes:
+    if os.path.exists("watchlist.json"):
+        try:
+            with open("watchlist.json", "r", encoding="utf-8") as f:
+                data = json.load(f)
+            if isinstance(data, list):
+                watchlist_codes = [c for c in data if isinstance(c, str)]
+        except:
+            watchlist_codes = []
+if not watchlist_codes:
+    env_watchlist = os.environ.get("WATCHLIST_CODES", "")
+    if env_watchlist.strip():
+        watchlist_codes = [c.strip() for c in env_watchlist.split(",") if c.strip()]
+
 red_list = [v for k, v in db.items() if v.get("status") == "RED"]
 green_list = [v for k, v in db.items() if v.get("status") == "GREEN"]
 yellow_list = [v for k, v in db.items() if v.get("status") == "YELLOW"]
 
+red_top = sorted(red_list, key=lambda x: x.get("pct_change", 0), reverse=True)[:10]
+green_top = sorted(green_list, key=lambda x: x.get("pct_change", 0))[:10]
+
 with st.sidebar:
-    with st.expander(f"🔴 強勢 ({len(red_list)})", expanded=True):
-        for item in red_list:
+    with st.expander("🔴 強勢 Top10", expanded=True):
+        for item in red_top:
             # 這裡用 pct_change 防呆
             c = item.get("pct_change", 0)
             if st.button(
@@ -286,15 +340,23 @@ with st.sidebar:
             ):
                 st.session_state["current_stock"] = item["code"]
 
-    with st.expander(f"🟢 弱勢 ({len(green_list)})"):
-        for item in green_list:
+    with st.expander("🟢 弱勢 Top10"):
+        for item in green_top:
             if st.button(f"{item['code']} {item['name']}", key=f"g_{item['code']}"):
                 st.session_state["current_stock"] = item["code"]
 
-    with st.expander(f"🟡 監控中 ({len(yellow_list)})"):
-        for item in yellow_list:
-            if st.button(f"{item['code']} {item['name']}", key=f"y_{item['code']}"):
-                st.session_state["current_stock"] = item["code"]
+    with st.expander("🟡 監控中"):
+        if not watchlist_codes:
+            st.caption("尚未設定監控清單")
+        for code in watchlist_codes:
+            item = db.get(code)
+            label = f"{code}"
+            if item:
+                label = f"{item['code']} {item['name']} ${item['price']}"
+            elif code in twstock.codes:
+                label = f"{code} {twstock.codes[code].name}"
+            if st.button(label, key=f"w_{code}"):
+                st.session_state["current_stock"] = code
 
     st.markdown("---")
     # 搜尋框放在選單下面
