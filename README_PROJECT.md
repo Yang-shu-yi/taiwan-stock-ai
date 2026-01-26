@@ -14,10 +14,7 @@
 
 - 個股技術分析（RSI、MACD、KD、MA20/MA60）
 - AI 個股分析（Groq）
-- 盤後檢討區
-  - RED/GREEN/YELLOW 統計
-  - 漲跌幅 Top10
-  - 盤後 AI 總結（有 GROQ_API_KEY 時可用）
+- 主畫面保持精簡，聚焦個股分析
 
 執行：
 ```bash
@@ -103,12 +100,13 @@ cp .env.example .env
 - `SPREADSHEET_ID`, `GOOGLE_SERVICE_ACCOUNT_FILE`
 
 Streamlit Cloud 需要在 Secrets 設定：
-- `SPREADSHEET_ID`
+- `WATCHLIST_SPREADSHEET_ID`
 - `gcp_service_account` (JSON 內容)
 
 盤中參數：
 - `WATCHLIST_CODES`
 - `WATCHLIST_SHEET_NAME`
+- `WATCHLIST_SPREADSHEET_ID`
 - `INTRADAY_CHECK_INTERVAL_SEC`
 - `INTRADAY_PRICE_UP_PCT` / `INTRADAY_PRICE_DOWN_PCT`
 - `INTRADAY_RSI_OVERBOUGHT` / `INTRADAY_RSI_OVERSOLD`

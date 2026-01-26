@@ -26,9 +26,9 @@ except:
     GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
 
 try:
-    SPREADSHEET_ID = st.secrets["SPREADSHEET_ID"]
+    WATCHLIST_SPREADSHEET_ID = st.secrets["WATCHLIST_SPREADSHEET_ID"]
 except:
-    SPREADSHEET_ID = os.environ.get("SPREADSHEET_ID")
+    WATCHLIST_SPREADSHEET_ID = os.environ.get("WATCHLIST_SPREADSHEET_ID")
 
 try:
     SERVICE_ACCOUNT_INFO = st.secrets["gcp_service_account"]
@@ -56,7 +56,7 @@ def get_finmind_data(dataset, code, days=90):
 
 
 def load_watchlist_from_sheet():
-    if not gspread or not SPREADSHEET_ID:
+    if not gspread or not WATCHLIST_SPREADSHEET_ID:
         return []
     try:
         if SERVICE_ACCOUNT_INFO:
@@ -66,7 +66,7 @@ def load_watchlist_from_sheet():
             if not creds_path or not os.path.exists(creds_path):
                 return []
             gc = gspread.service_account(filename=creds_path)
-        sh = gc.open_by_key(SPREADSHEET_ID)
+        sh = gc.open_by_key(WATCHLIST_SPREADSHEET_ID)
         ws = sh.worksheet(WATCHLIST_SHEET_NAME)
         values = ws.col_values(1)
         return [v.strip() for v in values if v.strip().isdigit()]
@@ -369,82 +369,6 @@ with st.sidebar:
 # --- 主畫面 ---
 st.title("📈 台股 AI 戰情室 (v7.1 完全體)")
 
-st.markdown("### 🧾 盤後檢討")
-if db:
-    df_review = pd.DataFrame(list(db.values()))
-    if not df_review.empty:
-        df_review["pct_change"] = pd.to_numeric(
-            df_review.get("pct_change"), errors="coerce"
-        ).fillna(0)
-        df_review["rsi"] = pd.to_numeric(df_review.get("rsi"), errors="coerce").fillna(
-            0
-        )
-
-        r_count = len([v for v in db.values() if v.get("status") == "RED"])
-        g_count = len([v for v in db.values() if v.get("status") == "GREEN"])
-        y_count = len([v for v in db.values() if v.get("status") == "YELLOW"])
-
-        c1, c2, c3 = st.columns(3)
-        c1.metric("🔴 強勢", r_count)
-        c2.metric("🟢 弱勢", g_count)
-        c3.metric("🟡 監控中", y_count)
-
-        top_up = df_review.sort_values("pct_change", ascending=False).head(10)
-        top_down = df_review.sort_values("pct_change", ascending=True).head(10)
-
-        t1, t2 = st.columns(2)
-        t1.markdown("#### 🚀 強勢 Top10")
-        t1.dataframe(
-            top_up[["code", "name", "price", "pct_change", "rsi"]],
-            use_container_width=True,
-        )
-
-        t2.markdown("#### 🧯 弱勢 Top10")
-        t2.dataframe(
-            top_down[["code", "name", "price", "pct_change", "rsi"]],
-            use_container_width=True,
-        )
-
-        st.caption("手機版可左右滑動表格")
-
-        if GROQ_API_KEY:
-            if st.button("🧠 產生盤後檢討", use_container_width=True):
-                try:
-                    client = Groq(api_key=GROQ_API_KEY)
-                    summary_prompt = (
-                        "你是專業操盤手，請用 120~180 字盤後檢討，語氣像法人報告。\n"
-                        f"今天總覽：強勢 {r_count}、弱勢 {g_count}、監控中 {y_count}。\n"
-                        "強勢前 5："
-                        + ", ".join(
-                            [
-                                f"{row['code']} {row['name']} {row['pct_change']:.2f}%"
-                                for _, row in top_up.head(5).iterrows()
-                            ]
-                        )
-                        + "。\n"
-                        "弱勢前 5："
-                        + ", ".join(
-                            [
-                                f"{row['code']} {row['name']} {row['pct_change']:.2f}%"
-                                for _, row in top_down.head(5).iterrows()
-                            ]
-                        )
-                        + "。\n"
-                        "輸出格式：三段式，包含盤勢總結/族群資金輪動/明日策略。"
-                    )
-                    completion = client.chat.completions.create(
-                        model="llama-3.3-70b-versatile",
-                        messages=[{"role": "user", "content": summary_prompt}],
-                        temperature=0.4,
-                        max_tokens=400,
-                    )
-                    st.markdown(completion.choices[0].message.content)
-                except Exception as e:
-                    st.error(f"盤後檢討生成失敗: {e}")
-    else:
-        st.info("尚未有盤後掃描資料。")
-else:
-    st.info("尚未讀取到資料庫 (請等待 GitHub Actions 執行)")
 
 target = st.session_state["current_stock"]
 

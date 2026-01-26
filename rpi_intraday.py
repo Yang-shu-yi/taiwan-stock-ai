@@ -21,6 +21,7 @@ TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 SPREADSHEET_ID = os.getenv("SPREADSHEET_ID")
 GOOGLE_SERVICE_ACCOUNT_FILE = os.getenv("GOOGLE_SERVICE_ACCOUNT_FILE")
+WATCHLIST_SPREADSHEET_ID = os.getenv("WATCHLIST_SPREADSHEET_ID")
 WATCHLIST_SHEET_NAME = os.getenv("WATCHLIST_SHEET_NAME", "watchlist")
 
 WATCHLIST_CODES = os.getenv("WATCHLIST_CODES", "")
@@ -122,7 +123,8 @@ def save_watchlist(codes):
 def get_sheet_client():
     if not gspread:
         return None
-    if not SPREADSHEET_ID or not GOOGLE_SERVICE_ACCOUNT_FILE:
+    sheet_id = WATCHLIST_SPREADSHEET_ID or SPREADSHEET_ID
+    if not sheet_id or not GOOGLE_SERVICE_ACCOUNT_FILE:
         return None
     if not os.path.exists(GOOGLE_SERVICE_ACCOUNT_FILE):
         return None
@@ -137,7 +139,10 @@ def sync_watchlist_to_sheet(codes):
     if not client:
         return
     try:
-        sh = client.open_by_key(SPREADSHEET_ID)
+        sheet_id = WATCHLIST_SPREADSHEET_ID or SPREADSHEET_ID
+        if not sheet_id:
+            return
+        sh = client.open_by_key(sheet_id)
         try:
             ws = sh.worksheet(WATCHLIST_SHEET_NAME)
         except Exception:

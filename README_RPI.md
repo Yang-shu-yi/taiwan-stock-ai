@@ -63,6 +63,7 @@ python3 rpi_intraday.py
 
 清單會寫入 `watchlist.json`，立即生效。
 清單也會同步到 Google Sheets 的 `watchlist` 工作表，方便雲端 Streamlit 讀取。
+若要分開使用另一份清單試算表，請在 `.env` 設定 `WATCHLIST_SPREADSHEET_ID`。
 
 ## 4. 設定自動化排程 (Crontab)
 
