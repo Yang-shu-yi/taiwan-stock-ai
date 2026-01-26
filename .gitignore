@@ -1,6 +1,12 @@
 # 忽略 Streamlit 的密碼檔 (絕對不能上傳)
 .streamlit/secrets.toml
 
+# 忽略環境變數與憑證
+.env
+.env.*
+!.env.example
+service_account.json
+
 # 忽略 Python 編譯檔與快取
 __pycache__/
 *.pyc

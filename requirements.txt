@@ -8,4 +8,7 @@ groq
 feedparser
 twstock
 lxml
-requests  
+requests
+gspread
+python-dotenv
+oauth2client
