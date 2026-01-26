@@ -276,7 +276,7 @@ green_list = [v for k, v in db.items() if v.get("status") == "GREEN"]
 yellow_list = [v for k, v in db.items() if v.get("status") == "YELLOW"]
 
 with st.sidebar:
-    with st.expander(f"🔴 強力關注 ({len(red_list)})", expanded=True):
+    with st.expander(f"🔴 強勢 ({len(red_list)})", expanded=True):
         for item in red_list:
             # 這裡用 pct_change 防呆
             c = item.get("pct_change", 0)
@@ -286,12 +286,12 @@ with st.sidebar:
             ):
                 st.session_state["current_stock"] = item["code"]
 
-    with st.expander(f"🟢 避雷/賣出 ({len(green_list)})"):
+    with st.expander(f"🟢 弱勢 ({len(green_list)})"):
         for item in green_list:
             if st.button(f"{item['code']} {item['name']}", key=f"g_{item['code']}"):
                 st.session_state["current_stock"] = item["code"]
 
-    with st.expander(f"🟡 觀望持有 ({len(yellow_list)})"):
+    with st.expander(f"🟡 監控中 ({len(yellow_list)})"):
         for item in yellow_list:
             if st.button(f"{item['code']} {item['name']}", key=f"y_{item['code']}"):
                 st.session_state["current_stock"] = item["code"]
@@ -323,9 +323,9 @@ if db:
         y_count = len([v for v in db.values() if v.get("status") == "YELLOW"])
 
         c1, c2, c3 = st.columns(3)
-        c1.metric("🔴 強力關注", r_count)
-        c2.metric("🟢 避雷/賣出", g_count)
-        c3.metric("🟡 觀望持有", y_count)
+        c1.metric("🔴 強勢", r_count)
+        c2.metric("🟢 弱勢", g_count)
+        c3.metric("🟡 監控中", y_count)
 
         top_up = df_review.sort_values("pct_change", ascending=False).head(10)
         top_down = df_review.sort_values("pct_change", ascending=True).head(10)
@@ -343,13 +343,15 @@ if db:
             use_container_width=True,
         )
 
+        st.caption("手機版可左右滑動表格")
+
         if GROQ_API_KEY:
             if st.button("🧠 產生盤後檢討", use_container_width=True):
                 try:
                     client = Groq(api_key=GROQ_API_KEY)
                     summary_prompt = (
                         "你是專業操盤手，請用 120~180 字盤後檢討，語氣像法人報告。\n"
-                        f"今天總覽：紅 {r_count}、綠 {g_count}、黃 {y_count}。\n"
+                        f"今天總覽：強勢 {r_count}、弱勢 {g_count}、監控中 {y_count}。\n"
                         "強勢前 5："
                         + ", ".join(
                             [
