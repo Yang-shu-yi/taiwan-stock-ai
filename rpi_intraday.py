@@ -37,6 +37,9 @@ TG_POLL_INTERVAL_SEC = int(os.getenv("INTRADAY_TG_POLL_SEC", "10"))
 WATCHLIST_FILE = "watchlist.json"
 
 
+import traceback
+
+
 def log(msg):
     print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] {msg}")
 
@@ -54,8 +57,10 @@ def push_line_message(msg):
         "messages": [{"type": "text", "text": msg[:4500]}],
     }
     try:
-        requests.post(url, headers=headers, json=payload, timeout=10)
+        res = requests.post(url, headers=headers, json=payload, timeout=10)
+        res.raise_for_status()
     except Exception:
+        log(f"Error sending Line message: {traceback.format_exc()}")
         return
 
 
@@ -65,8 +70,10 @@ def push_telegram_message(msg):
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
     payload = {"chat_id": TELEGRAM_CHAT_ID, "text": msg}
     try:
-        requests.post(url, json=payload, timeout=10)
+        res = requests.post(url, json=payload, timeout=10)
+        res.raise_for_status()
     except Exception:
+        log(f"Error sending Telegram message: {traceback.format_exc()}")
         return
 
 
@@ -206,6 +213,7 @@ def poll_telegram(last_update_id, watchlist):
     params = {"timeout": 0, "offset": last_update_id + 1}
     try:
         res = requests.get(url, params=params, timeout=10)
+        res.raise_for_status()
         data = res.json()
         updates = data.get("result", [])
         for upd in updates:
@@ -219,6 +227,7 @@ def poll_telegram(last_update_id, watchlist):
             if reply:
                 push_telegram_message(reply)
     except Exception:
+        log(f"Error polling Telegram: {traceback.format_exc()}")
         return last_update_id, watchlist
     return last_update_id, watchlist
 
@@ -337,6 +346,7 @@ def main():
                     last_alert[code] = now
                     log(f"✅ 通知: {code} {item['status']}")
                 except Exception:
+                    log(f"Error analyzing symbol {code}: {traceback.format_exc()}")
                     continue
 
             next_scan_time = now + CHECK_INTERVAL_SEC
