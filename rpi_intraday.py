@@ -1,12 +1,20 @@
 import os
 import json
 import time
+import traceback
 from datetime import datetime
 
 import requests
 import ta
 import twstock
 from dotenv import load_dotenv
+
+from alert_store import append_alert
+from watchlist_store import (
+    load_watchlist_file,
+    parse_numeric_codes,
+    save_watchlist_file,
+)
 
 try:
     import gspread
@@ -35,9 +43,6 @@ ALERT_COOLDOWN_MIN = int(os.getenv("INTRADAY_ALERT_COOLDOWN_MIN", "30"))
 TG_POLL_INTERVAL_SEC = int(os.getenv("INTRADAY_TG_POLL_SEC", "10"))
 
 WATCHLIST_FILE = "watchlist.json"
-
-
-import traceback
 
 
 def log(msg):
@@ -89,14 +94,9 @@ def is_market_open():
 
 
 def load_watchlist():
-    if os.path.exists(WATCHLIST_FILE):
-        try:
-            with open(WATCHLIST_FILE, "r", encoding="utf-8") as f:
-                data = json.load(f)
-            if isinstance(data, list):
-                return [c for c in data if c]
-        except Exception:
-            return []
+    file_list = load_watchlist_file(WATCHLIST_FILE)
+    if file_list:
+        return file_list
     if WATCHLIST_CODES.strip():
         return [c.strip() for c in WATCHLIST_CODES.split(",") if c.strip()]
     if os.path.exists("stock_database.json"):
@@ -119,11 +119,7 @@ def yahoo_chart(symbol):
 
 
 def save_watchlist(codes):
-    try:
-        with open(WATCHLIST_FILE, "w", encoding="utf-8") as f:
-            json.dump(sorted(list(set(codes))), f, ensure_ascii=False, indent=2)
-    except Exception:
-        return
+    save_watchlist_file(codes, WATCHLIST_FILE)
     sync_watchlist_to_sheet(codes)
 
 
@@ -162,14 +158,7 @@ def sync_watchlist_to_sheet(codes):
 
 
 def parse_codes(tokens):
-    raw = []
-    for t in tokens:
-        raw.extend([x.strip() for x in t.split(",")])
-    cleaned = []
-    for code in raw:
-        if code.isdigit() and code in twstock.codes:
-            cleaned.append(code)
-    return cleaned
+    return parse_numeric_codes(tokens, set(twstock.codes.keys()))
 
 
 def handle_command(text, current):
@@ -342,6 +331,21 @@ def main():
                     last_ts = last_alert.get(code, 0)
                     if now - last_ts < ALERT_COOLDOWN_MIN * 60:
                         continue
+
+                    append_alert(
+                        {
+                            "kind": "intraday_signal",
+                            "code": item["code"],
+                            "name": item["name"],
+                            "status": item["status"],
+                            "price": item["price"],
+                            "pct": item["pct"],
+                            "rsi": item["rsi"],
+                            "volume": item["volume"],
+                            "message": format_alert(item),
+                        }
+                    )
+
                     notify_all(format_alert(item))
                     last_alert[code] = now
                     log(f"✅ 通知: {code} {item['status']}")

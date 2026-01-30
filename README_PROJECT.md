@@ -80,6 +80,29 @@ sudo systemctl daemon-reload
 sudo systemctl enable --now pi_intraday
 ```
 
+### 5) 手機 App (Option 1: 後端常駐 + App 控制)
+檔案：`api_server.py`
+
+- App 不直接跑 Python；Python 繼續跑在樹莓派/主機上
+- App 透過 HTTP API 管理 watchlist / 讀取盤中訊號紀錄
+
+環境變數：
+- `APP_API_KEY`：App 呼叫 API 用的金鑰 (請勿放進公開 repo)
+
+啟動 API：
+```bash
+uvicorn api_server:app --host 0.0.0.0 --port 8000
+```
+
+主要 API：
+- `GET /health`
+- `GET /watchlist` (Header: `X-API-Key`)
+- `PUT /watchlist` (Body: `{ "codes": ["2330"] }`)
+- `POST /watchlist/add`
+- `POST /watchlist/del`
+- `GET /alerts?limit=100`
+- `POST /notify/test` (測試 Telegram)
+
 ## 資料檔案
 
 - `stock_database.json`：每日掃描結果
@@ -98,6 +121,7 @@ cp .env.example .env
 - `LINE_CHANNEL_TOKEN`, `LINE_TARGET_ID`
 - `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`
 - `SPREADSHEET_ID`, `GOOGLE_SERVICE_ACCOUNT_FILE`
+- `APP_API_KEY` (Option 1: 手機 App API)
 
 Streamlit Cloud 需要在 Secrets 設定：
 - `WATCHLIST_SPREADSHEET_ID`

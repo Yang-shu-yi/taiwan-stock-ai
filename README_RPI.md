@@ -65,6 +65,32 @@ python3 rpi_intraday.py
 清單也會同步到 Google Sheets 的 `watchlist` 工作表，方便雲端 Streamlit 讀取。
 若要分開使用另一份清單試算表，請在 `.env` 設定 `WATCHLIST_SPREADSHEET_ID`。
 
+### 3.3 手機 App (Option 1: 後端常駐 + App 控制)
+在樹莓派上額外啟動一個 HTTP API (FastAPI)，讓手機 App 可以：
+- 管理 watchlist
+- 讀取盤中訊號紀錄 (alerts)
+
+1) 安裝依賴
+```bash
+pip install -r requirements.txt
+```
+
+2) 設定 `.env`
+- 新增 `APP_API_KEY` (自訂一個長一點的字串)
+
+3) 啟動 API
+```bash
+uvicorn api_server:app --host 0.0.0.0 --port 8000
+```
+
+4) systemd 常駐 (建議)
+```bash
+sudo cp ~/taiwan-stock-ai/pi_api.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now pi-api
+sudo systemctl status pi-api
+```
+
 ## 4. 設定自動化排程 (Crontab)
 
 我們可以使用 `cron` 來設定每天自動執行。
