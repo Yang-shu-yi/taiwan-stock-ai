@@ -6,7 +6,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 
-private enum class Tab { Watchlist, Alerts, Settings }
+private enum class Tab { Dashboard, Watchlist, Alerts, Settings }
 
 @Composable
 fun AppRoot() {
@@ -19,6 +19,12 @@ fun AppRoot() {
         Scaffold(
             bottomBar = {
                 NavigationBar {
+                    NavigationBarItem(
+                        selected = tab == Tab.Dashboard,
+                        onClick = { tab = Tab.Dashboard },
+                        label = { Text("Dashboard") },
+                        icon = {}
+                    )
                     NavigationBarItem(
                         selected = tab == Tab.Watchlist,
                         onClick = { tab = Tab.Watchlist },
@@ -41,6 +47,7 @@ fun AppRoot() {
             }
         ) { padding ->
             when (tab) {
+                Tab.Dashboard -> DashboardScreen(modifier = Modifier.padding(padding), settings = settings)
                 Tab.Watchlist -> WatchlistScreen(modifier = Modifier.padding(padding), settings = settings)
                 Tab.Alerts -> AlertsScreen(modifier = Modifier.padding(padding), settings = settings)
                 Tab.Settings -> SettingsScreen(

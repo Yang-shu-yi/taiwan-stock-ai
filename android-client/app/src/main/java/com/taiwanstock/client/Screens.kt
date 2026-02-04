@@ -1,13 +1,19 @@
 package com.taiwanstock.client
 
+import android.annotation.SuppressLint
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.AndroidView
+import java.net.URI
+
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.ui.text.input.TextFieldValue
 import kotlinx.coroutines.launch
 
 @Composable
@@ -23,6 +29,67 @@ fun SettingsScreen(modifier: Modifier = Modifier, settings: AppSettings, onSave:
             Text("Save")
         }
         Text("Tip: Use http://<pi-ip>:8000 (LAN)")
+    }
+}
+
+
+private fun streamlitUrlFromBaseUrl(baseUrl: String): String {
+    val raw = baseUrl.trim().trimEnd('/')
+    if (raw.isBlank()) return ""
+
+    return try {
+        val uri = URI(raw)
+        val scheme = if (uri.scheme.isNullOrBlank()) "http" else uri.scheme
+        val host = uri.host ?: uri.authority ?: ""
+        if (host.isBlank()) return raw
+        "$scheme://$host:8501"
+    } catch (_: Exception) {
+        if (raw.contains(":8000")) raw.replace(":8000", ":8501") else raw
+    }
+}
+
+
+@SuppressLint("SetJavaScriptEnabled")
+@Composable
+fun DashboardScreen(modifier: Modifier = Modifier, settings: AppSettings) {
+    var reloadToken by remember { mutableStateOf(0) }
+    val url = remember(settings.baseUrl) { streamlitUrlFromBaseUrl(settings.baseUrl) }
+
+    Column(modifier = modifier.fillMaxSize()) {
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(12.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            Text("Dashboard", style = MaterialTheme.typography.titleLarge, modifier = Modifier.weight(1f))
+            Button(onClick = { reloadToken++ }) { Text("Reload") }
+        }
+
+        if (url.isBlank()) {
+            Column(modifier = Modifier.fillMaxSize().padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                Text("Base URL is empty.")
+                Text("Go to Settings and set Base URL to http://<pi-ip>:8000")
+            }
+            return
+        }
+
+        AndroidView(
+            modifier = Modifier.fillMaxSize(),
+            factory = { ctx ->
+                WebView(ctx).apply {
+                    settings.javaScriptEnabled = true
+                    webViewClient = WebViewClient()
+                    loadUrl(url)
+                }
+            },
+            update = { webView ->
+                val _ = reloadToken
+                if (webView.url != url) {
+                    webView.loadUrl(url)
+                } else {
+                    webView.reload()
+                }
+            }
+        )
     }
 }
 

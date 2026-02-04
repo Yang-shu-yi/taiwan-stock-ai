@@ -4,11 +4,18 @@
 這個 Android App 只是一個用戶端，用來：
 - 讀取 `GET /alerts`
 - 透過 `/watchlist` 相關 API 管理 `watchlist.json`
+- 以 WebView 顯示 Streamlit 儀表板（`http://<pi-ip>:8501`）
 
 ## 先決條件
 - Android Studio
 - 後端 API 已在主機上啟動：`uvicorn api_server:app --host 0.0.0.0 --port 8000`
 - 在主機的 `.env` 設定好 `APP_API_KEY`
+
+如果你要在 App 內看 Streamlit（Dashboard 分頁），也要在主機啟動 Streamlit 並綁定到區網：
+
+```bash
+streamlit run app.py --server.address 0.0.0.0 --server.port 8501
+```
 
 ## 建立專案
 1) Android Studio -> New Project -> Empty Activity (Jetpack Compose)
@@ -48,3 +55,7 @@ implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
 開啟 App -> Settings：
 - Base URL：`http://<YOUR_PI_IP>:8000`
 - API key：你的 `APP_API_KEY`
+
+然後：
+- `Dashboard` 分頁會自動開 `http://<YOUR_PI_IP>:8501`
+- `Watchlist` / `Alerts` 按 `Refresh` 會呼叫後端 API
