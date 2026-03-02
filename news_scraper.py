@@ -20,9 +20,9 @@ from bs4 import BeautifulSoup
 
 RSS_SOURCES_TW = {
     "鉅亨": "https://news.google.com/rss/search?q=site:news.cnyes.com%20when:1d&hl=zh-TW&gl=TW&ceid=TW:zh-Hant",
-    "MoneyDJ": "https://www.moneydj.com/rss/headlines.rss",
+    "科技新報財經": "https://finance.technews.tw/feed/",
     "Yahoo財經": "https://tw.stock.yahoo.com/rss?category=tw-market",
-    "工商時報": "https://ctee.com.tw/feed",
+    "Google台股": "https://news.google.com/rss/search?q=%E5%8F%B0%E8%82%A1+when:1d&hl=zh-TW&gl=TW&ceid=TW:zh-Hant",
     "經濟日報": "https://money.udn.com/rssfeed/news/1001/5591/0",
 }
 
