@@ -2,9 +2,12 @@ import os
 import json
 import time
 import traceback
+import re
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 import requests
+import pandas as pd
 import ta
 import twstock
 from dotenv import load_dotenv
@@ -12,7 +15,6 @@ from dotenv import load_dotenv
 from alert_store import append_alert
 from watchlist_store import (
     load_watchlist_file,
-    parse_numeric_codes,
     save_watchlist_file,
 )
 
@@ -33,6 +35,14 @@ WATCHLIST_SPREADSHEET_ID = os.getenv("WATCHLIST_SPREADSHEET_ID")
 WATCHLIST_SHEET_NAME = os.getenv("WATCHLIST_SHEET_NAME", "watchlist")
 
 WATCHLIST_CODES = os.getenv("WATCHLIST_CODES", "")
+WATCHLIST_SEED_CODES = os.getenv("WATCHLIST_SEED_CODES", "")
+
+INTRADAY_NOTIFY_LINE = os.getenv("INTRADAY_NOTIFY_LINE", "0").strip().lower() in [
+    "1",
+    "true",
+    "yes",
+    "y",
+]
 CHECK_INTERVAL_SEC = int(os.getenv("INTRADAY_CHECK_INTERVAL_SEC", "60"))
 PRICE_UP_PCT = float(os.getenv("INTRADAY_PRICE_UP_PCT", "2.0"))
 PRICE_DOWN_PCT = float(os.getenv("INTRADAY_PRICE_DOWN_PCT", "-2.0"))
@@ -43,6 +53,24 @@ ALERT_COOLDOWN_MIN = int(os.getenv("INTRADAY_ALERT_COOLDOWN_MIN", "30"))
 TG_POLL_INTERVAL_SEC = int(os.getenv("INTRADAY_TG_POLL_SEC", "10"))
 
 WATCHLIST_FILE = "watchlist.json"
+
+# Used only when no watchlist is configured.
+DEFAULT_WATCHLIST_SEED = [
+    # US mega caps / ETFs
+    "AAPL",
+    "MSFT",
+    "NVDA",
+    "AMZN",
+    "GOOGL",
+    "META",
+    "TSLA",
+    "SPY",
+    "QQQ",
+    # Crypto (Yahoo tickers)
+    "BTC-USD",
+    "ETH-USD",
+    "SOL-USD",
+]
 
 
 def log(msg):
@@ -83,14 +111,61 @@ def push_telegram_message(msg):
 
 
 def notify_all(msg):
-    push_line_message(msg)
+    if INTRADAY_NOTIFY_LINE:
+        push_line_message(msg)
     push_telegram_message(msg)
 
 
 def is_market_open():
-    now = datetime.now()
-    hhmm = now.hour * 100 + now.minute
-    return 900 <= hhmm <= 1330
+    # Backward-compatible alias. Prefer is_session_open_for_code().
+    return is_session_open_for_code("2330", datetime.now())
+
+
+def detect_symbol_type(code: str) -> str:
+    c = (code or "").strip()
+    if not c:
+        return "UNKNOWN"
+    if c.isdigit() and c in twstock.codes:
+        return "TW"
+
+    upper = c.upper()
+    if upper.endswith("-USD") or upper.endswith("-USDT"):
+        return "CRYPTO"
+    if upper.endswith(".TW") or upper.endswith(".TWO"):
+        return "TW_YF"
+    return "US"
+
+
+def is_session_open_for_symbol(symbol_type: str, now: datetime) -> bool:
+    st = (symbol_type or "").upper()
+    if st == "CRYPTO":
+        return True
+
+    if st in ["TW", "TW_YF"]:
+        try:
+            n = now.astimezone(ZoneInfo("Asia/Taipei"))
+        except Exception:
+            n = now
+        if n.weekday() >= 5:
+            return False
+        hhmm = n.hour * 100 + n.minute
+        return 900 <= hhmm <= 1330
+
+    if st == "US":
+        try:
+            n = now.astimezone(ZoneInfo("America/New_York"))
+        except Exception:
+            n = now
+        if n.weekday() >= 5:
+            return False
+        hhmm = n.hour * 100 + n.minute
+        return 930 <= hhmm <= 1600
+
+    return False
+
+
+def is_session_open_for_code(code: str, now: datetime) -> bool:
+    return is_session_open_for_symbol(detect_symbol_type(code), now)
 
 
 def load_watchlist():
@@ -107,6 +182,39 @@ def load_watchlist():
         except Exception:
             return []
     return []
+
+
+def seed_watchlist_if_empty():
+    # Do not overwrite existing file-based watchlist.
+    existing = load_watchlist_file(WATCHLIST_FILE)
+    if existing:
+        return
+
+    # If user explicitly configured watchlist via env, do nothing.
+    if WATCHLIST_CODES.strip():
+        return
+
+    # If stock_database has RED entries, do nothing (keeps legacy behavior).
+    if os.path.exists("stock_database.json"):
+        try:
+            with open("stock_database.json", "r", encoding="utf-8") as f:
+                data = json.load(f)
+            red = [k for k, v in data.items() if v.get("status") == "RED"]
+            if red:
+                return
+        except Exception:
+            pass
+
+    if WATCHLIST_SEED_CODES.strip():
+        seed = parse_codes([WATCHLIST_SEED_CODES])
+    else:
+        seed = list(DEFAULT_WATCHLIST_SEED)
+
+    if not seed:
+        return
+
+    save_watchlist(seed)
+    log(f"🌱 初始化 watchlist: {', '.join(seed)}")
 
 
 def yahoo_chart(symbol):
@@ -158,7 +266,27 @@ def sync_watchlist_to_sheet(codes):
 
 
 def parse_codes(tokens):
-    return parse_numeric_codes(tokens, set(twstock.codes.keys()))
+    raw = []
+    for t in tokens:
+        raw.extend([x.strip() for x in str(t).split(",")])
+
+    out = []
+    valid_tw = set(twstock.codes.keys())
+    for code in raw:
+        if not code:
+            continue
+        if code.isdigit():
+            if code in valid_tw:
+                out.append(code)
+            continue
+
+        upper = code.upper()
+        # Allow Yahoo tickers like AAPL, TSLA, BTC-USD, ^GSPC, 2330.TW
+        if not re.fullmatch(r"[A-Z0-9.\-\^]{1,20}", upper):
+            continue
+        out.append(upper)
+
+    return out
 
 
 def handle_command(text, current):
@@ -169,7 +297,7 @@ def handle_command(text, current):
     args = parts[1:]
 
     if cmd in ["/help", "/start"]:
-        return current, "指令: /add 2330 /del 2330 /list"
+        return current, "指令: /add 2330,AAPL,BTC-USD /del 2330 /list"
 
     if cmd == "/list":
         if not current:
@@ -179,7 +307,7 @@ def handle_command(text, current):
     if cmd == "/add":
         codes = parse_codes(args)
         if not codes:
-            return current, "格式: /add 2330,2317"
+            return current, "格式: /add 2330,2317,AAPL,BTC-USD"
         new_list = sorted(list(set(current + codes)))
         save_watchlist(new_list)
         return new_list, f"已加入: {', '.join(codes)}"
@@ -222,11 +350,19 @@ def poll_telegram(last_update_id, watchlist):
 
 
 def analyze_symbol(code):
-    if code not in twstock.codes:
+    c = (code or "").strip()
+    if not c:
         return None
-    market = twstock.codes[code].market
-    suffix = ".TW" if market == "上市" else ".TWO"
-    symbol = f"{code}{suffix}"
+
+    name = c
+    symbol_type = detect_symbol_type(c)
+    if symbol_type == "TW":
+        market = twstock.codes[c].market
+        suffix = ".TW" if market == "上市" else ".TWO"
+        symbol = f"{c}{suffix}"
+        name = twstock.codes[c].name
+    else:
+        symbol = c
 
     data = yahoo_chart(symbol)
     result = data.get("chart", {}).get("result", [])
@@ -243,20 +379,26 @@ def analyze_symbol(code):
     volumes = quote.get("volume", [])
     closes = [c for c in closes if c is not None]
     volumes = [v for v in volumes if v is not None]
-    if len(closes) < 20 or len(volumes) < 5:
+    if len(closes) < 20:
         return None
 
-    close_series = ta.utils._series_from_input(closes)
-    rsi = ta.momentum.rsi(close_series, window=14).iloc[-1]
+    close_series = pd.Series(closes, dtype="float64")
+    rsi = ta.momentum.RSIIndicator(close_series, window=14).rsi().iloc[-1]
     last_price = float(closes[-1])
     prev_close = float(
         meta.get("previousClose") or meta.get("chartPreviousClose") or last_price
     )
     pct = ((last_price - prev_close) / prev_close) * 100 if prev_close else 0.0
 
-    last_vol = float(volumes[-1])
-    avg_vol = sum(volumes[-20:]) / max(1, len(volumes[-20:]))
-    vol_ok = True if VOLUME_SPIKE_MULT <= 0 else last_vol >= avg_vol * VOLUME_SPIKE_MULT
+    last_vol = float(volumes[-1]) if volumes else None
+    if VOLUME_SPIKE_MULT <= 0:
+        vol_ok = True
+    elif not volumes or len(volumes) < 20:
+        # Some tickers (esp. crypto) may have missing/short volume series.
+        vol_ok = True
+    else:
+        avg_vol = sum(volumes[-20:]) / max(1, len(volumes[-20:]))
+        vol_ok = float(volumes[-1]) >= avg_vol * VOLUME_SPIKE_MULT
 
     status = None
     if pct >= PRICE_UP_PCT and rsi >= RSI_OVERBOUGHT and vol_ok:
@@ -268,8 +410,8 @@ def analyze_symbol(code):
         return None
 
     return {
-        "code": code,
-        "name": twstock.codes[code].name,
+        "code": c,
+        "name": name,
         "price": last_price,
         "pct": pct,
         "rsi": float(rsi),
@@ -280,15 +422,18 @@ def analyze_symbol(code):
 
 def format_alert(item):
     arrow = "📈" if item["status"] == "UP" else "📉"
+    vol = item.get("volume")
+    vol_text = "N/A" if vol is None else f"{int(vol):,}"
     return (
         f"{arrow} 盤中訊號 {item['code']} {item['name']}\n"
         f"價格: {item['price']:.2f} ({item['pct']:.2f}%)\n"
-        f"RSI: {item['rsi']:.1f} 量: {int(item['volume']):,}\n"
+        f"RSI: {item['rsi']:.1f} 量: {vol_text}\n"
         "條件: 價格變動 + RSI + 量能"
     )
 
 
 def main():
+    seed_watchlist_if_empty()
     watchlist = load_watchlist()
     if not watchlist:
         log("⚠️ watchlist 為空，請設定 WATCHLIST_CODES 或更新 stock_database.json")
@@ -308,12 +453,6 @@ def main():
             next_poll_time = now + TG_POLL_INTERVAL_SEC
 
         if now >= next_scan_time:
-            if not is_market_open():
-                log("⏸️ 非盤中時間，延後掃描")
-                next_scan_time = now + 300
-                time.sleep(1)
-                continue
-
             watchlist = load_watchlist()
             if not watchlist:
                 log(
@@ -323,7 +462,15 @@ def main():
                 time.sleep(1)
                 continue
 
-            for code in watchlist:
+            now_dt = datetime.now()
+            open_list = [c for c in watchlist if is_session_open_for_code(c, now_dt)]
+            if not open_list:
+                log("⏸️ 目前沒有市場開盤（TW/US 盤中或 Crypto 24/7），延後掃描")
+                next_scan_time = now + 300
+                time.sleep(1)
+                continue
+
+            for code in open_list:
                 try:
                     item = analyze_symbol(code)
                     if not item:
