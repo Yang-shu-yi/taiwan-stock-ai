@@ -40,12 +40,36 @@ python batch_scan.py
 BATCH_SCAN_MAX=100 python batch_scan.py
 ```
 
-### 3) 樹莓派每日報告
-檔案：`rpi_main.py`
+### 3) 每日報告 (v8.0 模組化架構)
+檔案：`rpi_main.py` (orchestrator) + 三大模組
 
-- 抓取市場數據（Yahoo + 證交所 API）
-- 新聞彙整（CNBC、MoneyDJ、鉅亨、Yahoo）
-- 產生法人語氣報告（Groq，Gemini 備援）
+**架構：**
+```
+rpi_main.py          ← 主流程 (排程/通知/存檔)
+  ├─ news_scraper.py      ← 多來源新聞抓取 + 內文摘要 + 去重
+  ├─ market_data.py       ← 台股/美股/VIX/匯率/法人/融資融券
+  └─ report_generator.py  ← 兩步 AI pipeline (篩選→生成)
+```
+
+**新聞抓取 (`news_scraper.py`)：**
+- 台股：鉅亨、MoneyDJ、Yahoo財經、工商時報、經濟日報
+- 美股：CNBC
+- 自動抓取新聞內文前 500 字（不再只有標題）
+- 標題相似度去重（避免重複報導浪費 token）
+
+**市場數據 (`market_data.py`)：**
+- 台股加權指數 + 證交所成交值
+- 美股四大指數（S&P500、道瓊、那斯達克、費半）+ VIX
+- USD/TWD 匯率
+- 盤後：三大法人買賣超、融資融券餘額
+
+**AI 報告 (`report_generator.py`)：**
+- Step 1：AI 從大量新聞中篩選 8-12 則最重要的，標註影響分數與 watchlist 關聯
+- Step 2：根據篩選結果 + 市場數據生成最終報告
+- 盤前/盤後使用不同模板（盤前看開盤策略、盤後看回顧與明日展望）
+- Groq 優先，Gemini 備援
+
+**通知 + 存檔：**
 - 推送 LINE + Telegram
 - 寫入 Google Sheets
 
