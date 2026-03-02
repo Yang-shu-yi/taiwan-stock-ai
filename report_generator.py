@@ -134,6 +134,25 @@ def _step1_filter_news(
     return result
 
 
+def _format_watchlist_quotes(watchlist_quotes: dict | None) -> str:
+    """將監控股報價格式化為 prompt 數據區塊"""
+    if not watchlist_quotes:
+        return ""
+    lines: list[str] = ["【監控股即時報價】"]
+    for code, q in watchlist_quotes.items():
+        name = q.get("name", "") or code
+        if q.get("price") is not None:
+            price = q["price"]
+            pct = q.get("pct", 0.0)
+            chg = q.get("chg", 0.0)
+            lines.append(
+                f"• {code} {name}: {price:.2f} ({chg:+.2f}, {pct:+.2f}%)"
+            )
+        else:
+            lines.append(f"• {code} {name}: 無法取得報價")
+    return "\n".join(lines)
+
+
 # ==========================================
 # Step 2: 盤前報告
 # ==========================================
@@ -143,6 +162,7 @@ def _build_pre_market_prompt(
     filtered_news: str,
     market: dict,
     watchlist_str: str,
+    watchlist_quotes: dict | None = None,
 ) -> tuple[str, str]:
     """組裝盤前報告的 system + user prompt"""
     date_str = datetime.now().strftime("%Y/%m/%d")
@@ -166,6 +186,7 @@ def _build_pre_market_prompt(
 3. 僅能引用提供資料與新聞，不可編造數據
 4. 內容精簡、分段清楚、每段 1-3 行為主
 5. 監控清單個股必須逐檔產出決策卡
+6. 個股決策卡的價格與漲跌幅必須使用【監控股即時報價】中的數據，嚴禁編造
 
 【輸出格式】（嚴格遵守，不可變動結構）
 
@@ -210,10 +231,15 @@ def _build_pre_market_prompt(
 
 ⚠️ 免責聲明 • 本報告由 AI 自動生成，僅供參考，不構成投資建議"""
 
+    quotes_text = _format_watchlist_quotes(watchlist_quotes)
+    quotes_block = f"\n\n{quotes_text}" if quotes_text else ""
+
     user = (
         f"【監控清單】{watchlist_str}\n\n"
-        f"【AI 篩選重要新聞】\n{filtered_news}\n\n"
+        f"【AI 篩選重要新聞】\n{filtered_news}"
+        f"{quotes_block}\n\n"
         "請根據以上資訊撰寫盤前快訊。"
+        "個股決策卡中的報價數據必須引用【監控股即時報價】，不可自行編造。"
     )
 
     return system, user
@@ -228,6 +254,7 @@ def _build_post_market_prompt(
     filtered_news: str,
     market: dict,
     watchlist_str: str,
+    watchlist_quotes: dict | None = None,
 ) -> tuple[str, str]:
     """組裝盤後報告的 system + user prompt"""
     date_str = datetime.now().strftime("%Y/%m/%d")
@@ -252,6 +279,8 @@ def _build_post_market_prompt(
 3. 僅能引用提供資料與新聞，不可編造數據
 4. 內容精簡、分段清楚、每段 1-3 行為主
 5. 監控清單個股必須逐檔產出回顧卡
+6. 個股回顧卡的價格與漲跌幅必須使用【監控股即時報價】中的數據，嚴禁編造
+7. 今日贏家/輸家必須根據【監控股即時報價】的漲跌幅排序填寫
 
 【輸出格式】（嚴格遵守）
 
@@ -306,10 +335,16 @@ def _build_post_market_prompt(
 
 ⚠️ 免責聲明 • 本報告由 AI 自動生成，僅供參考，不構成投資建議"""
 
+    quotes_text = _format_watchlist_quotes(watchlist_quotes)
+    quotes_block = f"\n\n{quotes_text}" if quotes_text else ""
+
     user = (
         f"【監控清單】{watchlist_str}\n\n"
-        f"【AI 篩選重要新聞】\n{filtered_news}\n\n"
+        f"【AI 篩選重要新聞】\n{filtered_news}"
+        f"{quotes_block}\n\n"
         "請根據以上資訊撰寫盤後筆記。"
+        "個股回顧卡中的報價數據必須引用【監控股即時報價】，不可自行編造。"
+        "今日贏家/輸家必須根據【監控股即時報價】的實際漲跌幅填寫。"
     )
 
     return system, user
@@ -328,6 +363,7 @@ def generate_report(
     watchlist: list[str],
     groq_key: str | None = None,
     gemini_key: str | None = None,
+    watchlist_quotes: dict | None = None,
 ) -> str:
     """
     兩步驟 AI 報告生成。
@@ -337,9 +373,10 @@ def generate_report(
         tw_news:    台股新聞列表 (from news_scraper)
         us_news:    美股新聞列表 (from news_scraper)
         market:     市場數據 (from market_data)
-        watchlist:  監控股票代碼列表
-        groq_key:   Groq API key
-        gemini_key: Gemini API key (備援)
+        watchlist:         監控股票代碼列表
+        groq_key:          Groq API key
+        gemini_key:        Gemini API key (備援)
+        watchlist_quotes:  監控股即時報價 (from market_data.get_watchlist_quotes)
 
     Returns:
         str: 最終報告文字
@@ -363,9 +400,13 @@ def generate_report(
     # ── Step 2: 生成報告 ──
     _log("🧠 Step 2: 生成最終報告...")
     if mode == "PRE":
-        system, user = _build_pre_market_prompt(filtered_news, market, watchlist_str)
+        system, user = _build_pre_market_prompt(
+            filtered_news, market, watchlist_str, watchlist_quotes
+        )
     else:
-        system, user = _build_post_market_prompt(filtered_news, market, watchlist_str)
+        system, user = _build_post_market_prompt(
+            filtered_news, market, watchlist_str, watchlist_quotes
+        )
 
     report = _call_llm(
         system, user, groq_key, gemini_key, temperature=0.5, max_tokens=3000

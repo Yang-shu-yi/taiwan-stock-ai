@@ -20,7 +20,7 @@ except Exception:
     ServiceAccountCredentials = None  # type: ignore[assignment,misc]
 
 from news_scraper import fetch_all_news
-from market_data import get_all_market_data
+from market_data import get_all_market_data, get_watchlist_quotes
 from report_generator import generate_report
 
 # 加載環境變數
@@ -227,6 +227,10 @@ def main() -> None:
         watchlist = load_watchlist()
         log(f"📋 Watchlist: {len(watchlist)} 檔 ({', '.join(watchlist[:10])}...)")
 
+        # 3.5 抓取監控股即時報價
+        log("📋 Step: 抓取監控股報價...")
+        watchlist_quotes = get_watchlist_quotes(watchlist)
+
         # 4. 生成報告 (兩步 AI pipeline)
         log("🧠 Step: AI 報告生成...")
         report = generate_report(
@@ -237,6 +241,7 @@ def main() -> None:
             watchlist=watchlist,
             groq_key=GROQ_API_KEY,
             gemini_key=GEMINI_API_KEY,
+            watchlist_quotes=watchlist_quotes,
         )
 
         # 5. 發送通知 + 存檔

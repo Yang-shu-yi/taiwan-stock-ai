@@ -27,7 +27,7 @@ def _log(msg: str) -> None:
 
 
 def _yahoo_quote(symbol: str) -> dict:
-    """從 Yahoo Finance chart API 取得報價 (price, chg, pct)"""
+    """從 Yahoo Finance chart API 取得報價 (price, chg, pct, name)"""
     try:
         url = (
             f"https://query1.finance.yahoo.com/v8/finance/chart/"
@@ -40,10 +40,11 @@ def _yahoo_quote(symbol: str) -> dict:
         prev = float(meta.get("previousClose") or meta.get("chartPreviousClose"))
         chg = price - prev
         pct = (chg / prev * 100) if prev else 0.0
-        return {"price": price, "chg": chg, "pct": pct}
+        name = meta.get("shortName") or meta.get("longName") or ""
+        return {"price": price, "chg": chg, "pct": pct, "name": name}
     except Exception as e:
         _log(f"Yahoo quote {symbol} Error: {e}")
-        return {"price": None, "chg": None, "pct": None}
+        return {"price": None, "chg": None, "pct": None, "name": ""}
 
 
 # ==========================================
@@ -236,6 +237,68 @@ def get_margin_trading() -> dict:
 
     return result
 
+
+
+# ==========================================
+# 監控股報價
+# ==========================================
+
+
+def get_watchlist_quotes(watchlist: list[str]) -> dict:
+    """
+    取得監控清單所有股票的即時報價。
+
+    Args:
+        watchlist: 股票代碼列表，例如 ["2303", "AAPL", "BTC-USD"]
+
+    Returns:
+        dict: {
+            "2303": {"name": "聯電", "price": 52.3, "chg": -0.5, "pct": -0.95},
+            "NVDA": {"name": "NVIDIA Corp", "price": 890.2, "chg": -7.1, "pct": -0.79},
+            ...
+        }
+    """
+    _log(f"📋 開始抓取監控股報價 ({len(watchlist)} 檔)...")
+    quotes: dict = {}
+
+    for code in watchlist:
+        # 判斷 Yahoo Finance symbol
+        if code.isdigit():
+            # 台股：純數字代碼 → 加 .TW (上市) 嘗試
+            yahoo_symbol = f"{code}.TW"
+        else:
+            # 美股/ETF/加密貨幣：直接使用
+            yahoo_symbol = code
+
+        q = _yahoo_quote(yahoo_symbol)
+
+        # 台股 .TW 失敗時嘗試 .TWO (上櫃)
+        if q["price"] is None and code.isdigit():
+            yahoo_symbol = f"{code}.TWO"
+            q = _yahoo_quote(yahoo_symbol)
+
+        if q["price"] is not None:
+            quotes[code] = {
+                "name": q["name"],
+                "price": q["price"],
+                "chg": q["chg"],
+                "pct": q["pct"],
+            }
+            _log(
+                f"  📌 {code} {q['name']}: {q['price']:.2f} "
+                f"({q['pct']:+.2f}%)"
+            )
+        else:
+            quotes[code] = {
+                "name": "",
+                "price": None,
+                "chg": None,
+                "pct": None,
+            }
+            _log(f"  ⚠️ {code}: 無法取得報價")
+
+    _log(f"📋 監控股報價完成 ({sum(1 for v in quotes.values() if v['price'] is not None)}/{len(watchlist)} 成功)")
+    return quotes
 
 # ==========================================
 # 主入口
