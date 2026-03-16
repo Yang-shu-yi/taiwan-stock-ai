@@ -6,10 +6,12 @@ from zoneinfo import ZoneInfo
 
 import pandas as pd
 import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 import streamlit as st
 
 from alert_store import read_recent_alerts
 from message_formatter import format_market_report
+from stock_analyzer import analyze_tw_stock, search_tw_stocks
 
 
 SNAPSHOT_FILE = Path(os.getenv("DAILY_CANDIDATES_FILE", "daily_candidates.json"))
@@ -181,6 +183,11 @@ def load_alerts(path_str: str, limit: int) -> list[dict]:
     return read_recent_alerts(limit=limit, path=path_str)
 
 
+@st.cache_data(ttl=600)
+def load_stock_analysis(code: str) -> dict:
+    return analyze_tw_stock(code)
+
+
 def parse_updated_at(value: str | None) -> datetime | None:
     if not value:
         return None
@@ -279,6 +286,110 @@ def candidate_chart(frame: pd.DataFrame) -> go.Figure:
     return figure
 
 
+def stock_price_chart(history: pd.DataFrame, name: str) -> go.Figure:
+    figure = make_subplots(
+        rows=2,
+        cols=1,
+        shared_xaxes=True,
+        vertical_spacing=0.06,
+        row_heights=[0.72, 0.28],
+    )
+    figure.add_trace(
+        go.Candlestick(
+            x=history.index,
+            open=history["Open"],
+            high=history["High"],
+            low=history["Low"],
+            close=history["Close"],
+            name=name,
+        ),
+        row=1,
+        col=1,
+    )
+    for line_name, color in [
+        ("MA20", "#d95f43"),
+        ("MA60", "#1d6f8c"),
+        ("MA120", "#8d6a22"),
+    ]:
+        figure.add_trace(
+            go.Scatter(
+                x=history.index,
+                y=history[line_name],
+                mode="lines",
+                line=dict(color=color, width=2),
+                name=line_name,
+            ),
+            row=1,
+            col=1,
+        )
+
+    figure.add_trace(
+        go.Bar(
+            x=history.index,
+            y=history["Volume"],
+            marker_color="rgba(29,111,140,0.38)",
+            name="Volume",
+        ),
+        row=2,
+        col=1,
+    )
+    figure.add_trace(
+        go.Scatter(
+            x=history.index,
+            y=history["VOL20"],
+            mode="lines",
+            line=dict(color="#d95f43", width=1.8),
+            name="VOL20",
+        ),
+        row=2,
+        col=1,
+    )
+    figure.update_layout(
+        height=620,
+        margin=dict(l=0, r=0, t=10, b=0),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
+        xaxis_rangeslider_visible=False,
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, x=0),
+    )
+    figure.update_yaxes(gridcolor="rgba(32,35,48,0.10)")
+    return figure
+
+
+def score_chart(scores: dict[str, float]) -> go.Figure:
+    score_items = [(key, value) for key, value in scores.items() if key != "總分"]
+    figure = go.Figure(
+        go.Bar(
+            x=[value for _, value in score_items],
+            y=[key for key, _ in score_items],
+            orientation="h",
+            marker=dict(
+                color=[value for _, value in score_items],
+                colorscale=[
+                    [0.0, "#b24343"],
+                    [0.5, "#d9b24c"],
+                    [1.0, "#228b5a"],
+                ],
+                cmin=0,
+                cmax=100,
+            ),
+            text=[f"{value:.0f}" for _, value in score_items],
+            textposition="outside",
+            hovertemplate="%{y}: %{x:.0f}<extra></extra>",
+        )
+    )
+    figure.update_layout(
+        height=300,
+        margin=dict(l=0, r=20, t=0, b=0),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
+        xaxis_title="分數",
+        yaxis_title="",
+    )
+    figure.update_xaxes(range=[0, 100], gridcolor="rgba(32,35,48,0.10)")
+    return figure
+
+
 def render_theme_cards(theme_summary: list[dict]) -> None:
     if not theme_summary:
         st.info("目前沒有主軸資料。")
@@ -317,6 +428,7 @@ with st.sidebar:
     if st.button("重新讀取資料", width="stretch"):
         load_snapshot.clear()
         load_alerts.clear()
+        load_stock_analysis.clear()
         st.rerun()
 
     st.markdown(
@@ -370,6 +482,11 @@ if not snapshot:
     st.error("找不到可用的 `daily_candidates.json`。先執行 `python rpi_main.py` 產生最新快照。")
     st.stop()
 
+if "stock_query" not in st.session_state:
+    st.session_state["stock_query"] = (
+        snapshot.get("tw_candidates", [{}])[0].get("code") or "2330"
+    )
+
 
 updated_at = parse_updated_at(snapshot.get("updated_at"))
 freshness_text, freshness_class = freshness_label(updated_at)
@@ -404,8 +521,8 @@ st.markdown(
 )
 
 
-overview_tab, report_tab, alerts_tab, raw_tab = st.tabs(
-    ["市場總覽", "報告預覽", "警示紀錄", "原始資料"]
+overview_tab, analysis_tab, report_tab, alerts_tab, raw_tab = st.tabs(
+    ["市場總覽", "個股解析", "報告預覽", "警示紀錄", "原始資料"]
 )
 
 
@@ -479,6 +596,172 @@ with overview_tab:
     with news_col2:
         st.markdown("### 美股新聞")
         render_news_block("US News", news_summary.get("us_top_titles", []))
+
+
+with analysis_tab:
+    st.markdown("### 台股個股解析")
+    st.caption("輸入代號或中文名稱，分析邏輯以趨勢、量能、相對大盤強弱與月營收動能為主。")
+
+    query = st.text_input(
+        "輸入代號或中文名稱",
+        key="stock_query",
+        placeholder="例如 2330 / 台積電 / 2454 / 聯發科",
+    )
+    matches = search_tw_stocks(query)
+
+    if not query.strip():
+        st.info("輸入台股代號或中文名稱後，這裡會顯示圖表與詳細判讀。")
+    elif not matches:
+        st.warning("找不到符合的台股股票，請改用完整代號或更接近的中文名稱。")
+    else:
+        selected_options = {
+            f"{item.code} {item.name} / {item.group}": item.code for item in matches
+        }
+        selected_label = st.selectbox(
+            "搜尋結果",
+            list(selected_options.keys()),
+            label_visibility="collapsed",
+        )
+        selected_code = selected_options[selected_label]
+
+        try:
+            stock_analysis = load_stock_analysis(selected_code)
+        except Exception as exc:
+            st.error(f"個股分析失敗: {exc}")
+        else:
+            focus_item = next(
+                (
+                    item
+                    for item in snapshot.get("tw_candidates", [])
+                    if item.get("code") == selected_code
+                ),
+                None,
+            )
+            scores = stock_analysis["scores"]
+            price = stock_analysis["price"]
+            revenue = stock_analysis["revenue"]
+            relative_strength = stock_analysis["relative_strength"]
+            analysis = stock_analysis["analysis"]
+
+            st.markdown(
+                f"""
+                <div class="theme-card">
+                    <div class="theme-name">{stock_analysis['code']} {stock_analysis['name']}</div>
+                    <div class="theme-leaders">
+                        產業：{stock_analysis['industry_group']}<br>
+                        主題：{stock_analysis['theme']}<br>
+                        判讀：{analysis['bias']}
+                    </div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+
+            metric_cols = st.columns(5)
+            metric_cols[0].metric(
+                "最新價",
+                f"{price['close']:.2f}",
+                f"{price['pct_1d']:+.2f}%",
+            )
+            metric_cols[1].metric(
+                "20日漲跌",
+                "N/A" if price["pct_20d"] is None else f"{price['pct_20d']:+.2f}%",
+            )
+            metric_cols[2].metric(
+                "相對大盤20日",
+                "N/A"
+                if relative_strength["rs_20d"] is None
+                else f"{relative_strength['rs_20d']:+.2f}%",
+            )
+            metric_cols[3].metric(
+                "量比",
+                "N/A"
+                if stock_analysis["indicators"]["vol_ratio"] is None
+                else f"{stock_analysis['indicators']['vol_ratio']:.2f}x",
+            )
+            metric_cols[4].metric(
+                "月營收年增",
+                "N/A"
+                if revenue.get("yoy_pct") is None
+                else f"{revenue['yoy_pct']:+.2f}%",
+            )
+
+            left_col, right_col = st.columns([1.35, 0.95], gap="large")
+            with left_col:
+                st.plotly_chart(
+                    stock_price_chart(stock_analysis["history"], stock_analysis["name"]),
+                    width="stretch",
+                )
+
+            with right_col:
+                st.metric("分析總分", f"{scores['總分']:.0f}")
+                st.plotly_chart(score_chart(scores), width="stretch")
+
+                if revenue:
+                    revenue_cols = st.columns(2)
+                    revenue_cols[0].metric(
+                        "最新月營收",
+                        "N/A"
+                        if revenue.get("month_revenue_billion") is None
+                        else f"{revenue['month_revenue_billion']:.1f} 億",
+                    )
+                    revenue_cols[1].metric(
+                        "累計營收年增",
+                        "N/A"
+                        if revenue.get("cumulative_yoy_pct") is None
+                        else f"{revenue['cumulative_yoy_pct']:+.2f}%",
+                    )
+
+                support_text = "、".join(
+                    f"{level:.1f}" for level in analysis["support_levels"][:3]
+                ) or "N/A"
+                resistance_text = "、".join(
+                    f"{level:.1f}" for level in analysis["resistance_levels"][:3]
+                ) or "N/A"
+                st.markdown(f"**支撐觀察**: {support_text}")
+                st.markdown(f"**壓力觀察**: {resistance_text}")
+
+                if focus_item:
+                    st.success(
+                        f"目前也在候選股名單中: 排名 {focus_item.get('rank')} / 分數 {focus_item.get('score')}"
+                    )
+
+            insight_col, risk_col = st.columns(2, gap="large")
+            with insight_col:
+                st.markdown("#### 結構判讀")
+                st.markdown(f"**操作結論**: {analysis['action']}")
+                for line in analysis["indicator_checks"]:
+                    st.markdown(f"- {line}")
+
+            with risk_col:
+                st.markdown("#### 風險提醒")
+                for line in analysis["risk_flags"]:
+                    st.markdown(f"- {line}")
+
+            detail_cols = st.columns(4)
+            detail_cols[0].metric(
+                "距 MA20",
+                "N/A"
+                if price["distance_to_ma20"] is None
+                else f"{price['distance_to_ma20']:+.2f}%",
+            )
+            detail_cols[1].metric(
+                "距 MA60",
+                "N/A"
+                if price["distance_to_ma60"] is None
+                else f"{price['distance_to_ma60']:+.2f}%",
+            )
+            detail_cols[2].metric(
+                "距 20日高點",
+                "N/A"
+                if price["breakout_gap_20"] is None
+                else f"{price['breakout_gap_20']:+.2f}%",
+            )
+            detail_cols[3].metric(
+                "RSI 14",
+                f"{stock_analysis['indicators']['rsi14']:.1f}",
+                f"MACD {stock_analysis['indicators']['macd_hist']:+.2f}",
+            )
 
 
 with report_tab:
