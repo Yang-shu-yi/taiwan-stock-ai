@@ -1,173 +1,124 @@
-# 台股 AI 專案功能說明
+# Taiwan Stock AI 專案說明
 
-這個專案提供完整的台股監控流程：
+## 專案定位
 
-1. Web 儀表板（Streamlit）：盤後檢討與個股分析
-2. 批次掃描：更新 stock_database.json
-3. 樹莓派自動化：每日報告推送
-4. 盤中偵察：即時訊號通知
+這個專案已重構為：
 
-## 模組與功能
+- 台股優先的候選股情報系統
+- 美股作為市場脈絡補充
+- Telegram-first 通知流程
+- 盤前 / 盤中 / 盤後的自動化資訊推送
 
-### 1) Streamlit Web 儀表板
-檔案：`app.py`
+目前不再以 Streamlit dashboard 為主，也不再把手動 watchlist 當作主要使用方式。
 
-- 個股技術分析（RSI、MACD、KD、MA20/MA60）
-- AI 個股分析（Groq）
-- 主畫面保持精簡，聚焦個股分析
 
-執行：
-```bash
-streamlit run app.py
-```
+## 目前主流程
 
-### 2) 批次掃描（每日）
-檔案：`batch_scan.py`
+### 1. 每日候選股快照
 
-- 使用 Yahoo 資料掃描台股
-- 計算 RSI + 漲跌幅
-- 分類 RED / GREEN / YELLOW
-- 更新 `stock_database.json`
-- 推送 LINE + Telegram 統計
+主入口：
 
-執行：
-```bash
-python batch_scan.py
-```
-
-限制掃描數量：
-```bash
-BATCH_SCAN_MAX=100 python batch_scan.py
-```
-
-### 3) 每日報告 (v8.0 模組化架構)
-檔案：`rpi_main.py` (orchestrator) + 三大模組
-
-**架構：**
-```
-rpi_main.py          ← 主流程 (排程/通知/存檔)
-  ├─ news_scraper.py      ← 多來源新聞抓取 + 內文摘要 + 去重
-  ├─ market_data.py       ← 台股/美股/VIX/匯率/法人/融資融券
-  └─ report_generator.py  ← 兩步 AI pipeline (篩選→生成)
-```
-
-**新聞抓取 (`news_scraper.py`)：**
-- 台股：鉅亨、MoneyDJ、Yahoo財經、工商時報、經濟日報
-- 美股：CNBC
-- 自動抓取新聞內文前 500 字（不再只有標題）
-- 標題相似度去重（避免重複報導浪費 token）
-
-**市場數據 (`market_data.py`)：**
-- 台股加權指數 + 證交所成交值
-- 美股四大指數（S&P500、道瓊、那斯達克、費半）+ VIX
-- USD/TWD 匯率
-- 盤後：三大法人買賣超、融資融券餘額
-
-**AI 報告 (`report_generator.py`)：**
-- Step 1：AI 從大量新聞中篩選 8-12 則最重要的，標註影響分數與 watchlist 關聯
-- Step 2：根據篩選結果 + 市場數據生成最終報告
-- 盤前/盤後使用不同模板（盤前看開盤策略、盤後看回顧與明日展望）
-- Groq 優先，Gemini 備援
-
-**通知 + 存檔：**
-- 推送 LINE + Telegram
-- 寫入 Google Sheets
-
-執行：
 ```bash
 python rpi_main.py
 ```
 
-### 4) 盤中偵察
-檔案：`rpi_intraday.py`
+流程：
 
-- 盤中監控股票清單
-- 當價格/量能/RSI 觸發條件即通知
-- LINE + Telegram 即時推送
-- Telegram 指令動態調整清單
+- 抓取台股 / 美股新聞
+- 抓取市場資料
+- 掃描台股核心股票池
+- 建立 `daily_candidates.json`
+- 推送簡潔版 Telegram 摘要
 
-Telegram 指令：
-- `/add 2330,2317`
-- `/del 2330`
-- `/list`
-- `/help`
+輸出檔案：
 
-執行：
+- `daily_candidates.json`
+
+### 2. 盤中警示
+
+主入口：
+
 ```bash
 python rpi_intraday.py
 ```
 
-systemd 常駐：
-```bash
-sudo cp pi_intraday.service /etc/systemd/system/
-sudo systemctl daemon-reload
-sudo systemctl enable --now pi_intraday
-```
+流程：
 
-### 5) 手機 App (Option 1: 後端常駐 + App 控制)
-檔案：`api_server.py`
+- 讀取 `daily_candidates.json`
+- 只監控台股候選清單中的重點股票
+- 依價格、RSI、量比條件觸發 Telegram 警示
+- 寫入 `alerts.jsonl`
 
-- App 不直接跑 Python；Python 繼續跑在樹莓派/主機上
-- App 透過 HTTP API 管理 watchlist / 讀取盤中訊號紀錄
+### 3. 通知管道
 
-環境變數：
-- `APP_API_KEY`：App 呼叫 API 用的金鑰 (請勿放進公開 repo)
+目前建議設定：
 
-啟動 API：
-```bash
-uvicorn api_server:app --host 0.0.0.0 --port 8000
-```
+- `ENABLE_REPORT_TELEGRAM=true`
+- `ENABLE_LINE=false`
 
-主要 API：
-- `GET /health`
-- `GET /watchlist` (Header: `X-API-Key`)
-- `PUT /watchlist` (Body: `{ "codes": ["2330"] }`)
-- `POST /watchlist/add`
-- `POST /watchlist/del`
-- `GET /alerts?limit=100`
-- `POST /notify/test` (測試 Telegram)
+規則如下：
 
-## 資料檔案
+- 盤前 / 盤後 / 盤中報告：使用專屬 report Telegram bot
+- 任務完成提醒：使用 Codex skill 的提醒 bot
 
-- `stock_database.json`：每日掃描結果
-- `watchlist.json`：盤中監控清單（自動建立）
-- Google Sheets `watchlist` 工作表：盤中監控清單（雲端同步）
+不要混用這兩個 bot。
 
-## 環境變數
 
-請先建立 `.env`：
+## 核心模組
+
+- `rpi_main.py`：每日候選股快照與摘要推送
+- `rpi_intraday.py`：盤中警示主流程
+- `candidate_selector.py`：候選股評分與快照產生
+- `universe.py`：台股核心股票池與美股脈絡名單
+- `message_formatter.py`：手機友善的訊息格式
+- `notifier.py`：Telegram / LINE 通知封裝
+- `market_data.py`：市場資料來源
+- `news_scraper.py`：新聞抓取與整理
+- `alert_store.py`：盤中警示紀錄
+
+
+## 快速開始
+
+1. 建立 `.env`
+
 ```bash
 cp .env.example .env
 ```
 
-主要項目：
-- `GROQ_API_KEY`, `GEMINI_API_KEY`
-- `LINE_CHANNEL_TOKEN`, `LINE_TARGET_ID`
-- `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`
-- `SPREADSHEET_ID`, `GOOGLE_SERVICE_ACCOUNT_FILE`
-- `APP_API_KEY` (Option 1: 手機 App API)
+2. 至少設定：
 
-Streamlit Cloud 需要在 Secrets 設定：
-- `WATCHLIST_SPREADSHEET_ID`
-- `gcp_service_account` (JSON 內容)
+- `TELEGRAM_BOT_TOKEN`
+- `TELEGRAM_CHAT_ID`
+- `ENABLE_TELEGRAM=true`
+- `ENABLE_LINE=false`
 
-盤中參數：
-- `WATCHLIST_CODES`
-- `WATCHLIST_SHEET_NAME`
-- `WATCHLIST_SPREADSHEET_ID`
-- `INTRADAY_CHECK_INTERVAL_SEC`
-- `INTRADAY_PRICE_UP_PCT` / `INTRADAY_PRICE_DOWN_PCT`
-- `INTRADAY_RSI_OVERBOUGHT` / `INTRADAY_RSI_OVERSOLD`
-- `INTRADAY_VOLUME_SPIKE_MULT`
-- `INTRADAY_ALERT_COOLDOWN_MIN`
-- `INTRADAY_TG_POLL_SEC`
+3. 安裝依賴：
 
-## 通知機制
+```bash
+pip install -r requirements.txt
+```
 
-- LINE + Telegram 皆支援
-- LINE 額度用完時，Telegram 仍可正常接收
+4. 執行每日流程：
 
-## 補充說明
+```bash
+python rpi_main.py
+```
 
-- Yahoo 報價為延遲資料，適合 MVP 監控
-- 要即時行情可再接券商或付費 API
+5. 執行盤中警示：
+
+```bash
+python rpi_intraday.py
+```
+
+
+## 目前產品方向
+
+- 台股為主，美股為輔
+- 不再涵蓋 crypto
+- 不再以手動新增觀察股為主
+- 不再依賴 Streamlit 做日常使用
+
+
+## 舊功能處理
+
+Streamlit、Android client、手動 watchlist API、舊版批次掃描腳本等已移入 `legacy/` 封存資料夾。

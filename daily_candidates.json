@@ -1,0 +1,325 @@
+{
+  "updated_at": "2026-03-16 22:59:17",
+  "mode": "POST",
+  "market": {
+    "tw_index": {
+      "price": "33343",
+      "chg": "-58",
+      "pct": "-0.17",
+      "turnover": "7527億"
+    },
+    "us_indices": {
+      "S&P500": {
+        "price": "6702.20",
+        "chg": "+29.58",
+        "pct": "+0.44"
+      },
+      "道瓊": {
+        "price": "47003.27",
+        "chg": "+325.42",
+        "pct": "+0.70"
+      },
+      "那斯達克": {
+        "price": "22369.15",
+        "chg": "+57.17",
+        "pct": "+0.26"
+      },
+      "費半": {
+        "price": "7819.17",
+        "chg": "+176.00",
+        "pct": "+2.30"
+      },
+      "VIX": {
+        "price": "24.53",
+        "chg": "-2.66",
+        "pct": "-9.78"
+      }
+    },
+    "forex": {
+      "rate": "31.980",
+      "chg": "+0.084"
+    },
+    "institutional": {
+      "foreign": "N/A",
+      "trust": "N/A",
+      "dealer": "N/A",
+      "total": "N/A",
+      "raw": []
+    },
+    "margin": {
+      "margin_buy": "N/A",
+      "short_sell": "N/A"
+    }
+  },
+  "tw_candidates": [
+    {
+      "code": "2451",
+      "name": "創見",
+      "theme": "記憶體",
+      "symbol": "2451.TW",
+      "score": 100,
+      "price": 259.5,
+      "pct_1d": 9.96,
+      "pct_5d": 22.12,
+      "rsi": 65.04,
+      "vol_ratio": 1.99,
+      "news_hits": 0,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "均線結構偏多",
+        "近 5 日動能轉強"
+      ],
+      "rank": 1
+    },
+    {
+      "code": "1303",
+      "name": "南亞",
+      "theme": "塑化",
+      "symbol": "1303.TW",
+      "score": 100,
+      "price": 89.2,
+      "pct_1d": 6.83,
+      "pct_5d": 20.38,
+      "rsi": 58.6,
+      "vol_ratio": 1.54,
+      "news_hits": 0,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "均線結構偏多",
+        "近 5 日動能轉強"
+      ],
+      "rank": 2
+    },
+    {
+      "code": "2603",
+      "name": "長榮",
+      "theme": "航運",
+      "symbol": "2603.TW",
+      "score": 100,
+      "price": 218.5,
+      "pct_1d": 5.3,
+      "pct_5d": 3.8,
+      "rsi": 68.0,
+      "vol_ratio": 1.74,
+      "news_hits": 0,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "均線結構偏多",
+        "近 5 日動能轉強"
+      ],
+      "rank": 3
+    },
+    {
+      "code": "3037",
+      "name": "欣興",
+      "theme": "PCB/ABF",
+      "symbol": "3037.TW",
+      "score": 88,
+      "price": 549.0,
+      "pct_1d": 8.07,
+      "pct_5d": 41.13,
+      "rsi": 71.05,
+      "vol_ratio": 0.41,
+      "news_hits": 0,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "均線結構偏多",
+        "近 5 日動能轉強"
+      ],
+      "rank": 4
+    },
+    {
+      "code": "6531",
+      "name": "愛普*",
+      "theme": "記憶體",
+      "symbol": "6531.TW",
+      "score": 82,
+      "price": 528.0,
+      "pct_1d": -0.56,
+      "pct_5d": 31.02,
+      "rsi": 68.87,
+      "vol_ratio": 2.23,
+      "news_hits": 0,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "近 5 日動能轉強",
+        "RSI 位於健康強勢區"
+      ],
+      "rank": 5
+    },
+    {
+      "code": "3596",
+      "name": "智易",
+      "theme": "網通",
+      "symbol": "3596.TW",
+      "score": 82,
+      "price": 208.5,
+      "pct_1d": -0.71,
+      "pct_5d": 5.84,
+      "rsi": 66.33,
+      "vol_ratio": 1.24,
+      "news_hits": 0,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "均線結構偏多",
+        "近 5 日動能轉強"
+      ],
+      "rank": 6
+    },
+    {
+      "code": "2308",
+      "name": "台達電",
+      "theme": "電源/散熱",
+      "symbol": "2308.TW",
+      "score": 82,
+      "price": 1360.0,
+      "pct_1d": -1.81,
+      "pct_5d": 11.48,
+      "rsi": 56.58,
+      "vol_ratio": 0.48,
+      "news_hits": 0,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "均線結構偏多",
+        "近 5 日動能轉強"
+      ],
+      "rank": 7
+    },
+    {
+      "code": "3017",
+      "name": "奇鋐",
+      "theme": "電源/散熱",
+      "symbol": "3017.TW",
+      "score": 82,
+      "price": 1830.0,
+      "pct_1d": -1.88,
+      "pct_5d": 9.91,
+      "rsi": 60.93,
+      "vol_ratio": 0.76,
+      "news_hits": 0,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "均線結構偏多",
+        "近 5 日動能轉強"
+      ],
+      "rank": 8
+    }
+  ],
+  "theme_summary": [
+    {
+      "theme": "AI伺服器",
+      "score": 370.1,
+      "leaders": [
+        "2382 廣達",
+        "2376 技嘉",
+        "2357 華碩"
+      ]
+    },
+    {
+      "theme": "記憶體",
+      "score": 349.9,
+      "leaders": [
+        "2451 創見",
+        "6531 愛普*",
+        "2408 南亞科"
+      ]
+    },
+    {
+      "theme": "金融",
+      "score": 306.1,
+      "leaders": [
+        "2885 元大金",
+        "2891 中信金",
+        "2884 玉山金"
+      ]
+    }
+  ],
+  "us_context": [
+    {
+      "symbol": "MU",
+      "name": "MU",
+      "score": 58,
+      "price": 446.98,
+      "pct_1d": 4.89,
+      "pct_5d": 14.81,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "近 5 日偏強"
+      ]
+    },
+    {
+      "symbol": "SOXX",
+      "name": "SOXX",
+      "score": 32,
+      "price": 338.93,
+      "pct_1d": 2.3,
+      "pct_5d": 0.76,
+      "reasons": [
+        "站上 MA60"
+      ]
+    },
+    {
+      "symbol": "TSM",
+      "name": "TSM",
+      "score": 32,
+      "price": 341.8,
+      "pct_1d": 1.03,
+      "pct_5d": -1.98,
+      "reasons": [
+        "站上 MA60"
+      ]
+    },
+    {
+      "symbol": "META",
+      "name": "META",
+      "score": 20,
+      "price": 629.18,
+      "pct_1d": 2.52,
+      "pct_5d": -2.81,
+      "reasons": []
+    },
+    {
+      "symbol": "AMD",
+      "name": "AMD",
+      "score": 20,
+      "price": 198.24,
+      "pct_1d": 2.51,
+      "pct_5d": -2.19,
+      "reasons": []
+    },
+    {
+      "symbol": "TSLA",
+      "name": "TSLA",
+      "score": 20,
+      "price": 400.76,
+      "pct_1d": 2.44,
+      "pct_5d": 0.52,
+      "reasons": []
+    }
+  ],
+  "news_summary": {
+    "tw_top_titles": [
+      "盤中速報 - 位速(3508)急拉3.17%報38.95元，成交1,659張 - news.cnyes.com",
+      "〈房產〉全台預售屋交易連4個月力守單月3000件 房仲：仍在緩步築底 - news.cnyes.com",
+      "AI動能強！國泰台大上修2026台灣GDP成長至5.8% 估Q2經濟氣候轉「陰」 - news.cnyes.com",
+      "伊朗否認要和川普談停火 持續封鎖荷姆茲海峽 - news.cnyes.com",
+      "封裝需求爆  傳應材、科林有意收購貝思半導體"
+    ],
+    "us_top_titles": [
+      "Stocks making the biggest moves premarket: Micron Technology, Nebius Group, Dollar Tree & more",
+      "China talks up oil sufficiency as Trump seeks Beijing's help on securing Hormuz energy route",
+      "Holiday spending, export demand drive China’s economic momentum as Iran war headwinds loom",
+      "OpenClaw breathes new life into this Chinese tech stock ahead of earnings",
+      "Bitcoin beat the S&P 500, Nasdaq Composite and gold since the start of the Iran war"
+    ]
+  }
+}
