@@ -1,43 +1,43 @@
 {
-  "updated_at": "2026-03-19 07:55:45",
+  "updated_at": "2026-03-20 07:55:18",
   "mode": "POST",
   "market": {
     "tw_index": {
-      "price": "33690",
-      "chg": "-659",
-      "pct": "-1.92",
-      "turnover": "9241億"
+      "price": "33544",
+      "chg": "-146",
+      "pct": "-0.43",
+      "turnover": "8939億"
     },
     "us_indices": {
       "S&P500": {
-        "price": "6624.70",
-        "chg": "-74.68",
-        "pct": "-1.11"
+        "price": "6606.49",
+        "chg": "-109.60",
+        "pct": "-1.63"
       },
       "道瓊": {
-        "price": "46225.15",
-        "chg": "-721.26",
-        "pct": "-1.54"
+        "price": "46021.43",
+        "chg": "-971.83",
+        "pct": "-2.07"
       },
       "那斯達克": {
-        "price": "22152.42",
-        "chg": "-221.76",
-        "pct": "-0.99"
+        "price": "22090.69",
+        "chg": "-388.84",
+        "pct": "-1.73"
       },
       "費半": {
-        "price": "7795.13",
-        "chg": "-1.11",
-        "pct": "-0.01"
+        "price": "7863.30",
+        "chg": "+26.47",
+        "pct": "+0.34"
       },
       "VIX": {
-        "price": "25.57",
-        "chg": "+0.48",
-        "pct": "+1.91"
+        "price": "23.89",
+        "chg": "-0.17",
+        "pct": "-0.71"
       }
     },
     "forex": {
-      "rate": "31.962",
-      "chg": "+0.077"
+      "rate": "31.895",
+      "chg": "-0.136"
     },
     "institutional": {
       "foreign": "N/A",
@@ -53,16 +53,16 @@
   },
   "tw_candidates": [
     {
-      "code": "3017",
-      "name": "奇鋐",
-      "theme": "電源/散熱",
-      "symbol": "3017.TW",
+      "code": "3023",
+      "name": "信邦",
+      "theme": "工業連接",
+      "symbol": "3023.TW",
       "score": 100,
-      "price": 2015.0,
-      "pct_1d": 8.92,
-      "pct_5d": 7.47,
-      "rsi": 67.71,
-      "vol_ratio": 1.77,
+      "price": 270.0,
+      "pct_1d": 9.98,
+      "pct_5d": 9.53,
+      "rsi": 68.87,
+      "vol_ratio": 2.33,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -73,17 +73,17 @@
       "rank": 1
     },
     {
-      "code": "3443",
-      "name": "創意",
-      "theme": "IC設計",
-      "symbol": "3443.TW",
+      "code": "2451",
+      "name": "創見",
+      "theme": "記憶體",
+      "symbol": "2451.TW",
       "score": 100,
-      "price": 2610.0,
-      "pct_1d": 3.78,
-      "pct_5d": 13.97,
-      "rsi": 57.82,
-      "vol_ratio": 2.02,
-      "news_hits": 0,
+      "price": 302.0,
+      "pct_1d": -2.27,
+      "pct_5d": 27.97,
+      "rsi": 70.72,
+      "vol_ratio": 2.47,
+      "news_hits": 1,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -93,17 +93,17 @@
       "rank": 2
     },
     {
-      "code": "2451",
-      "name": "創見",
-      "theme": "記憶體",
-      "symbol": "2451.TW",
-      "score": 100,
-      "price": 309.0,
-      "pct_1d": -1.44,
-      "pct_5d": 37.03,
-      "rsi": 74.21,
-      "vol_ratio": 2.4,
-      "news_hits": 1,
+      "code": "6187",
+      "name": "萬潤",
+      "theme": "半導體設備",
+      "symbol": "6187.TWO",
+      "score": 90,
+      "price": 819.0,
+      "pct_1d": 9.93,
+      "pct_5d": 19.74,
+      "rsi": 77.91,
+      "vol_ratio": 1.98,
+      "news_hits": 0,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -113,17 +113,17 @@
       "rank": 3
     },
     {
-      "code": "6187",
-      "name": "萬潤",
-      "theme": "半導體設備",
-      "symbol": "6187.TWO",
+      "code": "6531",
+      "name": "愛普*",
+      "theme": "記憶體",
+      "symbol": "6531.TW",
       "score": 88,
-      "price": 745.0,
-      "pct_1d": 6.43,
-      "pct_5d": 19.39,
-      "rsi": 73.76,
-      "vol_ratio": 0.53,
-      "news_hits": 0,
+      "price": 553.0,
+      "pct_1d": 0.36,
+      "pct_5d": 4.14,
+      "rsi": 66.99,
+      "vol_ratio": 1.19,
+      "news_hits": 1,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -133,16 +133,16 @@
       "rank": 4
     },
     {
-      "code": "6531",
-      "name": "愛普*",
-      "theme": "記憶體",
-      "symbol": "6531.TW",
+      "code": "2603",
+      "name": "長榮",
+      "theme": "航運",
+      "symbol": "2603.TW",
       "score": 88,
-      "price": 551.0,
-      "pct_1d": -3.67,
-      "pct_5d": 13.49,
-      "rsi": 66.72,
-      "vol_ratio": 1.31,
+      "price": 214.0,
+      "pct_1d": -1.61,
+      "pct_5d": 3.13,
+      "rsi": 61.05,
+      "vol_ratio": 0.92,
       "news_hits": 1,
       "reasons": [
         "站上 MA20",
@@ -153,36 +153,36 @@
       "rank": 5
     },
     {
-      "code": "3037",
-      "name": "欣興",
-      "theme": "PCB/ABF",
-      "symbol": "3037.TW",
+      "code": "3034",
+      "name": "聯詠",
+      "theme": "IC設計",
+      "symbol": "3034.TW",
       "score": 82,
-      "price": 581.0,
-      "pct_1d": 0.17,
-      "pct_5d": 21.04,
-      "rsi": 73.15,
-      "vol_ratio": 0.25,
+      "price": 385.0,
+      "pct_1d": 3.08,
+      "pct_5d": -0.77,
+      "rsi": 52.92,
+      "vol_ratio": 4.41,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
         "均線結構偏多",
-        "近 5 日動能轉強"
+        "量能放大"
       ],
       "rank": 6
     },
     {
-      "code": "2603",
-      "name": "長榮",
-      "theme": "航運",
-      "symbol": "2603.TW",
+      "code": "6415",
+      "name": "矽力*-KY",
+      "theme": "IC設計",
+      "symbol": "6415.TW",
       "score": 82,
-      "price": 217.5,
-      "pct_1d": -0.23,
-      "pct_5d": 2.84,
-      "rsi": 66.5,
-      "vol_ratio": 0.56,
+      "price": 286.0,
+      "pct_1d": 1.96,
+      "pct_5d": 2.14,
+      "rsi": 57.08,
+      "vol_ratio": 1.49,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -193,16 +193,16 @@
       "rank": 7
     },
     {
-      "code": "2345",
-      "name": "智邦",
-      "theme": "網通",
-      "symbol": "2345.TW",
+      "code": "3017",
+      "name": "奇鋐",
+      "theme": "電源/散熱",
+      "symbol": "3017.TW",
       "score": 82,
-      "price": 1590.0,
-      "pct_1d": -0.62,
-      "pct_5d": 5.65,
-      "rsi": 64.18,
-      "vol_ratio": 1.31,
+      "price": 2050.0,
+      "pct_1d": 1.74,
+      "pct_5d": 9.92,
+      "rsi": 69.06,
+      "vol_ratio": 1.18,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -216,16 +216,16 @@
   "theme_summary": [
     {
       "theme": "IC設計",
-      "score": 377.2,
+      "score": 494.0,
       "leaders": [
-        "3443 創意",
+        "3034 聯詠",
         "6415 矽力*-KY",
-        "2454 聯發科"
+        "3443 創意"
       ]
     },
     {
       "theme": "記憶體",
-      "score": 315.3,
+      "score": 280.2,
       "leaders": [
         "2451 創見",
         "6531 愛普*",
@@ -234,7 +234,7 @@
     },
     {
       "theme": "AI伺服器",
-      "score": 252.8,
+      "score": 279.1,
       "leaders": [
         "2357 華碩",
         "2376 技嘉",
@@ -247,9 +247,9 @@
       "symbol": "MU",
       "name": "MU",
       "score": 62,
-      "price": 461.73,
-      "pct_1d": 0.01,
-      "pct_5d": 10.28,
+      "price": 444.27,
+      "pct_1d": -3.78,
+      "pct_5d": 9.6,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -257,71 +257,74 @@
       ]
     },
     {
+      "symbol": "AMD",
+      "name": "AMD",
+      "score": 42,
+      "price": 205.27,
+      "pct_1d": 2.91,
+      "pct_5d": 3.81,
+      "reasons": [
+        "站上 MA20",
+        "近 5 日偏強"
+      ]
+    },
+    {
       "symbol": "SOXX",
       "name": "SOXX",
-      "score": 32,
-      "price": 338.29,
-      "pct_1d": -0.58,
-      "pct_5d": -1.11,
+      "score": 42,
+      "price": 340.2,
+      "pct_1d": 0.56,
+      "pct_5d": 3.03,
       "reasons": [
-        "站上 MA60"
+        "站上 MA60",
+        "近 5 日偏強"
       ]
     },
     {
       "symbol": "GOOGL",
       "name": "GOOGL",
-      "score": 32,
-      "price": 307.69,
-      "pct_1d": -1.04,
-      "pct_5d": -0.33,
+      "score": 42,
+      "price": 307.13,
+      "pct_1d": -0.18,
+      "pct_5d": 1.18,
       "reasons": [
-        "站上 MA20"
+        "站上 MA20",
+        "近 5 日偏強"
       ]
     },
     {
-      "symbol": "TSM",
-      "name": "TSM",
-      "score": 32,
-      "price": 339.57,
-      "pct_1d": -1.85,
-      "pct_5d": -4.23,
-      "reasons": [
-        "站上 MA60"
-      ]
-    },
-    {
-      "symbol": "AMD",
-      "name": "AMD",
+      "symbol": "AVGO",
+      "name": "AVGO",
       "score": 20,
-      "price": 199.46,
-      "pct_1d": 1.6,
-      "pct_5d": -2.62,
+      "price": 319.84,
+      "pct_1d": 1.24,
+      "pct_5d": -4.8,
       "reasons": []
     },
     {
-      "symbol": "NVDA",
-      "name": "NVDA",
+      "symbol": "IWM",
+      "name": "IWM",
       "score": 20,
-      "price": 180.4,
-      "pct_1d": -0.84,
-      "pct_5d": -3.03,
+      "price": 247.63,
+      "pct_1d": 0.65,
+      "pct_5d": 0.09,
       "reasons": []
     }
   ],
   "news_summary": {
     "tw_top_titles": [
-      "美2月PPI升幅超預期 Fed今年可能只降息一次 | 鉅亨網 - 美股雷達 - news.cnyes.com",
-      "一文掌握Fed重點決策：高度「不確定性」、通膨進展遜預期、鮑爾未來動向 - news.cnyes.com",
-      "盤中速報 - 百一(6152)急拉3.03%報20.4元，成交5,362張 - news.cnyes.com",
-      "盤中速報 - 力積電(6770)大漲7.23%，報77.1元 - news.cnyes.com",
-      "散戶靠「跟單」裴洛西 兩年賺150%、投資組合衝破百萬美元 - news.cnyes.com"
+      "鉅亨速報 - Factset 最新調查：玉山金(2884-TW)EPS預估下修至2.28元，預估目標價為36.15元 - news.cnyes.com",
+      "外匯速報 - 紐元/美元(NZDUSD) 大漲0.78%，報0.5839元 - news.cnyes.com",
+      "美債示警？新債王：Fed 下一個動作可能是升息",
+      "關注政策而非政治，庫克：我不是政治性很強的人",
+      "AI 願景沒有打動投資人？阿里巴巴與騰訊市值蒸發 660 億美元"
     ],
     "us_top_titles": [
+      "Stocks making the biggest moves after the bell: FedEx, Firefly Aerospace, Planet Labs & more",
+      "Copper joins gold in broad commodities sell-off. There's a worrying reason behind it",
+      "OpenClaw demand in China is driving up the price of used MacBooks",
       "Here are the five key takeaways from this week's Fed meeting",
-      "Fed still expects to cut rates once this year despite spiking oil prices",
-      "Here's what changed in the new Fed statement",
-      "Fed votes to hold rates steady, notes 'uncertain' impacts from Iran war",
-      "Stocks making the biggest moves midday: Williams-Sonoma, Micron, Macy's, SL Green & more"
+      "Fed still expects to cut rates once this year despite spiking oil prices"
     ]
   }
 }
