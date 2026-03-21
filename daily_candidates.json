@@ -1,43 +1,43 @@
 {
-  "updated_at": "2026-03-20 07:55:18",
+  "updated_at": "2026-03-21 07:46:54",
   "mode": "POST",
   "market": {
     "tw_index": {
       "price": "33544",
       "chg": "-146",
       "pct": "-0.43",
-      "turnover": "8939億"
+      "turnover": "10042億"
     },
     "us_indices": {
       "S&P500": {
-        "price": "6606.49",
-        "chg": "-109.60",
-        "pct": "-1.63"
+        "price": "6506.48",
+        "chg": "-118.22",
+        "pct": "-1.78"
       },
       "道瓊": {
-        "price": "46021.43",
-        "chg": "-971.83",
-        "pct": "-2.07"
+        "price": "45577.47",
+        "chg": "-647.68",
+        "pct": "-1.40"
       },
       "那斯達克": {
-        "price": "22090.69",
-        "chg": "-388.84",
-        "pct": "-1.73"
+        "price": "21647.61",
+        "chg": "-504.81",
+        "pct": "-2.28"
       },
       "費半": {
-        "price": "7863.30",
-        "chg": "+26.47",
-        "pct": "+0.34"
+        "price": "7670.61",
+        "chg": "-124.52",
+        "pct": "-1.60"
       },
       "VIX": {
-        "price": "23.89",
-        "chg": "-0.17",
-        "pct": "-0.71"
+        "price": "26.78",
+        "chg": "+2.72",
+        "pct": "+11.31"
       }
     },
     "forex": {
-      "rate": "31.895",
-      "chg": "-0.136"
+      "rate": "32.014",
+      "chg": "-0.017"
     },
     "institutional": {
       "foreign": "N/A",
@@ -77,13 +77,13 @@
       "name": "創見",
       "theme": "記憶體",
       "symbol": "2451.TW",
-      "score": 100,
+      "score": 94,
       "price": 302.0,
       "pct_1d": -2.27,
       "pct_5d": 27.97,
       "rsi": 70.72,
       "vol_ratio": 2.47,
-      "news_hits": 1,
+      "news_hits": 0,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -113,46 +113,6 @@
       "rank": 3
     },
     {
-      "code": "6531",
-      "name": "愛普*",
-      "theme": "記憶體",
-      "symbol": "6531.TW",
-      "score": 88,
-      "price": 553.0,
-      "pct_1d": 0.36,
-      "pct_5d": 4.14,
-      "rsi": 66.99,
-      "vol_ratio": 1.19,
-      "news_hits": 1,
-      "reasons": [
-        "站上 MA20",
-        "站上 MA60",
-        "均線結構偏多",
-        "近 5 日動能轉強"
-      ],
-      "rank": 4
-    },
-    {
-      "code": "2603",
-      "name": "長榮",
-      "theme": "航運",
-      "symbol": "2603.TW",
-      "score": 88,
-      "price": 214.0,
-      "pct_1d": -1.61,
-      "pct_5d": 3.13,
-      "rsi": 61.05,
-      "vol_ratio": 0.92,
-      "news_hits": 1,
-      "reasons": [
-        "站上 MA20",
-        "站上 MA60",
-        "均線結構偏多",
-        "近 5 日動能轉強"
-      ],
-      "rank": 5
-    },
-    {
       "code": "3034",
       "name": "聯詠",
       "theme": "IC設計",
@@ -170,7 +130,7 @@
         "均線結構偏多",
         "量能放大"
       ],
-      "rank": 6
+      "rank": 4
     },
     {
       "code": "6415",
@@ -190,7 +150,7 @@
         "均線結構偏多",
         "近 5 日動能轉強"
       ],
-      "rank": 7
+      "rank": 5
     },
     {
       "code": "3017",
@@ -210,13 +170,53 @@
         "均線結構偏多",
         "近 5 日動能轉強"
       ],
+      "rank": 6
+    },
+    {
+      "code": "2308",
+      "name": "台達電",
+      "theme": "電源/散熱",
+      "symbol": "2308.TW",
+      "score": 82,
+      "price": 1475.0,
+      "pct_1d": 1.37,
+      "pct_5d": 6.5,
+      "rsi": 63.56,
+      "vol_ratio": 1.18,
+      "news_hits": 0,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "均線結構偏多",
+        "近 5 日動能轉強"
+      ],
+      "rank": 7
+    },
+    {
+      "code": "3443",
+      "name": "創意",
+      "theme": "IC設計",
+      "symbol": "3443.TW",
+      "score": 82,
+      "price": 2645.0,
+      "pct_1d": 1.34,
+      "pct_5d": 15.75,
+      "rsi": 59.0,
+      "vol_ratio": 1.46,
+      "news_hits": 0,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "均線結構偏多",
+        "近 5 日動能轉強"
+      ],
       "rank": 8
     }
   ],
   "theme_summary": [
     {
       "theme": "IC設計",
-      "score": 494.0,
+      "score": 504.0,
       "leaders": [
         "3034 聯詠",
         "6415 矽力*-KY",
@@ -224,12 +224,12 @@
       ]
     },
     {
-      "theme": "記憶體",
-      "score": 280.2,
+      "theme": "金融",
+      "score": 315.7,
       "leaders": [
-        "2451 創見",
-        "6531 愛普*",
-        "2408 南亞科"
+        "2885 元大金",
+        "2891 中信金",
+        "2884 玉山金"
       ]
     },
     {
@@ -246,85 +246,87 @@
     {
       "symbol": "MU",
       "name": "MU",
-      "score": 62,
-      "price": 444.27,
-      "pct_1d": -3.78,
-      "pct_5d": 9.6,
+      "score": 52,
+      "price": 422.9,
+      "pct_1d": -4.81,
+      "pct_5d": -0.76,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
-        "近 5 日偏強"
+        "量能放大"
       ]
     },
     {
       "symbol": "AMD",
       "name": "AMD",
       "score": 42,
-      "price": 205.27,
-      "pct_1d": 2.91,
-      "pct_5d": 3.81,
+      "price": 201.33,
+      "pct_1d": -1.92,
+      "pct_5d": 4.11,
       "reasons": [
         "站上 MA20",
         "近 5 日偏強"
       ]
     },
     {
-      "symbol": "SOXX",
-      "name": "SOXX",
-      "score": 42,
-      "price": 340.2,
-      "pct_1d": 0.56,
-      "pct_5d": 3.03,
+      "symbol": "AAPL",
+      "name": "AAPL",
+      "score": 28,
+      "price": 247.99,
+      "pct_1d": -0.39,
+      "pct_5d": -0.85,
       "reasons": [
-        "站上 MA60",
-        "近 5 日偏強"
+        "量能放大"
       ]
     },
     {
-      "symbol": "GOOGL",
-      "name": "GOOGL",
-      "score": 42,
-      "price": 307.13,
-      "pct_1d": -0.18,
-      "pct_5d": 1.18,
+      "symbol": "DIA",
+      "name": "DIA",
+      "score": 28,
+      "price": 455.89,
+      "pct_1d": -1.12,
+      "pct_5d": -2.26,
       "reasons": [
-        "站上 MA20",
-        "近 5 日偏強"
+        "量能放大"
       ]
     },
     {
-      "symbol": "AVGO",
-      "name": "AVGO",
-      "score": 20,
-      "price": 319.84,
-      "pct_1d": 1.24,
-      "pct_5d": -4.8,
-      "reasons": []
+      "symbol": "SPY",
+      "name": "SPY",
+      "score": 28,
+      "price": 648.57,
+      "pct_1d": -1.7,
+      "pct_5d": -2.07,
+      "reasons": [
+        "量能放大"
+      ]
     },
     {
-      "symbol": "IWM",
-      "name": "IWM",
-      "score": 20,
-      "price": 247.63,
-      "pct_1d": 0.65,
-      "pct_5d": 0.09,
-      "reasons": []
+      "symbol": "MSFT",
+      "name": "MSFT",
+      "score": 28,
+      "price": 381.87,
+      "pct_1d": -1.84,
+      "pct_5d": -3.46,
+      "reasons": [
+        "量能放大"
+      ]
     }
   ],
   "news_summary": {
     "tw_top_titles": [
-      "鉅亨速報 - Factset 最新調查：玉山金(2884-TW)EPS預估下修至2.28元，預估目標價為36.15元 - news.cnyes.com",
-      "外匯速報 - 紐元/美元(NZDUSD) 大漲0.78%，報0.5839元 - news.cnyes.com",
-      "美債示警？新債王：Fed 下一個動作可能是升息",
-      "關注政策而非政治，庫克：我不是政治性很強的人",
-      "AI 願景沒有打動投資人？阿里巴巴與騰訊市值蒸發 660 億美元"
+      "渣打報告：推動全球「循環經濟」還差6.5兆美元！肯定台灣企業靠3本柱淨零轉型 - news.cnyes.com",
+      "川普：接近達成對伊朗五大戰略目標 考慮「逐步縮減」軍事行動 - news.cnyes.com",
+      "美以開戰但無辜國家卻承擔經濟陣痛 專家：能源戰背景下 連美國都難免疫 - news.cnyes.com",
+      "〈貴金屬盤後〉黃金連八黑、單周重挫近10% 美國增兵中東傳言讓市場更焦慮升息 - news.cnyes.com",
+      "全球能源命脈受阻 南韓加入七國聲明 譴責伊朗封鎖荷姆茲海峽 - news.cnyes.com"
     ],
     "us_top_titles": [
+      "Small cap-focused Russell 2000 becomes first U.S. benchmark to enter correction territory",
+      "Stocks making the biggest moves midday: SolarEdge Technologies, Super Micro Computer, FedEx & more",
+      "Fed Governor Waller urges caution for now, says rate cuts possible later in the year",
       "Stocks making the biggest moves after the bell: FedEx, Firefly Aerospace, Planet Labs & more",
-      "Copper joins gold in broad commodities sell-off. There's a worrying reason behind it",
-      "OpenClaw demand in China is driving up the price of used MacBooks",
-      "Here are the five key takeaways from this week's Fed meeting",
-      "Fed still expects to cut rates once this year despite spiking oil prices"
+      "Copper joins gold in broad commodities sell-off. There's a worrying reason behind it"
     ]
   }
 }
