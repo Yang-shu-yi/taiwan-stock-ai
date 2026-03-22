@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-21 07:46:54",
+  "updated_at": "2026-03-22 07:50:57",
   "mode": "POST",
   "market": {
     "tw_index": {
@@ -216,7 +216,7 @@
   "theme_summary": [
     {
       "theme": "IC設計",
-      "score": 504.0,
+      "score": 494.0,
       "leaders": [
         "3034 聯詠",
         "6415 矽力*-KY",
@@ -234,7 +234,7 @@
     },
     {
       "theme": "AI伺服器",
-      "score": 279.1,
+      "score": 269.1,
       "leaders": [
         "2357 華碩",
         "2376 技嘉",
@@ -315,18 +315,18 @@
   ],
   "news_summary": {
     "tw_top_titles": [
-      "渣打報告：推動全球「循環經濟」還差6.5兆美元！肯定台灣企業靠3本柱淨零轉型 - news.cnyes.com",
-      "川普：接近達成對伊朗五大戰略目標 考慮「逐步縮減」軍事行動 - news.cnyes.com",
-      "美以開戰但無辜國家卻承擔經濟陣痛 專家：能源戰背景下 連美國都難免疫 - news.cnyes.com",
-      "〈貴金屬盤後〉黃金連八黑、單周重挫近10% 美國增兵中東傳言讓市場更焦慮升息 - news.cnyes.com",
-      "全球能源命脈受阻 南韓加入七國聲明 譴責伊朗封鎖荷姆茲海峽 - news.cnyes.com"
+      "英債如「自由落體」崩跌！10年期殖利率破5% 財政惡化引發拋售潮 - news.cnyes.com",
+      "巴菲特買進石油巨頭800萬股 油價逼近100美元證明「股神」押對 - news.cnyes.com",
+      "美國、日本貿易協議推動核能發展！這「三家公司」將受益 - news.cnyes.com",
+      "杜拜原油狂漲近倍、中油含淚貼34億也擋不住 23日起汽柴油各調升1.8元及1.4元 - news.cnyes.com",
+      "日本船將可通過荷姆茲海峽？南韓官員：正與伊朗協商通行權 - news.cnyes.com"
     ],
     "us_top_titles": [
+      "SEC Commissioner Hester Peirce on ETFs: 'We want to work with people on new products'",
       "Small cap-focused Russell 2000 becomes first U.S. benchmark to enter correction territory",
       "Stocks making the biggest moves midday: SolarEdge Technologies, Super Micro Computer, FedEx & more",
       "Fed Governor Waller urges caution for now, says rate cuts possible later in the year",
-      "Stocks making the biggest moves after the bell: FedEx, Firefly Aerospace, Planet Labs & more",
-      "Copper joins gold in broad commodities sell-off. There's a worrying reason behind it"
+      "Stocks making the biggest moves after the bell: FedEx, Firefly Aerospace, Planet Labs & more"
     ]
   }
 }
