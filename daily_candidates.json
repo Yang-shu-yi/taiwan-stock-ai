@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-03-29 07:58:52",
+  "updated_at": "2026-03-30 08:49:45",
   "mode": "POST",
   "market": {
     "tw_index": {
-      "price": "33113",
-      "chg": "-225",
-      "pct": "-0.68",
-      "turnover": "6583億"
+      "price": "32518",
+      "chg": "-594",
+      "pct": "-1.80",
+      "turnover": "6764億"
     },
     "us_indices": {
       "S&P500": {
@@ -30,14 +30,14 @@
         "pct": "-6.40"
       },
       "VIX": {
-        "price": "31.05",
-        "chg": "+3.61",
-        "pct": "+13.16"
+        "price": "30.64",
+        "chg": "-0.41",
+        "pct": "-1.32"
       }
     },
     "forex": {
-      "rate": "32.020",
-      "chg": "+0.084"
+      "rate": "32.017",
+      "chg": "+0.087"
     },
     "institutional": {
       "foreign": "N/A",
@@ -53,16 +53,16 @@
   },
   "tw_candidates": [
     {
-      "code": "3034",
-      "name": "聯詠",
-      "theme": "IC設計",
-      "symbol": "3034.TW",
-      "score": 94,
-      "price": 399.0,
-      "pct_1d": 1.79,
-      "pct_5d": 3.64,
-      "rsi": 60.45,
-      "vol_ratio": 2.12,
+      "code": "2049",
+      "name": "上銀",
+      "theme": "自動化",
+      "symbol": "2049.TW",
+      "score": 88,
+      "price": 247.0,
+      "pct_1d": 5.11,
+      "pct_5d": 11.76,
+      "rsi": 59.18,
+      "vol_ratio": 1.3,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -73,56 +73,56 @@
       "rank": 1
     },
     {
-      "code": "3023",
-      "name": "信邦",
-      "theme": "工業連接",
-      "symbol": "3023.TW",
-      "score": 92,
-      "price": 263.5,
-      "pct_1d": 6.68,
-      "pct_5d": -2.41,
-      "rsi": 59.44,
-      "vol_ratio": 1.72,
-      "news_hits": 0,
+      "code": "1303",
+      "name": "南亞",
+      "theme": "塑化",
+      "symbol": "1303.TW",
+      "score": 84,
+      "price": 81.4,
+      "pct_1d": 9.7,
+      "pct_5d": 10.3,
+      "rsi": 52.61,
+      "vol_ratio": 1.49,
+      "news_hits": 1,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
         "均線結構偏多",
-        "RSI 位於健康強勢區"
+        "近 5 日動能轉強"
       ],
       "rank": 2
     },
     {
-      "code": "6531",
-      "name": "愛普*",
-      "theme": "記憶體",
-      "symbol": "6531.TW",
-      "score": 86,
-      "price": 507.0,
-      "pct_1d": -0.39,
-      "pct_5d": -8.32,
-      "rsi": 55.02,
-      "vol_ratio": 0.64,
+      "code": "1301",
+      "name": "台塑",
+      "theme": "塑化",
+      "symbol": "1301.TW",
+      "score": 84,
+      "price": 48.25,
+      "pct_1d": 2.88,
+      "pct_5d": 7.82,
+      "rsi": 54.25,
+      "vol_ratio": 1.42,
       "news_hits": 2,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
         "均線結構偏多",
-        "RSI 位於健康強勢區"
+        "近 5 日動能轉強"
       ],
       "rank": 3
     },
     {
-      "code": "2308",
-      "name": "台達電",
-      "theme": "電源/散熱",
-      "symbol": "2308.TW",
+      "code": "3711",
+      "name": "日月光投控",
+      "theme": "半導體封測",
+      "symbol": "3711.TW",
       "score": 82,
-      "price": 1510.0,
-      "pct_1d": -0.33,
-      "pct_5d": 2.37,
-      "rsi": 61.8,
-      "vol_ratio": 0.82,
+      "price": 353.5,
+      "pct_1d": 0.0,
+      "pct_5d": 7.28,
+      "rsi": 55.28,
+      "vol_ratio": 0.79,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -133,16 +133,16 @@
       "rank": 4
     },
     {
-      "code": "6415",
-      "name": "矽力*-KY",
-      "theme": "IC設計",
-      "symbol": "6415.TW",
+      "code": "2345",
+      "name": "智邦",
+      "theme": "網通",
+      "symbol": "2345.TW",
       "score": 82,
-      "price": 293.0,
-      "pct_1d": -1.01,
-      "pct_5d": 2.45,
-      "rsi": 58.33,
-      "vol_ratio": 0.66,
+      "price": 1635.0,
+      "pct_1d": -1.21,
+      "pct_5d": 4.47,
+      "rsi": 61.69,
+      "vol_ratio": 0.76,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -153,16 +153,16 @@
       "rank": 5
     },
     {
-      "code": "2345",
-      "name": "智邦",
-      "theme": "網通",
-      "symbol": "2345.TW",
+      "code": "2308",
+      "name": "台達電",
+      "theme": "電源/散熱",
+      "symbol": "2308.TW",
       "score": 82,
-      "price": 1655.0,
-      "pct_1d": -1.19,
-      "pct_5d": 2.8,
-      "rsi": 63.56,
-      "vol_ratio": 0.85,
+      "price": 1485.0,
+      "pct_1d": -1.66,
+      "pct_5d": 5.32,
+      "rsi": 59.18,
+      "vol_ratio": 0.96,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -173,16 +173,16 @@
       "rank": 6
     },
     {
-      "code": "3711",
-      "name": "日月光投控",
-      "theme": "半導體封測",
-      "symbol": "3711.TW",
+      "code": "3034",
+      "name": "聯詠",
+      "theme": "IC設計",
+      "symbol": "3034.TW",
       "score": 82,
-      "price": 353.5,
-      "pct_1d": -1.53,
-      "pct_5d": 2.76,
-      "rsi": 55.28,
-      "vol_ratio": 0.84,
+      "price": 391.0,
+      "pct_1d": -2.01,
+      "pct_5d": 5.11,
+      "rsi": 55.13,
+      "vol_ratio": 1.45,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -198,11 +198,11 @@
       "theme": "電源/散熱",
       "symbol": "3017.TW",
       "score": 82,
-      "price": 2195.0,
-      "pct_1d": -3.52,
-      "pct_5d": 7.07,
-      "rsi": 67.18,
-      "vol_ratio": 0.9,
+      "price": 2135.0,
+      "pct_1d": -2.73,
+      "pct_5d": 7.02,
+      "rsi": 63.23,
+      "vol_ratio": 0.57,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -216,7 +216,7 @@
   "theme_summary": [
     {
       "theme": "IC設計",
-      "score": 375.4,
+      "score": 287.2,
       "leaders": [
         "3034 聯詠",
         "6415 矽力*-KY",
@@ -225,20 +225,19 @@
     },
     {
       "theme": "金融",
-      "score": 356.7,
+      "score": 254.3,
       "leaders": [
-        "2891 中信金",
         "2885 元大金",
+        "2891 中信金",
         "5880 合庫金"
       ]
     },
     {
-      "theme": "AI伺服器",
-      "score": 244.2,
+      "theme": "塑化",
+      "score": 224.1,
       "leaders": [
-        "2357 華碩",
-        "2382 廣達",
-        "2376 技嘉"
+        "1303 南亞",
+        "1301 台塑"
       ]
     }
   ],
@@ -257,7 +256,7 @@
     {
       "symbol": "META",
       "name": "META",
-      "score": 28,
+      "score": 32,
       "price": 525.72,
       "pct_1d": -3.99,
       "pct_5d": -11.44,
@@ -304,18 +303,18 @@
   ],
   "news_summary": {
     "tw_top_titles": [
-      "川普稱美軍仍有3,554個伊朗目標！後續行動將迅速完成、再次威脅古巴 - news.cnyes.com",
-      "華許接掌Fed時機尷尬！高油價、縮表與制度抗性成三大難關 - news.cnyes.com",
-      "左擁Token經濟學、右抱AI代理紅利 這5檔半導體ETF報酬愈沉愈香 - news.cnyes.com",
-      "荷姆茲海峽油輪通行 泰國與伊朗達成協議 - news.cnyes.com",
-      "馬斯克曾邀祖克柏聯手競標OpenAI智慧財產權！974億美元收購案揭密 - news.cnyes.com"
+      "鉅亨買幣速報 - 比特幣(BTC)24小時成交量超過6.08億美元，BETA(BETA)24小時漲幅達64% - news.cnyes.com",
+      "〈楊金龍立院備詢〉油價飆恐有2個大影響 央行不排除採緊縮貨幣政策 - news.cnyes.com",
+      "三度破產還能翻身？負債百萬到美金七位數，90後交易員「呂毅」的翻身秘密 - news.cnyes.com",
+      "〈楊金龍立院備詢〉台股回檔很正常 資金外流可控、黃金回檔仍不是買進時機 - news.cnyes.com",
+      "川普「襲擊」規律曝！德銀壓力指數現端睨、持倉過週末恐遭殃 - news.cnyes.com"
     ],
     "us_top_titles": [
+      "This Chinese gold play is attractive even as the metal sees big price swings, analysts say",
       "As stocks and bonds fall, and oil hits $100, a futures trade that boomed in 2022 may again be a winner",
       "This bargain fintech stock is stuck in a five-year rut. A turnaround is coming",
       "Stocks making the biggest moves premarket: AstraZeneca, Unity Software, Coinbase & more",
-      "Why one hedge fund veteran is urging investors to 'prepare for the worst'",
-      "Private credit's cracks open door for Wall Street banks' comeback: 'The tug of war is just starting'"
+      "Why one hedge fund veteran is urging investors to 'prepare for the worst'"
     ]
   }
 }
