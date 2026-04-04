@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-03 08:08:58",
+  "updated_at": "2026-04-04 07:55:49",
   "mode": "POST",
   "market": {
     "tw_index": {
@@ -36,8 +36,8 @@
       }
     },
     "forex": {
-      "rate": "31.923",
-      "chg": "-0.079"
+      "rate": "31.979",
+      "chg": "-0.023"
     },
     "institutional": {
       "foreign": "N/A",
@@ -77,13 +77,13 @@
       "name": "中信金",
       "theme": "金融",
       "symbol": "2891.TW",
-      "score": 88,
+      "score": 82,
       "price": 54.5,
       "pct_1d": 1.49,
       "pct_5d": 2.83,
       "rsi": 61.46,
       "vol_ratio": 1.24,
-      "news_hits": 1,
+      "news_hits": 0,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -113,26 +113,6 @@
       "rank": 3
     },
     {
-      "code": "2885",
-      "name": "元大金",
-      "theme": "金融",
-      "symbol": "2885.TW",
-      "score": 80,
-      "price": 45.85,
-      "pct_1d": -2.65,
-      "pct_5d": -0.43,
-      "rsi": 55.13,
-      "vol_ratio": 1.17,
-      "news_hits": 1,
-      "reasons": [
-        "站上 MA20",
-        "站上 MA60",
-        "均線結構偏多",
-        "RSI 位於健康強勢區"
-      ],
-      "rank": 4
-    },
-    {
       "code": "6187",
       "name": "萬潤",
       "theme": "半導體設備",
@@ -150,7 +130,7 @@
         "均線結構偏多",
         "RSI 位於健康強勢區"
       ],
-      "rank": 5
+      "rank": 4
     },
     {
       "code": "3711",
@@ -170,7 +150,7 @@
         "均線結構偏多",
         "RSI 位於健康強勢區"
       ],
-      "rank": 6
+      "rank": 5
     },
     {
       "code": "3017",
@@ -183,6 +163,26 @@
       "pct_5d": -9.01,
       "rsi": 57.44,
       "vol_ratio": 0.55,
+      "news_hits": 0,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "均線結構偏多",
+        "RSI 位於健康強勢區"
+      ],
+      "rank": 6
+    },
+    {
+      "code": "2885",
+      "name": "元大金",
+      "theme": "金融",
+      "symbol": "2885.TW",
+      "score": 74,
+      "price": 45.85,
+      "pct_1d": -2.65,
+      "pct_5d": -0.43,
+      "rsi": 55.13,
+      "vol_ratio": 1.17,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -216,7 +216,7 @@
   "theme_summary": [
     {
       "theme": "金融",
-      "score": 409.4,
+      "score": 329.4,
       "leaders": [
         "2891 中信金",
         "2885 元大金",
@@ -225,7 +225,7 @@
     },
     {
       "theme": "IC設計",
-      "score": 211.0,
+      "score": 281.0,
       "leaders": [
         "3034 聯詠",
         "6415 矽力*-KY",
@@ -319,11 +319,11 @@
   ],
   "news_summary": {
     "tw_top_titles": [
-      "盤中速報 - 本體鏈網大跌8.02%，報0.1096美元 - news.cnyes.com",
-      "比高油價更傷！專家示警：財富縮水與「CNN效應」恐重挫美國經濟 - news.cnyes.com",
-      "鉅亨速報 - Factset 最新調查：Wipro Ltd. - ADRWIT-US的目標價調降至2.43元，幅度約3.39% - news.cnyes.com",
-      "關稅解放日滿週年  消費者／產業受創、債務爆表",
-      "OpenAI 股票淪二級市場燙手山芋！投資人握大把鈔票轉投 Anthropic"
+      "營收速報 - 2026年4月4日台股大型公司3月營收一覽（新增1家） - news.cnyes.com",
+      "《時代雜誌》政治、經濟、選舉壓力高！川普已經開始為伊朗戰爭尋找出路 - news.cnyes.com",
+      "盤中速報 - Numeraire大跌10.04%，報7.17美元 - news.cnyes.com",
+      "頭條新聞 - news.cnyes.com",
+      "〈美股盤後〉現貨布蘭特原油飆至141美元 道瓊驚險拉回600點跌幅 收盤仍小跌 - news.cnyes.com"
     ],
     "us_top_titles": [
       "Blue Owl caps private credit funds redemptions at 5% after steep request levels",
