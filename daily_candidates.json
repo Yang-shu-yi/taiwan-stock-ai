@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-04 07:55:49",
+  "updated_at": "2026-04-05 08:01:57",
   "mode": "POST",
   "market": {
     "tw_index": {
@@ -77,13 +77,13 @@
       "name": "中信金",
       "theme": "金融",
       "symbol": "2891.TW",
-      "score": 82,
+      "score": 88,
       "price": 54.5,
       "pct_1d": 1.49,
       "pct_5d": 2.83,
       "rsi": 61.46,
       "vol_ratio": 1.24,
-      "news_hits": 0,
+      "news_hits": 1,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -113,6 +113,26 @@
       "rank": 3
     },
     {
+      "code": "2885",
+      "name": "元大金",
+      "theme": "金融",
+      "symbol": "2885.TW",
+      "score": 80,
+      "price": 45.85,
+      "pct_1d": -2.65,
+      "pct_5d": -0.43,
+      "rsi": 55.13,
+      "vol_ratio": 1.17,
+      "news_hits": 1,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "均線結構偏多",
+        "RSI 位於健康強勢區"
+      ],
+      "rank": 4
+    },
+    {
       "code": "6187",
       "name": "萬潤",
       "theme": "半導體設備",
@@ -130,7 +150,7 @@
         "均線結構偏多",
         "RSI 位於健康強勢區"
       ],
-      "rank": 4
+      "rank": 5
     },
     {
       "code": "3711",
@@ -150,7 +170,7 @@
         "均線結構偏多",
         "RSI 位於健康強勢區"
       ],
-      "rank": 5
+      "rank": 6
     },
     {
       "code": "3017",
@@ -163,26 +183,6 @@
       "pct_5d": -9.01,
       "rsi": 57.44,
       "vol_ratio": 0.55,
-      "news_hits": 0,
-      "reasons": [
-        "站上 MA20",
-        "站上 MA60",
-        "均線結構偏多",
-        "RSI 位於健康強勢區"
-      ],
-      "rank": 6
-    },
-    {
-      "code": "2885",
-      "name": "元大金",
-      "theme": "金融",
-      "symbol": "2885.TW",
-      "score": 74,
-      "price": 45.85,
-      "pct_1d": -2.65,
-      "pct_5d": -0.43,
-      "rsi": 55.13,
-      "vol_ratio": 1.17,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -216,7 +216,7 @@
   "theme_summary": [
     {
       "theme": "金融",
-      "score": 329.4,
+      "score": 409.4,
       "leaders": [
         "2891 中信金",
         "2885 元大金",
@@ -225,7 +225,7 @@
     },
     {
       "theme": "IC設計",
-      "score": 281.0,
+      "score": 211.0,
       "leaders": [
         "3034 聯詠",
         "6415 矽力*-KY",
@@ -320,10 +320,10 @@
   "news_summary": {
     "tw_top_titles": [
       "營收速報 - 2026年4月4日台股大型公司3月營收一覽（新增1家） - news.cnyes.com",
-      "《時代雜誌》政治、經濟、選舉壓力高！川普已經開始為伊朗戰爭尋找出路 - news.cnyes.com",
-      "盤中速報 - Numeraire大跌10.04%，報7.17美元 - news.cnyes.com",
-      "頭條新聞 - news.cnyes.com",
-      "〈美股盤後〉現貨布蘭特原油飆至141美元 道瓊驚險拉回600點跌幅 收盤仍小跌 - news.cnyes.com"
+      "避險資金湧入中國！全球拋售900億美債 中國國債與人民幣資產受熱捧 - news.cnyes.com",
+      "〈經濟部記者會〉「好人緣」助攻能源！龔明鑫曝多國主動援助LNG與戰備儲油 化解中東危機 - news.cnyes.com",
+      "〈經濟部記者會〉油價全面凍漲！中油累計吸收逾90億 持續穩供油氣、維持物價穩定 - news.cnyes.com",
+      "〈經濟部記者會〉中東戰火原油飆漲8成！中油每月狂燒百億淨值剩854億 爭取「三箭」紓困 - news.cnyes.com"
     ],
     "us_top_titles": [
       "Blue Owl caps private credit funds redemptions at 5% after steep request levels",
