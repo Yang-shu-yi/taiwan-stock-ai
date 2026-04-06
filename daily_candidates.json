@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-05 08:01:57",
+  "updated_at": "2026-04-06 08:46:48",
   "mode": "POST",
   "market": {
     "tw_index": {
@@ -30,14 +30,14 @@
         "pct": "+3.23"
       },
       "VIX": {
-        "price": "23.87",
-        "chg": "+0.00",
-        "pct": "+0.00"
+        "price": "24.56",
+        "chg": "+0.69",
+        "pct": "+2.89"
       }
     },
     "forex": {
-      "rate": "31.979",
-      "chg": "-0.023"
+      "rate": "31.969",
+      "chg": "+0.031"
     },
     "institutional": {
       "foreign": "N/A",
@@ -319,11 +319,11 @@
   ],
   "news_summary": {
     "tw_top_titles": [
-      "營收速報 - 2026年4月4日台股大型公司3月營收一覽（新增1家） - news.cnyes.com",
-      "避險資金湧入中國！全球拋售900億美債 中國國債與人民幣資產受熱捧 - news.cnyes.com",
-      "〈經濟部記者會〉「好人緣」助攻能源！龔明鑫曝多國主動援助LNG與戰備儲油 化解中東危機 - news.cnyes.com",
-      "〈經濟部記者會〉油價全面凍漲！中油累計吸收逾90億 持續穩供油氣、維持物價穩定 - news.cnyes.com",
-      "〈經濟部記者會〉中東戰火原油飆漲8成！中油每月狂燒百億淨值剩854億 爭取「三箭」紓困 - news.cnyes.com"
+      "中國為何對油價飆漲最「抗震」？高盛揭原因 - news.cnyes.com",
+      "本週操盤筆記：美國3月CPI、Fed會議紀錄 - news.cnyes.com",
+      "沒中國美國機器人就動不了！WSJ：美擁「大腦」、中霸「肢體」 - news.cnyes.com",
+      "盤中速報 - DEGO大漲10.65%，報0.29美元 - news.cnyes.com",
+      "電子五哥Q1股價表現兩漲三跌 Q2營運展望一次看 - news.cnyes.com"
     ],
     "us_top_titles": [
       "Blue Owl caps private credit funds redemptions at 5% after steep request levels",
