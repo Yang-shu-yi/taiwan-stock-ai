@@ -1,43 +1,43 @@
 {
-  "updated_at": "2026-04-10 08:48:22",
+  "updated_at": "2026-04-11 07:57:15",
   "mode": "POST",
   "market": {
     "tw_index": {
       "price": "35418",
       "chg": "557",
       "pct": "1.60",
-      "turnover": "8723億"
+      "turnover": "8718億"
     },
     "us_indices": {
       "S&P500": {
-        "price": "6824.66",
-        "chg": "+207.81",
-        "pct": "+3.14"
+        "price": "6816.89",
+        "chg": "+34.08",
+        "pct": "+0.50"
       },
       "道瓊": {
-        "price": "48185.80",
-        "chg": "+1601.34",
-        "pct": "+3.44"
+        "price": "47916.57",
+        "chg": "+6.65",
+        "pct": "+0.01"
       },
       "那斯達克": {
-        "price": "22822.42",
-        "chg": "+804.57",
-        "pct": "+3.65"
+        "price": "22902.90",
+        "chg": "+267.90",
+        "pct": "+1.18"
       },
       "費半": {
-        "price": "8689.53",
-        "chg": "+685.66",
-        "pct": "+8.57"
+        "price": "8889.83",
+        "chg": "+378.91",
+        "pct": "+4.45"
       },
       "VIX": {
-        "price": "19.59",
-        "chg": "+0.10",
-        "pct": "+0.51"
+        "price": "19.23",
+        "chg": "-0.26",
+        "pct": "-1.33"
       }
     },
     "forex": {
-      "rate": "31.773",
-      "chg": "+0.053"
+      "rate": "31.726",
+      "chg": "+0.006"
     },
     "institutional": {
       "foreign": "N/A",
@@ -62,7 +62,7 @@
       "pct_1d": 4.58,
       "pct_5d": 13.15,
       "rsi": 65.66,
-      "vol_ratio": 2.41,
+      "vol_ratio": 2.36,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -82,7 +82,7 @@
       "pct_1d": 2.3,
       "pct_5d": 7.82,
       "rsi": 63.85,
-      "vol_ratio": 0.98,
+      "vol_ratio": 0.88,
       "news_hits": 6,
       "reasons": [
         "站上 MA20",
@@ -102,7 +102,7 @@
       "pct_1d": 2.72,
       "pct_5d": 10.67,
       "rsi": 70.41,
-      "vol_ratio": 2.15,
+      "vol_ratio": 2.1,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -122,7 +122,7 @@
       "pct_1d": 9.93,
       "pct_5d": 9.32,
       "rsi": 65.19,
-      "vol_ratio": 0.37,
+      "vol_ratio": 0.35,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -142,7 +142,7 @@
       "pct_1d": 8.58,
       "pct_5d": 10.54,
       "rsi": 66.25,
-      "vol_ratio": 1.17,
+      "vol_ratio": 1.13,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -162,7 +162,7 @@
       "pct_1d": 7.39,
       "pct_5d": 12.17,
       "rsi": 57.3,
-      "vol_ratio": 0.89,
+      "vol_ratio": 0.87,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -182,7 +182,7 @@
       "pct_1d": 5.47,
       "pct_5d": 17.63,
       "rsi": 68.1,
-      "vol_ratio": 1.01,
+      "vol_ratio": 0.97,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -202,7 +202,7 @@
       "pct_1d": 3.33,
       "pct_5d": 8.01,
       "rsi": 56.58,
-      "vol_ratio": 1.93,
+      "vol_ratio": 1.92,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -225,7 +225,7 @@
     },
     {
       "theme": "IC設計",
-      "score": 391.2,
+      "score": 401.2,
       "leaders": [
         "3443 創意",
         "2379 瑞昱",
@@ -244,38 +244,12 @@
   ],
   "us_context": [
     {
-      "symbol": "AMZN",
-      "name": "AMZN",
-      "score": 62,
-      "price": 233.65,
-      "pct_1d": 5.6,
-      "pct_5d": 10.96,
-      "reasons": [
-        "站上 MA20",
-        "站上 MA60",
-        "近 5 日偏強"
-      ]
-    },
-    {
-      "symbol": "MU",
-      "name": "MU",
+      "symbol": "AVGO",
+      "name": "AVGO",
       "score": 54,
-      "price": 421.51,
-      "pct_1d": 3.63,
-      "pct_5d": 14.59,
-      "reasons": [
-        "站上 MA20",
-        "站上 MA60",
-        "近 5 日偏強"
-      ]
-    },
-    {
-      "symbol": "SOXX",
-      "name": "SOXX",
-      "score": 54,
-      "price": 378.63,
-      "pct_1d": 2.22,
-      "pct_5d": 11.84,
+      "price": 371.55,
+      "pct_1d": 4.69,
+      "pct_5d": 18.12,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -286,22 +260,9 @@
       "symbol": "AMD",
       "name": "AMD",
       "score": 54,
-      "price": 236.64,
-      "pct_1d": 2.08,
-      "pct_5d": 12.57,
-      "reasons": [
-        "站上 MA20",
-        "站上 MA60",
-        "近 5 日偏強"
-      ]
-    },
-    {
-      "symbol": "AVGO",
-      "name": "AVGO",
-      "score": 54,
-      "price": 354.91,
-      "pct_1d": 1.22,
-      "pct_5d": 13.21,
+      "price": 245.04,
+      "pct_1d": 3.55,
+      "pct_5d": 12.66,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -312,9 +273,48 @@
       "symbol": "NVDA",
       "name": "NVDA",
       "score": 54,
-      "price": 183.91,
-      "pct_1d": 1.01,
-      "pct_5d": 4.64,
+      "price": 188.63,
+      "pct_1d": 2.57,
+      "pct_5d": 6.34,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "近 5 日偏強"
+      ]
+    },
+    {
+      "symbol": "SOXX",
+      "name": "SOXX",
+      "score": 54,
+      "price": 386.6,
+      "pct_1d": 2.1,
+      "pct_5d": 13.84,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "近 5 日偏強"
+      ]
+    },
+    {
+      "symbol": "AMZN",
+      "name": "AMZN",
+      "score": 54,
+      "price": 238.38,
+      "pct_1d": 2.02,
+      "pct_5d": 13.64,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "近 5 日偏強"
+      ]
+    },
+    {
+      "symbol": "TSM",
+      "name": "TSM",
+      "score": 54,
+      "price": 370.6,
+      "pct_1d": 1.4,
+      "pct_5d": 9.31,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -324,18 +324,18 @@
   ],
   "news_summary": {
     "tw_top_titles": [
-      "美上周續領失業金人數創近兩年低點 就業市場維持穩定 - news.cnyes.com",
+      "盤中速報 - LPT大漲37.09%，報2.71美元 - news.cnyes.com",
       "盤中速報 - Palo Alto Networks Inc(PANW-US)大跌5.01%，報165.08美元 - news.cnyes.com",
-      "〈日月光建新廠〉從決標到動土僅花11天 吳田玉：預計將投資逾千億元 - news.cnyes.com",
-      "貝瑞看空論發酵 Palantir崩近8% Anthropic強勢崛起蠶食市占 - news.cnyes.com",
-      "AI 拉貨強勁，3 月出口 801.8 億美元創單月最高紀錄"
+      "伊朗最後一刻對美提2項附帶條件：停止黎巴嫩戰事、解凍資產 - news.cnyes.com",
+      "美伊停火之際 伊朗最高領袖最新發文：勿信西方承諾 籲鄰國遠離「霸權勢力」 - news.cnyes.com",
+      "軟體股跌不停 比特幣反彈釋出見底訊號？ - news.cnyes.com"
     ],
     "us_top_titles": [
+      "Michael Burry says he's still betting against Palantir after Trump post boosts stock",
+      "Stocks making the biggest moves premarket: Lumentum, ServiceNow, Sandisk & more",
+      "BlackRock rips page from hedge fund playbook, applies it to exchange-traded funds",
       "Behind China's 'active efforts' for an Iran ceasefire: Business trumps politics",
-      "Alibaba leads $290 million investment for building a new kind of AI model as LLM limits emerge",
-      "AI threat's relentless flogging of software stocks shows no end in sight with Anthropic's new agent",
-      "Stocks making the biggest moves premarket: Constellation Brands, Datadog, Occidental Petroleum, CoreWeave and more",
-      "Fed officials still foresee rate cut this year, despite war impacts, minutes show"
+      "Alibaba leads $290 million investment for building a new kind of AI model as LLM limits emerge"
     ]
   }
 }
