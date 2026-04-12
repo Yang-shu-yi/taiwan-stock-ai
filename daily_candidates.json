@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-11 07:57:15",
+  "updated_at": "2026-04-12 08:08:59",
   "mode": "POST",
   "market": {
     "tw_index": {
@@ -93,6 +93,26 @@
       "rank": 2
     },
     {
+      "code": "6531",
+      "name": "愛普*",
+      "theme": "記憶體",
+      "symbol": "6531.TW",
+      "score": 94,
+      "price": 516.0,
+      "pct_1d": 7.39,
+      "pct_5d": 12.17,
+      "rsi": 57.3,
+      "vol_ratio": 0.87,
+      "news_hits": 1,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "均線結構偏多",
+        "近 5 日動能轉強"
+      ],
+      "rank": 3
+    },
+    {
       "code": "2382",
       "name": "廣達",
       "theme": "AI伺服器",
@@ -110,7 +130,7 @@
         "均線結構偏多",
         "近 5 日動能轉強"
       ],
-      "rank": 3
+      "rank": 4
     },
     {
       "code": "6187",
@@ -130,7 +150,7 @@
         "均線結構偏多",
         "近 5 日動能轉強"
       ],
-      "rank": 4
+      "rank": 5
     },
     {
       "code": "2345",
@@ -143,26 +163,6 @@
       "pct_5d": 10.54,
       "rsi": 66.25,
       "vol_ratio": 1.13,
-      "news_hits": 0,
-      "reasons": [
-        "站上 MA20",
-        "站上 MA60",
-        "均線結構偏多",
-        "近 5 日動能轉強"
-      ],
-      "rank": 5
-    },
-    {
-      "code": "6531",
-      "name": "愛普*",
-      "theme": "記憶體",
-      "symbol": "6531.TW",
-      "score": 88,
-      "price": 516.0,
-      "pct_1d": 7.39,
-      "pct_5d": 12.17,
-      "rsi": 57.3,
-      "vol_ratio": 0.87,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -216,7 +216,7 @@
   "theme_summary": [
     {
       "theme": "AI伺服器",
-      "score": 441.6,
+      "score": 431.6,
       "leaders": [
         "2376 技嘉",
         "2382 廣達",
@@ -225,7 +225,7 @@
     },
     {
       "theme": "IC設計",
-      "score": 401.2,
+      "score": 391.2,
       "leaders": [
         "3443 創意",
         "2379 瑞昱",
@@ -324,18 +324,18 @@
   ],
   "news_summary": {
     "tw_top_titles": [
-      "盤中速報 - LPT大漲37.09%，報2.71美元 - news.cnyes.com",
-      "盤中速報 - Palo Alto Networks Inc(PANW-US)大跌5.01%，報165.08美元 - news.cnyes.com",
-      "伊朗最後一刻對美提2項附帶條件：停止黎巴嫩戰事、解凍資產 - news.cnyes.com",
-      "美伊停火之際 伊朗最高領袖最新發文：勿信西方承諾 籲鄰國遠離「霸權勢力」 - news.cnyes.com",
-      "軟體股跌不停 比特幣反彈釋出見底訊號？ - news.cnyes.com"
+      "營收速報 - 2026年4月11日台股大型公司3月營收一覽（新增149家） - news.cnyes.com",
+      "美軍艦突穿荷姆茲海峽！未與伊朗協調 巴基斯坦急斡旋避免衝突升級 - news.cnyes.com",
+      "200萬桶原油卡「灣」？經部：已有備案 保證能源調度至7月都安全無虞 - news.cnyes.com",
+      "美股恐陷崩跌風險？小摩前量化專家稱美伊停火無實質依據、點名「做空」記憶體 - news.cnyes.com",
+      "塑膠袋不「荒」了！中油台塑聯手給力 下周12.5億個塑袋鋪貨全國1350個商圈市場 - news.cnyes.com"
     ],
     "us_top_titles": [
+      "How bond market's private credit crisis fears are playing out in fixed-income ETFs",
       "Michael Burry says he's still betting against Palantir after Trump post boosts stock",
       "Stocks making the biggest moves premarket: Lumentum, ServiceNow, Sandisk & more",
       "BlackRock rips page from hedge fund playbook, applies it to exchange-traded funds",
-      "Behind China's 'active efforts' for an Iran ceasefire: Business trumps politics",
-      "Alibaba leads $290 million investment for building a new kind of AI model as LLM limits emerge"
+      "Behind China's 'active efforts' for an Iran ceasefire: Business trumps politics"
     ]
   }
 }
