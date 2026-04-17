@@ -1,43 +1,43 @@
 {
-  "updated_at": "2026-04-16 08:56:38",
+  "updated_at": "2026-04-17 08:54:11",
   "mode": "POST",
   "market": {
     "tw_index": {
-      "price": "37132",
-      "chg": "410",
-      "pct": "1.12",
-      "turnover": "10259億"
+      "price": "36804",
+      "chg": "-328",
+      "pct": "-0.88",
+      "turnover": "9273億"
     },
     "us_indices": {
       "S&P500": {
-        "price": "7022.95",
-        "chg": "+136.71",
-        "pct": "+1.99"
+        "price": "7041.28",
+        "chg": "+73.90",
+        "pct": "+1.06"
       },
       "道瓊": {
-        "price": "48463.72",
-        "chg": "+245.47",
-        "pct": "+0.51"
+        "price": "48578.72",
+        "chg": "+42.73",
+        "pct": "+0.09"
       },
       "那斯達克": {
-        "price": "24016.02",
-        "chg": "+832.28",
-        "pct": "+3.59"
+        "price": "24102.70",
+        "chg": "+463.62",
+        "pct": "+1.96"
       },
       "費半": {
-        "price": "9239.28",
-        "chg": "+199.76",
-        "pct": "+2.21"
+        "price": "9329.35",
+        "chg": "+105.23",
+        "pct": "+1.14"
       },
       "VIX": {
-        "price": "18.11",
-        "chg": "-0.06",
-        "pct": "-0.33"
+        "price": "18.24",
+        "chg": "+0.30",
+        "pct": "+1.67"
       }
     },
     "forex": {
-      "rate": "31.556",
-      "chg": "+0.039"
+      "rate": "31.536",
+      "chg": "-0.051"
     },
     "institutional": {
       "foreign": "N/A",
@@ -58,11 +58,11 @@
       "theme": "IC設計",
       "symbol": "6415.TW",
       "score": 100,
-      "price": 302.5,
-      "pct_1d": 10.0,
-      "pct_5d": 7.27,
-      "rsi": 59.63,
-      "vol_ratio": 1.81,
+      "price": 332.5,
+      "pct_1d": 9.92,
+      "pct_5d": 18.96,
+      "rsi": 67.53,
+      "vol_ratio": 2.61,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -73,17 +73,17 @@
       "rank": 1
     },
     {
-      "code": "2330",
-      "name": "台積電",
-      "theme": "半導體",
-      "symbol": "2330.TW",
+      "code": "2049",
+      "name": "上銀",
+      "theme": "自動化",
+      "symbol": "2049.TW",
       "score": 100,
-      "price": 2085.0,
-      "pct_1d": 0.24,
-      "pct_5d": 6.65,
-      "rsi": 69.02,
-      "vol_ratio": 1.03,
-      "news_hits": 9,
+      "price": 291.0,
+      "pct_1d": 4.3,
+      "pct_5d": 20.25,
+      "rsi": 72.04,
+      "vol_ratio": 1.66,
+      "news_hits": 0,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -93,37 +93,37 @@
       "rank": 2
     },
     {
-      "code": "2454",
-      "name": "聯發科",
-      "theme": "IC設計",
-      "symbol": "2454.TW",
+      "code": "6531",
+      "name": "愛普*",
+      "theme": "記憶體",
+      "symbol": "6531.TW",
       "score": 94,
-      "price": 1895.0,
-      "pct_1d": 5.87,
-      "pct_5d": 20.32,
-      "rsi": 70.9,
-      "vol_ratio": 1.96,
+      "price": 644.0,
+      "pct_1d": 9.9,
+      "pct_5d": 24.81,
+      "rsi": 70.98,
+      "vol_ratio": 1.44,
       "news_hits": 1,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
-        "近 5 日動能轉強",
-        "RSI 位於健康強勢區"
+        "均線結構偏多",
+        "近 5 日動能轉強"
       ],
       "rank": 3
     },
     {
-      "code": "1301",
-      "name": "台塑",
-      "theme": "塑化",
-      "symbol": "1301.TW",
+      "code": "2357",
+      "name": "華碩",
+      "theme": "AI伺服器",
+      "symbol": "2357.TW",
       "score": 94,
-      "price": 54.5,
-      "pct_1d": 4.21,
-      "pct_5d": 14.98,
-      "rsi": 65.12,
-      "vol_ratio": 1.0,
-      "news_hits": 1,
+      "price": 599.0,
+      "pct_1d": 1.7,
+      "pct_5d": 3.63,
+      "rsi": 65.13,
+      "vol_ratio": 1.62,
+      "news_hits": 0,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -133,16 +133,16 @@
       "rank": 4
     },
     {
-      "code": "2379",
-      "name": "瑞昱",
-      "theme": "IC設計",
-      "symbol": "2379.TW",
+      "code": "2327",
+      "name": "國巨*",
+      "theme": "被動元件",
+      "symbol": "2327.TW",
       "score": 94,
-      "price": 540.0,
-      "pct_1d": 2.86,
-      "pct_5d": 5.47,
-      "rsi": 71.13,
-      "vol_ratio": 1.67,
+      "price": 316.5,
+      "pct_1d": -2.62,
+      "pct_5d": 11.05,
+      "rsi": 65.95,
+      "vol_ratio": 1.52,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -153,36 +153,36 @@
       "rank": 5
     },
     {
-      "code": "2327",
-      "name": "國巨*",
-      "theme": "被動元件",
-      "symbol": "2327.TW",
-      "score": 94,
-      "price": 325.0,
-      "pct_1d": 0.93,
-      "pct_5d": 15.45,
-      "rsi": 70.94,
-      "vol_ratio": 2.04,
-      "news_hits": 0,
+      "code": "2330",
+      "name": "台積電",
+      "theme": "半導體",
+      "symbol": "2330.TW",
+      "score": 92,
+      "price": 2030.0,
+      "pct_1d": -2.64,
+      "pct_5d": 1.5,
+      "rsi": 61.58,
+      "vol_ratio": 1.27,
+      "news_hits": 6,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
         "均線結構偏多",
-        "近 5 日動能轉強"
+        "RSI 位於健康強勢區"
       ],
       "rank": 6
     },
     {
-      "code": "2376",
-      "name": "技嘉",
-      "theme": "AI伺服器",
-      "symbol": "2376.TW",
-      "score": 94,
-      "price": 281.0,
-      "pct_1d": 0.72,
-      "pct_5d": 11.95,
-      "rsi": 72.42,
-      "vol_ratio": 1.88,
+      "code": "6187",
+      "name": "萬潤",
+      "theme": "半導體設備",
+      "symbol": "6187.TWO",
+      "score": 88,
+      "price": 1215.0,
+      "pct_1d": 9.95,
+      "pct_5d": 24.74,
+      "rsi": 73.93,
+      "vol_ratio": 1.32,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -193,22 +193,22 @@
       "rank": 7
     },
     {
-      "code": "2049",
-      "name": "上銀",
-      "theme": "自動化",
-      "symbol": "2049.TW",
-      "score": 94,
-      "price": 279.0,
-      "pct_1d": -1.06,
-      "pct_5d": 13.88,
-      "rsi": 68.47,
-      "vol_ratio": 1.86,
+      "code": "2303",
+      "name": "聯電",
+      "theme": "半導體",
+      "symbol": "2303.TW",
+      "score": 88,
+      "price": 73.0,
+      "pct_1d": 6.88,
+      "pct_5d": 17.74,
+      "rsi": 71.74,
+      "vol_ratio": 4.16,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
-        "均線結構偏多",
-        "近 5 日動能轉強"
+        "近 5 日動能轉強",
+        "RSI 位於健康強勢區"
       ],
       "rank": 8
     }
@@ -216,40 +216,53 @@
   "theme_summary": [
     {
       "theme": "IC設計",
-      "score": 739.4,
+      "score": 659.6,
       "leaders": [
         "6415 矽力*-KY",
         "2454 聯發科",
-        "2379 瑞昱"
+        "3034 聯詠"
       ]
     },
     {
       "theme": "AI伺服器",
-      "score": 470.1,
+      "score": 473.2,
       "leaders": [
-        "2376 技嘉",
-        "2382 廣達",
-        "2357 華碩"
+        "2357 華碩",
+        "6669 緯穎",
+        "2376 技嘉"
       ]
     },
     {
       "theme": "金融",
-      "score": 452.3,
+      "score": 408.5,
       "leaders": [
         "2885 元大金",
-        "2891 中信金",
-        "2886 兆豐金"
+        "2882 國泰金",
+        "5880 合庫金"
       ]
     }
   ],
   "us_context": [
     {
+      "symbol": "AMD",
+      "name": "AMD",
+      "score": 56,
+      "price": 278.26,
+      "pct_1d": 7.8,
+      "pct_5d": 17.59,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "近 5 日偏強"
+      ]
+    },
+    {
       "symbol": "MSFT",
       "name": "MSFT",
-      "score": 62,
-      "price": 411.22,
-      "pct_1d": 4.61,
-      "pct_5d": 9.85,
+      "score": 54,
+      "price": 420.26,
+      "pct_1d": 2.2,
+      "pct_5d": 12.65,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -257,38 +270,12 @@
       ]
     },
     {
-      "symbol": "AVGO",
-      "name": "AVGO",
+      "symbol": "SOXX",
+      "name": "SOXX",
       "score": 54,
-      "price": 396.72,
-      "pct_1d": 4.19,
-      "pct_5d": 13.14,
-      "reasons": [
-        "站上 MA20",
-        "站上 MA60",
-        "近 5 日偏強"
-      ]
-    },
-    {
-      "symbol": "AAPL",
-      "name": "AAPL",
-      "score": 54,
-      "price": 266.43,
-      "pct_1d": 2.94,
-      "pct_5d": 2.91,
-      "reasons": [
-        "站上 MA20",
-        "站上 MA60",
-        "近 5 日偏強"
-      ]
-    },
-    {
-      "symbol": "QQQ",
-      "name": "QQQ",
-      "score": 54,
-      "price": 637.4,
-      "pct_1d": 1.4,
-      "pct_5d": 5.17,
+      "price": 405.95,
+      "pct_1d": 1.02,
+      "pct_5d": 7.22,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -299,9 +286,9 @@
       "symbol": "META",
       "name": "META",
       "score": 54,
-      "price": 671.58,
-      "pct_1d": 1.37,
-      "pct_5d": 9.66,
+      "price": 676.87,
+      "pct_1d": 0.79,
+      "pct_5d": 7.71,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -309,12 +296,25 @@
       ]
     },
     {
-      "symbol": "GOOGL",
-      "name": "GOOGL",
+      "symbol": "QQQ",
+      "name": "QQQ",
       "score": 54,
-      "price": 337.12,
-      "pct_1d": 1.26,
-      "pct_5d": 6.24,
+      "price": 640.47,
+      "pct_1d": 0.48,
+      "pct_5d": 4.96,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "近 5 日偏強"
+      ]
+    },
+    {
+      "symbol": "AMZN",
+      "name": "AMZN",
+      "score": 54,
+      "price": 249.7,
+      "pct_1d": 0.48,
+      "pct_5d": 6.87,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -324,18 +324,18 @@
   ],
   "news_summary": {
     "tw_top_titles": [
-      "鉅亨速報 - Factset 最新調查：聚陽(1477-TW)EPS預估下修至16.51元，預估目標價為340元 - news.cnyes.com",
-      "盤中速報 - 塑膠工業類股表現強勁，漲幅2.37%，總成交額70.47億 - news.cnyes.com",
+      "盤中速報 - 雅特力-KY(6907)大跌8.1%，報130.5元 - news.cnyes.com",
+      "鉅亨速報 - Factset 最新調查：海洋公司SE-US的目標價調降至135元，幅度約3.57% - news.cnyes.com",
       "營收速報 - 2026年4月16日台股大型公司3月營收一覽（新增9家） - news.cnyes.com",
-      "盤中速報 - DEXE大漲20.52%，報12.241美元 - news.cnyes.com",
-      "台塑聯名卡將走入歷史！6/1 換發國泰 CUBE 加油最高降 3 元再加 2%"
+      "那斯達克連漲12交易日、標普重回高點！ 專家：多項指標暗示美股反彈動能有望持續 - news.cnyes.com",
+      "盤中速報 - 愛普(6531)股價拉至漲停，漲停價644.0元，成交7,296張 - news.cnyes.com"
     ],
     "us_top_titles": [
+      "Michael Burry buys the dip in Salesforce and other software stocks after AI-fueled sell-off",
+      "Retail traders pile into Allbirds after odd AI pivot. History shows it won't end well",
+      "Stocks making the biggest moves premarket: PepsiCo, Taiwan Semiconductor, Voyager Technologies, PPG & more",
       "Goldman Sachs bond traders stumbled as Wall Street rivals thrived: 'A fire is being lit under' them",
-      "Regulators are reportedly zeroing in on suspicious trades ahead of market-moving Trump post",
-      "Stocks making the biggest moves premarket: Bank of America, Morgan Stanley, Robinhood & more",
-      "Morgan Stanley tops estimates as trading revenue exceeds expectations by nearly $1 billion",
-      "Bank of America tops estimates as CEO Brian Moynihan says consumer banking is 'healthy'"
+      "Regulators are reportedly zeroing in on suspicious trades ahead of market-moving Trump post"
     ]
   }
 }
