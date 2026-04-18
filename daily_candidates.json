@@ -1,43 +1,43 @@
 {
-  "updated_at": "2026-04-17 08:54:11",
+  "updated_at": "2026-04-18 08:05:36",
   "mode": "POST",
   "market": {
     "tw_index": {
       "price": "36804",
       "chg": "-328",
       "pct": "-0.88",
-      "turnover": "9273億"
+      "turnover": "9855億"
     },
     "us_indices": {
       "S&P500": {
-        "price": "7041.28",
-        "chg": "+73.90",
-        "pct": "+1.06"
+        "price": "7126.06",
+        "chg": "+103.11",
+        "pct": "+1.47"
       },
       "道瓊": {
-        "price": "48578.72",
-        "chg": "+42.73",
-        "pct": "+0.09"
+        "price": "49447.43",
+        "chg": "+983.71",
+        "pct": "+2.03"
       },
       "那斯達克": {
-        "price": "24102.70",
-        "chg": "+463.62",
-        "pct": "+1.96"
+        "price": "24468.48",
+        "chg": "+452.46",
+        "pct": "+1.88"
       },
       "費半": {
-        "price": "9329.35",
-        "chg": "+105.23",
-        "pct": "+1.14"
+        "price": "9555.88",
+        "chg": "+316.59",
+        "pct": "+3.43"
       },
       "VIX": {
-        "price": "18.24",
-        "chg": "+0.30",
-        "pct": "+1.67"
+        "price": "17.48",
+        "chg": "-0.46",
+        "pct": "-2.56"
       }
     },
     "forex": {
-      "rate": "31.536",
-      "chg": "-0.051"
+      "rate": "31.464",
+      "chg": "-0.123"
     },
     "institutional": {
       "foreign": "N/A",
@@ -62,7 +62,7 @@
       "pct_1d": 9.92,
       "pct_5d": 18.96,
       "rsi": 67.53,
-      "vol_ratio": 2.61,
+      "vol_ratio": 2.58,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -82,7 +82,7 @@
       "pct_1d": 4.3,
       "pct_5d": 20.25,
       "rsi": 72.04,
-      "vol_ratio": 1.66,
+      "vol_ratio": 1.63,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -93,22 +93,22 @@
       "rank": 2
     },
     {
-      "code": "6531",
-      "name": "愛普*",
-      "theme": "記憶體",
-      "symbol": "6531.TW",
+      "code": "2303",
+      "name": "聯電",
+      "theme": "半導體",
+      "symbol": "2303.TW",
       "score": 94,
-      "price": 644.0,
-      "pct_1d": 9.9,
-      "pct_5d": 24.81,
-      "rsi": 70.98,
-      "vol_ratio": 1.44,
+      "price": 73.0,
+      "pct_1d": 6.88,
+      "pct_5d": 17.74,
+      "rsi": 71.74,
+      "vol_ratio": 4.15,
       "news_hits": 1,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
-        "均線結構偏多",
-        "近 5 日動能轉強"
+        "近 5 日動能轉強",
+        "RSI 位於健康強勢區"
       ],
       "rank": 3
     },
@@ -122,7 +122,7 @@
       "pct_1d": 1.7,
       "pct_5d": 3.63,
       "rsi": 65.13,
-      "vol_ratio": 1.62,
+      "vol_ratio": 1.55,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -131,26 +131,6 @@
         "近 5 日動能轉強"
       ],
       "rank": 4
-    },
-    {
-      "code": "2327",
-      "name": "國巨*",
-      "theme": "被動元件",
-      "symbol": "2327.TW",
-      "score": 94,
-      "price": 316.5,
-      "pct_1d": -2.62,
-      "pct_5d": 11.05,
-      "rsi": 65.95,
-      "vol_ratio": 1.52,
-      "news_hits": 0,
-      "reasons": [
-        "站上 MA20",
-        "站上 MA60",
-        "均線結構偏多",
-        "近 5 日動能轉強"
-      ],
-      "rank": 5
     },
     {
       "code": "2330",
@@ -162,15 +142,15 @@
       "pct_1d": -2.64,
       "pct_5d": 1.5,
       "rsi": 61.58,
-      "vol_ratio": 1.27,
-      "news_hits": 6,
+      "vol_ratio": 1.15,
+      "news_hits": 4,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
         "均線結構偏多",
         "RSI 位於健康強勢區"
       ],
-      "rank": 6
+      "rank": 5
     },
     {
       "code": "6187",
@@ -182,7 +162,27 @@
       "pct_1d": 9.95,
       "pct_5d": 24.74,
       "rsi": 73.93,
-      "vol_ratio": 1.32,
+      "vol_ratio": 1.29,
+      "news_hits": 0,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "均線結構偏多",
+        "近 5 日動能轉強"
+      ],
+      "rank": 6
+    },
+    {
+      "code": "6531",
+      "name": "愛普*",
+      "theme": "記憶體",
+      "symbol": "6531.TW",
+      "score": 88,
+      "price": 644.0,
+      "pct_1d": 9.9,
+      "pct_5d": 24.81,
+      "rsi": 70.98,
+      "vol_ratio": 1.41,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -193,17 +193,17 @@
       "rank": 7
     },
     {
-      "code": "2303",
-      "name": "聯電",
-      "theme": "半導體",
-      "symbol": "2303.TW",
+      "code": "2454",
+      "name": "聯發科",
+      "theme": "IC設計",
+      "symbol": "2454.TW",
       "score": 88,
-      "price": 73.0,
-      "pct_1d": 6.88,
-      "pct_5d": 17.74,
-      "rsi": 71.74,
-      "vol_ratio": 4.16,
-      "news_hits": 0,
+      "price": 1925.0,
+      "pct_1d": 1.58,
+      "pct_5d": 22.22,
+      "rsi": 72.33,
+      "vol_ratio": 1.63,
+      "news_hits": 1,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -216,7 +216,7 @@
   "theme_summary": [
     {
       "theme": "IC設計",
-      "score": 659.6,
+      "score": 669.6,
       "leaders": [
         "6415 矽力*-KY",
         "2454 聯發科",
@@ -225,7 +225,7 @@
     },
     {
       "theme": "AI伺服器",
-      "score": 473.2,
+      "score": 483.2,
       "leaders": [
         "2357 華碩",
         "6669 緯穎",
@@ -244,12 +244,25 @@
   ],
   "us_context": [
     {
-      "symbol": "AMD",
-      "name": "AMD",
-      "score": 56,
-      "price": 278.26,
-      "pct_1d": 7.8,
-      "pct_5d": 17.59,
+      "symbol": "AAPL",
+      "name": "AAPL",
+      "score": 62,
+      "price": 270.23,
+      "pct_1d": 2.59,
+      "pct_5d": 3.74,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "近 5 日偏強"
+      ]
+    },
+    {
+      "symbol": "DIA",
+      "name": "DIA",
+      "score": 62,
+      "price": 494.22,
+      "pct_1d": 1.77,
+      "pct_5d": 3.12,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -259,10 +272,36 @@
     {
       "symbol": "MSFT",
       "name": "MSFT",
+      "score": 62,
+      "price": 422.79,
+      "pct_1d": 0.6,
+      "pct_5d": 14.0,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "近 5 日偏強"
+      ]
+    },
+    {
+      "symbol": "META",
+      "name": "META",
+      "score": 58,
+      "price": 688.55,
+      "pct_1d": 1.73,
+      "pct_5d": 9.32,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "近 5 日偏強"
+      ]
+    },
+    {
+      "symbol": "TSLA",
+      "name": "TSLA",
       "score": 54,
-      "price": 420.26,
-      "pct_1d": 2.2,
-      "pct_5d": 12.65,
+      "price": 400.62,
+      "pct_1d": 3.01,
+      "pct_5d": 14.81,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -273,48 +312,9 @@
       "symbol": "SOXX",
       "name": "SOXX",
       "score": 54,
-      "price": 405.95,
-      "pct_1d": 1.02,
-      "pct_5d": 7.22,
-      "reasons": [
-        "站上 MA20",
-        "站上 MA60",
-        "近 5 日偏強"
-      ]
-    },
-    {
-      "symbol": "META",
-      "name": "META",
-      "score": 54,
-      "price": 676.87,
-      "pct_1d": 0.79,
-      "pct_5d": 7.71,
-      "reasons": [
-        "站上 MA20",
-        "站上 MA60",
-        "近 5 日偏強"
-      ]
-    },
-    {
-      "symbol": "QQQ",
-      "name": "QQQ",
-      "score": 54,
-      "price": 640.47,
-      "pct_1d": 0.48,
-      "pct_5d": 4.96,
-      "reasons": [
-        "站上 MA20",
-        "站上 MA60",
-        "近 5 日偏強"
-      ]
-    },
-    {
-      "symbol": "AMZN",
-      "name": "AMZN",
-      "score": 54,
-      "price": 249.7,
-      "pct_1d": 0.48,
-      "pct_5d": 6.87,
+      "price": 415.71,
+      "pct_1d": 2.4,
+      "pct_5d": 7.53,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -324,18 +324,18 @@
   ],
   "news_summary": {
     "tw_top_titles": [
-      "盤中速報 - 雅特力-KY(6907)大跌8.1%，報130.5元 - news.cnyes.com",
-      "鉅亨速報 - Factset 最新調查：海洋公司SE-US的目標價調降至135元，幅度約3.57% - news.cnyes.com",
-      "營收速報 - 2026年4月16日台股大型公司3月營收一覽（新增9家） - news.cnyes.com",
-      "那斯達克連漲12交易日、標普重回高點！ 專家：多項指標暗示美股反彈動能有望持續 - news.cnyes.com",
-      "盤中速報 - 愛普(6531)股價拉至漲停，漲停價644.0元，成交7,296張 - news.cnyes.com"
+      "伊朗抗議！美軍持續海上封鎖違反停火協議 - news.cnyes.com",
+      "〈美股盤後〉油價暴跌 標普突破7100點創新高 那指創1992年來最長連漲紀錄 - news.cnyes.com",
+      "AI晶片新星Cerebras正式申請那斯達克IPO 挑戰輝達地位 - news.cnyes.com",
+      "停火不穩？伊朗：與美仍有重大分歧 核談判未達協議 - news.cnyes.com",
+      "美股重點新聞摘要2026年4月18日 - news.cnyes.com"
     ],
     "us_top_titles": [
+      "Stocks making the biggest moves midday: Royal Caribbean, Exxon Mobil, Critical Metals, Netflix & more",
+      "Stocks making the biggest moves premarket: Netflix, Oracle, Affirm and more",
+      "If a violent downturn strikes the market, new ETF strategies may be vulnerable. Here's why",
       "Michael Burry buys the dip in Salesforce and other software stocks after AI-fueled sell-off",
-      "Retail traders pile into Allbirds after odd AI pivot. History shows it won't end well",
-      "Stocks making the biggest moves premarket: PepsiCo, Taiwan Semiconductor, Voyager Technologies, PPG & more",
-      "Goldman Sachs bond traders stumbled as Wall Street rivals thrived: 'A fire is being lit under' them",
-      "Regulators are reportedly zeroing in on suspicious trades ahead of market-moving Trump post"
+      "Retail traders pile into Allbirds after odd AI pivot. History shows it won't end well"
     ]
   }
 }
