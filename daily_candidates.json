@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-18 08:05:36",
+  "updated_at": "2026-04-19 08:14:11",
   "mode": "POST",
   "market": {
     "tw_index": {
@@ -93,22 +93,22 @@
       "rank": 2
     },
     {
-      "code": "2303",
-      "name": "聯電",
-      "theme": "半導體",
-      "symbol": "2303.TW",
+      "code": "6531",
+      "name": "愛普*",
+      "theme": "記憶體",
+      "symbol": "6531.TW",
       "score": 94,
-      "price": 73.0,
-      "pct_1d": 6.88,
-      "pct_5d": 17.74,
-      "rsi": 71.74,
-      "vol_ratio": 4.15,
+      "price": 644.0,
+      "pct_1d": 9.9,
+      "pct_5d": 24.81,
+      "rsi": 70.98,
+      "vol_ratio": 1.41,
       "news_hits": 1,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
-        "近 5 日動能轉強",
-        "RSI 位於健康強勢區"
+        "均線結構偏多",
+        "近 5 日動能轉強"
       ],
       "rank": 3
     },
@@ -143,7 +143,7 @@
       "pct_5d": 1.5,
       "rsi": 61.58,
       "vol_ratio": 1.15,
-      "news_hits": 4,
+      "news_hits": 3,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -173,42 +173,42 @@
       "rank": 6
     },
     {
-      "code": "6531",
-      "name": "愛普*",
-      "theme": "記憶體",
-      "symbol": "6531.TW",
+      "code": "2303",
+      "name": "聯電",
+      "theme": "半導體",
+      "symbol": "2303.TW",
       "score": 88,
-      "price": 644.0,
-      "pct_1d": 9.9,
-      "pct_5d": 24.81,
-      "rsi": 70.98,
-      "vol_ratio": 1.41,
+      "price": 73.0,
+      "pct_1d": 6.88,
+      "pct_5d": 17.74,
+      "rsi": 71.74,
+      "vol_ratio": 4.15,
       "news_hits": 0,
-      "reasons": [
-        "站上 MA20",
-        "站上 MA60",
-        "均線結構偏多",
-        "近 5 日動能轉強"
-      ],
-      "rank": 7
-    },
-    {
-      "code": "2454",
-      "name": "聯發科",
-      "theme": "IC設計",
-      "symbol": "2454.TW",
-      "score": 88,
-      "price": 1925.0,
-      "pct_1d": 1.58,
-      "pct_5d": 22.22,
-      "rsi": 72.33,
-      "vol_ratio": 1.63,
-      "news_hits": 1,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
         "近 5 日動能轉強",
         "RSI 位於健康強勢區"
+      ],
+      "rank": 7
+    },
+    {
+      "code": "1301",
+      "name": "台塑",
+      "theme": "塑化",
+      "symbol": "1301.TW",
+      "score": 88,
+      "price": 53.4,
+      "pct_1d": -2.02,
+      "pct_5d": 13.74,
+      "rsi": 61.71,
+      "vol_ratio": 0.84,
+      "news_hits": 1,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "均線結構偏多",
+        "近 5 日動能轉強"
       ],
       "rank": 8
     }
@@ -216,7 +216,7 @@
   "theme_summary": [
     {
       "theme": "IC設計",
-      "score": 669.6,
+      "score": 659.6,
       "leaders": [
         "6415 矽力*-KY",
         "2454 聯發科",
@@ -225,7 +225,7 @@
     },
     {
       "theme": "AI伺服器",
-      "score": 483.2,
+      "score": 463.2,
       "leaders": [
         "2357 華碩",
         "6669 緯穎",
@@ -324,18 +324,18 @@
   ],
   "news_summary": {
     "tw_top_titles": [
-      "伊朗抗議！美軍持續海上封鎖違反停火協議 - news.cnyes.com",
-      "〈美股盤後〉油價暴跌 標普突破7100點創新高 那指創1992年來最長連漲紀錄 - news.cnyes.com",
-      "AI晶片新星Cerebras正式申請那斯達克IPO 挑戰輝達地位 - news.cnyes.com",
-      "停火不穩？伊朗：與美仍有重大分歧 核談判未達協議 - news.cnyes.com",
-      "美股重點新聞摘要2026年4月18日 - news.cnyes.com"
+      "憂戰事影響與伊天然氣續約！土能源部長：攻擊「土耳其溪」管線後果堪比封鎖荷姆茲海峽 - news.cnyes.com",
+      "〈熱門股〉勤誠各產品線出貨旺 營運逐季增 周漲逾1成重回千金 - news.cnyes.com",
+      "盤中速報 - Worldcoin大跌9.32%，報0.27美元 - news.cnyes.com",
+      "日月光中壢廠成立安全衛生家族 攜手供應鏈提升產業安全 - news.cnyes.com",
+      "OpenAI 高層連環出走，外傳考慮撤換執行長奧特曼"
     ],
     "us_top_titles": [
+      "Here are 3 forces that drove a remarkable, record-setting week on Wall Street",
       "Stocks making the biggest moves midday: Royal Caribbean, Exxon Mobil, Critical Metals, Netflix & more",
       "Stocks making the biggest moves premarket: Netflix, Oracle, Affirm and more",
       "If a violent downturn strikes the market, new ETF strategies may be vulnerable. Here's why",
-      "Michael Burry buys the dip in Salesforce and other software stocks after AI-fueled sell-off",
-      "Retail traders pile into Allbirds after odd AI pivot. History shows it won't end well"
+      "Michael Burry buys the dip in Salesforce and other software stocks after AI-fueled sell-off"
     ]
   }
 }
