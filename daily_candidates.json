@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-04-19 08:14:11",
+  "updated_at": "2026-04-20 09:19:05",
   "mode": "POST",
   "market": {
     "tw_index": {
-      "price": "36804",
-      "chg": "-328",
-      "pct": "-0.88",
+      "price": "37184",
+      "chg": "380",
+      "pct": "1.03",
       "turnover": "9855億"
     },
     "us_indices": {
@@ -31,13 +31,13 @@
       },
       "VIX": {
         "price": "17.48",
-        "chg": "-0.46",
-        "pct": "-2.56"
+        "chg": "+0.00",
+        "pct": "+0.00"
       }
     },
     "forex": {
-      "rate": "31.464",
-      "chg": "-0.123"
+      "rate": "31.504",
+      "chg": "-0.054"
     },
     "institutional": {
       "foreign": "N/A",
@@ -113,6 +113,26 @@
       "rank": 3
     },
     {
+      "code": "2303",
+      "name": "聯電",
+      "theme": "半導體",
+      "symbol": "2303.TW",
+      "score": 94,
+      "price": 73.0,
+      "pct_1d": 6.88,
+      "pct_5d": 17.74,
+      "rsi": 71.74,
+      "vol_ratio": 4.15,
+      "news_hits": 1,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "近 5 日動能轉強",
+        "RSI 位於健康強勢區"
+      ],
+      "rank": 4
+    },
+    {
       "code": "2357",
       "name": "華碩",
       "theme": "AI伺服器",
@@ -130,7 +150,7 @@
         "均線結構偏多",
         "近 5 日動能轉強"
       ],
-      "rank": 4
+      "rank": 5
     },
     {
       "code": "2330",
@@ -143,14 +163,14 @@
       "pct_5d": 1.5,
       "rsi": 61.58,
       "vol_ratio": 1.15,
-      "news_hits": 3,
+      "news_hits": 5,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
         "均線結構偏多",
         "RSI 位於健康強勢區"
       ],
-      "rank": 5
+      "rank": 6
     },
     {
       "code": "6187",
@@ -170,39 +190,19 @@
         "均線結構偏多",
         "近 5 日動能轉強"
       ],
-      "rank": 6
-    },
-    {
-      "code": "2303",
-      "name": "聯電",
-      "theme": "半導體",
-      "symbol": "2303.TW",
-      "score": 88,
-      "price": 73.0,
-      "pct_1d": 6.88,
-      "pct_5d": 17.74,
-      "rsi": 71.74,
-      "vol_ratio": 4.15,
-      "news_hits": 0,
-      "reasons": [
-        "站上 MA20",
-        "站上 MA60",
-        "近 5 日動能轉強",
-        "RSI 位於健康強勢區"
-      ],
       "rank": 7
     },
     {
-      "code": "1301",
-      "name": "台塑",
-      "theme": "塑化",
-      "symbol": "1301.TW",
+      "code": "2308",
+      "name": "台達電",
+      "theme": "電源/散熱",
+      "symbol": "2308.TW",
       "score": 88,
-      "price": 53.4,
-      "pct_1d": -2.02,
-      "pct_5d": 13.74,
-      "rsi": 61.71,
-      "vol_ratio": 0.84,
+      "price": 1840.0,
+      "pct_1d": -0.27,
+      "pct_5d": 6.05,
+      "rsi": 72.24,
+      "vol_ratio": 0.74,
       "news_hits": 1,
       "reasons": [
         "站上 MA20",
@@ -224,21 +224,21 @@
       ]
     },
     {
+      "theme": "金融",
+      "score": 488.5,
+      "leaders": [
+        "2885 元大金",
+        "2882 國泰金",
+        "5880 合庫金"
+      ]
+    },
+    {
       "theme": "AI伺服器",
       "score": 463.2,
       "leaders": [
         "2357 華碩",
         "6669 緯穎",
         "2376 技嘉"
-      ]
-    },
-    {
-      "theme": "金融",
-      "score": 408.5,
-      "leaders": [
-        "2885 元大金",
-        "2882 國泰金",
-        "5880 合庫金"
       ]
     }
   ],
@@ -324,18 +324,18 @@
   ],
   "news_summary": {
     "tw_top_titles": [
-      "憂戰事影響與伊天然氣續約！土能源部長：攻擊「土耳其溪」管線後果堪比封鎖荷姆茲海峽 - news.cnyes.com",
-      "〈熱門股〉勤誠各產品線出貨旺 營運逐季增 周漲逾1成重回千金 - news.cnyes.com",
-      "盤中速報 - Worldcoin大跌9.32%，報0.27美元 - news.cnyes.com",
-      "日月光中壢廠成立安全衛生家族 攜手供應鏈提升產業安全 - news.cnyes.com",
-      "OpenAI 高層連環出走，外傳考慮撤換執行長奧特曼"
+      "EasyDNS承認對eth.limo被劫持事件負責，稱公司28年來首次遭社會工程攻擊 - news.cnyes.com",
+      "美軍向伊朗商船開火 伊朗軍方：將報復 - news.cnyes.com",
+      "伊朗嗆「只要有海上封鎖就沒談判」！川普：美代表團周一抵巴基斯坦 范斯因「1理由」不去 - news.cnyes.com",
+      "本週操盤筆記：美伊兩周停火協議到期、特斯拉英特爾財報、華許Fed主席人事聽證會 - news.cnyes.com",
+      "〈焦點股〉神達數位上市首日漲逾3成 看好今年獲利展望 - news.cnyes.com"
     ],
     "us_top_titles": [
+      "AI startup Cursor in talks to raise $2 billion funding round at valuation of over $50 billion",
+      "Software stock dogs have joined market rally. There's a classic investing lesson in the rebound",
+      "From AI shopping to video, Alibaba is making the investments analysts want to see",
       "Here are 3 forces that drove a remarkable, record-setting week on Wall Street",
-      "Stocks making the biggest moves midday: Royal Caribbean, Exxon Mobil, Critical Metals, Netflix & more",
-      "Stocks making the biggest moves premarket: Netflix, Oracle, Affirm and more",
-      "If a violent downturn strikes the market, new ETF strategies may be vulnerable. Here's why",
-      "Michael Burry buys the dip in Salesforce and other software stocks after AI-fueled sell-off"
+      "Stocks making the biggest moves midday: Royal Caribbean, Exxon Mobil, Critical Metals, Netflix & more"
     ]
   }
 }
