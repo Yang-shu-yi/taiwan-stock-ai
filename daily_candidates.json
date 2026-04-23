@@ -1,43 +1,43 @@
 {
-  "updated_at": "2026-04-22 08:57:51",
+  "updated_at": "2026-04-23 09:03:32",
   "mode": "POST",
   "market": {
     "tw_index": {
-      "price": "37878",
-      "chg": "273",
-      "pct": "0.73",
-      "turnover": "10217億"
+      "price": "37714",
+      "chg": "-164",
+      "pct": "-0.43",
+      "turnover": "9799億"
     },
     "us_indices": {
       "S&P500": {
-        "price": "7064.01",
-        "chg": "-62.05",
-        "pct": "-0.87"
+        "price": "7137.90",
+        "chg": "+28.76",
+        "pct": "+0.40"
       },
       "道瓊": {
-        "price": "49149.38",
-        "chg": "-298.05",
-        "pct": "-0.60"
+        "price": "49490.03",
+        "chg": "+47.47",
+        "pct": "+0.10"
       },
       "那斯達克": {
-        "price": "24259.97",
-        "chg": "-208.51",
-        "pct": "-0.85"
+        "price": "24657.57",
+        "chg": "+253.18",
+        "pct": "+1.04"
       },
       "費半": {
-        "price": "9647.21",
-        "chg": "+91.33",
-        "pct": "+0.96"
+        "price": "9909.27",
+        "chg": "+310.06",
+        "pct": "+3.23"
       },
       "VIX": {
-        "price": "19.30",
-        "chg": "-0.20",
-        "pct": "-1.03"
+        "price": "19.63",
+        "chg": "+0.71",
+        "pct": "+3.75"
       }
     },
     "forex": {
-      "rate": "31.498",
-      "chg": "+0.079"
+      "rate": "31.553",
+      "chg": "+0.071"
     },
     "institutional": {
       "foreign": "N/A",
@@ -53,36 +53,36 @@
   },
   "tw_candidates": [
     {
-      "code": "2317",
-      "name": "鴻海",
-      "theme": "AI伺服器",
-      "symbol": "2317.TW",
-      "score": 100,
-      "price": 221.0,
-      "pct_1d": 4.74,
-      "pct_5d": 6.51,
-      "rsi": 64.43,
-      "vol_ratio": 2.63,
+      "code": "2330",
+      "name": "台積電",
+      "theme": "半導體",
+      "symbol": "2330.TW",
+      "score": 98,
+      "price": 2080.0,
+      "pct_1d": 1.46,
+      "pct_5d": -0.24,
+      "rsi": 65.57,
+      "vol_ratio": 1.55,
       "news_hits": 2,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
-        "近 5 日動能轉強",
+        "均線結構偏多",
         "RSI 位於健康強勢區"
       ],
       "rank": 1
     },
     {
-      "code": "3034",
-      "name": "聯詠",
-      "theme": "IC設計",
-      "symbol": "3034.TW",
-      "score": 100,
-      "price": 432.5,
-      "pct_1d": 4.09,
-      "pct_5d": 6.79,
-      "rsi": 71.74,
-      "vol_ratio": 1.96,
+      "code": "3017",
+      "name": "奇鋐",
+      "theme": "電源/散熱",
+      "symbol": "3017.TW",
+      "score": 94,
+      "price": 2680.0,
+      "pct_1d": -0.56,
+      "pct_5d": 9.84,
+      "rsi": 73.39,
+      "vol_ratio": 1.58,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -93,17 +93,17 @@
       "rank": 2
     },
     {
-      "code": "2451",
-      "name": "創見",
-      "theme": "記憶體",
-      "symbol": "2451.TW",
-      "score": 100,
-      "price": 269.0,
-      "pct_1d": 1.32,
-      "pct_5d": 8.47,
-      "rsi": 60.66,
-      "vol_ratio": 1.62,
-      "news_hits": 1,
+      "code": "2308",
+      "name": "台達電",
+      "theme": "電源/散熱",
+      "symbol": "2308.TW",
+      "score": 94,
+      "price": 1980.0,
+      "pct_1d": -1.74,
+      "pct_5d": 7.32,
+      "rsi": 74.53,
+      "vol_ratio": 1.52,
+      "news_hits": 0,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -113,56 +113,56 @@
       "rank": 3
     },
     {
-      "code": "2330",
-      "name": "台積電",
-      "theme": "半導體",
-      "symbol": "2330.TW",
-      "score": 92,
-      "price": 2050.0,
-      "pct_1d": 0.0,
-      "pct_5d": -1.44,
-      "rsi": 63.02,
-      "vol_ratio": 0.81,
-      "news_hits": 4,
+      "code": "3231",
+      "name": "緯創",
+      "theme": "AI伺服器",
+      "symbol": "3231.TW",
+      "score": 94,
+      "price": 139.5,
+      "pct_1d": -3.12,
+      "pct_5d": 4.1,
+      "rsi": 58.04,
+      "vol_ratio": 1.67,
+      "news_hits": 0,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
         "均線結構偏多",
-        "RSI 位於健康強勢區"
+        "近 5 日動能轉強"
       ],
       "rank": 4
     },
     {
-      "code": "2303",
-      "name": "聯電",
-      "theme": "半導體",
-      "symbol": "2303.TW",
-      "score": 90,
-      "price": 78.6,
-      "pct_1d": 3.15,
-      "pct_5d": 26.57,
-      "rsi": 75.62,
-      "vol_ratio": 1.52,
-      "news_hits": 2,
+      "code": "2049",
+      "name": "上銀",
+      "theme": "自動化",
+      "symbol": "2049.TW",
+      "score": 94,
+      "price": 302.0,
+      "pct_1d": -3.36,
+      "pct_5d": 8.24,
+      "rsi": 70.0,
+      "vol_ratio": 1.6,
+      "news_hits": 0,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
-        "近 5 日動能轉強",
-        "量能放大"
+        "均線結構偏多",
+        "近 5 日動能轉強"
       ],
       "rank": 5
     },
     {
-      "code": "3017",
-      "name": "奇鋐",
-      "theme": "電源/散熱",
-      "symbol": "3017.TW",
+      "code": "6187",
+      "name": "萬潤",
+      "theme": "半導體設備",
+      "symbol": "6187.TWO",
       "score": 88,
-      "price": 2695.0,
-      "pct_1d": 5.07,
-      "pct_5d": 15.91,
-      "rsi": 74.47,
-      "vol_ratio": 1.19,
+      "price": 1255.0,
+      "pct_1d": -9.71,
+      "pct_5d": 13.57,
+      "rsi": 66.83,
+      "vol_ratio": 1.88,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -173,37 +173,37 @@
       "rank": 6
     },
     {
-      "code": "6669",
-      "name": "緯穎",
+      "code": "2357",
+      "name": "華碩",
       "theme": "AI伺服器",
-      "symbol": "6669.TW",
-      "score": 88,
-      "price": 4350.0,
-      "pct_1d": 3.08,
-      "pct_5d": 16.94,
-      "rsi": 72.11,
-      "vol_ratio": 1.77,
+      "symbol": "2357.TW",
+      "score": 86,
+      "price": 598.0,
+      "pct_1d": -1.81,
+      "pct_5d": 1.53,
+      "rsi": 60.19,
+      "vol_ratio": 1.56,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
-        "近 5 日動能轉強",
+        "均線結構偏多",
         "RSI 位於健康強勢區"
       ],
       "rank": 7
     },
     {
-      "code": "6415",
-      "name": "矽力*-KY",
+      "code": "3443",
+      "name": "創意",
       "theme": "IC設計",
-      "symbol": "6415.TW",
+      "symbol": "3443.TW",
       "score": 84,
-      "price": 402.5,
-      "pct_1d": 2.16,
-      "pct_5d": 46.36,
-      "rsi": 78.6,
-      "vol_ratio": 2.11,
-      "news_hits": 0,
+      "price": 3910.0,
+      "pct_1d": 6.39,
+      "pct_5d": 16.89,
+      "rsi": 78.66,
+      "vol_ratio": 0.79,
+      "news_hits": 1,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -216,105 +216,105 @@
   "theme_summary": [
     {
       "theme": "IC設計",
-      "score": 713.7,
+      "score": 638.4,
       "leaders": [
-        "3034 聯詠",
+        "3443 創意",
         "6415 矽力*-KY",
-        "3035 智原"
+        "3661 世芯-KY"
       ]
     },
     {
       "theme": "AI伺服器",
-      "score": 562.7,
+      "score": 518.8,
       "leaders": [
-        "2317 鴻海",
-        "6669 緯穎",
-        "2357 華碩"
+        "3231 緯創",
+        "2357 華碩",
+        "2317 鴻海"
       ]
     },
     {
       "theme": "金融",
-      "score": 422.9,
+      "score": 372.4,
       "leaders": [
         "2885 元大金",
-        "2882 國泰金",
-        "2891 中信金"
+        "2886 兆豐金",
+        "2882 國泰金"
       ]
     }
   ],
   "us_context": [
     {
+      "symbol": "AMD",
+      "name": "AMD",
+      "score": 56,
+      "price": 303.46,
+      "pct_1d": 6.67,
+      "pct_5d": 17.57,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "近 5 日偏強"
+      ]
+    },
+    {
+      "symbol": "MU",
+      "name": "MU",
+      "score": 54,
+      "price": 487.48,
+      "pct_1d": 8.48,
+      "pct_5d": 6.85,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "近 5 日偏強"
+      ]
+    },
+    {
+      "symbol": "TSM",
+      "name": "TSM",
+      "score": 54,
+      "price": 387.44,
+      "pct_1d": 5.26,
+      "pct_5d": 3.29,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "近 5 日偏強"
+      ]
+    },
+    {
+      "symbol": "AAPL",
+      "name": "AAPL",
+      "score": 54,
+      "price": 273.17,
+      "pct_1d": 2.63,
+      "pct_5d": 2.53,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "近 5 日偏強"
+      ]
+    },
+    {
+      "symbol": "AMZN",
+      "name": "AMZN",
+      "score": 54,
+      "price": 255.36,
+      "pct_1d": 2.18,
+      "pct_5d": 2.76,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "近 5 日偏強"
+      ]
+    },
+    {
       "symbol": "MSFT",
       "name": "MSFT",
       "score": 54,
-      "price": 424.16,
-      "pct_1d": 1.46,
-      "pct_5d": 7.9,
-      "reasons": [
-        "站上 MA20",
-        "站上 MA60",
-        "近 5 日偏強"
-      ]
-    },
-    {
-      "symbol": "AVGO",
-      "name": "AVGO",
-      "score": 54,
-      "price": 402.17,
-      "pct_1d": 0.64,
-      "pct_5d": 5.62,
-      "reasons": [
-        "站上 MA20",
-        "站上 MA60",
-        "近 5 日偏強"
-      ]
-    },
-    {
-      "symbol": "QQQ",
-      "name": "QQQ",
-      "score": 54,
-      "price": 644.33,
-      "pct_1d": -0.38,
-      "pct_5d": 2.5,
-      "reasons": [
-        "站上 MA20",
-        "站上 MA60",
-        "近 5 日偏強"
-      ]
-    },
-    {
-      "symbol": "DIA",
-      "name": "DIA",
-      "score": 54,
-      "price": 491.36,
-      "pct_1d": -0.6,
-      "pct_5d": 1.21,
-      "reasons": [
-        "站上 MA20",
-        "站上 MA60",
-        "近 5 日偏強"
-      ]
-    },
-    {
-      "symbol": "SPY",
-      "name": "SPY",
-      "score": 54,
-      "price": 704.08,
-      "pct_1d": -0.65,
-      "pct_5d": 1.39,
-      "reasons": [
-        "站上 MA20",
-        "站上 MA60",
-        "近 5 日偏強"
-      ]
-    },
-    {
-      "symbol": "IWM",
-      "name": "IWM",
-      "score": 54,
-      "price": 274.51,
-      "pct_1d": -1.02,
-      "pct_5d": 2.15,
+      "price": 432.92,
+      "pct_1d": 2.07,
+      "pct_5d": 5.28,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -324,17 +324,17 @@
   ],
   "news_summary": {
     "tw_top_titles": [
-      "Fed接班人國會聽證登場！「科技咖」華許若出任 矽谷思維將引發政策大變局 - news.cnyes.com",
-      "盤中速報 - UTK大漲16.91%，報0.008美元 - news.cnyes.com",
-      "仁新醫藥啟動美國FDA滾動式送件 預計Q2完成送件 - news.cnyes.com",
-      "刷卡兌換比特幣最高 4.5％ 回饋！聯邦 MaiCoin 聯名卡目標發 2 萬張",
-      "北韓駭客涉竊近 3 億美元加密幣，創今年最大宗竊案"
+      "油價一飆降息夢再延後！調查：Fed政策立場轉趨保守 - news.cnyes.com",
+      "經濟學家示警美國經濟衰退風險！籲白宮調整政策避免 - news.cnyes.com",
+      "鉅亨速報 - Factset 最新調查：D.R. Horton公司DHI-US的目標價調升至170.5元，幅度約6.56% - news.cnyes.com",
+      "燃料衝擊警報拉響！歐美航空公司開始削減運能 - news.cnyes.com",
+      "〈焦點股〉瞄準算力與能源軍火庫 中信009819掛牌首日市價噴漲30% - news.cnyes.com"
     ],
     "us_top_titles": [
-      "Stocks making the biggest moves after hours: Adobe, United Airlines, Capital One and more",
-      "Trump administration discussing currency swap line with United Arab Emirates",
-      "Volkswagen announces voice AI in its Chinese cars from later this year",
-      "Here's what to expect from Fed chair nominee Kevin Warsh's Senate hearing Tuesday"
+      "Stocks making the biggest moves after hours: Tesla, IBM, ServiceNow, Southwest Airlines and more",
+      "Bessent says 'many' U.S. allies have asked for currency swaps amid Iran war turbulence",
+      "Stocks making the biggest moves midday: Axe Compute, AST SpaceMobile, United Airlines, GE Vernova & more",
+      "Trump administration discussing currency swap line with United Arab Emirates"
     ]
   }
 }
