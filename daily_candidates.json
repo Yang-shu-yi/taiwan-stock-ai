@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-04-26 08:38:10",
+  "updated_at": "2026-04-27 09:29:23",
   "mode": "POST",
   "market": {
     "tw_index": {
-      "price": "38932",
-      "chg": "1218",
-      "pct": "3.23",
+      "price": "39617",
+      "chg": "684",
+      "pct": "1.76",
       "turnover": "10812億"
     },
     "us_indices": {
@@ -30,14 +30,14 @@
         "pct": "+6.10"
       },
       "VIX": {
-        "price": "18.71",
-        "chg": "-0.60",
-        "pct": "-3.11"
+        "price": "19.05",
+        "chg": "+0.34",
+        "pct": "+1.82"
       }
     },
     "forex": {
-      "rate": "31.447",
-      "chg": "-0.020"
+      "rate": "31.417",
+      "chg": "-0.113"
     },
     "institutional": {
       "foreign": "N/A",
@@ -53,17 +53,17 @@
   },
   "tw_candidates": [
     {
-      "code": "2454",
-      "name": "聯發科",
-      "theme": "IC設計",
-      "symbol": "2454.TW",
+      "code": "2451",
+      "name": "創見",
+      "theme": "記憶體",
+      "symbol": "2451.TW",
       "score": 100,
-      "price": 2435.0,
-      "pct_1d": 9.93,
-      "pct_5d": 26.49,
-      "rsi": 80.31,
-      "vol_ratio": 1.68,
-      "news_hits": 3,
+      "price": 262.0,
+      "pct_1d": 3.76,
+      "pct_5d": 4.59,
+      "rsi": 56.32,
+      "vol_ratio": 1.74,
+      "news_hits": 1,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -78,12 +78,12 @@
       "theme": "半導體",
       "symbol": "2330.TW",
       "score": 100,
-      "price": 2185.0,
-      "pct_1d": 5.05,
-      "pct_5d": 7.64,
-      "rsi": 72.68,
-      "vol_ratio": 1.34,
-      "news_hits": 4,
+      "price": 2265.0,
+      "pct_1d": 3.66,
+      "pct_5d": 11.85,
+      "rsi": 76.63,
+      "vol_ratio": 2.1,
+      "news_hits": 7,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -93,17 +93,17 @@
       "rank": 2
     },
     {
-      "code": "3023",
-      "name": "信邦",
-      "theme": "工業連接",
-      "symbol": "3023.TW",
-      "score": 100,
-      "price": 290.0,
-      "pct_1d": 4.32,
-      "pct_5d": 2.84,
-      "rsi": 65.91,
-      "vol_ratio": 1.73,
-      "news_hits": 0,
+      "code": "1303",
+      "name": "南亞",
+      "theme": "塑化",
+      "symbol": "1303.TW",
+      "score": 94,
+      "price": 87.8,
+      "pct_1d": 2.21,
+      "pct_5d": 2.45,
+      "rsi": 55.12,
+      "vol_ratio": 0.71,
+      "news_hits": 2,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -113,17 +113,17 @@
       "rank": 3
     },
     {
-      "code": "6531",
-      "name": "愛普*",
-      "theme": "記憶體",
-      "symbol": "6531.TW",
-      "score": 96,
-      "price": 788.0,
-      "pct_1d": 0.38,
-      "pct_5d": 22.36,
-      "rsi": 79.83,
-      "vol_ratio": 1.85,
-      "news_hits": 2,
+      "code": "3017",
+      "name": "奇鋐",
+      "theme": "電源/散熱",
+      "symbol": "3017.TW",
+      "score": 94,
+      "price": 2835.0,
+      "pct_1d": -3.74,
+      "pct_5d": 13.86,
+      "rsi": 72.17,
+      "vol_ratio": 1.57,
+      "news_hits": 0,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -133,37 +133,37 @@
       "rank": 4
     },
     {
-      "code": "2308",
-      "name": "台達電",
-      "theme": "電源/散熱",
-      "symbol": "2308.TW",
-      "score": 90,
-      "price": 2075.0,
-      "pct_1d": 4.8,
-      "pct_5d": 12.77,
-      "rsi": 77.85,
-      "vol_ratio": 1.0,
-      "news_hits": 2,
+      "code": "3008",
+      "name": "大立光",
+      "theme": "光學",
+      "symbol": "3008.TW",
+      "score": 92,
+      "price": 2615.0,
+      "pct_1d": 3.77,
+      "pct_5d": -3.51,
+      "rsi": 57.53,
+      "vol_ratio": 1.68,
+      "news_hits": 0,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
         "均線結構偏多",
-        "近 5 日動能轉強"
+        "RSI 位於健康強勢區"
       ],
       "rank": 5
     },
     {
-      "code": "3019",
-      "name": "亞光",
-      "theme": "光學",
-      "symbol": "3019.TW",
+      "code": "2317",
+      "name": "鴻海",
+      "theme": "AI伺服器",
+      "symbol": "2317.TW",
       "score": 88,
-      "price": 139.5,
-      "pct_1d": 9.84,
-      "pct_5d": 8.14,
-      "rsi": 60.98,
-      "vol_ratio": 6.61,
-      "news_hits": 0,
+      "price": 228.0,
+      "pct_1d": 2.93,
+      "pct_5d": 9.88,
+      "rsi": 67.05,
+      "vol_ratio": 1.71,
+      "news_hits": 1,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -173,36 +173,36 @@
       "rank": 6
     },
     {
-      "code": "3035",
-      "name": "智原",
+      "code": "2379",
+      "name": "瑞昱",
       "theme": "IC設計",
-      "symbol": "3035.TW",
-      "score": 88,
-      "price": 185.0,
-      "pct_1d": 9.79,
-      "pct_5d": 16.35,
-      "rsi": 66.96,
-      "vol_ratio": 4.7,
+      "symbol": "2379.TW",
+      "score": 82,
+      "price": 555.0,
+      "pct_1d": 2.97,
+      "pct_5d": 3.16,
+      "rsi": 64.58,
+      "vol_ratio": 0.87,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
-        "近 5 日動能轉強",
-        "RSI 位於健康強勢區"
+        "均線結構偏多",
+        "近 5 日動能轉強"
       ],
       "rank": 7
     },
     {
-      "code": "6669",
-      "name": "緯穎",
-      "theme": "AI伺服器",
-      "symbol": "6669.TW",
-      "score": 88,
-      "price": 4635.0,
-      "pct_1d": 9.06,
-      "pct_5d": 21.81,
-      "rsi": 74.55,
-      "vol_ratio": 2.2,
+      "code": "3019",
+      "name": "亞光",
+      "theme": "光學",
+      "symbol": "3019.TW",
+      "score": 82,
+      "price": 143.5,
+      "pct_1d": 2.87,
+      "pct_5d": 10.38,
+      "rsi": 64.34,
+      "vol_ratio": 5.73,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -216,29 +216,29 @@
   "theme_summary": [
     {
       "theme": "IC設計",
-      "score": 711.5,
+      "score": 608.3,
       "leaders": [
-        "2454 聯發科",
+        "2379 瑞昱",
         "3035 智原",
         "3661 世芯-KY"
       ]
     },
     {
       "theme": "AI伺服器",
-      "score": 505.0,
+      "score": 523.2,
       "leaders": [
-        "6669 緯穎",
-        "3231 緯創",
-        "2382 廣達"
+        "2317 鴻海",
+        "2376 技嘉",
+        "6669 緯穎"
       ]
     },
     {
       "theme": "金融",
-      "score": 354.0,
+      "score": 454.4,
       "leaders": [
         "2885 元大金",
-        "2882 國泰金",
-        "2886 兆豐金"
+        "2886 兆豐金",
+        "2882 國泰金"
       ]
     }
   ],
@@ -324,11 +324,11 @@
   ],
   "news_summary": {
     "tw_top_titles": [
-      "《逐玉》爆紅也就救不了！華誼兄弟被申請破產啟動預重整、8年虧損超85億 - news.cnyes.com",
-      "盤中速報 - 愛麗絲大漲20.32%，報0.175美元 - news.cnyes.com",
-      "Google認輸？砸400億美元押注Anthropic AI「三強爭霸」終結、OpenAI孤立無援？ - news.cnyes.com",
-      "保險套、手套齊漲價！荷姆茲海峽危機衝擊石油石化產品供應、原料價格翻倍 - news.cnyes.com",
-      "不想被兩強夾擊！AI新創紛紛移師新加坡 看中「智慧財產權不歸美中管」的超強優勢 - news.cnyes.com"
+      "盤中速報 - Moonriver大跌18.73%，報2.26美元 - news.cnyes.com",
+      "韓股 KOSPI 連日漲，總市值首度突破 6,000 兆韓圜大關",
+      "3 月景氣燈號連四紅分數下滑，國發會：經濟穩健成長",
+      "賺錢了！旺宏首季毛利率衝過 40% 帶動 EPS 達 0.9 元",
+      "刷卡機霸主下一步前進東南亞！精誠金融科技預計 5 月底掛牌上櫃"
     ],
     "us_top_titles": [
       "This little-known ETF is up over 600% amid U.S.-Iran war, a better trade than oil or energy stocks",
