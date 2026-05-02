@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-01 09:08:52",
+  "updated_at": "2026-05-02 08:44:12",
   "mode": "POST",
   "market": {
     "tw_index": {
@@ -10,34 +10,34 @@
     },
     "us_indices": {
       "S&P500": {
-        "price": "7209.01",
-        "chg": "+70.21",
-        "pct": "+0.98"
+        "price": "7230.12",
+        "chg": "+94.17",
+        "pct": "+1.32"
       },
       "道瓊": {
-        "price": "49652.14",
-        "chg": "+510.21",
-        "pct": "+1.04"
+        "price": "49499.27",
+        "chg": "+637.46",
+        "pct": "+1.30"
       },
       "那斯達克": {
-        "price": "24892.31",
-        "chg": "+228.51",
-        "pct": "+0.93"
+        "price": "25114.44",
+        "chg": "+441.20",
+        "pct": "+1.79"
       },
       "費半": {
-        "price": "10503.70",
-        "chg": "+468.12",
-        "pct": "+4.66"
+        "price": "10595.34",
+        "chg": "+324.04",
+        "pct": "+3.15"
       },
       "VIX": {
-        "price": "17.09",
-        "chg": "+0.20",
-        "pct": "+1.18"
+        "price": "16.99",
+        "chg": "+0.10",
+        "pct": "+0.59"
       }
     },
     "forex": {
-      "rate": "31.644",
-      "chg": "+0.017"
+      "rate": "31.613",
+      "chg": "-0.014"
     },
     "institutional": {
       "foreign": "N/A",
@@ -83,7 +83,7 @@
       "pct_5d": 2.64,
       "rsi": 60.21,
       "vol_ratio": 1.32,
-      "news_hits": 4,
+      "news_hits": 9,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -216,20 +216,11 @@
   "theme_summary": [
     {
       "theme": "IC設計",
-      "score": 570.8,
+      "score": 594.8,
       "leaders": [
         "6415 矽力*-KY",
         "3661 世芯-KY",
-        "3443 創意"
-      ]
-    },
-    {
-      "theme": "AI伺服器",
-      "score": 420.3,
-      "leaders": [
-        "6669 緯穎",
-        "2317 鴻海",
-        "2376 技嘉"
+        "2454 聯發科"
       ]
     },
     {
@@ -240,16 +231,25 @@
         "2882 國泰金",
         "2881 富邦金"
       ]
+    },
+    {
+      "theme": "AI伺服器",
+      "score": 386.3,
+      "leaders": [
+        "6669 緯穎",
+        "2376 技嘉",
+        "3231 緯創"
+      ]
     }
   ],
   "us_context": [
     {
-      "symbol": "AMZN",
-      "name": "AMZN",
+      "symbol": "AAPL",
+      "name": "AAPL",
       "score": 62,
-      "price": 265.06,
-      "pct_1d": 0.77,
-      "pct_5d": 3.91,
+      "price": 280.14,
+      "pct_1d": 3.24,
+      "pct_5d": 3.35,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -257,25 +257,12 @@
       ]
     },
     {
-      "symbol": "GOOGL",
-      "name": "GOOGL",
-      "score": 56,
-      "price": 384.8,
-      "pct_1d": 9.96,
-      "pct_5d": 13.55,
-      "reasons": [
-        "站上 MA20",
-        "站上 MA60",
-        "近 5 日偏強"
-      ]
-    },
-    {
-      "symbol": "SOXX",
-      "name": "SOXX",
+      "symbol": "MU",
+      "name": "MU",
       "score": 54,
-      "price": 461.44,
-      "pct_1d": 2.54,
-      "pct_5d": 4.63,
+      "price": 542.21,
+      "pct_1d": 4.84,
+      "pct_5d": 9.16,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -283,12 +270,12 @@
       ]
     },
     {
-      "symbol": "SPY",
-      "name": "SPY",
+      "symbol": "TSLA",
+      "name": "TSLA",
       "score": 54,
-      "price": 718.66,
-      "pct_1d": 0.99,
-      "pct_5d": 1.44,
+      "price": 390.82,
+      "pct_1d": 2.41,
+      "pct_5d": 3.86,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -299,9 +286,9 @@
       "symbol": "QQQ",
       "name": "QQQ",
       "score": 54,
-      "price": 667.74,
-      "pct_1d": 0.93,
-      "pct_5d": 2.51,
+      "price": 674.15,
+      "pct_1d": 0.96,
+      "pct_5d": 1.55,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -309,12 +296,25 @@
       ]
     },
     {
-      "symbol": "TSM",
-      "name": "TSM",
-      "score": 54,
-      "price": 396.06,
-      "pct_1d": 0.57,
-      "pct_5d": 3.5,
+      "symbol": "AMD",
+      "name": "AMD",
+      "score": 48,
+      "price": 360.54,
+      "pct_1d": 1.71,
+      "pct_5d": 3.66,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "近 5 日偏強"
+      ]
+    },
+    {
+      "symbol": "AMZN",
+      "name": "AMZN",
+      "score": 48,
+      "price": 268.26,
+      "pct_1d": 1.21,
+      "pct_5d": 1.62,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -324,18 +324,18 @@
   ],
   "news_summary": {
     "tw_top_titles": [
-      "00878配息大驚喜！擬發0.66元創新高 年化配息率衝上10.4% - news.cnyes.com",
-      "日本疑進場干預匯市 日元反彈至近兩月高點 - news.cnyes.com",
-      "油價震盪加劇！伊朗揚言報復美軍 持續封鎖荷姆茲海峽 - news.cnyes.com",
-      "特納斯庫克同台亮相！蘋果財報解讀：財測亮麗、iPhone遇晶片瓶頸、全力投注Siri與AI - news.cnyes.com",
-      "鮑爾時代即將落幕 美股成大贏家 債市成苦主 - news.cnyes.com"
+      "鉅亨速報 - Factset 最新調查：開利全球CARR-US的目標價調升至74.5元，幅度約6.43% - news.cnyes.com",
+      "13家金控股利全揭曉！2026股息總額3422億元創高 這9家現金殖利率衝破4% - news.cnyes.com",
+      "荷姆茲供應持續中斷 油市缺口擴大 巴克萊上調今年Brent油價預測至100美元 - news.cnyes.com",
+      "Fed哈瑪克：不宜再釋出降息訊號 - news.cnyes.com",
+      "〈貴金屬盤後〉伊朗釋最新談判提案 金價開低走高 周線仍收黑 - news.cnyes.com"
     ],
     "us_top_titles": [
-      "China’s EV price war turns into AI arms race beyond cheaper cars",
-      "China’s self-driving truck leaders say AI breakthroughs won’t accelerate rollout — here’s why",
-      "Stocks making the biggest moves after hours: Apple, Roblox, Reddit, Roku & more",
-      "Apple execs to talk China and tariffs, but will avoid discussing foldable iPhone, per traders on Kalshi",
-      "Blue Owl shares surge after private credit firm cites 10X gains from SpaceX"
+      "Cautious optimism: Berkshire investors weigh future under new CEO Greg Abel",
+      "Berkshire Hathaway’s shopping extravaganza draws lighter crowds as spotlight shifts to Greg Abel",
+      "U.S. oil prices will exceed Iran wartime high to above $125 as conflict drags on, Kalshi traders say",
+      "Six months out, control of the Senate is a dead heat, traders on Kalshi say",
+      "Stocks making the biggest moves premarket: Apple, Estee Lauder, Roku, Reddit, Roblox and more"
     ]
   }
 }
