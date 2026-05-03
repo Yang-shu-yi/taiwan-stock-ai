@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-02 08:44:12",
+  "updated_at": "2026-05-03 08:57:41",
   "mode": "POST",
   "market": {
     "tw_index": {
@@ -63,7 +63,7 @@
       "pct_5d": 5.03,
       "rsi": 66.44,
       "vol_ratio": 1.68,
-      "news_hits": 0,
+      "news_hits": 1,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -83,7 +83,7 @@
       "pct_5d": 2.64,
       "rsi": 60.21,
       "vol_ratio": 1.32,
-      "news_hits": 9,
+      "news_hits": 7,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -193,17 +193,17 @@
       "rank": 7
     },
     {
-      "code": "6531",
-      "name": "愛普*",
-      "theme": "記憶體",
-      "symbol": "6531.TW",
-      "score": 84,
-      "price": 840.0,
-      "pct_1d": 2.44,
-      "pct_5d": 7.01,
-      "rsi": 78.1,
-      "vol_ratio": 0.54,
-      "news_hits": 2,
+      "code": "1303",
+      "name": "南亞",
+      "theme": "塑化",
+      "symbol": "1303.TW",
+      "score": 88,
+      "price": 89.6,
+      "pct_1d": -2.18,
+      "pct_5d": 5.16,
+      "rsi": 56.29,
+      "vol_ratio": 1.11,
+      "news_hits": 1,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -216,16 +216,16 @@
   "theme_summary": [
     {
       "theme": "IC設計",
-      "score": 594.8,
+      "score": 560.8,
       "leaders": [
         "6415 矽力*-KY",
         "3661 世芯-KY",
-        "2454 聯發科"
+        "3443 創意"
       ]
     },
     {
       "theme": "金融",
-      "score": 398.8,
+      "score": 418.8,
       "leaders": [
         "2885 元大金",
         "2882 國泰金",
@@ -324,18 +324,18 @@
   ],
   "news_summary": {
     "tw_top_titles": [
-      "鉅亨速報 - Factset 最新調查：開利全球CARR-US的目標價調升至74.5元，幅度約6.43% - news.cnyes.com",
-      "13家金控股利全揭曉！2026股息總額3422億元創高 這9家現金殖利率衝破4% - news.cnyes.com",
-      "荷姆茲供應持續中斷 油市缺口擴大 巴克萊上調今年Brent油價預測至100美元 - news.cnyes.com",
-      "Fed哈瑪克：不宜再釋出降息訊號 - news.cnyes.com",
-      "〈貴金屬盤後〉伊朗釋最新談判提案 金價開低走高 周線仍收黑 - news.cnyes.com"
+      "伊朗公布最新14點提案 要求30天內結束美伊戰爭 - news.cnyes.com",
+      "〈台泥80週年〉董座張安平揭示下一個80年行動主軸 從建設城市延伸至築夢文明 - news.cnyes.com",
+      "〈台泥80週年〉發表萬磅旗艦型地坪新品 鎖定科技廠辦高規格需求 - news.cnyes.com",
+      "出訪成功 賴清德突發社群宣布飛抵史瓦帝尼 獲熱烈溫暖歡迎 - news.cnyes.com",
+      "頭條新聞 - news.cnyes.com"
     ],
     "us_top_titles": [
+      "JPMorgan's Jamie Dimon issued vague credit recession warning, but the bond market has more pressing issues",
       "Cautious optimism: Berkshire investors weigh future under new CEO Greg Abel",
       "Berkshire Hathaway’s shopping extravaganza draws lighter crowds as spotlight shifts to Greg Abel",
       "U.S. oil prices will exceed Iran wartime high to above $125 as conflict drags on, Kalshi traders say",
-      "Six months out, control of the Senate is a dead heat, traders on Kalshi say",
-      "Stocks making the biggest moves premarket: Apple, Estee Lauder, Roku, Reddit, Roblox and more"
+      "Six months out, control of the Senate is a dead heat, traders on Kalshi say"
     ]
   }
 }
