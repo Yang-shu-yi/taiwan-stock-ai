@@ -78,7 +78,7 @@ def analyze_symbol(code: str) -> dict | None:
         return None
 
     close_series = pd.Series(closes, dtype="float64")
-    rsi = ta.momentum.RSIIndicator(close_series, window=14).rsi().iloc[-1]
+    rsi = ta.momentum.RSIIndicator(close_series, 14).rsi().iloc[-1]
     last_price = float(closes[-1])
     prev_close = float(
         meta.get("previousClose") or meta.get("chartPreviousClose") or last_price

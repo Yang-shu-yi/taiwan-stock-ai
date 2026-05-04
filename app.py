@@ -32,8 +32,8 @@ st.markdown(
     :root {
         --bg: #f4f1e8;
         --panel: #fffdf8;
-        --ink: #202330;
-        --muted: #68707f;
+        --ink: #000000;
+        --muted: #000000;
         --line: rgba(32, 35, 48, 0.10);
         --accent: #d95f43;
         --accent-soft: rgba(217, 95, 67, 0.12);
@@ -94,7 +94,7 @@ st.markdown(
     .pill-accent {
         background: var(--accent-soft);
         border-color: rgba(217, 95, 67, 0.18);
-        color: #883d2b;
+        color: #000000;
     }
 
     .section-note {
@@ -117,7 +117,7 @@ st.markdown(
     }
 
     .theme-score {
-        color: var(--accent);
+        color: var(--ink);
         font-weight: 700;
         margin-top: 6px;
     }
@@ -149,6 +149,29 @@ st.markdown(
         border-radius: 18px;
         padding: 14px;
         margin-bottom: 12px;
+    }
+
+    html, body, [class*="css"], [data-testid="stAppViewContainer"], [data-testid="stSidebar"] {
+        color: #000000 !important;
+    }
+
+    [data-testid="stMetricValue"],
+    [data-testid="stMetricLabel"],
+    [data-testid="stMetricDelta"],
+    [data-testid="stMarkdownContainer"],
+    [data-testid="stCaptionContainer"],
+    [data-testid="stTextInput"] label,
+    [data-baseweb="tab"] {
+        color: #000000 !important;
+    }
+
+    div[data-baseweb="tab-list"] {
+        gap: 8px;
+    }
+
+    div[data-baseweb="tab"] {
+        color: #000000 !important;
+        border-color: rgba(32, 35, 48, 0.12) !important;
     }
     </style>
     """,
@@ -263,12 +286,11 @@ def candidate_chart(frame: pd.DataFrame) -> go.Figure:
         figure.update_layout(height=320, margin=dict(l=0, r=0, t=20, b=0))
         return figure
 
-    colors = ["#228b5a" if value >= 0 else "#b24343" for value in frame["1日%"]]
     figure.add_trace(
         go.Bar(
             x=frame["名稱"],
             y=frame["1日%"],
-            marker_color=colors,
+            marker_color="rgba(0,0,0,0.86)",
             text=[f"{value:+.2f}%" for value in frame["1日%"]],
             textposition="outside",
             hovertemplate="%{x}<br>單日漲跌 %{y:+.2f}%<extra></extra>",
@@ -302,14 +324,18 @@ def stock_price_chart(history: pd.DataFrame, name: str) -> go.Figure:
             low=history["Low"],
             close=history["Close"],
             name=name,
+            increasing_line_color="#000000",
+            increasing_fillcolor="rgba(0,0,0,0.82)",
+            decreasing_line_color="#000000",
+            decreasing_fillcolor="rgba(0,0,0,0.38)",
         ),
         row=1,
         col=1,
     )
     for line_name, color in [
-        ("MA20", "#d95f43"),
-        ("MA60", "#1d6f8c"),
-        ("MA120", "#8d6a22"),
+        ("MA20", "#000000"),
+        ("MA60", "rgba(0,0,0,0.72)"),
+        ("MA120", "rgba(0,0,0,0.48)"),
     ]:
         figure.add_trace(
             go.Scatter(
@@ -327,7 +353,7 @@ def stock_price_chart(history: pd.DataFrame, name: str) -> go.Figure:
         go.Bar(
             x=history.index,
             y=history["Volume"],
-            marker_color="rgba(29,111,140,0.38)",
+            marker_color="rgba(0,0,0,0.30)",
             name="Volume",
         ),
         row=2,
@@ -338,7 +364,7 @@ def stock_price_chart(history: pd.DataFrame, name: str) -> go.Figure:
             x=history.index,
             y=history["VOL20"],
             mode="lines",
-            line=dict(color="#d95f43", width=1.8),
+            line=dict(color="#000000", width=1.8),
             name="VOL20",
         ),
         row=2,
@@ -366,9 +392,9 @@ def score_chart(scores: dict[str, float]) -> go.Figure:
             marker=dict(
                 color=[value for _, value in score_items],
                 colorscale=[
-                    [0.0, "#b24343"],
-                    [0.5, "#d9b24c"],
-                    [1.0, "#228b5a"],
+                    [0.0, "rgba(0,0,0,0.40)"],
+                    [0.5, "rgba(0,0,0,0.65)"],
+                    [1.0, "rgba(0,0,0,0.90)"],
                 ],
                 cmin=0,
                 cmax=100,

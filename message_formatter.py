@@ -98,32 +98,32 @@ def format_market_report(snapshot: dict[str, Any]) -> str:
     forex = market.get("forex", {})
     tw_pct = _to_float(tw.get("pct", "0"))
 
-    title = "[盤前可執行摘要]" if mode == "PRE" else "[盤後可復盤報告]"
+    title = "[🌅 盤前可執行摘要]" if mode == "PRE" else "[🌙 盤後可復盤報告]"
     lines = [
         title,
-        f"台股: {tw.get('price', 'N/A')} ({tw.get('pct', 'N/A')}%) / 成交值 {tw.get('turnover', 'N/A')} / 氣氛 {_market_bias_label(tw_pct)}",
-        f"美股: {_pick_us_context(snapshot)} / 匯率 USDTWD {forex.get('rate', 'N/A')}",
-        f"台股焦點: {_pick_tw_focus(snapshot)}",
-        "今日主軸:",
+        f"📊 台股: {tw.get('price', 'N/A')} ({tw.get('pct', 'N/A')}%) / 成交值 {tw.get('turnover', 'N/A')} / 氣氛 {_market_bias_label(tw_pct)}",
+        f"🌍 美股: {_pick_us_context(snapshot)} / 匯率 USDTWD {forex.get('rate', 'N/A')}",
+        f"🎯 台股焦點: {_pick_tw_focus(snapshot)}",
+        "🔥 今日主軸:",
     ]
     lines.extend(_theme_lines(snapshot))
-    lines.append("重點股:")
+    lines.append("📌 重點股:")
     lines.extend(_top_candidate_lines(snapshot, limit=5))
-    lines.append(f"新聞提示: {_news_hint(snapshot)}")
+    lines.append(f"📰 新聞提示: {_news_hint(snapshot)}")
 
     if mode == "PRE":
-        lines.append("開盤劇本:")
+        lines.append("🧭 開盤劇本:")
         lines.extend(f"- {line}" for line in _opening_scenarios(snapshot))
     else:
-        lines.append("盤後復盤:")
+        lines.append("🔎 盤後復盤:")
         lines.extend(_post_market_review(snapshot))
-        lines.append("隔日觀察: 先看主軸族群是否續強，再決定是否追蹤焦點股")
+        lines.append("👀 隔日觀察: 先看主軸族群是否續強，再決定是否追蹤焦點股")
 
     return "\n".join(lines)
 
 
 def format_intraday_alert(item: dict[str, Any]) -> str:
-    direction = "突破確認" if item.get("status") == "UP" else "轉弱確認"
+    direction = "📈 突破確認" if item.get("status") == "UP" else "📉 轉弱確認"
     price = item.get("price", 0.0)
     pct = item.get("pct", 0.0)
     rsi = item.get("rsi", 0.0)
@@ -136,12 +136,12 @@ def format_intraday_alert(item: dict[str, Any]) -> str:
     )
     return "\n".join(
         [
-            "[盤中警示]",
+            "[⚡ 盤中警示]",
             f"股票: {item['code']} {item['name']}",
             f"狀態: {direction}",
             f"價格: {price:.2f} ({pct:+.2f}%)",
             f"訊號: RSI {rsi:.1f} / 量比 {vol_text}",
-            risk_line,
+            f"⚠️ {risk_line}",
         ]
     )
 
@@ -149,7 +149,7 @@ def format_intraday_alert(item: dict[str, Any]) -> str:
 def format_telegram_help() -> str:
     return "\n".join(
         [
-            "[指令說明]",
+            "[🧾 指令說明]",
             "/list 查看今日候選股",
             "/help 查看指令說明",
         ]
@@ -158,7 +158,7 @@ def format_telegram_help() -> str:
 
 def format_candidate_list(snapshot: dict[str, Any], limit: int = 10) -> str:
     items = snapshot.get("tw_candidates", [])[:limit]
-    lines = ["[今日候選股]"]
+    lines = ["[📋 今日候選股]"]
     if not items:
         lines.append("目前沒有候選資料")
         return "\n".join(lines)

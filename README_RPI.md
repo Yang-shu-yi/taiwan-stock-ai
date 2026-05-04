@@ -33,7 +33,8 @@ nano .env
 至少建議設定：
 
 - `ENABLE_REPORT_TELEGRAM=true`
-- `ENABLE_LINE=false`
+- `ENABLE_LINE=true`
+- `REPORT_DASHBOARD_URL=https://taiwan-stock-ai-cmignppyqbx3qyslpthtnz.streamlit.app/`
 - `REPORT_TELEGRAM_BOT_TOKEN`
 - `REPORT_TELEGRAM_CHAT_ID`
 

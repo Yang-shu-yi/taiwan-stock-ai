@@ -15,6 +15,10 @@ def _env_flag(name: str, default: bool) -> bool:
 ENABLE_REPORT_TELEGRAM = _env_flag("ENABLE_REPORT_TELEGRAM", True)
 ENABLE_LINE = _env_flag("ENABLE_LINE", False)
 REPORT_NOTIFY_ERRORS = _env_flag("REPORT_NOTIFY_ERRORS", False)
+REPORT_DASHBOARD_URL = os.getenv(
+    "REPORT_DASHBOARD_URL",
+    "https://taiwan-stock-ai-cmignppyqbx3qyslpthtnz.streamlit.app/",
+).strip()
 
 LINE_CHANNEL_TOKEN = os.getenv("LINE_CHANNEL_TOKEN")
 LINE_TARGET_ID = os.getenv("LINE_TARGET_ID")
@@ -28,6 +32,15 @@ def _send_telegram_message(message: str, token: str, chat_id: str) -> None:
     payload = {"chat_id": chat_id, "text": message}
     response = requests.post(url, json=payload, timeout=10)
     response.raise_for_status()
+
+
+def _with_dashboard_link(message: str) -> str:
+    if not REPORT_DASHBOARD_URL:
+        return message
+    if REPORT_DASHBOARD_URL in message:
+        return message
+    suffix = f"\n\nDashboard: {REPORT_DASHBOARD_URL}"
+    return f"{message.rstrip()}{suffix}"
 
 
 def send_report_message(message: str) -> None:
@@ -63,5 +76,6 @@ def send_line_message(message: str) -> None:
 
 
 def notify_report(message: str) -> None:
-    send_report_message(message)
-    send_line_message(message)
+    final_message = _with_dashboard_link(message)
+    send_report_message(final_message)
+    send_line_message(final_message)
