@@ -1,4 +1,5 @@
 from typing import Any
+from urllib.parse import urlparse
 
 
 def _to_float(value: Any) -> float | None:
@@ -85,10 +86,54 @@ def _post_market_review(snapshot: dict[str, Any]) -> list[str]:
 
 def _news_hint(snapshot: dict[str, Any]) -> str:
     titles = snapshot.get("news_summary", {}).get("tw_top_titles", [])
-    cleaned = [title.replace("\n", " ").strip() for title in titles if title.strip()]
+    cleaned = [_clean_news_title(title) for title in titles if title.strip()]
     if not cleaned:
         return "新聞面未提供明確加分"
     return cleaned[0][:42]
+
+
+def _clean_news_title(title: str) -> str:
+    text = str(title).replace("\n", " ").strip()
+    for separator in [" - news.", " - news", " - Yahoo", " - 奇摩", " - Anue"]:
+        if separator in text:
+            text = text.split(separator, 1)[0].strip()
+    parsed = urlparse(text)
+    if parsed.scheme and parsed.netloc:
+        return parsed.netloc
+    return text.strip(" -")
+
+
+def _data_status_line(snapshot: dict[str, Any]) -> str:
+    status = snapshot.get("data_status") or {}
+    if not status:
+        return "🧪 資料狀態: 未記錄"
+    failed = [
+        key
+        for key, item in status.items()
+        if not item.get("ok") or item.get("cached")
+    ]
+    if not failed:
+        return "🧪 資料狀態: 正常"
+    labels = "、".join(failed[:3])
+    extra = "" if len(failed) <= 3 else f" 等 {len(failed)} 項"
+    return f"🧪 資料狀態: 留意 {labels}{extra}"
+
+
+def _performance_line(snapshot: dict[str, Any]) -> str | None:
+    summary = snapshot.get("performance_summary") or {}
+    if not summary or not summary.get("count"):
+        return None
+    avg_return = summary.get("avg_return_pct")
+    win_rate = summary.get("win_rate")
+    top5 = summary.get("top5_hit_rate")
+    parts = [f"樣本 {summary.get('count')}"]
+    if avg_return is not None:
+        parts.append(f"平均 {avg_return:+.2f}%")
+    if win_rate is not None:
+        parts.append(f"勝率 {win_rate:.0%}")
+    if top5 is not None:
+        parts.append(f"Top5 {top5:.0%}")
+    return "📈 近期訊號: " + " / ".join(parts)
 
 
 def format_market_report(snapshot: dict[str, Any]) -> str:
@@ -110,6 +155,10 @@ def format_market_report(snapshot: dict[str, Any]) -> str:
     lines.append("📌 重點股:")
     lines.extend(_top_candidate_lines(snapshot, limit=5))
     lines.append(f"📰 新聞提示: {_news_hint(snapshot)}")
+    lines.append(_data_status_line(snapshot))
+    performance = _performance_line(snapshot)
+    if performance:
+        lines.append(performance)
 
     if mode == "PRE":
         lines.append("🧭 開盤劇本:")
@@ -119,6 +168,7 @@ def format_market_report(snapshot: dict[str, Any]) -> str:
         lines.extend(_post_market_review(snapshot))
         lines.append("👀 隔日觀察: 先看主軸族群是否續強，再決定是否追蹤焦點股")
 
+    lines.append("⚠️ 以上為資料輔助判讀，不是保證獲利或直接下單建議。")
     return "\n".join(lines)
 
 

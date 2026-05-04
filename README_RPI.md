@@ -7,7 +7,7 @@ Pi 端主要執行兩個流程：
 - `rpi_main.py`：每天產生候選股快照與摘要
 - `rpi_intraday.py`：盤中警示
 
-目前建議通知只走 Telegram，而且報告類訊息要走專屬 report bot。
+報告類訊息要走專屬 report Telegram bot，並可同步 LINE；Codex 任務完成提醒仍使用 skill bot，不要混用。
 
 
 ## 安裝
@@ -37,6 +37,8 @@ nano .env
 - `REPORT_DASHBOARD_URL=https://taiwan-stock-ai-cmignppyqbx3qyslpthtnz.streamlit.app/`
 - `REPORT_TELEGRAM_BOT_TOKEN`
 - `REPORT_TELEGRAM_CHAT_ID`
+- `LINE_CHANNEL_TOKEN`
+- `LINE_TARGET_ID`
 
 注意：
 
@@ -51,6 +53,7 @@ nano .env
 - `TW_SCAN_LIMIT`
 - `TW_CANDIDATE_LIMIT`
 - `INTRADAY_FOCUS_LIMIT`
+- `DRY_RUN=true`：本地驗證用，產生快照但不發送 Telegram / LINE
 
 
 ## 執行
@@ -59,6 +62,12 @@ nano .env
 
 ```bash
 python3 rpi_main.py
+```
+
+先驗證不發送通知：
+
+```bash
+DRY_RUN=true python3 rpi_main.py
 ```
 
 ### 盤中警示流程
@@ -77,6 +86,13 @@ sudo cp pi_intraday.service /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo systemctl enable --now pi_intraday
 sudo systemctl status pi_intraday
+```
+
+Pi 狀態確認：
+
+```bash
+systemctl is-active pi_intraday
+crontab -l
 ```
 
 ### 每日流程
@@ -99,4 +115,6 @@ sudo systemctl status pi_intraday
 
 - 請先確認 Pi 的 timezone 正確
 - 如果要同步 Google Sheets，`service_account.json` 不要提交到 repo
-- 重構後主流程已不再依賴 Streamlit 與手動 watchlist
+- `daily_candidates.json` 會包含 `data_status`，Dashboard 可直接看資料是否過期或降級
+- `signal_history.jsonl` 與 `signal_performance.jsonl` 是本機追蹤檔，不要提交到 repo
+- 重構後主流程已不再依賴手動 watchlist

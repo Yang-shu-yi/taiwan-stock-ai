@@ -26,10 +26,13 @@ jobs:
       - name: Run daily pipeline
         env:
           MODE: POST
-          ENABLE_TELEGRAM: "true"
-          ENABLE_LINE: "false"
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          ENABLE_REPORT_TELEGRAM: "true"
+          ENABLE_LINE: "true"
+          REPORT_TELEGRAM_BOT_TOKEN: ${{ secrets.REPORT_TELEGRAM_BOT_TOKEN }}
+          REPORT_TELEGRAM_CHAT_ID: ${{ secrets.REPORT_TELEGRAM_CHAT_ID }}
+          LINE_CHANNEL_TOKEN: ${{ secrets.LINE_CHANNEL_TOKEN }}
+          LINE_TARGET_ID: ${{ secrets.LINE_TARGET_ID }}
+          REPORT_DASHBOARD_URL: https://taiwan-stock-ai-cmignppyqbx3qyslpthtnz.streamlit.app/
           SPREADSHEET_ID: ${{ secrets.SPREADSHEET_ID }}
           GOOGLE_SERVICE_ACCOUNT_FILE: service_account.json
           TW_SCAN_LIMIT: "48"

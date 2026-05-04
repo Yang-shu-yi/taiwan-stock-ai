@@ -1,5 +1,6 @@
 import json
 import os
+import sys
 from datetime import datetime
 
 from dotenv import load_dotenv
@@ -14,18 +15,32 @@ from candidate_selector import (
     build_daily_snapshot,
     save_daily_snapshot,
 )
+from config_check import env_flag, validate_runtime_config
+from data_layer import get_data_status, record_news_status, reset_data_status
 from market_data import get_all_market_data
 from message_formatter import format_market_report
 from news_scraper import fetch_all_news
 from notifier import notify_report, send_report_error
+from signal_tracker import (
+    append_signal_history,
+    evaluate_signal_performance,
+    summarize_performance,
+)
 
 
 load_dotenv()
+
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
+except Exception:
+    pass
 
 MODE = os.getenv("MODE", "AUTO").strip().upper()
 SPREADSHEET_ID = os.getenv("SPREADSHEET_ID")
 GOOGLE_SERVICE_ACCOUNT_FILE = os.getenv("GOOGLE_SERVICE_ACCOUNT_FILE")
 SNAPSHOT_FILE = os.getenv("DAILY_CANDIDATES_FILE", DEFAULT_SNAPSHOT_FILE)
+DRY_RUN = env_flag("DRY_RUN", False)
 
 
 def log(message: str) -> None:
@@ -69,6 +84,10 @@ def save_summary_to_sheet(snapshot: dict) -> None:
 
 def main() -> None:
     try:
+        reset_data_status()
+        for issue in validate_runtime_config():
+            log(f"[{issue.level}] {issue.message}")
+
         mode = resolve_mode()
         log(f"Running daily pipeline in {mode} mode")
 
@@ -76,12 +95,27 @@ def main() -> None:
             max_per_source=6,
             fetch_content=False,
         )
+        record_news_status(len(tw_news), len(us_news))
         market = get_all_market_data(mode=mode)
-        snapshot = build_daily_snapshot(mode, market, tw_news, us_news)
+
+        evaluate_signal_performance()
+        snapshot = build_daily_snapshot(
+            mode,
+            market,
+            tw_news,
+            us_news,
+            data_status=get_data_status(),
+        )
+        snapshot["performance_summary"] = summarize_performance()
         save_daily_snapshot(snapshot, SNAPSHOT_FILE)
+        appended = append_signal_history(snapshot)
+        log(f"Signal history appended: {appended}")
 
         report_message = format_market_report(snapshot)
-        notify_report(report_message)
+        if DRY_RUN:
+            log("DRY_RUN=true, skip Telegram/LINE notification")
+        else:
+            notify_report(report_message)
         save_summary_to_sheet(snapshot)
 
         log(f"Snapshot saved to {SNAPSHOT_FILE}")
@@ -89,7 +123,8 @@ def main() -> None:
     except Exception as exc:
         error_message = f"[系統錯誤]\n每日流程失敗: {exc}"
         log(error_message)
-        send_report_error(error_message)
+        if not DRY_RUN:
+            send_report_error(error_message)
 
 
 if __name__ == "__main__":

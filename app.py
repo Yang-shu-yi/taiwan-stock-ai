@@ -11,6 +11,7 @@ import streamlit as st
 
 from alert_store import read_recent_alerts
 from message_formatter import format_market_report
+from signal_tracker import summarize_performance
 from stock_analyzer import analyze_tw_stock, search_tw_stocks
 
 
@@ -280,6 +281,36 @@ def build_alert_frame(alerts: list[dict]) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def build_data_status_frame(snapshot: dict) -> pd.DataFrame:
+    rows = []
+    for key, item in (snapshot.get("data_status") or {}).items():
+        rows.append(
+            {
+                "資料源": key,
+                "狀態": "正常" if item.get("ok") and not item.get("cached") else "降級/快取",
+                "來源": item.get("source", "N/A"),
+                "更新時間": item.get("updated_at", "N/A"),
+                "TTL(分)": item.get("ttl_minutes", "N/A"),
+                "錯誤": item.get("error", ""),
+            }
+        )
+    return pd.DataFrame(rows)
+
+
+def build_performance_frame(summary: dict) -> pd.DataFrame:
+    rows = []
+    for horizon, item in (summary.get("by_horizon") or {}).items():
+        rows.append(
+            {
+                "天期": f"{horizon}日",
+                "樣本": item.get("count"),
+                "平均報酬%": item.get("avg_return_pct"),
+                "勝率": item.get("win_rate"),
+            }
+        )
+    return pd.DataFrame(rows)
+
+
 def candidate_chart(frame: pd.DataFrame) -> go.Figure:
     figure = go.Figure()
     if frame.empty:
@@ -523,6 +554,9 @@ forex = market.get("forex", {})
 us_indices = market.get("us_indices", {})
 candidate_frame = build_candidate_frame(snapshot)
 alert_frame = build_alert_frame(load_alerts(str(ALERTS_FILE), limit=50))
+data_status_frame = build_data_status_frame(snapshot)
+performance_summary = snapshot.get("performance_summary") or summarize_performance()
+performance_frame = build_performance_frame(performance_summary)
 theme_summary = snapshot.get("theme_summary", [])
 news_summary = snapshot.get("news_summary", {})
 
@@ -547,8 +581,8 @@ st.markdown(
 )
 
 
-overview_tab, analysis_tab, report_tab, alerts_tab, raw_tab = st.tabs(
-    ["市場總覽", "個股解析", "報告預覽", "警示紀錄", "原始資料"]
+overview_tab, analysis_tab, performance_tab, report_tab, alerts_tab, raw_tab = st.tabs(
+    ["市場總覽", "個股解析", "訊號成效", "報告預覽", "警示紀錄", "原始資料"]
 )
 
 
@@ -622,6 +656,12 @@ with overview_tab:
     with news_col2:
         st.markdown("### 美股新聞")
         render_news_block("US News", news_summary.get("us_top_titles", []))
+
+    st.markdown("### 資料狀態")
+    if data_status_frame.empty:
+        st.info("目前快照沒有資料狀態紀錄。")
+    else:
+        st.dataframe(data_status_frame, width="stretch", hide_index=True)
 
 
 with analysis_tab:
@@ -788,6 +828,44 @@ with analysis_tab:
                 f"{stock_analysis['indicators']['rsi14']:.1f}",
                 f"MACD {stock_analysis['indicators']['macd_hist']:+.2f}",
             )
+
+
+with performance_tab:
+    st.markdown("### 訊號成效")
+    st.caption("第一版只追蹤候選股訊號後續表現，不做資金曲線、手續費、滑價或倉位管理。")
+    metric_cols = st.columns(4)
+    metric_cols[0].metric("樣本數", performance_summary.get("count", 0))
+    metric_cols[1].metric(
+        "平均報酬",
+        "N/A"
+        if performance_summary.get("avg_return_pct") is None
+        else f"{performance_summary['avg_return_pct']:+.2f}%",
+    )
+    metric_cols[2].metric(
+        "勝率",
+        "N/A"
+        if performance_summary.get("win_rate") is None
+        else f"{performance_summary['win_rate']:.0%}",
+    )
+    metric_cols[3].metric(
+        "最大回撤近似",
+        "N/A"
+        if performance_summary.get("max_drawdown_proxy_pct") is None
+        else f"{performance_summary['max_drawdown_proxy_pct']:+.2f}%",
+    )
+
+    if performance_frame.empty:
+        st.info("尚未累積足夠的訊號績效資料。執行幾天盤前/盤後流程後會逐步補上。")
+    else:
+        st.dataframe(
+            performance_frame,
+            width="stretch",
+            hide_index=True,
+            column_config={
+                "平均報酬%": st.column_config.NumberColumn("平均報酬%", format="%.2f%%"),
+                "勝率": st.column_config.NumberColumn("勝率", format="%.0%%"),
+            },
+        )
 
 
 with report_tab:

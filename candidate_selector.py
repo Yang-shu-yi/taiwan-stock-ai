@@ -234,6 +234,7 @@ def build_daily_snapshot(
     market: dict[str, Any],
     tw_news: list[dict[str, Any]],
     us_news: list[dict[str, Any]],
+    data_status: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     all_tw_candidates = [
         item
@@ -269,6 +270,7 @@ def build_daily_snapshot(
             "tw_top_titles": [item.get("title", "") for item in tw_news[:5]],
             "us_top_titles": [item.get("title", "") for item in us_news[:5]],
         },
+        "data_status": data_status or {},
     }
 
 

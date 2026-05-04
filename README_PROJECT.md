@@ -6,10 +6,11 @@
 
 - 台股優先的候選股情報系統
 - 美股作為市場脈絡補充
-- Telegram-first 通知流程
+- Telegram / LINE 分流通知流程
 - 盤前 / 盤中 / 盤後的自動化資訊推送
+- 資料來源狀態、快取 freshness 與訊號成效追蹤
 
-目前不再以 Streamlit dashboard 為主，也不再把手動 watchlist 當作主要使用方式。
+Streamlit 保留為唯讀戰情室，不再把手動 watchlist 當作主要使用方式。
 
 
 ## 目前主流程
@@ -28,11 +29,14 @@ python rpi_main.py
 - 抓取市場資料
 - 掃描台股核心股票池
 - 建立 `daily_candidates.json`
-- 推送簡潔版 Telegram 摘要
+- 寫入資料狀態與訊號紀錄
+- 推送手機友善版 Telegram / LINE 摘要
 
 輸出檔案：
 
 - `daily_candidates.json`
+- `signal_history.jsonl`
+- `signal_performance.jsonl`
 
 ### 2. 盤中警示
 
@@ -54,11 +58,12 @@ python rpi_intraday.py
 目前建議設定：
 
 - `ENABLE_REPORT_TELEGRAM=true`
-- `ENABLE_LINE=false`
+- `ENABLE_LINE=true`
+- `REPORT_DASHBOARD_URL=https://taiwan-stock-ai-cmignppyqbx3qyslpthtnz.streamlit.app/`
 
 規則如下：
 
-- 盤前 / 盤後 / 盤中報告：使用專屬 report Telegram bot
+- 盤前 / 盤後 / 盤中報告：使用專屬 report Telegram bot，並可同步 LINE
 - 任務完成提醒：使用 Codex skill 的提醒 bot
 
 不要混用這兩個 bot。
@@ -75,6 +80,9 @@ python rpi_intraday.py
 - `market_data.py`：市場資料來源
 - `news_scraper.py`：新聞抓取與整理
 - `alert_store.py`：盤中警示紀錄
+- `data_layer.py`：資料快取、freshness 與來源狀態
+- `signal_tracker.py`：候選股訊號紀錄與後續績效評估
+- `config_check.py`：啟動前設定檢查
 
 
 ## 快速開始
@@ -87,10 +95,13 @@ cp .env.example .env
 
 2. 至少設定：
 
-- `TELEGRAM_BOT_TOKEN`
-- `TELEGRAM_CHAT_ID`
-- `ENABLE_TELEGRAM=true`
-- `ENABLE_LINE=false`
+- `REPORT_TELEGRAM_BOT_TOKEN`
+- `REPORT_TELEGRAM_CHAT_ID`
+- `ENABLE_REPORT_TELEGRAM=true`
+- `ENABLE_LINE=true`
+- `LINE_CHANNEL_TOKEN`
+- `LINE_TARGET_ID`
+- `REPORT_DASHBOARD_URL`
 
 3. 安裝依賴：
 
@@ -102,6 +113,12 @@ pip install -r requirements.txt
 
 ```bash
 python rpi_main.py
+```
+
+不發送通知、只驗證輸出的 dry-run：
+
+```bash
+DRY_RUN=true python rpi_main.py
 ```
 
 5. 執行盤中警示：
@@ -116,7 +133,7 @@ python rpi_intraday.py
 - 台股為主，美股為輔
 - 不再涵蓋 crypto
 - 不再以手動新增觀察股為主
-- 不再依賴 Streamlit 做日常使用
+- Streamlit 作為唯讀 Dashboard，顯示市場總覽、個股解析、資料狀態、訊號成效與報告預覽
 
 
 ## 舊功能處理

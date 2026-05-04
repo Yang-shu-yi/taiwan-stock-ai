@@ -4,16 +4,13 @@ from dataclasses import dataclass
 from functools import lru_cache
 
 import pandas as pd
-import requests
 import ta
 import twstock
-import urllib3
 import yfinance as yf
 
+from data_layer import twse_json
 from universe import get_theme_for_code, tw_code_to_yahoo_symbol
 
-
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 _REVENUE_ENDPOINTS = {
     "上市": "https://openapi.twse.com.tw/v1/opendata/t187ap05_L",
@@ -78,9 +75,7 @@ def _load_revenue_map(market: str) -> dict[str, dict]:
     if not url:
         return {}
     try:
-        response = requests.get(url, timeout=10, verify=False)
-        response.raise_for_status()
-        rows = response.json()
+        rows = twse_json(f"monthly_revenue_{market}", url, ttl_minutes=720)
         if not isinstance(rows, list):
             return {}
         return {row.get("公司代號", ""): row for row in rows if row.get("公司代號")}

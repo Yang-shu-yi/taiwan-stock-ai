@@ -156,8 +156,8 @@ def get_us_context_symbols() -> list[str]:
 
 
 def tw_code_to_yahoo_symbol(code: str) -> str:
-    market = twstock.codes[code].market
-    suffix = ".TW" if market == "上市" else ".TWO"
+    info = twstock.codes[code]
+    suffix = ".TW" if info.market == "上市" else ".TWO"
     return f"{code}{suffix}"
 
 
@@ -166,4 +166,4 @@ def get_tw_name(code: str) -> str:
 
 
 def get_theme_for_code(code: str) -> str:
-    return THEME_BY_CODE.get(code, "電子")
+    return THEME_BY_CODE.get(code, "其他")

@@ -7,6 +7,9 @@
 !.env.example
 service_account.json
 alerts.jsonl
+signal_history.jsonl
+signal_performance.jsonl
+.cache/
 
 # 忽略 Python 編譯檔與快取
 __pycache__/

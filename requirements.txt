@@ -16,3 +16,4 @@ fastapi
 uvicorn
 pydantic
 beautifulsoup4
+pytest

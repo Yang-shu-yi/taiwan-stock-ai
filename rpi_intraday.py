@@ -1,4 +1,5 @@
 import os
+import sys
 import time
 import traceback
 from datetime import datetime
@@ -21,6 +22,12 @@ from universe import get_tw_name, tw_code_to_yahoo_symbol
 
 
 load_dotenv()
+
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
+except Exception:
+    pass
 
 CHECK_INTERVAL_SEC = int(os.getenv("INTRADAY_CHECK_INTERVAL_SEC", "60"))
 PRICE_UP_PCT = float(os.getenv("INTRADAY_PRICE_UP_PCT", "2.0"))
