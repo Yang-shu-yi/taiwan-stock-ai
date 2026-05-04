@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-05-03 08:57:41",
+  "updated_at": "2026-05-04 09:31:28",
   "mode": "POST",
   "market": {
     "tw_index": {
-      "price": "38927",
-      "chg": "-377",
-      "pct": "-0.96",
+      "price": "40705",
+      "chg": "1779",
+      "pct": "4.57",
       "turnover": "10749億"
     },
     "us_indices": {
@@ -30,14 +30,14 @@
         "pct": "+3.15"
       },
       "VIX": {
-        "price": "16.99",
-        "chg": "+0.10",
-        "pct": "+0.59"
+        "price": "17.44",
+        "chg": "+0.45",
+        "pct": "+2.65"
       }
     },
     "forex": {
-      "rate": "31.613",
-      "chg": "-0.014"
+      "rate": "31.604",
+      "chg": "+0.035"
     },
     "institutional": {
       "foreign": "N/A",
@@ -53,17 +53,17 @@
   },
   "tw_candidates": [
     {
-      "code": "2303",
-      "name": "聯電",
-      "theme": "半導體",
-      "symbol": "2303.TW",
+      "code": "6187",
+      "name": "萬潤",
+      "theme": "半導體設備",
+      "symbol": "6187.TWO",
       "score": 100,
-      "price": 77.3,
-      "pct_1d": 3.76,
-      "pct_5d": 5.03,
-      "rsi": 66.44,
-      "vol_ratio": 1.68,
-      "news_hits": 1,
+      "price": 1330.0,
+      "pct_1d": 9.92,
+      "pct_5d": 13.68,
+      "rsi": 65.79,
+      "vol_ratio": 1.73,
+      "news_hits": 0,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -78,12 +78,12 @@
       "theme": "半導體",
       "symbol": "2330.TW",
       "score": 100,
-      "price": 2135.0,
-      "pct_1d": -2.06,
-      "pct_5d": 2.64,
-      "rsi": 60.21,
-      "vol_ratio": 1.32,
-      "news_hits": 7,
+      "price": 2275.0,
+      "pct_1d": 6.56,
+      "pct_5d": 4.12,
+      "rsi": 68.62,
+      "vol_ratio": 1.1,
+      "news_hits": 4,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -93,17 +93,17 @@
       "rank": 2
     },
     {
-      "code": "3711",
-      "name": "日月光投控",
-      "theme": "半導體封測",
-      "symbol": "3711.TW",
+      "code": "2451",
+      "name": "創見",
+      "theme": "記憶體",
+      "symbol": "2451.TW",
       "score": 94,
-      "price": 478.0,
-      "pct_1d": -2.15,
-      "pct_5d": 2.91,
-      "rsi": 67.88,
-      "vol_ratio": 1.59,
-      "news_hits": 0,
+      "price": 265.5,
+      "pct_1d": 5.15,
+      "pct_5d": 5.15,
+      "rsi": 56.15,
+      "vol_ratio": 1.06,
+      "news_hits": 1,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -118,11 +118,11 @@
       "theme": "PCB/ABF",
       "symbol": "3037.TW",
       "score": 90,
-      "price": 883.0,
-      "pct_1d": 9.96,
-      "pct_5d": 21.29,
-      "rsi": 78.09,
-      "vol_ratio": 1.52,
+      "price": 911.0,
+      "pct_1d": 3.17,
+      "pct_5d": 15.32,
+      "rsi": 79.55,
+      "vol_ratio": 1.84,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -133,16 +133,16 @@
       "rank": 4
     },
     {
-      "code": "6415",
-      "name": "矽力*-KY",
-      "theme": "IC設計",
-      "symbol": "6415.TW",
+      "code": "2345",
+      "name": "智邦",
+      "theme": "網通",
+      "symbol": "2345.TW",
       "score": 88,
-      "price": 427.0,
-      "pct_1d": 8.65,
-      "pct_5d": 2.77,
-      "rsi": 70.71,
-      "vol_ratio": 0.45,
+      "price": 2505.0,
+      "pct_1d": 9.87,
+      "pct_5d": 17.06,
+      "rsi": 74.91,
+      "vol_ratio": 0.98,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -153,16 +153,16 @@
       "rank": 5
     },
     {
-      "code": "3661",
-      "name": "世芯-KY",
-      "theme": "IC設計",
-      "symbol": "3661.TW",
+      "code": "2327",
+      "name": "國巨*",
+      "theme": "被動元件",
+      "symbol": "2327.TW",
       "score": 88,
-      "price": 4135.0,
-      "pct_1d": 3.25,
-      "pct_5d": 3.89,
-      "rsi": 68.44,
-      "vol_ratio": 1.05,
+      "price": 342.5,
+      "pct_1d": 8.04,
+      "pct_5d": 15.32,
+      "rsi": 66.67,
+      "vol_ratio": 1.29,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -173,16 +173,16 @@
       "rank": 6
     },
     {
-      "code": "2345",
-      "name": "智邦",
-      "theme": "網通",
-      "symbol": "2345.TW",
+      "code": "2303",
+      "name": "聯電",
+      "theme": "半導體",
+      "symbol": "2303.TW",
       "score": 88,
-      "price": 2280.0,
-      "pct_1d": 3.17,
-      "pct_5d": 9.62,
-      "rsi": 68.83,
-      "vol_ratio": 0.82,
+      "price": 81.2,
+      "pct_1d": 5.05,
+      "pct_5d": 8.99,
+      "rsi": 70.54,
+      "vol_ratio": 1.17,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -193,17 +193,17 @@
       "rank": 7
     },
     {
-      "code": "1303",
-      "name": "南亞",
-      "theme": "塑化",
-      "symbol": "1303.TW",
+      "code": "6669",
+      "name": "緯穎",
+      "theme": "AI伺服器",
+      "symbol": "6669.TW",
       "score": 88,
-      "price": 89.6,
-      "pct_1d": -2.18,
-      "pct_5d": 5.16,
-      "rsi": 56.29,
-      "vol_ratio": 1.11,
-      "news_hits": 1,
+      "price": 4860.0,
+      "pct_1d": 3.96,
+      "pct_5d": 4.85,
+      "rsi": 70.84,
+      "vol_ratio": 1.08,
+      "news_hits": 0,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -216,29 +216,29 @@
   "theme_summary": [
     {
       "theme": "IC設計",
-      "score": 560.8,
+      "score": 619.3,
       "leaders": [
-        "6415 矽力*-KY",
+        "2454 聯發科",
         "3661 世芯-KY",
-        "3443 創意"
-      ]
-    },
-    {
-      "theme": "金融",
-      "score": 418.8,
-      "leaders": [
-        "2885 元大金",
-        "2882 國泰金",
-        "2881 富邦金"
+        "6415 矽力*-KY"
       ]
     },
     {
       "theme": "AI伺服器",
-      "score": 386.3,
+      "score": 489.3,
       "leaders": [
         "6669 緯穎",
-        "2376 技嘉",
+        "2317 鴻海",
         "3231 緯創"
+      ]
+    },
+    {
+      "theme": "金融",
+      "score": 424.9,
+      "leaders": [
+        "2885 元大金",
+        "2881 富邦金",
+        "2882 國泰金"
       ]
     }
   ],
@@ -324,18 +324,18 @@
   ],
   "news_summary": {
     "tw_top_titles": [
-      "伊朗公布最新14點提案 要求30天內結束美伊戰爭 - news.cnyes.com",
-      "〈台泥80週年〉董座張安平揭示下一個80年行動主軸 從建設城市延伸至築夢文明 - news.cnyes.com",
-      "〈台泥80週年〉發表萬磅旗艦型地坪新品 鎖定科技廠辦高規格需求 - news.cnyes.com",
-      "出訪成功 賴清德突發社群宣布飛抵史瓦帝尼 獲熱烈溫暖歡迎 - news.cnyes.com",
-      "頭條新聞 - news.cnyes.com"
+      "本週操盤筆記：美非農就業數據、全球PMI與澳洲央行利率決議 - news.cnyes.com",
+      "「木頭姐」再出手！方舟加碼兩大科技股 但減碼「這一股」 - news.cnyes.com",
+      "鴻海第二代低軌衛星珍珠號升空 啟動衛星間通訊鏈路驗證 - news.cnyes.com",
+      "巴菲特股東會驚喜演講！盛讚蘋果投資神操作、親邀庫克接受全場喝采 - news.cnyes.com",
+      "兩年翻倍！頂級量化巨頭狂撒94億美元薪酬 竟是高盛七倍 剛畢業分析師年新30萬美元起跳 - news.cnyes.com"
     ],
     "us_top_titles": [
+      "World Cup prize pool nears $900 million as FIFA boosts payouts. Here’s who gets what",
+      "Greg Abel earns solid scorecard from Berkshire shareholders after first annual meeting",
+      "Chinese stocks are about to get a big AI boost, Morgan Stanley predicts",
       "JPMorgan's Jamie Dimon issued vague credit recession warning, but the bond market has more pressing issues",
-      "Cautious optimism: Berkshire investors weigh future under new CEO Greg Abel",
-      "Berkshire Hathaway’s shopping extravaganza draws lighter crowds as spotlight shifts to Greg Abel",
-      "U.S. oil prices will exceed Iran wartime high to above $125 as conflict drags on, Kalshi traders say",
-      "Six months out, control of the Senate is a dead heat, traders on Kalshi say"
+      "Cautious optimism: Berkshire investors weigh future under new CEO Greg Abel"
     ]
   }
 }
