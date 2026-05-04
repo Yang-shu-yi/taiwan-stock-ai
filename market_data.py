@@ -8,12 +8,14 @@ freshness and fallback status in daily_candidates.json.
 from __future__ import annotations
 
 from datetime import datetime
+from zoneinfo import ZoneInfo
 from typing import Any
 
-from data_layer import twse_json, yahoo_chart
+from data_layer import fetch_json, record_status, twse_json, yahoo_chart
 
 
 _NA = "N/A"
+LOCAL_TZ = ZoneInfo("Asia/Taipei")
 
 _US_SYMBOLS = {
     "S&P500": "^GSPC",
@@ -45,6 +47,14 @@ def _format_plain(value: float | None, digits: int = 2) -> str:
     if value is None:
         return _NA
     return f"{value:.{digits}f}"
+
+
+def _recent_twse_dates(days: int = 7) -> list[str]:
+    today = datetime.now(LOCAL_TZ).date()
+    return [
+        today.fromordinal(today.toordinal() - offset).strftime("%Y%m%d")
+        for offset in range(days)
+    ]
 
 
 def _yahoo_quote(symbol: str) -> dict[str, Any]:
@@ -158,7 +168,79 @@ def get_institutional_trades() -> dict[str, Any]:
             result["total"] = f"{sum(values.values()):+.1f}億"
     except Exception as exc:
         _log(f"Institutional trades failed: {exc}")
+        fallback = _get_institutional_trades_bfi82u()
+        if fallback:
+            return fallback
     return result
+
+
+def _get_institutional_trades_bfi82u() -> dict[str, Any] | None:
+    url = "https://www.twse.com.tw/rwd/zh/fund/BFI82U"
+    for date_value in _recent_twse_dates():
+        try:
+            payload = fetch_json(
+                f"twse_institutional_bfi82u_{date_value}",
+                url,
+                ttl_minutes=60,
+                params={
+                    "dayDate": date_value,
+                    "type": "day",
+                    "response": "json",
+                    "_": str(int(datetime.now().timestamp())),
+                },
+                verify=False,
+            )
+        except Exception:
+            continue
+
+        rows = payload.get("data") if isinstance(payload, dict) else None
+        if not rows:
+            continue
+
+        result: dict[str, Any] = {
+            "foreign": _NA,
+            "trust": _NA,
+            "dealer": _NA,
+            "total": _NA,
+            "raw": rows,
+            "fallback_used": True,
+            "source_date": date_value,
+        }
+        values: dict[str, float] = {}
+        for row in rows:
+            if not isinstance(row, list) or len(row) < 2:
+                continue
+            name = str(row[0])
+            amount = _to_float(row[-1])
+            if amount is None:
+                continue
+            billions = amount / 1e8
+            if "外資" in name and not name.startswith("外資自營商"):
+                values["foreign"] = billions
+            elif "投信" in name:
+                values["trust"] = billions
+            elif "自營商" in name and "合計" not in name:
+                values["dealer"] = values.get("dealer", 0.0) + billions
+            elif "合計" in name:
+                values["total"] = billions
+
+        for key in ["foreign", "trust", "dealer", "total"]:
+            if key in values:
+                result[key] = f"{values[key]:+.1f}億"
+        if values and result["total"] == _NA:
+            result["total"] = f"{sum(v for k, v in values.items() if k != 'total'):+.1f}億"
+        record_status(
+            "twse_institutional",
+            True,
+            "https://www.twse.com.tw/rwd/zh/fund/BFI82U",
+            60,
+            cached=False,
+            trading_date=f"{date_value[:4]}-{date_value[4:6]}-{date_value[6:]}",
+            fallback_used=True,
+            stale_reason="primary_openapi_failed",
+        )
+        return result
+    return None
 
 
 def get_margin_trading() -> dict[str, str]:

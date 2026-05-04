@@ -10,6 +10,8 @@ alerts.jsonl
 signal_history.jsonl
 signal_performance.jsonl
 .cache/
+runtime/
+nul
 
 # 忽略 Python 編譯檔與快取
 __pycache__/

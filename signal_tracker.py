@@ -83,8 +83,7 @@ def append_signal_history(
     return len(rows)
 
 
-def _history_for_code(code: str) -> pd.DataFrame:
-    symbol = tw_code_to_yahoo_symbol(code)
+def _history_for_symbol(symbol: str) -> pd.DataFrame:
     history = yf.Ticker(symbol).history(period="6mo", auto_adjust=False)
     if history is None or history.empty:
         return pd.DataFrame()
@@ -93,11 +92,16 @@ def _history_for_code(code: str) -> pd.DataFrame:
     return history
 
 
+def _history_for_code(code: str) -> pd.DataFrame:
+    return _history_for_symbol(tw_code_to_yahoo_symbol(code))
+
+
 def _performance_rows_for_signal(signal: dict[str, Any]) -> list[dict[str, Any]]:
     code = str(signal.get("code") or "")
     if not code:
         return []
     history = _history_for_code(code)
+    benchmark = _history_for_symbol("^TWII")
     if history.empty:
         return []
 
@@ -115,6 +119,10 @@ def _performance_rows_for_signal(signal: dict[str, Any]) -> list[dict[str, Any]]
             continue
         future_close = float(eligible.iloc[horizon]["Close"])
         return_pct = (future_close / base_close - 1.0) * 100.0
+        benchmark_return_pct = _benchmark_return_pct(benchmark, signal_date, horizon)
+        excess_return_pct = None
+        if benchmark_return_pct is not None:
+            excess_return_pct = return_pct - benchmark_return_pct
         rows.append(
             {
                 "run_id": signal.get("run_id"),
@@ -128,10 +136,33 @@ def _performance_rows_for_signal(signal: dict[str, Any]) -> list[dict[str, Any]]
                 "entry_close": round(base_close, 4),
                 "exit_close": round(future_close, 4),
                 "return_pct": round(return_pct, 4),
+                "benchmark_return_pct": None
+                if benchmark_return_pct is None
+                else round(benchmark_return_pct, 4),
+                "excess_return_pct": None
+                if excess_return_pct is None
+                else round(excess_return_pct, 4),
                 "evaluated_at": datetime.now().isoformat(timespec="seconds"),
             }
         )
     return rows
+
+
+def _benchmark_return_pct(
+    benchmark: pd.DataFrame,
+    signal_date: pd.Timestamp,
+    horizon: int,
+) -> float | None:
+    if benchmark.empty:
+        return None
+    eligible = benchmark[benchmark.index.normalize() >= signal_date.normalize()]
+    if len(eligible) <= horizon:
+        return None
+    base_close = float(eligible.iloc[0]["Close"])
+    future_close = float(eligible.iloc[horizon]["Close"])
+    if not base_close:
+        return None
+    return (future_close / base_close - 1.0) * 100.0
 
 
 def evaluate_signal_performance(
@@ -168,6 +199,11 @@ def summarize_performance(
 
     top3 = [row for row in rows if int(row.get("rank") or 999) <= 3]
     top5 = [row for row in rows if int(row.get("rank") or 999) <= 5]
+    excess_returns = [
+        float(row["excess_return_pct"])
+        for row in rows
+        if row.get("excess_return_pct") is not None
+    ]
     by_horizon: dict[str, dict[str, Any]] = {}
     for horizon in HORIZONS:
         subset = [row for row in rows if row.get("horizon") == horizon]
@@ -178,15 +214,29 @@ def summarize_performance(
             "count": len(subset_returns),
             "avg_return_pct": round(sum(subset_returns) / len(subset_returns), 2),
             "win_rate": round(sum(1 for value in subset_returns if value > 0) / len(subset_returns), 4),
+            "avg_excess_return_pct": _average(
+                [
+                    float(row["excess_return_pct"])
+                    for row in subset
+                    if row.get("excess_return_pct") is not None
+                ]
+            ),
         }
 
     return {
         "count": len(returns),
         "avg_return_pct": round(sum(returns) / len(returns), 2),
+        "avg_excess_return_pct": None
+        if not excess_returns
+        else round(sum(excess_returns) / len(excess_returns), 2),
         "win_rate": round(sum(1 for value in returns if value > 0) / len(returns), 4),
+        "excess_win_rate": None
+        if not excess_returns
+        else round(sum(1 for value in excess_returns if value > 0) / len(excess_returns), 4),
         "max_drawdown_proxy_pct": round(min(returns), 2),
         "top3_hit_rate": _hit_rate(top3),
         "top5_hit_rate": _hit_rate(top5),
+        "theme_hit_rate": _theme_hit_rate(rows),
         "by_horizon": by_horizon,
     }
 
@@ -196,3 +246,23 @@ def _hit_rate(rows: list[dict[str, Any]]) -> float | None:
     if not values:
         return None
     return round(sum(1 for value in values if value > 0) / len(values), 4)
+
+
+def _theme_hit_rate(rows: list[dict[str, Any]]) -> dict[str, float]:
+    grouped: dict[str, list[float]] = {}
+    for row in rows:
+        if row.get("return_pct") is None:
+            continue
+        theme = str(row.get("theme") or "未分類")
+        grouped.setdefault(theme, []).append(float(row["return_pct"]))
+    return {
+        theme: round(sum(1 for value in values if value > 0) / len(values), 4)
+        for theme, values in grouped.items()
+        if values
+    }
+
+
+def _average(values: list[float]) -> float | None:
+    if not values:
+        return None
+    return round(sum(values) / len(values), 2)

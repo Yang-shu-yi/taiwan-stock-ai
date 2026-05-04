@@ -116,5 +116,6 @@ crontab -l
 - 請先確認 Pi 的 timezone 正確
 - 如果要同步 Google Sheets，`service_account.json` 不要提交到 repo
 - `daily_candidates.json` 會包含 `data_status`，Dashboard 可直接看資料是否過期或降級
+- 正式快照預設輸出到 `runtime/daily_candidates.json`，不再提交到 GitHub
 - `signal_history.jsonl` 與 `signal_performance.jsonl` 是本機追蹤檔，不要提交到 repo
 - 重構後主流程已不再依賴手動 watchlist

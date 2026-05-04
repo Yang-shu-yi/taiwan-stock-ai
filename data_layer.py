@@ -4,6 +4,7 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+from zoneinfo import ZoneInfo
 
 import requests
 import urllib3
@@ -22,10 +23,15 @@ HEADERS = {
 }
 
 _STATUS: dict[str, dict[str, Any]] = {}
+LOCAL_TZ = ZoneInfo("Asia/Taipei")
 
 
 def now_iso() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
+def taiwan_now() -> datetime:
+    return datetime.now(LOCAL_TZ)
 
 
 def _safe_key(key: str) -> str:
@@ -43,7 +49,12 @@ def record_status(
     ttl_minutes: int,
     error: str | None = None,
     cached: bool = False,
+    trading_date: str | None = None,
+    as_of: str | None = None,
+    fallback_used: bool | None = None,
+    stale_reason: str | None = None,
 ) -> None:
+    local_now = taiwan_now()
     _STATUS[key] = {
         "ok": ok,
         "source": source,
@@ -51,6 +62,10 @@ def record_status(
         "ttl_minutes": ttl_minutes,
         "cached": cached,
         "error": error,
+        "trading_date": trading_date or local_now.strftime("%Y-%m-%d"),
+        "as_of": as_of or local_now.isoformat(timespec="seconds"),
+        "fallback_used": cached if fallback_used is None else fallback_used,
+        "stale_reason": stale_reason,
     }
 
 
@@ -106,7 +121,15 @@ def fetch_json(
 ) -> Any:
     cached = _read_cache(key)
     if cached is not None and _is_fresh(cached, ttl_minutes):
-        record_status(key, True, url, ttl_minutes, cached=True)
+        record_status(
+            key,
+            True,
+            url,
+            ttl_minutes,
+            cached=True,
+            fallback_used=True,
+            stale_reason="fresh_cache",
+        )
         return cached.get("data")
 
     try:
@@ -124,9 +147,27 @@ def fetch_json(
         return data
     except Exception as exc:
         if cached is not None:
-            record_status(key, False, url, ttl_minutes, str(exc), cached=True)
+            record_status(
+                key,
+                False,
+                url,
+                ttl_minutes,
+                str(exc),
+                cached=True,
+                fallback_used=True,
+                stale_reason="source_failed_using_cache",
+            )
             return cached.get("data")
-        record_status(key, False, url, ttl_minutes, str(exc), cached=False)
+        record_status(
+            key,
+            False,
+            url,
+            ttl_minutes,
+            str(exc),
+            cached=False,
+            fallback_used=False,
+            stale_reason="source_failed_no_cache",
+        )
         raise
 
 

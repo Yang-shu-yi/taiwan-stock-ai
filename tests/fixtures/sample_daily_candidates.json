@@ -1,0 +1,81 @@
+{
+  "updated_at": "2026-05-04 08:30:00",
+  "mode": "PRE",
+  "market": {
+    "tw_index": {
+      "price": "20000",
+      "chg": "+100",
+      "pct": "+0.50",
+      "turnover": "3000億"
+    },
+    "forex": {
+      "rate": "31.500",
+      "chg": "-0.020"
+    },
+    "us_indices": {
+      "S&P500": {"price": "5000.00", "chg": "+10.00", "pct": "+0.20"},
+      "道瓊": {"price": "39000.00", "chg": "+20.00", "pct": "+0.05"},
+      "那斯達克": {"price": "16000.00", "chg": "+80.00", "pct": "+0.50"},
+      "費半": {"price": "4700.00", "chg": "+55.00", "pct": "+1.20"},
+      "VIX": {"price": "14.20", "chg": "-0.20", "pct": "-1.39"}
+    },
+    "institutional": {
+      "foreign": "待盤後",
+      "trust": "待盤後",
+      "dealer": "待盤後",
+      "total": "待盤後"
+    },
+    "margin": {
+      "margin_buy": "待盤後",
+      "short_sell": "待盤後"
+    }
+  },
+  "tw_candidates": [
+    {
+      "rank": 1,
+      "code": "2330",
+      "name": "台積電",
+      "theme": "半導體",
+      "symbol": "2330.TW",
+      "score": 90,
+      "confidence": "高",
+      "price": 900.0,
+      "pct_1d": 1.5,
+      "pct_5d": 4.2,
+      "rsi": 62.1,
+      "vol_ratio": 1.4,
+      "news_hits": 2,
+      "reasons": ["站上 MA20", "站上 MA60", "新聞相關性 2 則"],
+      "risk_flags": ["若跌破 MA20，短線動能轉弱"],
+      "invalidations": ["跌破 MA20 或量縮跌回前高下方"],
+      "data_quality": "正常"
+    }
+  ],
+  "theme_summary": [
+    {"theme": "半導體", "score": 90.0, "leaders": ["2330 台積電"]}
+  ],
+  "us_context": [
+    {"symbol": "SOXX", "name": "SOXX", "score": 80, "pct_1d": 1.2, "pct_5d": 2.5, "reasons": ["站上 MA20"]}
+  ],
+  "news_summary": {
+    "tw_top_titles": ["台積電先進製程受關注"],
+    "us_top_titles": ["Semiconductor stocks rise"]
+  },
+  "data_status": {
+    "news": {
+      "ok": true,
+      "source": "rss/news_scraper",
+      "updated_at": "2026-05-04T00:30:00+00:00",
+      "ttl_minutes": 30,
+      "cached": false,
+      "error": null,
+      "trading_date": "2026-05-04",
+      "as_of": "2026-05-04T08:30:00+08:00",
+      "fallback_used": false,
+      "stale_reason": null
+    }
+  },
+  "performance_summary": {
+    "count": 0
+  }
+}

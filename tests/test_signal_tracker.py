@@ -31,13 +31,15 @@ def test_append_signal_history_writes_jsonl(tmp_path) -> None:
 def test_summarize_performance(tmp_path) -> None:
     path = tmp_path / "perf.jsonl"
     rows = [
-        {"rank": 1, "horizon": 1, "return_pct": 2.0},
-        {"rank": 5, "horizon": 1, "return_pct": -1.0},
-        {"rank": 8, "horizon": 3, "return_pct": 3.0},
+        {"rank": 1, "theme": "半導體", "horizon": 1, "return_pct": 2.0, "excess_return_pct": 1.0},
+        {"rank": 5, "theme": "半導體", "horizon": 1, "return_pct": -1.0, "excess_return_pct": -2.0},
+        {"rank": 8, "theme": "金融", "horizon": 3, "return_pct": 3.0, "excess_return_pct": 2.0},
     ]
     path.write_text("\n".join(json.dumps(row) for row in rows), encoding="utf-8")
     summary = summarize_performance(path)
     assert summary["count"] == 3
     assert summary["avg_return_pct"] == 1.33
     assert summary["win_rate"] == 0.6667
+    assert summary["avg_excess_return_pct"] == 0.33
     assert summary["top5_hit_rate"] == 0.5
+    assert summary["theme_hit_rate"]["半導體"] == 0.5

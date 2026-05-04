@@ -34,7 +34,7 @@ python rpi_main.py
 
 輸出檔案：
 
-- `daily_candidates.json`
+- `runtime/daily_candidates.json`
 - `signal_history.jsonl`
 - `signal_performance.jsonl`
 
@@ -134,6 +134,7 @@ python rpi_intraday.py
 - 不再涵蓋 crypto
 - 不再以手動新增觀察股為主
 - Streamlit 作為唯讀 Dashboard，顯示市場總覽、個股解析、資料狀態、訊號成效與報告預覽
+- Pi 是正式盤前/盤後通知來源；GitHub Actions 只跑測試與 dry-run，不發正式通知、不提交每日快照
 
 
 ## 舊功能處理

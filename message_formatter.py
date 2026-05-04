@@ -41,8 +41,11 @@ def _top_candidate_lines(snapshot: dict[str, Any], limit: int = 5) -> list[str]:
     lines: list[str] = []
     for index, item in enumerate(snapshot.get("tw_candidates", [])[:limit], start=1):
         reasons = "、".join(item.get("reasons", [])[:2]) or "訊號整體偏強"
+        invalidation = "、".join(item.get("invalidations", [])[:1]) or "跌破前低"
+        confidence = item.get("confidence", "中")
+        quality = item.get("data_quality", "正常")
         lines.append(
-            f"{index}. {item['code']} {item['name']} {item.get('pct_1d', 0):+.2f}% / {reasons}"
+            f"{index}. {item['code']} {item['name']} {item.get('pct_1d', 0):+.2f}% / 信心{confidence} / {reasons} / 失效: {invalidation} / 資料{quality}"
         )
     return lines
 
@@ -86,10 +89,18 @@ def _post_market_review(snapshot: dict[str, Any]) -> list[str]:
 
 def _news_hint(snapshot: dict[str, Any]) -> str:
     titles = snapshot.get("news_summary", {}).get("tw_top_titles", [])
-    cleaned = [_clean_news_title(title) for title in titles if title.strip()]
+    cleaned = [_clean_news_item(title) for title in titles if str(title).strip()]
     if not cleaned:
         return "新聞面未提供明確加分"
     return cleaned[0][:42]
+
+
+def _clean_news_item(item: Any) -> str:
+    if isinstance(item, dict):
+        source = str(item.get("source") or "").strip()
+        title = _clean_news_title(str(item.get("title") or ""))
+        return f"{source}: {title}" if source else title
+    return _clean_news_title(str(item))
 
 
 def _clean_news_title(title: str) -> str:
@@ -124,11 +135,14 @@ def _performance_line(snapshot: dict[str, Any]) -> str | None:
     if not summary or not summary.get("count"):
         return None
     avg_return = summary.get("avg_return_pct")
+    avg_excess = summary.get("avg_excess_return_pct")
     win_rate = summary.get("win_rate")
     top5 = summary.get("top5_hit_rate")
     parts = [f"樣本 {summary.get('count')}"]
     if avg_return is not None:
         parts.append(f"平均 {avg_return:+.2f}%")
+    if avg_excess is not None:
+        parts.append(f"相對大盤 {avg_excess:+.2f}%")
     if win_rate is not None:
         parts.append(f"勝率 {win_rate:.0%}")
     if top5 is not None:

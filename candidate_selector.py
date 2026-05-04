@@ -2,12 +2,14 @@ import json
 import os
 from collections import defaultdict
 from datetime import datetime
+from pathlib import Path
 from typing import Any
 
 import pandas as pd
 import ta
 import yfinance as yf
 
+from data_layer import twse_json
 from universe import (
     get_theme_for_code,
     get_tw_core_codes,
@@ -17,12 +19,12 @@ from universe import (
 )
 
 
-DEFAULT_SNAPSHOT_FILE = "daily_candidates.json"
+DEFAULT_SNAPSHOT_FILE = os.getenv("DAILY_CANDIDATES_FILE", "runtime/daily_candidates.json")
 
 
 def _safe_float(value: Any, digits: int = 2) -> float | None:
     try:
-        return round(float(value), digits)
+        return round(float(str(value).replace(",", "")), digits)
     except Exception:
         return None
 
@@ -128,12 +130,15 @@ def _score_tw_candidate(code: str, news_items: list[dict[str, Any]]) -> dict[str
         reasons.append(f"新聞相關性 {hits} 則")
 
     final_score = max(0, min(score, 100))
+    invalidations = _candidate_invalidations(metrics)
+    risk_flags = _candidate_risk_flags(metrics)
     return {
         "code": code,
         "name": name,
         "theme": theme,
         "symbol": symbol,
         "score": final_score,
+        "confidence": _confidence_label(final_score, metrics, hits),
         "price": _safe_float(metrics["price"]),
         "pct_1d": _safe_float(metrics["pct_1d"]),
         "pct_5d": _safe_float(metrics["pct_5d"]),
@@ -141,7 +146,42 @@ def _score_tw_candidate(code: str, news_items: list[dict[str, Any]]) -> dict[str
         "vol_ratio": _safe_float(metrics["vol_ratio"]),
         "news_hits": hits,
         "reasons": reasons[:4],
+        "risk_flags": risk_flags,
+        "invalidations": invalidations,
+        "data_quality": "正常",
     }
+
+
+def _confidence_label(score: int, metrics: dict[str, float], news_hits: int) -> str:
+    if score >= 78 and metrics["price"] > metrics["ma20"] and metrics["price"] > metrics["ma60"]:
+        return "高"
+    if score >= 62 or news_hits:
+        return "中"
+    return "低"
+
+
+def _candidate_risk_flags(metrics: dict[str, float]) -> list[str]:
+    flags: list[str] = []
+    if metrics["rsi"] >= 78:
+        flags.append("RSI 偏熱，避免追高")
+    if metrics["vol_ratio"] < 0.8:
+        flags.append("量能不足，續航需確認")
+    if metrics["price"] < metrics["ma20"]:
+        flags.append("尚未站回 MA20")
+    if metrics["pct_1d"] <= -4:
+        flags.append("單日回檔過深")
+    return flags or ["未見明顯短線破壞訊號"]
+
+
+def _candidate_invalidations(metrics: dict[str, float]) -> list[str]:
+    invalidations = []
+    if metrics["ma20"]:
+        invalidations.append(f"跌破 MA20 {metrics['ma20']:.2f}")
+    if metrics["ma60"]:
+        invalidations.append(f"跌破 MA60 {metrics['ma60']:.2f}")
+    if metrics["rsi"] >= 75:
+        invalidations.append("隔日開高量縮且 RSI 過熱")
+    return invalidations[:2] or ["跌破前一交易日低點"]
 
 
 def _score_us_context(symbol: str, news_items: list[dict[str, Any]]) -> dict[str, Any] | None:
@@ -229,6 +269,66 @@ def _theme_summary(
     return result
 
 
+def _dynamic_market_codes(limit: int) -> list[str]:
+    if limit <= 0:
+        return []
+    try:
+        rows = twse_json(
+            "twse_market_snapshot",
+            "https://openapi.twse.com.tw/v1/exchangeReport/MI_INDEX_ALL",
+            ttl_minutes=15,
+        )
+    except Exception:
+        return []
+    if not isinstance(rows, list):
+        return []
+
+    scored: list[tuple[float, str]] = []
+    for row in rows:
+        code = str(row.get("Code") or row.get("證券代號") or "").strip()
+        if not code.isdigit():
+            continue
+        trade_value = _safe_float(row.get("TradeValue") or row.get("成交金額"), digits=0) or 0
+        change = _safe_float(row.get("Change") or row.get("漲跌價差"), digits=2) or 0
+        if trade_value <= 0:
+            continue
+        score = trade_value + max(change, 0) * 1_000_000_000
+        scored.append((score, code))
+    scored.sort(reverse=True)
+    return [code for _, code in scored[:limit]]
+
+
+def _dynamic_news_codes(news_items: list[dict[str, Any]], limit: int) -> list[str]:
+    if limit <= 0:
+        return []
+    candidates: list[str] = []
+    haystack = " ".join(
+        f"{item.get('title', '')} {item.get('summary', '')}" for item in news_items
+    )
+    for code in get_tw_core_codes():
+        name = get_tw_name(code)
+        theme = get_theme_for_code(code)
+        if code in haystack or name in haystack or theme in haystack:
+            candidates.append(code)
+    return candidates[:limit]
+
+
+def build_scan_universe(tw_news: list[dict[str, Any]]) -> list[str]:
+    codes = list(get_tw_core_codes())
+    market_limit = int(os.getenv("TW_DYNAMIC_MARKET_LIMIT", "12"))
+    news_limit = int(os.getenv("TW_DYNAMIC_NEWS_LIMIT", "12"))
+    codes.extend(_dynamic_market_codes(market_limit))
+    codes.extend(_dynamic_news_codes(tw_news, news_limit))
+    seen: set[str] = set()
+    output: list[str] = []
+    for code in codes:
+        if code in seen:
+            continue
+        seen.add(code)
+        output.append(code)
+    return output
+
+
 def build_daily_snapshot(
     mode: str,
     market: dict[str, Any],
@@ -238,7 +338,7 @@ def build_daily_snapshot(
 ) -> dict[str, Any]:
     all_tw_candidates = [
         item
-        for item in (_score_tw_candidate(code, tw_news) for code in get_tw_core_codes())
+        for item in (_score_tw_candidate(code, tw_news) for code in build_scan_universe(tw_news))
         if item is not None
     ]
     all_tw_candidates.sort(
@@ -267,15 +367,26 @@ def build_daily_snapshot(
         "theme_summary": _theme_summary(all_tw_candidates, tw_news),
         "us_context": us_context[:top_us],
         "news_summary": {
-            "tw_top_titles": [item.get("title", "") for item in tw_news[:5]],
-            "us_top_titles": [item.get("title", "") for item in us_news[:5]],
+            "tw_top_titles": [_news_summary_item(item) for item in tw_news[:5]],
+            "us_top_titles": [_news_summary_item(item) for item in us_news[:5]],
         },
         "data_status": data_status or {},
     }
 
 
+def _news_summary_item(item: dict[str, Any]) -> dict[str, str]:
+    return {
+        "source": str(item.get("source", "")).strip(),
+        "title": str(item.get("title", "")).replace("\n", " ").strip(),
+        "url": str(item.get("url", "")).strip(),
+        "published": str(item.get("published", "")).strip(),
+    }
+
+
 def save_daily_snapshot(snapshot: dict[str, Any], path: str = DEFAULT_SNAPSHOT_FILE) -> None:
-    with open(path, "w", encoding="utf-8") as handle:
+    target = Path(path)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    with target.open("w", encoding="utf-8") as handle:
         json.dump(snapshot, handle, ensure_ascii=False, indent=2)
 
 

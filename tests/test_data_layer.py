@@ -8,6 +8,9 @@ def test_records_source_status() -> None:
     assert status["yahoo_test"]["ok"] is True
     assert status["yahoo_test"]["source"] == "unit"
     assert status["yahoo_test"]["ttl_minutes"] == 15
+    assert status["yahoo_test"]["trading_date"]
+    assert status["yahoo_test"]["as_of"]
+    assert status["yahoo_test"]["fallback_used"] is False
 
 
 def test_news_status_marks_empty_feed_as_failed() -> None:

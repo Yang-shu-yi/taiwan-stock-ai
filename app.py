@@ -15,7 +15,8 @@ from signal_tracker import summarize_performance
 from stock_analyzer import analyze_tw_stock, search_tw_stocks
 
 
-SNAPSHOT_FILE = Path(os.getenv("DAILY_CANDIDATES_FILE", "daily_candidates.json"))
+SNAPSHOT_FILE = Path(os.getenv("DAILY_CANDIDATES_FILE", "runtime/daily_candidates.json"))
+SAMPLE_SNAPSHOT_FILE = Path("tests/fixtures/sample_daily_candidates.json")
 ALERTS_FILE = Path(os.getenv("ALERTS_FILE", "alerts.jsonl"))
 LOCAL_TZ = ZoneInfo("Asia/Taipei")
 
@@ -194,7 +195,9 @@ def _load_json(path: Path) -> dict:
 @st.cache_data(ttl=60)
 def load_snapshot(path_str: str) -> dict | None:
     path = Path(path_str)
-    if not path.exists():
+    if not path.exists() and SAMPLE_SNAPSHOT_FILE.exists():
+        path = SAMPLE_SNAPSHOT_FILE
+    elif not path.exists():
         return None
     try:
         return _load_json(path)
@@ -290,6 +293,10 @@ def build_data_status_frame(snapshot: dict) -> pd.DataFrame:
                 "狀態": "正常" if item.get("ok") and not item.get("cached") else "降級/快取",
                 "來源": item.get("source", "N/A"),
                 "更新時間": item.get("updated_at", "N/A"),
+                "交易日": item.get("trading_date", "N/A"),
+                "資料時間": item.get("as_of", "N/A"),
+                "Fallback": item.get("fallback_used", False),
+                "過期原因": item.get("stale_reason", ""),
                 "TTL(分)": item.get("ttl_minutes", "N/A"),
                 "錯誤": item.get("error", ""),
             }
@@ -305,6 +312,7 @@ def build_performance_frame(summary: dict) -> pd.DataFrame:
                 "天期": f"{horizon}日",
                 "樣本": item.get("count"),
                 "平均報酬%": item.get("avg_return_pct"),
+                "相對大盤%": item.get("avg_excess_return_pct"),
                 "勝率": item.get("win_rate"),
             }
         )
@@ -466,7 +474,15 @@ def render_theme_cards(theme_summary: list[dict]) -> None:
 
 
 def render_news_block(title: str, items: list[str]) -> None:
-    lines = "".join(f"<li>{item}</li>" for item in items[:5]) or "<li>暫無資料</li>"
+    rendered_items = []
+    for item in items[:5]:
+        if isinstance(item, dict):
+            source = item.get("source") or "來源未標示"
+            news_title = item.get("title") or "無標題"
+            rendered_items.append(f"<li><strong>{source}</strong>: {news_title}</li>")
+        else:
+            rendered_items.append(f"<li>{item}</li>")
+    lines = "".join(rendered_items) or "<li>暫無資料</li>"
     st.markdown(
         f"""
         <div class="news-card">
@@ -536,7 +552,7 @@ with st.sidebar:
 
 
 if not snapshot:
-    st.error("找不到可用的 `daily_candidates.json`。先執行 `python rpi_main.py` 產生最新快照。")
+    st.error("找不到可用的 runtime 快照。先執行 `python rpi_main.py` 產生 `runtime/daily_candidates.json`。")
     st.stop()
 
 if "stock_query" not in st.session_state:
@@ -833,7 +849,7 @@ with analysis_tab:
 with performance_tab:
     st.markdown("### 訊號成效")
     st.caption("第一版只追蹤候選股訊號後續表現，不做資金曲線、手續費、滑價或倉位管理。")
-    metric_cols = st.columns(4)
+    metric_cols = st.columns(5)
     metric_cols[0].metric("樣本數", performance_summary.get("count", 0))
     metric_cols[1].metric(
         "平均報酬",
@@ -848,6 +864,12 @@ with performance_tab:
         else f"{performance_summary['win_rate']:.0%}",
     )
     metric_cols[3].metric(
+        "相對大盤",
+        "N/A"
+        if performance_summary.get("avg_excess_return_pct") is None
+        else f"{performance_summary['avg_excess_return_pct']:+.2f}%",
+    )
+    metric_cols[4].metric(
         "最大回撤近似",
         "N/A"
         if performance_summary.get("max_drawdown_proxy_pct") is None
@@ -863,8 +885,20 @@ with performance_tab:
             hide_index=True,
             column_config={
                 "平均報酬%": st.column_config.NumberColumn("平均報酬%", format="%.2f%%"),
+                "相對大盤%": st.column_config.NumberColumn("相對大盤%", format="%.2f%%"),
                 "勝率": st.column_config.NumberColumn("勝率", format="%.0%%"),
             },
+        )
+    theme_hit_rate = performance_summary.get("theme_hit_rate") or {}
+    if theme_hit_rate:
+        st.markdown("#### 主題命中率")
+        st.dataframe(
+            pd.DataFrame(
+                [{"主題": theme, "命中率": hit_rate} for theme, hit_rate in theme_hit_rate.items()]
+            ),
+            width="stretch",
+            hide_index=True,
+            column_config={"命中率": st.column_config.NumberColumn("命中率", format="%.0%%")},
         )
 
 

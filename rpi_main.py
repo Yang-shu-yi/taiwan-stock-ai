@@ -41,6 +41,7 @@ SPREADSHEET_ID = os.getenv("SPREADSHEET_ID")
 GOOGLE_SERVICE_ACCOUNT_FILE = os.getenv("GOOGLE_SERVICE_ACCOUNT_FILE")
 SNAPSHOT_FILE = os.getenv("DAILY_CANDIDATES_FILE", DEFAULT_SNAPSHOT_FILE)
 DRY_RUN = env_flag("DRY_RUN", False)
+SHEETS_ENABLED = env_flag("ENABLE_GOOGLE_SHEETS", bool(SPREADSHEET_ID))
 
 
 def log(message: str) -> None:
@@ -55,9 +56,14 @@ def resolve_mode() -> str:
 
 
 def save_summary_to_sheet(snapshot: dict) -> None:
+    if not SHEETS_ENABLED:
+        log("Google Sheets disabled")
+        return
     if not gspread or not SPREADSHEET_ID or not GOOGLE_SERVICE_ACCOUNT_FILE:
+        log("Google Sheets skipped: missing gspread/SPREADSHEET_ID/GOOGLE_SERVICE_ACCOUNT_FILE")
         return
     if not os.path.exists(GOOGLE_SERVICE_ACCOUNT_FILE):
+        log(f"Google Sheets skipped: {GOOGLE_SERVICE_ACCOUNT_FILE} not found")
         return
     try:
         client = gspread.service_account(filename=GOOGLE_SERVICE_ACCOUNT_FILE)
@@ -104,8 +110,8 @@ def main() -> None:
             market,
             tw_news,
             us_news,
-            data_status=get_data_status(),
         )
+        snapshot["data_status"] = get_data_status()
         snapshot["performance_summary"] = summarize_performance()
         save_daily_snapshot(snapshot, SNAPSHOT_FILE)
         appended = append_signal_history(snapshot)
