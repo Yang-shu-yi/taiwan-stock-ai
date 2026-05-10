@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-09 08:51:48",
+  "updated_at": "2026-05-10 09:02:16",
   "mode": "POST",
   "market": {
     "tw_index": {
@@ -63,7 +63,7 @@
       "pct_5d": 10.24,
       "rsi": 68.7,
       "vol_ratio": 2.22,
-      "news_hits": 1,
+      "news_hits": 0,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -83,7 +83,7 @@
       "pct_5d": 22.71,
       "rsi": 73.82,
       "vol_ratio": 1.91,
-      "news_hits": 1,
+      "news_hits": 0,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -113,26 +113,6 @@
       "rank": 3
     },
     {
-      "code": "2357",
-      "name": "華碩",
-      "theme": "AI伺服器",
-      "symbol": "2357.TW",
-      "score": 100,
-      "price": 650.0,
-      "pct_1d": 1.72,
-      "pct_5d": 11.88,
-      "rsi": 73.84,
-      "vol_ratio": 1.92,
-      "news_hits": 1,
-      "reasons": [
-        "站上 MA20",
-        "站上 MA60",
-        "均線結構偏多",
-        "近 5 日動能轉強"
-      ],
-      "rank": 4
-    },
-    {
       "code": "2330",
       "name": "台積電",
       "theme": "半導體",
@@ -150,47 +130,27 @@
         "均線結構偏多",
         "近 5 日動能轉強"
       ],
-      "rank": 5
+      "rank": 4
     },
     {
-      "code": "3034",
-      "name": "聯詠",
-      "theme": "IC設計",
-      "symbol": "3034.TW",
-      "score": 96,
-      "price": 498.0,
-      "pct_1d": 9.93,
-      "pct_5d": 21.76,
-      "rsi": 79.97,
-      "vol_ratio": 3.71,
-      "news_hits": 1,
-      "reasons": [
-        "站上 MA20",
-        "站上 MA60",
-        "均線結構偏多",
-        "近 5 日動能轉強"
-      ],
-      "rank": 6
-    },
-    {
-      "code": "6669",
-      "name": "緯穎",
+      "code": "2357",
+      "name": "華碩",
       "theme": "AI伺服器",
-      "symbol": "6669.TW",
+      "symbol": "2357.TW",
       "score": 94,
-      "price": 5200.0,
-      "pct_1d": 6.56,
-      "pct_5d": 11.23,
-      "rsi": 72.27,
-      "vol_ratio": 1.48,
-      "news_hits": 1,
+      "price": 650.0,
+      "pct_1d": 1.72,
+      "pct_5d": 11.88,
+      "rsi": 73.84,
+      "vol_ratio": 1.92,
+      "news_hits": 0,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
         "均線結構偏多",
         "近 5 日動能轉強"
       ],
-      "rank": 7
+      "rank": 5
     },
     {
       "code": "2301",
@@ -210,13 +170,53 @@
         "均線結構偏多",
         "近 5 日動能轉強"
       ],
+      "rank": 6
+    },
+    {
+      "code": "3034",
+      "name": "聯詠",
+      "theme": "IC設計",
+      "symbol": "3034.TW",
+      "score": 90,
+      "price": 498.0,
+      "pct_1d": 9.93,
+      "pct_5d": 21.76,
+      "rsi": 79.97,
+      "vol_ratio": 3.71,
+      "news_hits": 0,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "均線結構偏多",
+        "近 5 日動能轉強"
+      ],
+      "rank": 7
+    },
+    {
+      "code": "6669",
+      "name": "緯穎",
+      "theme": "AI伺服器",
+      "symbol": "6669.TW",
+      "score": 88,
+      "price": 5200.0,
+      "pct_1d": 6.56,
+      "pct_5d": 11.23,
+      "rsi": 72.27,
+      "vol_ratio": 1.48,
+      "news_hits": 0,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "均線結構偏多",
+        "近 5 日動能轉強"
+      ],
       "rank": 8
     }
   ],
   "theme_summary": [
     {
       "theme": "IC設計",
-      "score": 751.4,
+      "score": 697.4,
       "leaders": [
         "2379 瑞昱",
         "3034 聯詠",
@@ -225,16 +225,16 @@
     },
     {
       "theme": "AI伺服器",
-      "score": 664.9,
+      "score": 582.9,
       "leaders": [
         "2357 華碩",
         "6669 緯穎",
-        "2317 鴻海"
+        "2376 技嘉"
       ]
     },
     {
       "theme": "金融",
-      "score": 632.0,
+      "score": 552.0,
       "leaders": [
         "2886 兆豐金",
         "2882 國泰金",
@@ -324,11 +324,11 @@
   ],
   "news_summary": {
     "tw_top_titles": [
-      "荷姆茲海峽開放無望！高油價恐成常態 華爾街棄TACO瘋傳NACHO交易 - news.cnyes.com",
-      "巴菲特退居幕後 阿貝爾首場股東會 人潮雖減少但成功穩住市場信心 - news.cnyes.com",
-      "〈貴金屬盤後〉期待美伊停戰 金價走強 周線漲逾2% - news.cnyes.com",
-      "高盛看多AI智能體浪潮 點名輝達、微軟、亞馬遜9大贏家 - news.cnyes.com",
-      "UFO檔案真的公開了！川普「大家盡情看吧！」 - news.cnyes.com"
+      "Fed降息理由日益枯竭！華許接掌聯準會恐陷鷹派圍剿 市場甚至開始押注升息 - news.cnyes.com",
+      "普丁出席「勝利日」紅場閱兵式 都說了什麼？ - news.cnyes.com",
+      "2026世足票價失控！決賽門票飆破230萬美元 FIFA遭批把足球變富豪遊戲 - news.cnyes.com",
+      "頭條新聞 - news.cnyes.com",
+      "Netflix 雖不靠遊戲賺錢，但做遊戲要幹麼腦袋還很清楚"
     ],
     "us_top_titles": [
       "How much further does this Teflon market have to go? Here's what traders say",
@@ -342,7 +342,7 @@
     "news": {
       "ok": true,
       "source": "rss/news_scraper",
-      "updated_at": "2026-05-09T08:51:36+00:00",
+      "updated_at": "2026-05-10T09:02:04+00:00",
       "ttl_minutes": 30,
       "cached": false,
       "error": null
@@ -350,7 +350,7 @@
     "yahoo_^TWII_1d_2d": {
       "ok": true,
       "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5ETWII",
-      "updated_at": "2026-05-09T08:51:36+00:00",
+      "updated_at": "2026-05-10T09:02:04+00:00",
       "ttl_minutes": 15,
       "cached": false,
       "error": null
@@ -358,7 +358,7 @@
     "twse_turnover": {
       "ok": true,
       "source": "https://openapi.twse.com.tw/v1/exchangeReport/FMTQIK",
-      "updated_at": "2026-05-09T08:51:37+00:00",
+      "updated_at": "2026-05-10T09:02:04+00:00",
       "ttl_minutes": 15,
       "cached": false,
       "error": null
@@ -366,7 +366,7 @@
     "yahoo_^GSPC_1d_2d": {
       "ok": true,
       "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC",
-      "updated_at": "2026-05-09T08:51:37+00:00",
+      "updated_at": "2026-05-10T09:02:04+00:00",
       "ttl_minutes": 15,
       "cached": false,
       "error": null
@@ -374,7 +374,7 @@
     "yahoo_^DJI_1d_2d": {
       "ok": true,
       "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EDJI",
-      "updated_at": "2026-05-09T08:51:37+00:00",
+      "updated_at": "2026-05-10T09:02:04+00:00",
       "ttl_minutes": 15,
       "cached": false,
       "error": null
@@ -382,7 +382,7 @@
     "yahoo_^IXIC_1d_2d": {
       "ok": true,
       "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EIXIC",
-      "updated_at": "2026-05-09T08:51:37+00:00",
+      "updated_at": "2026-05-10T09:02:05+00:00",
       "ttl_minutes": 15,
       "cached": false,
       "error": null
@@ -390,7 +390,7 @@
     "yahoo_^SOX_1d_2d": {
       "ok": true,
       "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5ESOX",
-      "updated_at": "2026-05-09T08:51:37+00:00",
+      "updated_at": "2026-05-10T09:02:05+00:00",
       "ttl_minutes": 15,
       "cached": false,
       "error": null
@@ -398,7 +398,7 @@
     "yahoo_^VIX_1d_2d": {
       "ok": true,
       "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EVIX",
-      "updated_at": "2026-05-09T08:51:37+00:00",
+      "updated_at": "2026-05-10T09:02:05+00:00",
       "ttl_minutes": 15,
       "cached": false,
       "error": null
@@ -406,7 +406,7 @@
     "yahoo_TWD=X_1d_2d": {
       "ok": true,
       "source": "https://query1.finance.yahoo.com/v8/finance/chart/TWD=X",
-      "updated_at": "2026-05-09T08:51:37+00:00",
+      "updated_at": "2026-05-10T09:02:05+00:00",
       "ttl_minutes": 15,
       "cached": false,
       "error": null
@@ -414,7 +414,7 @@
     "twse_institutional": {
       "ok": false,
       "source": "https://openapi.twse.com.tw/v1/exchangeReport/TWT38U",
-      "updated_at": "2026-05-09T08:51:38+00:00",
+      "updated_at": "2026-05-10T09:02:05+00:00",
       "ttl_minutes": 60,
       "cached": false,
       "error": "Expecting value: line 1 column 1 (char 0)"
@@ -422,7 +422,7 @@
     "twse_margin": {
       "ok": true,
       "source": "https://openapi.twse.com.tw/v1/exchangeReport/MI_MARGN",
-      "updated_at": "2026-05-09T08:51:39+00:00",
+      "updated_at": "2026-05-10T09:02:06+00:00",
       "ttl_minutes": 60,
       "cached": false,
       "error": null
