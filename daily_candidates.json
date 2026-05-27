@@ -1,43 +1,43 @@
 {
-  "updated_at": "2026-05-25 11:17:31",
+  "updated_at": "2026-05-27 11:01:40",
   "mode": "POST",
   "market": {
     "tw_index": {
-      "price": "43644",
-      "chg": "+1376",
-      "pct": "+3.26",
-      "turnover": "12369億"
+      "price": "44257",
+      "chg": "+731",
+      "pct": "+1.68",
+      "turnover": "15497億"
     },
     "us_indices": {
       "S&P500": {
-        "price": "7473.47",
-        "chg": "+40.50",
-        "pct": "+0.54"
+        "price": "7519.12",
+        "chg": "+73.40",
+        "pct": "+0.99"
       },
       "道瓊": {
-        "price": "50579.70",
-        "chg": "+570.35",
-        "pct": "+1.14"
+        "price": "50461.68",
+        "chg": "+176.02",
+        "pct": "+0.35"
       },
       "那斯達克": {
-        "price": "26343.97",
-        "chg": "+73.61",
-        "pct": "+0.28"
+        "price": "26656.18",
+        "chg": "+363.08",
+        "pct": "+1.38"
       },
       "費半": {
-        "price": "12202.54",
-        "chg": "+389.25",
-        "pct": "+3.30"
+        "price": "12876.91",
+        "chg": "+912.83",
+        "pct": "+7.63"
       },
       "VIX": {
-        "price": "16.63",
-        "chg": "-0.07",
-        "pct": "-0.42"
+        "price": "16.90",
+        "chg": "-0.11",
+        "pct": "-0.65"
       }
     },
     "forex": {
-      "rate": "31.406",
-      "chg": "-0.145"
+      "rate": "31.386",
+      "chg": "-0.062"
     },
     "institutional": {
       "foreign": "N/A",
@@ -53,16 +53,16 @@
   },
   "tw_candidates": [
     {
-      "code": "3035",
-      "name": "智原",
-      "theme": "IC設計",
-      "symbol": "3035.TW",
+      "code": "1303",
+      "name": "南亞",
+      "theme": "塑化",
+      "symbol": "1303.TW",
       "score": 100,
-      "price": 218.5,
-      "pct_1d": 3.55,
-      "pct_5d": 13.21,
-      "rsi": 68.6,
-      "vol_ratio": 1.56,
+      "price": 95.5,
+      "pct_1d": 5.18,
+      "pct_5d": 18.19,
+      "rsi": 62.84,
+      "vol_ratio": 1.66,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -73,17 +73,17 @@
       "rank": 1
     },
     {
-      "code": "3231",
-      "name": "緯創",
-      "theme": "AI伺服器",
-      "symbol": "3231.TW",
+      "code": "2330",
+      "name": "台積電",
+      "theme": "半導體",
+      "symbol": "2330.TW",
       "score": 100,
-      "price": 149.0,
-      "pct_1d": 3.11,
-      "pct_5d": 9.96,
-      "rsi": 63.53,
-      "vol_ratio": 1.54,
-      "news_hits": 0,
+      "price": 2300.0,
+      "pct_1d": 1.32,
+      "pct_5d": 5.26,
+      "rsi": 60.68,
+      "vol_ratio": 1.08,
+      "news_hits": 6,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -93,17 +93,17 @@
       "rank": 2
     },
     {
-      "code": "2330",
-      "name": "台積電",
-      "theme": "半導體",
-      "symbol": "2330.TW",
-      "score": 100,
-      "price": 2310.0,
-      "pct_1d": 2.44,
-      "pct_5d": 3.12,
-      "rsi": 63.05,
-      "vol_ratio": 0.8,
-      "news_hits": 4,
+      "code": "2882",
+      "name": "國泰金",
+      "theme": "金融",
+      "symbol": "2882.TW",
+      "score": 94,
+      "price": 85.4,
+      "pct_1d": 2.77,
+      "pct_5d": 9.63,
+      "rsi": 74.51,
+      "vol_ratio": 1.76,
+      "news_hits": 0,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -113,16 +113,16 @@
       "rank": 3
     },
     {
-      "code": "2603",
-      "name": "長榮",
-      "theme": "航運",
-      "symbol": "2603.TW",
-      "score": 94,
-      "price": 214.0,
-      "pct_1d": -2.28,
-      "pct_5d": 8.35,
-      "rsi": 57.04,
-      "vol_ratio": 1.99,
+      "code": "2454",
+      "name": "聯發科",
+      "theme": "IC設計",
+      "symbol": "2454.TW",
+      "score": 90,
+      "price": 4640.0,
+      "pct_1d": 8.79,
+      "pct_5d": 43.65,
+      "rsi": 79.51,
+      "vol_ratio": 1.65,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -137,13 +137,13 @@
       "name": "聯電",
       "theme": "半導體",
       "symbol": "2303.TW",
-      "score": 90,
-      "price": 125.0,
-      "pct_1d": 9.65,
-      "pct_5d": 12.61,
-      "rsi": 76.29,
-      "vol_ratio": 1.32,
-      "news_hits": 2,
+      "score": 88,
+      "price": 143.5,
+      "pct_1d": 9.96,
+      "pct_5d": 32.87,
+      "rsi": 82.31,
+      "vol_ratio": 1.04,
+      "news_hits": 3,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -153,16 +153,16 @@
       "rank": 5
     },
     {
-      "code": "3711",
-      "name": "日月光投控",
-      "theme": "半導體封測",
-      "symbol": "3711.TW",
+      "code": "2308",
+      "name": "台達電",
+      "theme": "電源/散熱",
+      "symbol": "2308.TW",
       "score": 88,
-      "price": 617.0,
-      "pct_1d": 9.98,
-      "pct_5d": 20.98,
-      "rsi": 71.07,
-      "vol_ratio": 1.04,
+      "price": 2520.0,
+      "pct_1d": 7.23,
+      "pct_5d": 31.59,
+      "rsi": 73.07,
+      "vol_ratio": 1.28,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -173,37 +173,37 @@
       "rank": 6
     },
     {
-      "code": "2002",
-      "name": "中鋼",
-      "theme": "鋼鐵",
-      "symbol": "2002.TW",
+      "code": "3711",
+      "name": "日月光投控",
+      "theme": "半導體封測",
+      "symbol": "3711.TW",
       "score": 88,
-      "price": 19.95,
-      "pct_1d": 9.92,
-      "pct_5d": 9.62,
-      "rsi": 67.25,
-      "vol_ratio": 4.19,
+      "price": 642.0,
+      "pct_1d": 5.07,
+      "pct_5d": 34.87,
+      "rsi": 72.79,
+      "vol_ratio": 1.13,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
-        "近 5 日動能轉強",
-        "RSI 位於健康強勢區"
+        "均線結構偏多",
+        "近 5 日動能轉強"
       ],
       "rank": 7
     },
     {
-      "code": "2301",
-      "name": "光寶科",
-      "theme": "電源/散熱",
-      "symbol": "2301.TW",
+      "code": "2408",
+      "name": "南亞科",
+      "theme": "記憶體",
+      "symbol": "2408.TW",
       "score": 88,
-      "price": 227.5,
-      "pct_1d": 9.9,
-      "pct_5d": 9.64,
-      "rsi": 69.3,
-      "vol_ratio": 0.8,
-      "news_hits": 0,
+      "price": 312.0,
+      "pct_1d": 2.8,
+      "pct_5d": 13.45,
+      "rsi": 59.56,
+      "vol_ratio": 1.39,
+      "news_hits": 1,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -216,40 +216,40 @@
   "theme_summary": [
     {
       "theme": "IC設計",
-      "score": 707.1,
+      "score": 641.1,
       "leaders": [
-        "3035 智原",
-        "3443 創意",
-        "2454 聯發科"
+        "2454 聯發科",
+        "2379 瑞昱",
+        "3034 聯詠"
       ]
     },
     {
       "theme": "AI伺服器",
-      "score": 577.9,
+      "score": 495.1,
       "leaders": [
-        "3231 緯創",
         "2317 鴻海",
-        "2357 華碩"
+        "2357 華碩",
+        "3231 緯創"
       ]
     },
     {
       "theme": "金融",
-      "score": 479.1,
+      "score": 488.5,
       "leaders": [
-        "2881 富邦金",
         "2882 國泰金",
-        "2885 元大金"
+        "2881 富邦金",
+        "2891 中信金"
       ]
     }
   ],
   "us_context": [
     {
-      "symbol": "DIA",
-      "name": "DIA",
-      "score": 58,
-      "price": 506.12,
-      "pct_1d": 0.6,
-      "pct_5d": 2.17,
+      "symbol": "MU",
+      "name": "MU",
+      "score": 66,
+      "price": 895.88,
+      "pct_1d": 19.29,
+      "pct_5d": 31.45,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -257,12 +257,12 @@
       ]
     },
     {
-      "symbol": "MU",
-      "name": "MU",
+      "symbol": "DIA",
+      "name": "DIA",
       "score": 58,
-      "price": 751.0,
-      "pct_1d": -1.46,
-      "pct_5d": 3.63,
+      "price": 505.25,
+      "pct_1d": -0.17,
+      "pct_5d": 1.66,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -273,9 +273,9 @@
       "symbol": "AMD",
       "name": "AMD",
       "score": 54,
-      "price": 467.51,
-      "pct_1d": 3.99,
-      "pct_5d": 10.24,
+      "price": 503.89,
+      "pct_1d": 7.78,
+      "pct_5d": 19.69,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -286,9 +286,22 @@
       "symbol": "SOXX",
       "name": "SOXX",
       "score": 54,
-      "price": 537.33,
-      "pct_1d": 2.41,
-      "pct_5d": 5.67,
+      "price": 570.09,
+      "pct_1d": 6.1,
+      "pct_5d": 14.97,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "近 5 日偏強"
+      ]
+    },
+    {
+      "symbol": "TSM",
+      "name": "TSM",
+      "score": 54,
+      "price": 412.32,
+      "pct_1d": 1.93,
+      "pct_5d": 4.13,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -299,22 +312,9 @@
       "symbol": "IWM",
       "name": "IWM",
       "score": 54,
-      "price": 285.12,
-      "pct_1d": 0.93,
-      "pct_5d": 2.71,
-      "reasons": [
-        "站上 MA20",
-        "站上 MA60",
-        "近 5 日偏強"
-      ]
-    },
-    {
-      "symbol": "QQQ",
-      "name": "QQQ",
-      "score": 54,
-      "price": 717.54,
-      "pct_1d": 0.42,
-      "pct_5d": 1.21,
+      "price": 290.51,
+      "pct_1d": 1.89,
+      "pct_5d": 5.27,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -324,25 +324,25 @@
   ],
   "news_summary": {
     "tw_top_titles": [
-      "本週操盤筆記：美核心PCE、全球債券殖利率走向、戴爾和好市多財報 - news.cnyes.com",
-      "盤中速報 - 聯寶(6821)股價拉至漲停，漲停價63.1元，成交1,619張 - news.cnyes.com",
-      "外資砸890億人民幣掃貨！小摩：看好A股中機器人、能源安全與AI三大主要族群 - news.cnyes.com",
-      "低軌衛星線材出貨倍增 泰越兩地規劃擴產3成 - news.cnyes.com",
-      "東元與馬來西亞Dynaciate完成併購協議簽署 看好AIDC明年營收倍數成長 - news.cnyes.com"
+      "攻佔天母及北士科！渣打第三家私銀今開幕 看好台灣高端理財還要多開幾家 - news.cnyes.com",
+      "盤中速報 - 華祺(5015)急拉3.74%報24.2元，成交67張 - news.cnyes.com",
+      "盤中速報 - 超微半導體(AMD-US)大漲5.15%，報491.59美元 - news.cnyes.com",
+      "中國禁跨境炒股，在香港開立投資帳戶須簽聲明書",
+      "中國展開專案行動整治內捲式競爭，直播、外賣為重點"
     ],
     "us_top_titles": [
-      "Huawei plans new smartphone chips this fall as rivalry with Nvidia and Apple heats up",
-      "China tech plays to ride out macro volatility",
-      "Three signs from APEC that the U.S. and China remain far apart on trade",
-      "Kevin Warsh's real Fed 'regime change' may happen deep inside Wall Street's plumbing",
-      "Which company will the U.S. government take a stake in next? Here’s what traders think"
+      "Taiwan chip stocks climb after Nvidia announces $150 billion spending plans",
+      "China industrial profits jump 24.7% in April, fastest gain in over two years despite headwinds",
+      "European companies double down on China manufacturing despite EU de-risking push",
+      "Stocks making the biggest moves after hours: Zscaler, Insulet, Box and more",
+      "Piper Sandler says Strait of Hormuz to remain closed for months and oil to hit new highs"
     ]
   },
   "data_status": {
     "news": {
       "ok": true,
       "source": "rss/news_scraper",
-      "updated_at": "2026-05-25T11:17:06+00:00",
+      "updated_at": "2026-05-27T11:01:23+00:00",
       "ttl_minutes": 30,
       "cached": false,
       "error": null
@@ -350,7 +350,7 @@
     "yahoo_^TWII_1d_2d": {
       "ok": true,
       "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5ETWII",
-      "updated_at": "2026-05-25T11:17:06+00:00",
+      "updated_at": "2026-05-27T11:01:23+00:00",
       "ttl_minutes": 15,
       "cached": false,
       "error": null
@@ -358,7 +358,7 @@
     "twse_turnover": {
       "ok": true,
       "source": "https://openapi.twse.com.tw/v1/exchangeReport/FMTQIK",
-      "updated_at": "2026-05-25T11:17:07+00:00",
+      "updated_at": "2026-05-27T11:01:23+00:00",
       "ttl_minutes": 15,
       "cached": false,
       "error": null
@@ -366,7 +366,7 @@
     "yahoo_^GSPC_1d_2d": {
       "ok": true,
       "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC",
-      "updated_at": "2026-05-25T11:17:07+00:00",
+      "updated_at": "2026-05-27T11:01:24+00:00",
       "ttl_minutes": 15,
       "cached": false,
       "error": null
@@ -374,7 +374,7 @@
     "yahoo_^DJI_1d_2d": {
       "ok": true,
       "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EDJI",
-      "updated_at": "2026-05-25T11:17:08+00:00",
+      "updated_at": "2026-05-27T11:01:24+00:00",
       "ttl_minutes": 15,
       "cached": false,
       "error": null
@@ -382,7 +382,7 @@
     "yahoo_^IXIC_1d_2d": {
       "ok": true,
       "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EIXIC",
-      "updated_at": "2026-05-25T11:17:08+00:00",
+      "updated_at": "2026-05-27T11:01:24+00:00",
       "ttl_minutes": 15,
       "cached": false,
       "error": null
@@ -390,7 +390,7 @@
     "yahoo_^SOX_1d_2d": {
       "ok": true,
       "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5ESOX",
-      "updated_at": "2026-05-25T11:17:08+00:00",
+      "updated_at": "2026-05-27T11:01:24+00:00",
       "ttl_minutes": 15,
       "cached": false,
       "error": null
@@ -398,7 +398,7 @@
     "yahoo_^VIX_1d_2d": {
       "ok": true,
       "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EVIX",
-      "updated_at": "2026-05-25T11:17:08+00:00",
+      "updated_at": "2026-05-27T11:01:24+00:00",
       "ttl_minutes": 15,
       "cached": false,
       "error": null
@@ -406,7 +406,7 @@
     "yahoo_TWD=X_1d_2d": {
       "ok": true,
       "source": "https://query1.finance.yahoo.com/v8/finance/chart/TWD=X",
-      "updated_at": "2026-05-25T11:17:08+00:00",
+      "updated_at": "2026-05-27T11:01:24+00:00",
       "ttl_minutes": 15,
       "cached": false,
       "error": null
@@ -414,7 +414,7 @@
     "twse_institutional": {
       "ok": false,
       "source": "https://openapi.twse.com.tw/v1/exchangeReport/TWT38U",
-      "updated_at": "2026-05-25T11:17:09+00:00",
+      "updated_at": "2026-05-27T11:01:28+00:00",
       "ttl_minutes": 60,
       "cached": false,
       "error": "Expecting value: line 1 column 1 (char 0)"
@@ -422,7 +422,7 @@
     "twse_margin": {
       "ok": true,
       "source": "https://openapi.twse.com.tw/v1/exchangeReport/MI_MARGN",
-      "updated_at": "2026-05-25T11:17:13+00:00",
+      "updated_at": "2026-05-27T11:01:29+00:00",
       "ttl_minutes": 60,
       "cached": false,
       "error": null
