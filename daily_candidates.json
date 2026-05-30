@@ -1,43 +1,43 @@
 {
-  "updated_at": "2026-05-29 10:54:32",
+  "updated_at": "2026-05-30 09:25:35",
   "mode": "POST",
   "market": {
     "tw_index": {
       "price": "44733",
       "chg": "+1096",
       "pct": "+2.51",
-      "turnover": "16707億"
+      "turnover": "19170億"
     },
     "us_indices": {
       "S&P500": {
-        "price": "7563.63",
-        "chg": "+44.51",
-        "pct": "+0.59"
+        "price": "7580.06",
+        "chg": "+59.70",
+        "pct": "+0.79"
       },
       "道瓊": {
-        "price": "50668.97",
-        "chg": "+207.29",
-        "pct": "+0.41"
+        "price": "51032.46",
+        "chg": "+388.18",
+        "pct": "+0.77"
       },
       "那斯達克": {
-        "price": "26917.47",
-        "chg": "+261.29",
-        "pct": "+0.98"
+        "price": "26972.62",
+        "chg": "+297.89",
+        "pct": "+1.12"
       },
       "費半": {
-        "price": "12829.14",
-        "chg": "-47.77",
-        "pct": "-0.37"
+        "price": "12829.38",
+        "chg": "+127.19",
+        "pct": "+1.00"
       },
       "VIX": {
-        "price": "15.84",
-        "chg": "+0.10",
-        "pct": "+0.64"
+        "price": "15.32",
+        "chg": "-0.42",
+        "pct": "-2.67"
       }
     },
     "forex": {
-      "rate": "31.381",
-      "chg": "-0.085"
+      "rate": "31.411",
+      "chg": "-0.055"
     },
     "institutional": {
       "foreign": "N/A",
@@ -62,8 +62,8 @@
       "pct_1d": 9.97,
       "pct_5d": 11.58,
       "rsi": 74.71,
-      "vol_ratio": 2.26,
-      "news_hits": 0,
+      "vol_ratio": 2.17,
+      "news_hits": 2,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -82,8 +82,8 @@
       "pct_1d": 9.89,
       "pct_5d": 15.6,
       "rsi": 78.62,
-      "vol_ratio": 2.9,
-      "news_hits": 3,
+      "vol_ratio": 2.84,
+      "news_hits": 2,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -102,7 +102,7 @@
       "pct_1d": 9.89,
       "pct_5d": 7.28,
       "rsi": 60.44,
-      "vol_ratio": 2.57,
+      "vol_ratio": 2.54,
       "news_hits": 1,
       "reasons": [
         "站上 MA20",
@@ -122,8 +122,8 @@
       "pct_1d": 9.69,
       "pct_5d": 9.69,
       "rsi": 69.33,
-      "vol_ratio": 2.21,
-      "news_hits": 0,
+      "vol_ratio": 2.18,
+      "news_hits": 1,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -142,8 +142,8 @@
       "pct_1d": 9.63,
       "pct_5d": 14.73,
       "rsi": 74.99,
-      "vol_ratio": 1.85,
-      "news_hits": 0,
+      "vol_ratio": 1.82,
+      "news_hits": 1,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -162,8 +162,8 @@
       "pct_1d": 8.68,
       "pct_5d": 23.57,
       "rsi": 69.33,
-      "vol_ratio": 1.81,
-      "news_hits": 0,
+      "vol_ratio": 1.79,
+      "news_hits": 1,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -182,7 +182,7 @@
       "pct_1d": 8.4,
       "pct_5d": 13.15,
       "rsi": 62.62,
-      "vol_ratio": 1.94,
+      "vol_ratio": 1.92,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -202,7 +202,7 @@
       "pct_1d": 3.29,
       "pct_5d": 4.72,
       "rsi": 56.78,
-      "vol_ratio": 1.63,
+      "vol_ratio": 1.58,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -216,7 +216,7 @@
   "theme_summary": [
     {
       "theme": "AI伺服器",
-      "score": 735.8,
+      "score": 759.8,
       "leaders": [
         "2357 華碩",
         "2317 鴻海",
@@ -225,16 +225,16 @@
     },
     {
       "theme": "金融",
-      "score": 589.1,
+      "score": 579.1,
       "leaders": [
-        "2882 國泰金",
         "2891 中信金",
+        "2882 國泰金",
         "2885 元大金"
       ]
     },
     {
       "theme": "IC設計",
-      "score": 537.2,
+      "score": 527.2,
       "leaders": [
         "2454 聯發科",
         "6415 矽力*-KY",
@@ -247,22 +247,9 @@
       "symbol": "MSFT",
       "name": "MSFT",
       "score": 62,
-      "price": 426.99,
-      "pct_1d": 3.47,
-      "pct_5d": 1.41,
-      "reasons": [
-        "站上 MA20",
-        "站上 MA60",
-        "近 5 日偏強"
-      ]
-    },
-    {
-      "symbol": "AMD",
-      "name": "AMD",
-      "score": 54,
-      "price": 518.09,
-      "pct_1d": 4.55,
-      "pct_5d": 15.75,
+      "price": 450.24,
+      "pct_1d": 5.45,
+      "pct_5d": 7.43,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -272,10 +259,10 @@
     {
       "symbol": "AVGO",
       "name": "AVGO",
-      "score": 54,
-      "price": 426.58,
-      "pct_1d": 1.12,
-      "pct_5d": 2.11,
+      "score": 62,
+      "price": 446.77,
+      "pct_1d": 4.73,
+      "pct_5d": 7.77,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -283,12 +270,38 @@
       ]
     },
     {
-      "symbol": "SOXX",
-      "name": "SOXX",
+      "symbol": "META",
+      "name": "META",
+      "score": 62,
+      "price": 632.51,
+      "pct_1d": -0.44,
+      "pct_5d": 4.14,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "近 5 日偏強"
+      ]
+    },
+    {
+      "symbol": "AAPL",
+      "name": "AAPL",
+      "score": 56,
+      "price": 312.06,
+      "pct_1d": -0.14,
+      "pct_5d": 2.32,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "近 5 日偏強"
+      ]
+    },
+    {
+      "symbol": "DIA",
+      "name": "DIA",
       "score": 54,
-      "price": 569.47,
-      "pct_1d": 0.97,
-      "pct_5d": 9.45,
+      "price": 510.78,
+      "pct_1d": 0.74,
+      "pct_5d": 1.52,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -299,22 +312,9 @@
       "symbol": "QQQ",
       "name": "QQQ",
       "score": 54,
-      "price": 735.6,
-      "pct_1d": 0.84,
-      "pct_5d": 3.15,
-      "reasons": [
-        "站上 MA20",
-        "站上 MA60",
-        "近 5 日偏強"
-      ]
-    },
-    {
-      "symbol": "AMZN",
-      "name": "AMZN",
-      "score": 54,
-      "price": 274.0,
-      "pct_1d": 0.79,
-      "pct_5d": 3.39,
+      "price": 738.31,
+      "pct_1d": 0.37,
+      "pct_5d": 3.33,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -324,25 +324,25 @@
   ],
   "news_summary": {
     "tw_top_titles": [
-      "盤中速報 - AAVE大跌8.65%，報79.4美元 - news.cnyes.com",
-      "〈遠東新股東會〉海外持續擴產馬國新廠下半年投產 資本支出破百億元 - news.cnyes.com",
-      "聲寶台南長照綜合機構正式動土 攜手日本元氣集團打造高品質設施 - news.cnyes.com",
-      "〈遠東新股東會〉Q2營運強勁上半年EPS正向 全年獲利估優於去年 - news.cnyes.com",
-      "衝擊8千家企業！空污法修正強推二讀 經部為產業請命 5大爭議未解將衝擊AI用電及發展 - news.cnyes.com"
+      "〈美股盤後〉關注美伊進展 三大指數續創新高 5月行情完美落幕 - news.cnyes.com",
+      "太空股熱潮被潑冷水！藍色起源爆炸事故、SpaceX估值下修引發賣壓 - news.cnyes.com",
+      "戴蒙怒轟Coinbase執行長「滿口胡扯」加密貨幣戰火再升級 - news.cnyes.com",
+      "戰情室會議結束 川普延後對美伊協議做「最終決定」 - news.cnyes.com",
+      "AI伺服器營收狂飆+拿下五角大廈百億合約 戴爾單日暴漲33%創歷史紀錄 - news.cnyes.com"
     ],
     "us_top_titles": [
+      "Stocks making the biggest moves midday: Nextpower,  AST SpaceMobile, Dell, NetApp & more",
+      "Fed Governor Michelle Bowman warns against hiking interest rates because of inflation spike",
       "Stocks making the biggest moves after hours: Dell Technologies, American Eagle Outfitters, Gap & more",
       "CFTC sues Rhode Island over actions against prediction markets",
-      "Gaming association says states have lost $1 billion in tax revenue due to prediction markets",
-      "Stocks making the biggest moves premarket: Snowflake, Best Buy, Kohl's, Dollar Tree & more",
-      "Nio shares jump 10% after releasing first flagship EV in more than two years"
+      "Gaming association says states have lost $1 billion in tax revenue due to prediction markets"
     ]
   },
   "data_status": {
     "news": {
       "ok": true,
       "source": "rss/news_scraper",
-      "updated_at": "2026-05-29T10:54:11+00:00",
+      "updated_at": "2026-05-30T09:25:23+00:00",
       "ttl_minutes": 30,
       "cached": false,
       "error": null
@@ -350,7 +350,7 @@
     "yahoo_^TWII_1d_2d": {
       "ok": true,
       "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5ETWII",
-      "updated_at": "2026-05-29T10:54:11+00:00",
+      "updated_at": "2026-05-30T09:25:23+00:00",
       "ttl_minutes": 15,
       "cached": false,
       "error": null
@@ -358,7 +358,7 @@
     "twse_turnover": {
       "ok": true,
       "source": "https://openapi.twse.com.tw/v1/exchangeReport/FMTQIK",
-      "updated_at": "2026-05-29T10:54:12+00:00",
+      "updated_at": "2026-05-30T09:25:24+00:00",
       "ttl_minutes": 15,
       "cached": false,
       "error": null
@@ -366,7 +366,7 @@
     "yahoo_^GSPC_1d_2d": {
       "ok": true,
       "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC",
-      "updated_at": "2026-05-29T10:54:12+00:00",
+      "updated_at": "2026-05-30T09:25:24+00:00",
       "ttl_minutes": 15,
       "cached": false,
       "error": null
@@ -374,7 +374,7 @@
     "yahoo_^DJI_1d_2d": {
       "ok": true,
       "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EDJI",
-      "updated_at": "2026-05-29T10:54:12+00:00",
+      "updated_at": "2026-05-30T09:25:24+00:00",
       "ttl_minutes": 15,
       "cached": false,
       "error": null
@@ -382,7 +382,7 @@
     "yahoo_^IXIC_1d_2d": {
       "ok": true,
       "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EIXIC",
-      "updated_at": "2026-05-29T10:54:12+00:00",
+      "updated_at": "2026-05-30T09:25:24+00:00",
       "ttl_minutes": 15,
       "cached": false,
       "error": null
@@ -390,7 +390,7 @@
     "yahoo_^SOX_1d_2d": {
       "ok": true,
       "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5ESOX",
-      "updated_at": "2026-05-29T10:54:13+00:00",
+      "updated_at": "2026-05-30T09:25:24+00:00",
       "ttl_minutes": 15,
       "cached": false,
       "error": null
@@ -398,7 +398,7 @@
     "yahoo_^VIX_1d_2d": {
       "ok": true,
       "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EVIX",
-      "updated_at": "2026-05-29T10:54:13+00:00",
+      "updated_at": "2026-05-30T09:25:24+00:00",
       "ttl_minutes": 15,
       "cached": false,
       "error": null
@@ -406,7 +406,7 @@
     "yahoo_TWD=X_1d_2d": {
       "ok": true,
       "source": "https://query1.finance.yahoo.com/v8/finance/chart/TWD=X",
-      "updated_at": "2026-05-29T10:54:13+00:00",
+      "updated_at": "2026-05-30T09:25:24+00:00",
       "ttl_minutes": 15,
       "cached": false,
       "error": null
@@ -414,7 +414,7 @@
     "twse_institutional": {
       "ok": false,
       "source": "https://openapi.twse.com.tw/v1/exchangeReport/TWT38U",
-      "updated_at": "2026-05-29T10:54:14+00:00",
+      "updated_at": "2026-05-30T09:25:25+00:00",
       "ttl_minutes": 60,
       "cached": false,
       "error": "Expecting value: line 1 column 1 (char 0)"
@@ -422,7 +422,7 @@
     "twse_margin": {
       "ok": true,
       "source": "https://openapi.twse.com.tw/v1/exchangeReport/MI_MARGN",
-      "updated_at": "2026-05-29T10:54:15+00:00",
+      "updated_at": "2026-05-30T09:25:26+00:00",
       "ttl_minutes": 60,
       "cached": false,
       "error": null
