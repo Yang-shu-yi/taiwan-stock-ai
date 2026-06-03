@@ -254,8 +254,24 @@ def get_margin_trading() -> dict[str, str]:
         if not isinstance(rows, list) or not rows:
             return result
         latest = rows[-1]
-        margin_buy = _to_float(latest.get("MarginPurchaseTodayBalance"))
-        short_sell = _to_float(latest.get("ShortSaleTodayBalance"))
+        margin_buy = _first_numeric(
+            latest,
+            [
+                "MarginPurchaseTodayBalance",
+                "marginPurchaseTodayBalance",
+                "融資今日餘額",
+                "融資餘額",
+            ],
+        )
+        short_sell = _first_numeric(
+            latest,
+            [
+                "ShortSaleTodayBalance",
+                "shortSaleTodayBalance",
+                "融券今日餘額",
+                "融券餘額",
+            ],
+        )
         if margin_buy is not None:
             result["margin_buy"] = f"{margin_buy / 1e4:.1f}萬張"
         if short_sell is not None:
@@ -263,6 +279,14 @@ def get_margin_trading() -> dict[str, str]:
     except Exception as exc:
         _log(f"Margin trading failed: {exc}")
     return result
+
+
+def _first_numeric(row: dict[str, Any], keys: list[str]) -> float | None:
+    for key in keys:
+        value = _to_float(row.get(key))
+        if value is not None:
+            return value
+    return None
 
 
 def get_watchlist_quotes(watchlist: list[str]) -> dict[str, dict[str, Any]]:

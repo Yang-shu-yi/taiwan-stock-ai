@@ -28,3 +28,21 @@ def test_institutional_fallback_uses_bfi82u(monkeypatch) -> None:
     assert result["total"] == "+1.3億"
     assert result["fallback_used"] is True
     assert statuses[-1][1]["fallback_used"] is True
+
+
+def test_margin_trading_accepts_twse_chinese_fields(monkeypatch) -> None:
+    def fake_twse_json(*args, **kwargs):
+        return [
+            {
+                "日期": "20260603",
+                "融資今日餘額": "8,123,456",
+                "融券今日餘額": "123,456",
+            }
+        ]
+
+    monkeypatch.setattr(market_data, "twse_json", fake_twse_json)
+
+    result = market_data.get_margin_trading()
+
+    assert result["margin_buy"] == "812.3萬張"
+    assert result["short_sell"] == "12.3萬張"

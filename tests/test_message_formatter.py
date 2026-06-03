@@ -42,3 +42,29 @@ def test_dashboard_link_is_appended_once() -> None:
     twice = _with_dashboard_link(once)
     assert once == twice
     assert once.count("https://taiwan-stock-ai-cmignppyqbx3qyslpthtnz.streamlit.app/") == 1
+
+
+def test_market_report_flags_fallback_and_stale_data() -> None:
+    snapshot = _snapshot()
+    snapshot["updated_at"] = "2026-06-03 13:45:00"
+    snapshot["data_status"] = {
+        "twse_institutional": {
+            "ok": True,
+            "cached": False,
+            "fallback_used": True,
+            "trading_date": "2026-06-02",
+            "stale_reason": "primary_openapi_failed",
+        },
+        "twse_margin": {
+            "ok": False,
+            "cached": False,
+            "fallback_used": False,
+            "trading_date": "2026-06-03",
+            "stale_reason": "source_failed_no_cache",
+        },
+    }
+
+    text = format_market_report(snapshot)
+
+    assert "法人(備援/2026-06-02資料)" in text
+    assert "融資券(來源失敗" in text

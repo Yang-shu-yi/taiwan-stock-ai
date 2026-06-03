@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import Any
 from urllib.parse import urlparse
 
@@ -118,16 +119,79 @@ def _data_status_line(snapshot: dict[str, Any]) -> str:
     status = snapshot.get("data_status") or {}
     if not status:
         return "🧪 資料狀態: 未記錄"
-    failed = [
-        key
+
+    snapshot_date = _snapshot_date(snapshot)
+    notable = [
+        _format_data_status_item(key, item, snapshot_date)
         for key, item in status.items()
-        if not item.get("ok") or item.get("cached")
+        if _is_data_status_notable(item, snapshot_date)
     ]
-    if not failed:
+    notable = [item for item in notable if item]
+    if not notable:
         return "🧪 資料狀態: 正常"
-    labels = "、".join(failed[:3])
-    extra = "" if len(failed) <= 3 else f" 等 {len(failed)} 項"
+    labels = "、".join(notable[:3])
+    extra = "" if len(notable) <= 3 else f" 等 {len(notable)} 項"
     return f"🧪 資料狀態: 留意 {labels}{extra}"
+
+
+def _snapshot_date(snapshot: dict[str, Any]) -> str | None:
+    updated_at = str(snapshot.get("updated_at") or "").strip()
+    if not updated_at:
+        return None
+    normalized = updated_at.replace("Z", "+00:00")
+    try:
+        return datetime.fromisoformat(normalized).strftime("%Y-%m-%d")
+    except Exception:
+        pass
+    try:
+        return datetime.strptime(updated_at[:19], "%Y-%m-%d %H:%M:%S").strftime("%Y-%m-%d")
+    except Exception:
+        pass
+    return updated_at[:10] if len(updated_at) >= 10 else None
+
+
+def _is_data_status_notable(item: Any, snapshot_date: str | None) -> bool:
+    if not isinstance(item, dict):
+        return False
+    trading_date = str(item.get("trading_date") or "").strip()
+    return bool(
+        not item.get("ok")
+        or item.get("cached")
+        or item.get("fallback_used")
+        or item.get("stale_reason")
+        or (snapshot_date and trading_date and trading_date != snapshot_date)
+    )
+
+
+def _format_data_status_item(key: str, item: Any, snapshot_date: str | None) -> str:
+    if not isinstance(item, dict):
+        return str(key)
+
+    label = _DATA_STATUS_LABELS.get(key, key)
+    notes: list[str] = []
+    trading_date = str(item.get("trading_date") or "").strip()
+
+    if not item.get("ok"):
+        notes.append("來源失敗")
+    if item.get("cached"):
+        notes.append("快取")
+    if item.get("fallback_used"):
+        notes.append("備援")
+    if snapshot_date and trading_date and trading_date != snapshot_date:
+        notes.append(f"{trading_date}資料")
+    elif item.get("stale_reason") and str(item.get("stale_reason")) not in {"fresh_cache"}:
+        notes.append(str(item.get("stale_reason")))
+
+    return f"{label}({'/'.join(notes)})" if notes else label
+
+
+_DATA_STATUS_LABELS = {
+    "news": "新聞",
+    "twse_institutional": "法人",
+    "twse_market_snapshot": "台股清單",
+    "twse_margin": "融資券",
+    "twse_turnover": "成交值",
+}
 
 
 def _performance_line(snapshot: dict[str, Any]) -> str | None:
