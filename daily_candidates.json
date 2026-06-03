@@ -1,43 +1,43 @@
 {
-  "updated_at": "2026-06-02 11:42:35",
+  "updated_at": "2026-06-03 12:11:12",
   "mode": "POST",
   "market": {
     "tw_index": {
-      "price": "45557",
-      "chg": "+219",
-      "pct": "+0.48",
-      "turnover": "16111億"
+      "price": "46459",
+      "chg": "+902",
+      "pct": "+1.98",
+      "turnover": "16964億"
     },
     "us_indices": {
       "S&P500": {
-        "price": "7599.96",
-        "chg": "+36.33",
-        "pct": "+0.48"
+        "price": "7609.78",
+        "chg": "+29.72",
+        "pct": "+0.39"
       },
       "道瓊": {
-        "price": "51078.88",
-        "chg": "+409.91",
-        "pct": "+0.81"
+        "price": "51307.79",
+        "chg": "+275.33",
+        "pct": "+0.54"
       },
       "那斯達克": {
-        "price": "27086.81",
-        "chg": "+169.34",
-        "pct": "+0.63"
+        "price": "27093.90",
+        "chg": "+121.28",
+        "pct": "+0.45"
       },
       "費半": {
-        "price": "12965.65",
-        "chg": "+136.51",
-        "pct": "+1.06"
+        "price": "13726.27",
+        "chg": "+896.89",
+        "pct": "+6.99"
       },
       "VIX": {
-        "price": "16.15",
-        "chg": "+0.10",
-        "pct": "+0.62"
+        "price": "16.05",
+        "chg": "+0.28",
+        "pct": "+1.78"
       }
     },
     "forex": {
-      "rate": "31.430",
-      "chg": "+0.017"
+      "rate": "31.390",
+      "chg": "+0.059"
     },
     "institutional": {
       "foreign": "N/A",
@@ -53,16 +53,16 @@
   },
   "tw_candidates": [
     {
-      "code": "2379",
-      "name": "瑞昱",
-      "theme": "IC設計",
-      "symbol": "2379.TW",
+      "code": "3008",
+      "name": "大立光",
+      "theme": "光學",
+      "symbol": "3008.TW",
       "score": 100,
-      "price": 653.0,
-      "pct_1d": 7.22,
-      "pct_5d": 10.68,
-      "rsi": 69.76,
-      "vol_ratio": 2.15,
+      "price": 3985.0,
+      "pct_1d": 3.51,
+      "pct_5d": 13.69,
+      "rsi": 71.22,
+      "vol_ratio": 1.79,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -73,16 +73,16 @@
       "rank": 1
     },
     {
-      "code": "1303",
-      "name": "南亞",
-      "theme": "塑化",
-      "symbol": "1303.TW",
-      "score": 100,
-      "price": 112.5,
-      "pct_1d": 4.65,
-      "pct_5d": 23.9,
-      "rsi": 72.89,
-      "vol_ratio": 1.88,
+      "code": "2603",
+      "name": "長榮",
+      "theme": "航運",
+      "symbol": "2603.TW",
+      "score": 94,
+      "price": 237.0,
+      "pct_1d": 2.6,
+      "pct_5d": 12.06,
+      "rsi": 73.11,
+      "vol_ratio": 1.65,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -93,17 +93,17 @@
       "rank": 2
     },
     {
-      "code": "2603",
-      "name": "長榮",
-      "theme": "航運",
-      "symbol": "2603.TW",
-      "score": 100,
-      "price": 231.0,
-      "pct_1d": 3.12,
-      "pct_5d": 9.22,
-      "rsi": 69.89,
-      "vol_ratio": 1.6,
-      "news_hits": 0,
+      "code": "2330",
+      "name": "台積電",
+      "theme": "半導體",
+      "symbol": "2330.TW",
+      "score": 94,
+      "price": 2425.0,
+      "pct_1d": 1.89,
+      "pct_5d": 5.43,
+      "rsi": 69.75,
+      "vol_ratio": 0.72,
+      "news_hits": 2,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -113,17 +113,17 @@
       "rank": 3
     },
     {
-      "code": "2330",
-      "name": "台積電",
-      "theme": "半導體",
-      "symbol": "2330.TW",
-      "score": 100,
-      "price": 2380.0,
-      "pct_1d": 1.06,
-      "pct_5d": 4.85,
-      "rsi": 66.61,
-      "vol_ratio": 0.93,
-      "news_hits": 6,
+      "code": "2379",
+      "name": "瑞昱",
+      "theme": "IC設計",
+      "symbol": "2379.TW",
+      "score": 94,
+      "price": 646.0,
+      "pct_1d": -1.07,
+      "pct_5d": 6.78,
+      "rsi": 67.47,
+      "vol_ratio": 1.78,
+      "news_hits": 0,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -137,13 +137,13 @@
       "name": "廣達",
       "theme": "AI伺服器",
       "symbol": "2382.TW",
-      "score": 96,
-      "price": 400.5,
-      "pct_1d": 7.52,
-      "pct_5d": 26.54,
-      "rsi": 75.4,
-      "vol_ratio": 3.47,
-      "news_hits": 1,
+      "score": 90,
+      "price": 417.0,
+      "pct_1d": 4.12,
+      "pct_5d": 33.65,
+      "rsi": 77.91,
+      "vol_ratio": 2.33,
+      "news_hits": 0,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -153,36 +153,36 @@
       "rank": 5
     },
     {
-      "code": "2451",
-      "name": "創見",
-      "theme": "記憶體",
-      "symbol": "2451.TW",
-      "score": 94,
-      "price": 363.5,
-      "pct_1d": 1.68,
-      "pct_5d": 14.85,
-      "rsi": 70.32,
-      "vol_ratio": 1.42,
-      "news_hits": 2,
+      "code": "1519",
+      "name": "華城",
+      "theme": "重電",
+      "symbol": "1519.TW",
+      "score": 88,
+      "price": 935.0,
+      "pct_1d": 10.0,
+      "pct_5d": 6.49,
+      "rsi": 61.4,
+      "vol_ratio": 2.51,
+      "news_hits": 0,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
-        "均線結構偏多",
-        "近 5 日動能轉強"
+        "近 5 日動能轉強",
+        "RSI 位於健康強勢區"
       ],
       "rank": 6
     },
     {
-      "code": "2886",
-      "name": "兆豐金",
-      "theme": "金融",
-      "symbol": "2886.TW",
-      "score": 94,
-      "price": 41.7,
-      "pct_1d": 0.6,
-      "pct_5d": 5.84,
-      "rsi": 68.21,
-      "vol_ratio": 2.0,
+      "code": "3017",
+      "name": "奇鋐",
+      "theme": "電源/散熱",
+      "symbol": "3017.TW",
+      "score": 88,
+      "price": 2855.0,
+      "pct_1d": 5.74,
+      "pct_5d": 5.74,
+      "rsi": 62.27,
+      "vol_ratio": 1.28,
       "news_hits": 0,
       "reasons": [
         "站上 MA20",
@@ -193,76 +193,63 @@
       "rank": 7
     },
     {
-      "code": "2408",
-      "name": "南亞科",
-      "theme": "記憶體",
-      "symbol": "2408.TW",
-      "score": 90,
-      "price": 419.5,
-      "pct_1d": 9.96,
-      "pct_5d": 38.22,
-      "rsi": 76.27,
-      "vol_ratio": 1.13,
-      "news_hits": 2,
+      "code": "2884",
+      "name": "玉山金",
+      "theme": "金融",
+      "symbol": "2884.TW",
+      "score": 82,
+      "price": 33.0,
+      "pct_1d": 2.48,
+      "pct_5d": 5.94,
+      "rsi": 63.38,
+      "vol_ratio": 1.62,
+      "news_hits": 0,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
-        "均線結構偏多",
-        "近 5 日動能轉強"
+        "近 5 日動能轉強",
+        "RSI 位於健康強勢區"
       ],
       "rank": 8
     }
   ],
   "theme_summary": [
     {
+      "theme": "金融",
+      "score": 660.2,
+      "leaders": [
+        "2884 玉山金",
+        "2886 兆豐金",
+        "2892 第一金"
+      ]
+    },
+    {
       "theme": "AI伺服器",
-      "score": 645.4,
+      "score": 611.5,
       "leaders": [
         "2382 廣達",
-        "2357 華碩",
+        "6669 緯穎",
         "3231 緯創"
       ]
     },
     {
-      "theme": "金融",
-      "score": 604.0,
-      "leaders": [
-        "2886 兆豐金",
-        "2884 玉山金",
-        "2885 元大金"
-      ]
-    },
-    {
       "theme": "IC設計",
-      "score": 535.6,
+      "score": 526.7,
       "leaders": [
         "2379 瑞昱",
-        "2454 聯發科",
-        "3034 聯詠"
+        "3034 聯詠",
+        "6415 矽力*-KY"
       ]
     }
   ],
   "us_context": [
     {
-      "symbol": "TSM",
-      "name": "TSM",
-      "score": 62,
-      "price": 435.63,
-      "pct_1d": 4.11,
-      "pct_5d": 7.69,
-      "reasons": [
-        "站上 MA20",
-        "站上 MA60",
-        "近 5 日偏強"
-      ]
-    },
-    {
       "symbol": "AVGO",
       "name": "AVGO",
       "score": 62,
-      "price": 459.97,
-      "pct_1d": 2.95,
-      "pct_5d": 11.07,
+      "price": 481.57,
+      "pct_1d": 4.7,
+      "pct_5d": 14.11,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -270,12 +257,38 @@
       ]
     },
     {
-      "symbol": "MSFT",
-      "name": "MSFT",
-      "score": 62,
-      "price": 460.52,
-      "pct_1d": 2.28,
-      "pct_5d": 10.02,
+      "symbol": "AAPL",
+      "name": "AAPL",
+      "score": 54,
+      "price": 315.2,
+      "pct_1d": 2.9,
+      "pct_5d": 2.23,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "近 5 日偏強"
+      ]
+    },
+    {
+      "symbol": "TSM",
+      "name": "TSM",
+      "score": 54,
+      "price": 446.69,
+      "pct_1d": 2.54,
+      "pct_5d": 8.34,
+      "reasons": [
+        "站上 MA20",
+        "站上 MA60",
+        "近 5 日偏強"
+      ]
+    },
+    {
+      "symbol": "AMD",
+      "name": "AMD",
+      "score": 54,
+      "price": 521.54,
+      "pct_1d": 2.24,
+      "pct_5d": 3.5,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -285,10 +298,10 @@
     {
       "symbol": "DIA",
       "name": "DIA",
-      "score": 58,
-      "price": 511.44,
-      "pct_1d": 0.13,
-      "pct_5d": 1.05,
+      "score": 54,
+      "price": 514.05,
+      "pct_1d": 0.51,
+      "pct_5d": 1.74,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -296,25 +309,12 @@
       ]
     },
     {
-      "symbol": "NVDA",
-      "name": "NVDA",
+      "symbol": "SPY",
+      "name": "SPY",
       "score": 54,
-      "price": 224.36,
-      "pct_1d": 6.26,
-      "pct_5d": 4.19,
-      "reasons": [
-        "站上 MA20",
-        "站上 MA60",
-        "近 5 日偏強"
-      ]
-    },
-    {
-      "symbol": "SOXX",
-      "name": "SOXX",
-      "score": 54,
-      "price": 571.93,
-      "pct_1d": 0.5,
-      "pct_5d": 6.44,
+      "price": 759.57,
+      "pct_1d": 0.14,
+      "pct_5d": 1.2,
       "reasons": [
         "站上 MA20",
         "站上 MA60",
@@ -324,25 +324,25 @@
   ],
   "news_summary": {
     "tw_top_titles": [
-      "鉅亨速報 - Factset 最新調查：穩懋(3105-TW)EPS預估上修至6.79元，預估目標價為562.5元 - news.cnyes.com",
-      "盤中速報 - NEAR大漲13.64%，報2.649美元 - news.cnyes.com",
-      "韓華航太工廠爆炸，疑清理火箭推進劑殘留引發事故",
-      "日圓現鈔迎 0.1969 史上罕見價！達人喊「退回到民國 58 年時空背景」",
-      "供應吃緊＋關稅隱憂，高盛／花旗上調銅價預測"
+      "SpaceX挑戰史上最大IPO 估值上看1.75兆美元 - news.cnyes.com",
+      "盤中速報 - 豐泰(9910)大漲7.09%，報84.6元 - news.cnyes.com",
+      "營收速報 - 2026年6月3日台股大型公司5月營收一覽（新增2家） - news.cnyes.com",
+      "無懼缺料「拉長交期」是最佳解方！神雲黃承德：美國新廠第三季投產",
+      "林鴻明：信驊營運逐季攀升，高股價讓整體台股更具吸引力"
     ],
     "us_top_titles": [
-      "Stocks making the biggest moves premarket: Marvell Technology, Hewlett Packard Enterprise, Victoria's Secret & more",
-      "Greg Abel just made his first big deal as Berkshire CEO. Why Warren Buffett is happy",
-      "Stocks making the biggest moves midday: MGM Resorts, Zoom Communications, Nvidia, Viasat, IBM & more",
-      "Individual traders drove Kalshi’s rise. Now, it’s going for Wall Street",
-      "Rubio odds for GOP 2028 nominee close to overtaking Vance on Kalshi"
+      "Stocks making the biggest moves premarket: Blackstone, Marvell Technology, Palo Alto Networks & more",
+      "Goldman Sachs cuts Hong Kong stocks in favor of mainland China AI hardware plays",
+      "Fed Chair Warsh makes first hires at central bank, including ‘Project 2025’ author",
+      "Traders say Karen Bass and Spencer Pratt will advance to runoff in high-profile LA mayoral race",
+      "Goldman Sachs CEO David Solomon says markets are in 'greed' mode as AI companies seek billions"
     ]
   },
   "data_status": {
     "news": {
       "ok": true,
       "source": "rss/news_scraper",
-      "updated_at": "2026-06-02T11:42:19+00:00",
+      "updated_at": "2026-06-03T12:10:58+00:00",
       "ttl_minutes": 30,
       "cached": false,
       "error": null
@@ -350,7 +350,7 @@
     "yahoo_^TWII_1d_2d": {
       "ok": true,
       "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5ETWII",
-      "updated_at": "2026-06-02T11:42:19+00:00",
+      "updated_at": "2026-06-03T12:10:58+00:00",
       "ttl_minutes": 15,
       "cached": false,
       "error": null
@@ -358,7 +358,7 @@
     "twse_turnover": {
       "ok": true,
       "source": "https://openapi.twse.com.tw/v1/exchangeReport/FMTQIK",
-      "updated_at": "2026-06-02T11:42:22+00:00",
+      "updated_at": "2026-06-03T12:10:59+00:00",
       "ttl_minutes": 15,
       "cached": false,
       "error": null
@@ -366,7 +366,7 @@
     "yahoo_^GSPC_1d_2d": {
       "ok": true,
       "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EGSPC",
-      "updated_at": "2026-06-02T11:42:22+00:00",
+      "updated_at": "2026-06-03T12:11:00+00:00",
       "ttl_minutes": 15,
       "cached": false,
       "error": null
@@ -374,7 +374,7 @@
     "yahoo_^DJI_1d_2d": {
       "ok": true,
       "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EDJI",
-      "updated_at": "2026-06-02T11:42:22+00:00",
+      "updated_at": "2026-06-03T12:11:00+00:00",
       "ttl_minutes": 15,
       "cached": false,
       "error": null
@@ -382,7 +382,7 @@
     "yahoo_^IXIC_1d_2d": {
       "ok": true,
       "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EIXIC",
-      "updated_at": "2026-06-02T11:42:22+00:00",
+      "updated_at": "2026-06-03T12:11:00+00:00",
       "ttl_minutes": 15,
       "cached": false,
       "error": null
@@ -390,7 +390,7 @@
     "yahoo_^SOX_1d_2d": {
       "ok": true,
       "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5ESOX",
-      "updated_at": "2026-06-02T11:42:22+00:00",
+      "updated_at": "2026-06-03T12:11:00+00:00",
       "ttl_minutes": 15,
       "cached": false,
       "error": null
@@ -398,7 +398,7 @@
     "yahoo_^VIX_1d_2d": {
       "ok": true,
       "source": "https://query1.finance.yahoo.com/v8/finance/chart/%5EVIX",
-      "updated_at": "2026-06-02T11:42:22+00:00",
+      "updated_at": "2026-06-03T12:11:00+00:00",
       "ttl_minutes": 15,
       "cached": false,
       "error": null
@@ -406,7 +406,7 @@
     "yahoo_TWD=X_1d_2d": {
       "ok": true,
       "source": "https://query1.finance.yahoo.com/v8/finance/chart/TWD=X",
-      "updated_at": "2026-06-02T11:42:22+00:00",
+      "updated_at": "2026-06-03T12:11:00+00:00",
       "ttl_minutes": 15,
       "cached": false,
       "error": null
@@ -414,7 +414,7 @@
     "twse_institutional": {
       "ok": false,
       "source": "https://openapi.twse.com.tw/v1/exchangeReport/TWT38U",
-      "updated_at": "2026-06-02T11:42:23+00:00",
+      "updated_at": "2026-06-03T12:11:01+00:00",
       "ttl_minutes": 60,
       "cached": false,
       "error": "Expecting value: line 1 column 1 (char 0)"
@@ -422,7 +422,7 @@
     "twse_margin": {
       "ok": true,
       "source": "https://openapi.twse.com.tw/v1/exchangeReport/MI_MARGN",
-      "updated_at": "2026-06-02T11:42:26+00:00",
+      "updated_at": "2026-06-03T12:11:02+00:00",
       "ttl_minutes": 60,
       "cached": false,
       "error": null
