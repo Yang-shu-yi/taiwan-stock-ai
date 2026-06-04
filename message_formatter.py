@@ -45,8 +45,28 @@ def _top_candidate_lines(snapshot: dict[str, Any], limit: int = 5) -> list[str]:
         invalidation = "、".join(item.get("invalidations", [])[:1]) or "跌破前低"
         confidence = item.get("confidence", "中")
         quality = item.get("data_quality", "正常")
+        source = " / 中小雷達" if item.get("source") == "small_mid_radar" else ""
         lines.append(
-            f"{index}. {item['code']} {item['name']} {item.get('pct_1d', 0):+.2f}% / 信心{confidence} / {reasons} / 失效: {invalidation} / 資料{quality}"
+            f"{index}. {item['code']} {item['name']} {item.get('pct_1d', 0):+.2f}%"
+            f"{source} / 信心{confidence} / {reasons} / 失效: {invalidation} / 資料{quality}"
+        )
+    return lines
+
+
+def _small_mid_lines(snapshot: dict[str, Any], limit: int = 3) -> list[str]:
+    items = snapshot.get("small_mid_candidates", [])[:limit]
+    if not items:
+        return ["- 尚未篩出符合流動性與品質條件的中小型股"]
+    lines: list[str] = []
+    for index, item in enumerate(items, start=1):
+        reasons = "、".join(item.get("reasons", [])[:2]) or "中小型雷達綜合分數達標"
+        market_cap = item.get("market_cap_billion")
+        cap_text = "市值N/A" if market_cap is None else f"市值{market_cap:.1f}B"
+        turnover = item.get("avg_turnover_million")
+        turnover_text = "成交值N/A" if turnover is None else f"均值{turnover:.0f}百萬"
+        lines.append(
+            f"{index}. {item['code']} {item['name']} / 分數 {item.get('small_mid_score', item.get('score'))}"
+            f" / {cap_text} / {turnover_text} / {reasons}"
         )
     return lines
 
@@ -82,8 +102,10 @@ def _post_market_review(snapshot: dict[str, Any]) -> list[str]:
     lines: list[str] = []
     for item in candidates:
         review = "續強結構" if (item.get("pct_1d") or 0) > 0 else "需要再確認"
+        source = " / 中小雷達" if item.get("source") == "small_mid_radar" else ""
         lines.append(
-            f"- {item['code']} {item['name']} / {item.get('pct_1d', 0):+.2f}% / {item.get('theme', '電子')} / {review}"
+            f"- {item['code']} {item['name']} / {item.get('pct_1d', 0):+.2f}%"
+            f" / {item.get('theme', '電子')}{source} / {review}"
         )
     return lines
 
@@ -232,6 +254,9 @@ def format_market_report(snapshot: dict[str, Any]) -> str:
     lines.extend(_theme_lines(snapshot))
     lines.append("📌 重點股:")
     lines.extend(_top_candidate_lines(snapshot, limit=5))
+    if snapshot.get("small_mid_candidates"):
+        lines.append("💎 中小型優質股雷達:")
+        lines.extend(_small_mid_lines(snapshot, limit=3))
     lines.append(f"📰 新聞提示: {_news_hint(snapshot)}")
     lines.append(_data_status_line(snapshot))
     performance = _performance_line(snapshot)
@@ -291,8 +316,9 @@ def format_candidate_list(snapshot: dict[str, Any], limit: int = 10) -> str:
         lines.append("目前沒有候選資料")
         return "\n".join(lines)
     for item in items:
+        source = " / 中小雷達" if item.get("source") == "small_mid_radar" else ""
         reasons = "、".join(item.get("reasons", [])[:2]) or "訊號整體偏強"
         lines.append(
-            f"{item['code']} {item['name']} / 分數 {item.get('score', 0)} / {item.get('pct_1d', 0):+.2f}% / {reasons}"
+            f"{item['code']} {item['name']} / 分數 {item.get('score', 0)} / {item.get('pct_1d', 0):+.2f}%{source} / {reasons}"
         )
     return "\n".join(lines)

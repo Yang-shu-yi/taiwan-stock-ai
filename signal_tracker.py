@@ -56,11 +56,12 @@ def append_signal_history(
     signal_date = _parse_snapshot_date(snapshot)
     mode = snapshot.get("mode", "")
     run_id = f"{signal_date}:{mode}:{snapshot.get('updated_at', '')}"
-    existing = {(row.get("run_id"), row.get("code")) for row in _read_jsonl(path)}
+    existing = {(row.get("run_id"), row.get("code"), row.get("source", "core")) for row in _read_jsonl(path)}
 
     rows: list[dict[str, Any]] = []
-    for rank, item in enumerate(snapshot.get("tw_candidates", []), start=1):
-        key = (run_id, item.get("code"))
+    for rank, item in _iter_snapshot_signals(snapshot):
+        source = item.get("source", "core")
+        key = (run_id, item.get("code"), source)
         if key in existing:
             continue
         rows.append(
@@ -68,10 +69,12 @@ def append_signal_history(
                 "run_id": run_id,
                 "date": signal_date,
                 "mode": mode,
+                "source": source,
                 "code": item.get("code"),
                 "name": item.get("name"),
                 "rank": item.get("rank") or rank,
                 "score": item.get("score"),
+                "small_mid_score": item.get("small_mid_score"),
                 "theme": item.get("theme"),
                 "price": item.get("price"),
                 "pct_1d": item.get("pct_1d"),
@@ -81,6 +84,24 @@ def append_signal_history(
         )
     _append_jsonl(path, rows)
     return len(rows)
+
+
+def _iter_snapshot_signals(snapshot: dict[str, Any]) -> list[tuple[int, dict[str, Any]]]:
+    signals: list[tuple[int, dict[str, Any]]] = []
+    for rank, item in enumerate(snapshot.get("tw_candidates", []), start=1):
+        copied = dict(item)
+        copied.setdefault("source", "core")
+        signals.append((rank, copied))
+
+    existing_core_codes = {item.get("code") for item in snapshot.get("tw_candidates", [])}
+    for rank, item in enumerate(snapshot.get("small_mid_candidates", []), start=1):
+        copied = dict(item)
+        copied["source"] = "small_mid_radar"
+        copied["rank"] = copied.get("small_mid_rank") or rank
+        if copied.get("code") in existing_core_codes:
+            copied["also_in_core_candidates"] = True
+        signals.append((rank, copied))
+    return signals
 
 
 def _history_for_symbol(symbol: str) -> pd.DataFrame:
@@ -128,6 +149,7 @@ def _performance_rows_for_signal(signal: dict[str, Any]) -> list[dict[str, Any]]
                 "run_id": signal.get("run_id"),
                 "date": signal.get("date"),
                 "mode": signal.get("mode"),
+                "source": signal.get("source", "core"),
                 "code": code,
                 "name": signal.get("name"),
                 "rank": signal.get("rank"),
@@ -171,13 +193,13 @@ def evaluate_signal_performance(
 ) -> int:
     signals = _read_jsonl(history_path)
     existing = {
-        (row.get("run_id"), row.get("code"), row.get("horizon"))
+        (row.get("run_id"), row.get("code"), row.get("source", "core"), row.get("horizon"))
         for row in _read_jsonl(performance_path)
     }
     rows: list[dict[str, Any]] = []
     for signal in signals:
         for row in _performance_rows_for_signal(signal):
-            key = (row.get("run_id"), row.get("code"), row.get("horizon"))
+            key = (row.get("run_id"), row.get("code"), row.get("source", "core"), row.get("horizon"))
             if key not in existing:
                 rows.append(row)
                 existing.add(key)
@@ -237,6 +259,7 @@ def summarize_performance(
         "top3_hit_rate": _hit_rate(top3),
         "top5_hit_rate": _hit_rate(top5),
         "theme_hit_rate": _theme_hit_rate(rows),
+        "source_hit_rate": _source_hit_rate(rows),
         "by_horizon": by_horizon,
     }
 
@@ -258,6 +281,20 @@ def _theme_hit_rate(rows: list[dict[str, Any]]) -> dict[str, float]:
     return {
         theme: round(sum(1 for value in values if value > 0) / len(values), 4)
         for theme, values in grouped.items()
+        if values
+    }
+
+
+def _source_hit_rate(rows: list[dict[str, Any]]) -> dict[str, float]:
+    grouped: dict[str, list[float]] = {}
+    for row in rows:
+        if row.get("return_pct") is None:
+            continue
+        source = str(row.get("source") or "core")
+        grouped.setdefault(source, []).append(float(row["return_pct"]))
+    return {
+        source: round(sum(1 for value in values if value > 0) / len(values), 4)
+        for source, values in grouped.items()
         if values
     }
 

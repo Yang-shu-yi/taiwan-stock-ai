@@ -256,6 +256,34 @@ def build_candidate_frame(snapshot: dict) -> pd.DataFrame:
                 "5日%": item.get("pct_5d"),
                 "RSI": item.get("rsi"),
                 "量比": item.get("vol_ratio"),
+                "來源": "中小雷達" if item.get("source") == "small_mid_radar" else "核心候選",
+                "理由": "、".join(item.get("reasons", [])[:3]),
+            }
+        )
+    return pd.DataFrame(rows)
+
+
+def build_small_mid_frame(snapshot: dict) -> pd.DataFrame:
+    rows = []
+    for item in snapshot.get("small_mid_candidates", []):
+        rows.append(
+            {
+                "排名": item.get("small_mid_rank"),
+                "代碼": item.get("code"),
+                "名稱": item.get("name"),
+                "主題": item.get("theme"),
+                "分數": item.get("small_mid_score", item.get("score")),
+                "品質": item.get("quality_score"),
+                "估值": item.get("valuation_score"),
+                "技術": item.get("technical_score"),
+                "市值(B)": item.get("market_cap_billion"),
+                "均成交值(百萬)": item.get("avg_turnover_million"),
+                "股價": item.get("price"),
+                "20日%": item.get("pct_20d"),
+                "PE": item.get("trailing_pe"),
+                "PB": item.get("price_to_book"),
+                "殖利率%": item.get("dividend_yield_pct"),
+                "風險": "、".join(item.get("risk_flags", [])[:2]),
                 "理由": "、".join(item.get("reasons", [])[:3]),
             }
         )
@@ -569,6 +597,7 @@ tw_index = market.get("tw_index", {})
 forex = market.get("forex", {})
 us_indices = market.get("us_indices", {})
 candidate_frame = build_candidate_frame(snapshot)
+small_mid_frame = build_small_mid_frame(snapshot)
 alert_frame = build_alert_frame(load_alerts(str(ALERTS_FILE), limit=50))
 data_status_frame = build_data_status_frame(snapshot)
 performance_summary = snapshot.get("performance_summary") or summarize_performance()
@@ -597,8 +626,8 @@ st.markdown(
 )
 
 
-overview_tab, analysis_tab, performance_tab, report_tab, alerts_tab, raw_tab = st.tabs(
-    ["市場總覽", "個股解析", "訊號成效", "報告預覽", "警示紀錄", "原始資料"]
+overview_tab, small_mid_tab, analysis_tab, performance_tab, report_tab, alerts_tab, raw_tab = st.tabs(
+    ["市場總覽", "中小雷達", "個股解析", "訊號成效", "報告預覽", "警示紀錄", "原始資料"]
 )
 
 
@@ -678,6 +707,44 @@ with overview_tab:
         st.info("目前快照沒有資料狀態紀錄。")
     else:
         st.dataframe(data_status_frame, width="stretch", hide_index=True)
+
+
+with small_mid_tab:
+    st.markdown("### 中小型優質股雷達")
+    st.caption("這裡專門找價格與市值相對不過熱、但量價結構與品質分數達標的中小型股。它是優先觀察名單，不是直接買進建議。")
+
+    if small_mid_frame.empty:
+        st.info("目前沒有符合流動性、價格與品質條件的中小型股。可調整 SMALL_MID_CODES 或等待下一次資料更新。")
+    else:
+        metric_cols = st.columns(4)
+        metric_cols[0].metric("雷達候選", f"{len(small_mid_frame.index)} 檔")
+        metric_cols[1].metric("最高分", f"{small_mid_frame['分數'].max():.0f}")
+        metric_cols[2].metric("均市值", f"{small_mid_frame['市值(B)'].dropna().mean():.1f}B")
+        metric_cols[3].metric("均成交值", f"{small_mid_frame['均成交值(百萬)'].dropna().mean():.0f} 百萬")
+
+        st.dataframe(
+            small_mid_frame,
+            width="stretch",
+            hide_index=True,
+            column_config={
+                "分數": st.column_config.ProgressColumn("分數", min_value=0, max_value=100),
+                "品質": st.column_config.ProgressColumn("品質", min_value=0, max_value=100),
+                "估值": st.column_config.ProgressColumn("估值", min_value=0, max_value=100),
+                "技術": st.column_config.ProgressColumn("技術", min_value=0, max_value=100),
+                "市值(B)": st.column_config.NumberColumn("市值(B)", format="%.1f"),
+                "均成交值(百萬)": st.column_config.NumberColumn("均成交值(百萬)", format="%.0f"),
+                "股價": st.column_config.NumberColumn("股價", format="%.2f"),
+                "20日%": st.column_config.NumberColumn("20日%", format="%.2f%%"),
+                "PE": st.column_config.NumberColumn("PE", format="%.1f"),
+                "PB": st.column_config.NumberColumn("PB", format="%.1f"),
+                "殖利率%": st.column_config.NumberColumn("殖利率%", format="%.2f%%"),
+            },
+        )
+
+        st.markdown("#### 使用規則")
+        st.markdown("- 優先看 A 級分數股是否同步具備成交值、估值合理與 MA20/MA60 結構。")
+        st.markdown("- 成交值低於 8000 萬或 RSI 過熱者，只列觀察，不追價。")
+        st.markdown("- 若隔日跌破 MA20 或成交值沒有放大，先移出優先觀察。")
 
 
 with analysis_tab:
@@ -895,6 +962,17 @@ with performance_tab:
         st.dataframe(
             pd.DataFrame(
                 [{"主題": theme, "命中率": hit_rate} for theme, hit_rate in theme_hit_rate.items()]
+            ),
+            width="stretch",
+            hide_index=True,
+            column_config={"命中率": st.column_config.NumberColumn("命中率", format="%.0%%")},
+        )
+    source_hit_rate = performance_summary.get("source_hit_rate") or {}
+    if source_hit_rate:
+        st.markdown("#### 來源命中率")
+        st.dataframe(
+            pd.DataFrame(
+                [{"來源": source, "命中率": hit_rate} for source, hit_rate in source_hit_rate.items()]
             ),
             width="stretch",
             hide_index=True,

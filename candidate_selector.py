@@ -10,6 +10,7 @@ import ta
 import yfinance as yf
 
 from data_layer import twse_json
+from small_mid_cap_radar import build_small_mid_cap_radar, promote_small_mid_candidates
 from universe import (
     get_theme_for_code,
     get_tw_core_codes,
@@ -341,6 +342,8 @@ def build_daily_snapshot(
         for item in (_score_tw_candidate(code, tw_news) for code in build_scan_universe(tw_news))
         if item is not None
     ]
+    small_mid_candidates = build_small_mid_cap_radar(tw_news)
+    all_tw_candidates = promote_small_mid_candidates(all_tw_candidates, small_mid_candidates)
     all_tw_candidates.sort(
         key=lambda item: (item["score"], item.get("pct_1d") or 0),
         reverse=True,
@@ -364,6 +367,7 @@ def build_daily_snapshot(
         "mode": mode,
         "market": market,
         "tw_candidates": all_tw_candidates[:top_tw],
+        "small_mid_candidates": small_mid_candidates,
         "theme_summary": _theme_summary(all_tw_candidates, tw_news),
         "us_context": us_context[:top_us],
         "news_summary": {

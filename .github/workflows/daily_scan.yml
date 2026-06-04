@@ -27,7 +27,7 @@ jobs:
 
       - name: Compile active Python files
         run: |
-          python -m py_compile alert_store.py app.py candidate_selector.py config_check.py data_layer.py market_data.py message_formatter.py news_scraper.py notifier.py rpi_intraday.py rpi_main.py signal_tracker.py stock_analyzer.py universe.py
+          python -m py_compile alert_store.py app.py candidate_selector.py config_check.py data_layer.py market_data.py message_formatter.py news_scraper.py notifier.py rpi_intraday.py rpi_main.py signal_tracker.py small_mid_cap_radar.py stock_analyzer.py universe.py
 
       - name: Run tests
         run: python -m pytest

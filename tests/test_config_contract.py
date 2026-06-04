@@ -11,6 +11,8 @@ def test_env_example_uses_report_bot_contract() -> None:
     assert "ENABLE_REPORT_TELEGRAM=true" in text
     assert "\nTELEGRAM_BOT_TOKEN=" not in f"\n{text}"
     assert "DAILY_CANDIDATES_FILE=runtime/daily_candidates.json" in text
+    assert "ENABLE_SMALL_MID_RADAR=true" in text
+    assert "SMALL_MID_PROMOTE_LIMIT=2" in text
 
 
 def test_sample_snapshot_fixture_exists() -> None:
