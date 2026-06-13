@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>台股 AI 戰情室</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Taiwan Stock AI</p>
+          <h1>台股 AI 戰情室</h1>
+          <p class="subtitle">Vercel 版唯讀 Dashboard，資料來自 Pi 產出的 daily snapshot。</p>
+        </div>
+        <div class="hero-meta">
+          <span id="mode-pill">模式 N/A</span>
+          <span id="updated-pill">更新時間 N/A</span>
+        </div>
+      </section>
+
+      <section id="status-banner" class="banner">讀取資料中...</section>
+
+      <section class="grid metrics" id="market-metrics"></section>
+
+      <section class="panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Market Focus</p>
+            <h2>今日主軸與重點股</h2>
+          </div>
+        </div>
+        <div class="split">
+          <div>
+            <h3>主軸</h3>
+            <div id="themes" class="card-list"></div>
+          </div>
+          <div>
+            <h3>重點股</h3>
+            <div id="candidates" class="card-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Small / Mid Cap Radar</p>
+            <h2>中小型優質股雷達</h2>
+          </div>
+          <p class="hint">優先觀察名單，不是直接買進建議。</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>排名</th>
+                <th>股票</th>
+                <th>分數</th>
+                <th>市值</th>
+                <th>均成交值</th>
+                <th>理由</th>
+              </tr>
+            </thead>
+            <tbody id="small-mid-table"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="grid two">
+        <div class="panel">
+          <p class="eyebrow">Strategy</p>
+          <h2>策略自檢</h2>
+          <div id="strategy" class="card-list"></div>
+        </div>
+        <div class="panel">
+          <p class="eyebrow">Data Quality</p>
+          <h2>資料狀態</h2>
+          <div id="data-status" class="card-list"></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <p class="eyebrow">Report Preview</p>
+        <h2>報告重點摘要</h2>
+        <pre id="report-preview"></pre>
+      </section>
+    </main>
+
+    <script src="/config.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>

@@ -1,4 +1,6 @@
 import json
+import tempfile
+from pathlib import Path
 
 from signal_tracker import append_signal_history, summarize_performance
 
@@ -64,9 +66,6 @@ def test_summarize_performance() -> None:
 
 
 def summarize_performance_from_rows(rows: list[dict]) -> dict:
-    import tempfile
-    from pathlib import Path
-
     with tempfile.TemporaryDirectory() as tmp:
         path = Path(tmp) / "perf.jsonl"
         path.write_text("\n".join(json.dumps(row, ensure_ascii=False) for row in rows), encoding="utf-8")

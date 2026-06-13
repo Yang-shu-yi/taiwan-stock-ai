@@ -27,10 +27,13 @@ jobs:
 
       - name: Compile active Python files
         run: |
-          python -m py_compile alert_store.py app.py candidate_selector.py config_check.py data_layer.py market_data.py message_formatter.py news_scraper.py notifier.py rpi_intraday.py rpi_main.py signal_tracker.py small_mid_cap_radar.py stock_analyzer.py universe.py
+          python -m py_compile alert_store.py app.py candidate_selector.py config_check.py data_layer.py market_data.py message_formatter.py news_scraper.py notifier.py rpi_intraday.py rpi_main.py signal_tracker.py small_mid_cap_radar.py stock_analyzer.py strategy_optimizer.py universe.py
 
       - name: Run tests
         run: python -m pytest
+
+      - name: Build Vercel dashboard
+        run: npm run build
 
       - name: Run daily pipeline dry-run
         env:
@@ -38,7 +41,7 @@ jobs:
           DRY_RUN: "true"
           ENABLE_REPORT_TELEGRAM: "false"
           ENABLE_LINE: "false"
-          REPORT_DASHBOARD_URL: https://taiwan-stock-ai-cmignppyqbx3qyslpthtnz.streamlit.app/
+          REPORT_DASHBOARD_URL: https://taiwan-stock-ai.vercel.app/
           ENABLE_GOOGLE_SHEETS: "false"
           DAILY_CANDIDATES_FILE: runtime/daily_candidates.json
           TW_SCAN_LIMIT: "48"

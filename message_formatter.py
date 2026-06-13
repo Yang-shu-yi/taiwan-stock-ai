@@ -112,10 +112,16 @@ def _post_market_review(snapshot: dict[str, Any]) -> list[str]:
 
 def _news_hint(snapshot: dict[str, Any]) -> str:
     titles = snapshot.get("news_summary", {}).get("tw_top_titles", [])
-    cleaned = [_clean_news_item(title) for title in titles if str(title).strip()]
-    if not cleaned:
+    focus_terms: list[str] = []
+    for item in snapshot.get("tw_candidates", [])[:5]:
+        focus_terms.extend([str(item.get("code", "")), str(item.get("name", "")), str(item.get("theme", ""))])
+    cleaned_items = [_clean_news_item(title) for title in titles if str(title).strip()]
+    for text in cleaned_items:
+        if any(term and term in text for term in focus_terms):
+            return text[:42]
+    if not cleaned_items:
         return "新聞面未提供明確加分"
-    return cleaned[0][:42]
+    return "新聞未直接對焦今日候選股，先以量價與資料狀態為主"
 
 
 def _clean_news_item(item: Any) -> str:
@@ -146,7 +152,7 @@ def _data_status_line(snapshot: dict[str, Any]) -> str:
     notable = [
         _format_data_status_item(key, item, snapshot_date)
         for key, item in status.items()
-        if _is_data_status_notable(item, snapshot_date)
+        if _should_show_data_status(key, item, snapshot_date)
     ]
     notable = [item for item in notable if item]
     if not notable:
@@ -170,6 +176,14 @@ def _snapshot_date(snapshot: dict[str, Any]) -> str | None:
     except Exception:
         pass
     return updated_at[:10] if len(updated_at) >= 10 else None
+
+
+def _should_show_data_status(key: str, item: Any, snapshot_date: str | None) -> bool:
+    if key.startswith("yahoo_") or key.startswith("twse_institutional_bfi82u_"):
+        return False
+    if key not in _DATA_STATUS_LABELS and key.startswith("twse_"):
+        return False
+    return _is_data_status_notable(item, snapshot_date)
 
 
 def _is_data_status_notable(item: Any, snapshot_date: str | None) -> bool:
@@ -236,6 +250,17 @@ def _performance_line(snapshot: dict[str, Any]) -> str | None:
     return "📈 近期訊號: " + " / ".join(parts)
 
 
+def _strategy_line(snapshot: dict[str, Any]) -> str | None:
+    optimization = snapshot.get("strategy_optimization") or {}
+    if not optimization:
+        return None
+    mode = optimization.get("posture", "normal")
+    headline = optimization.get("headline") or "策略自檢完成"
+    action = optimization.get("primary_action") or "維持觀察"
+    label = "防守" if mode == "defensive" else "正常"
+    return f"🛠️ 策略自檢: {label} / {headline} / {action}"
+
+
 def format_market_report(snapshot: dict[str, Any]) -> str:
     mode = snapshot.get("mode", "PRE")
     market = snapshot.get("market", {})
@@ -262,6 +287,9 @@ def format_market_report(snapshot: dict[str, Any]) -> str:
     performance = _performance_line(snapshot)
     if performance:
         lines.append(performance)
+    strategy = _strategy_line(snapshot)
+    if strategy:
+        lines.append(strategy)
 
     if mode == "PRE":
         lines.append("🧭 開盤劇本:")

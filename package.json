@@ -1,0 +1,9 @@
+{
+  "name": "taiwan-stock-ai-dashboard",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node scripts/build_vercel_site.mjs",
+    "test:web": "node scripts/build_vercel_site.mjs --check"
+  }
+}

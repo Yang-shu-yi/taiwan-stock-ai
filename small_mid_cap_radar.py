@@ -12,44 +12,11 @@ from universe import get_theme_for_code, get_tw_name, tw_code_to_yahoo_symbol
 
 
 DEFAULT_SMALL_MID_CODES = [
-    "1504",
-    "1513",
-    "1514",
-    "1522",
-    "1560",
-    "1590",
-    "1723",
-    "2059",
-    "2383",
-    "2404",
-    "2474",
-    "3014",
-    "3030",
-    "3105",
-    "3163",
-    "3260",
-    "3450",
-    "3563",
-    "3592",
-    "3708",
-    "4763",
-    "4906",
-    "4966",
-    "4979",
-    "5289",
-    "5443",
-    "5483",
-    "6121",
-    "6147",
-    "6213",
-    "6269",
-    "6274",
-    "6643",
-    "6781",
-    "6805",
-    "6806",
-    "8086",
-    "8299",
+    "1504", "1513", "1514", "1522", "1560", "1590", "1723", "2059",
+    "2383", "2404", "2474", "3014", "3030", "3105", "3163", "3260",
+    "3450", "3563", "3592", "3708", "4763", "4906", "4966", "4979",
+    "5289", "5443", "5483", "6121", "6147", "6213", "6269", "6274",
+    "6643", "6781", "6805", "6806", "8086", "8299",
 ]
 
 MIN_AVG_TURNOVER_MILLION = float(os.getenv("SMALL_MID_MIN_TURNOVER_MILLION", "30"))
@@ -110,18 +77,12 @@ def analyze_small_mid_candidate(code: str, tw_news: list[dict[str, Any]]) -> dic
     if score_detail["excluded"]:
         return None
 
-    name = get_tw_name(code)
-    theme = get_theme_for_code(code)
-    reasons = _reason_lines(metrics, fundamentals, score_detail)
-    risk_flags = _risk_flags(metrics, fundamentals)
-    invalidations = _invalidations(metrics)
-
     score = score_detail["score"]
-    item = {
+    return {
         "code": code,
-        "name": name,
+        "name": get_tw_name(code),
         "symbol": symbol,
-        "theme": theme,
+        "theme": get_theme_for_code(code),
         "source": "small_mid_radar",
         "score": score,
         "small_mid_score": score,
@@ -142,12 +103,11 @@ def analyze_small_mid_candidate(code: str, tw_news: list[dict[str, Any]]) -> dic
         "price_to_book": _round(fundamentals.get("price_to_book")),
         "dividend_yield_pct": _round(fundamentals.get("dividend_yield_pct")),
         "news_hits": score_detail["news_hits"],
-        "reasons": reasons,
-        "risk_flags": risk_flags,
-        "invalidations": invalidations,
+        "reasons": _reason_lines(metrics, fundamentals, score_detail),
+        "risk_flags": _risk_flags(metrics, fundamentals),
+        "invalidations": _invalidations(metrics),
         "data_quality": "基本面資料部分依 Yahoo 補充" if fundamentals.get("missing") else "正常",
     }
-    return item
 
 
 def score_small_mid_candidate(
@@ -177,10 +137,8 @@ def score_small_mid_candidate(
         + technical_score * 0.25
         + theme_score
     )
-    total = max(0, min(total, 100))
-
     return {
-        "score": total,
+        "score": max(0, min(total, 100)),
         "quality_score": quality_score,
         "valuation_score": valuation_score,
         "liquidity_score": liquidity_score,
@@ -236,6 +194,7 @@ def _recent_history(symbol: str, period: str = "6mo") -> pd.DataFrame | None:
 def _price_metrics(history: pd.DataFrame) -> dict[str, float] | None:
     if history is None or len(history) < 60:
         return None
+
     close = history["Close"].astype("float64")
     volume = history["Volume"].fillna(0).astype("float64")
     price = float(close.iloc[-1])
@@ -245,30 +204,24 @@ def _price_metrics(history: pd.DataFrame) -> dict[str, float] | None:
     rsi = float(ta.momentum.RSIIndicator(close, 14).rsi().iloc[-1])
     avg_volume20 = float(volume.tail(20).mean())
     avg_turnover_million = price * avg_volume20 / 1_000_000
-    pct_1d = ((price / prev) - 1.0) * 100 if prev else 0.0
-    pct_5d = _pct_change(close, 5) or 0.0
-    pct_20d = _pct_change(close, 20) or 0.0
-    vol_ratio = float(volume.iloc[-1] / avg_volume20) if avg_volume20 else 1.0
-    volatility20 = float(close.pct_change().tail(20).std() * 100)
-
     return {
         "price": price,
         "ma20": ma20,
         "ma60": ma60,
         "rsi": rsi,
-        "pct_1d": pct_1d,
-        "pct_5d": pct_5d,
-        "pct_20d": pct_20d,
-        "vol_ratio": vol_ratio,
+        "pct_1d": ((price / prev) - 1.0) * 100 if prev else 0.0,
+        "pct_5d": _pct_change(close, 5) or 0.0,
+        "pct_20d": _pct_change(close, 20) or 0.0,
+        "vol_ratio": float(volume.iloc[-1] / avg_volume20) if avg_volume20 else 1.0,
         "avg_turnover_million": avg_turnover_million,
-        "volatility20": volatility20,
+        "volatility20": float(close.pct_change().tail(20).std() * 100),
     }
 
 
 def _fundamental_metrics(symbol: str) -> dict[str, float | bool | None]:
     try:
         ticker = yf.Ticker(symbol)
-        info = ticker.get_info() if hasattr(ticker, "get_info") else ticker.info
+        info = (ticker.get_info() if hasattr(ticker, "get_info") else ticker.info) or {}
     except Exception:
         info = {}
 

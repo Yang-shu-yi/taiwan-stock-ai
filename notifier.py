@@ -18,7 +18,7 @@ ENABLE_LINE = _env_flag("ENABLE_LINE", False)
 REPORT_NOTIFY_ERRORS = _env_flag("REPORT_NOTIFY_ERRORS", False)
 REPORT_DASHBOARD_URL = os.getenv(
     "REPORT_DASHBOARD_URL",
-    "https://taiwan-stock-ai-cmignppyqbx3qyslpthtnz.streamlit.app/",
+    "https://taiwan-stock-ai.vercel.app/",
 ).strip()
 
 LINE_CHANNEL_TOKEN = os.getenv("LINE_CHANNEL_TOKEN")

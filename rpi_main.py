@@ -26,6 +26,7 @@ from signal_tracker import (
     evaluate_signal_performance,
     summarize_performance,
 )
+from strategy_optimizer import build_strategy_optimization
 
 
 load_dotenv()
@@ -113,6 +114,7 @@ def main() -> None:
         )
         snapshot["data_status"] = get_data_status()
         snapshot["performance_summary"] = summarize_performance()
+        snapshot["strategy_optimization"] = build_strategy_optimization()
         save_daily_snapshot(snapshot, SNAPSHOT_FILE)
         appended = append_signal_history(snapshot)
         log(f"Signal history appended: {appended}")
