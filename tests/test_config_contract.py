@@ -11,7 +11,7 @@ def test_env_example_uses_report_bot_contract() -> None:
     assert "ENABLE_REPORT_TELEGRAM=true" in text
     assert "\nTELEGRAM_BOT_TOKEN=" not in f"\n{text}"
     assert "DAILY_CANDIDATES_FILE=runtime/daily_candidates.json" in text
-    assert "REPORT_DASHBOARD_URL=https://taiwan-stock-ai.vercel.app/" in text
+    assert "REPORT_DASHBOARD_URL=https://taiwan-stock-ai-pi.vercel.app/" in text
     assert "VERCEL_SNAPSHOT_URL=" in text
     assert "BLOB_READ_WRITE_TOKEN=" in text
     assert "ENABLE_SMALL_MID_RADAR=true" in text

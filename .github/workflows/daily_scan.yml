@@ -41,7 +41,7 @@ jobs:
           DRY_RUN: "true"
           ENABLE_REPORT_TELEGRAM: "false"
           ENABLE_LINE: "false"
-          REPORT_DASHBOARD_URL: https://taiwan-stock-ai.vercel.app/
+          REPORT_DASHBOARD_URL: https://taiwan-stock-ai-pi.vercel.app/
           ENABLE_GOOGLE_SHEETS: "false"
           DAILY_CANDIDATES_FILE: runtime/daily_candidates.json
           TW_SCAN_LIMIT: "48"
