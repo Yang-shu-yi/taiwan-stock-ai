@@ -1,6 +1,7 @@
 const config = window.TSAI_CONFIG || {};
 const snapshotUrl = config.snapshotUrl || "/data/daily_candidates.json";
 const stockIndexUrl = config.stockIndexUrl || "/data/tw_stock_index.json";
+const stockAnalysisUrl = config.stockAnalysisUrl || "/api/stock-analysis";
 
 const els = {
   updatedAt: document.querySelector("#updated-at"),
@@ -22,6 +23,7 @@ const els = {
   stockQuery: document.querySelector("#stock-query"),
   stockClear: document.querySelector("#stock-clear"),
   stockResults: document.querySelector("#stock-search-results"),
+  stockAnalysisReport: document.querySelector("#stock-analysis-report"),
   stockIndexCount: document.querySelector("#stock-index-count"),
 };
 
@@ -239,6 +241,30 @@ function normalizeText(value) {
   return String(value || "").trim().toLowerCase();
 }
 
+function formatNumber(value, digits = 2, fallback = "--") {
+  const number = Number(value);
+  if (!Number.isFinite(number)) return fallback;
+  return number.toLocaleString("zh-TW", {
+    minimumFractionDigits: digits,
+    maximumFractionDigits: digits,
+  });
+}
+
+function scoreClass(score) {
+  const value = Number(score);
+  if (value >= 75) return "score-good";
+  if (value >= 55) return "score-watch";
+  return "score-risk";
+}
+
+function compactVolume(value) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) return "--";
+  if (number >= 100000000) return `${formatNumber(number / 100000000, 2)} 億股`;
+  if (number >= 10000) return `${formatNumber(number / 10000, 1)} 萬股`;
+  return formatNumber(number, 0);
+}
+
 function buildStockPool(snapshot, stockIndex) {
   const pool = new Map();
   for (const stock of stockIndex) {
@@ -300,6 +326,200 @@ function matchStocks(pool, query) {
     .slice(0, 12);
 }
 
+function buildSvgChart(points) {
+  const data = Array.isArray(points) ? points.filter((point) => Number.isFinite(Number(point.close))) : [];
+  if (data.length < 2) return `<div class="chart-empty">價格資料不足，無法繪製走勢。</div>`;
+  const width = 720;
+  const height = 220;
+  const padding = 18;
+  const closes = data.map((point) => Number(point.close));
+  const min = Math.min(...closes);
+  const max = Math.max(...closes);
+  const range = max - min || 1;
+  const step = (width - padding * 2) / (data.length - 1);
+  const coords = data.map((point, index) => {
+    const x = padding + index * step;
+    const y = height - padding - ((Number(point.close) - min) / range) * (height - padding * 2);
+    return `${x.toFixed(1)},${y.toFixed(1)}`;
+  });
+  const last = data.at(-1);
+  const first = data[0];
+  return `
+    <svg class="price-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="近 120 日價格走勢">
+      <line x1="${padding}" y1="${height - padding}" x2="${width - padding}" y2="${height - padding}" />
+      <line x1="${padding}" y1="${padding}" x2="${padding}" y2="${height - padding}" />
+      <polyline points="${coords.join(" ")}" />
+      <circle cx="${coords.at(-1).split(",")[0]}" cy="${coords.at(-1).split(",")[1]}" r="4" />
+      <text x="${padding}" y="16">${safe(first.date)} ${formatNumber(first.close)}</text>
+      <text x="${width - padding}" y="16" text-anchor="end">${safe(last.date)} ${formatNumber(last.close)}</text>
+      <text x="${padding}" y="${height - 4}">低 ${formatNumber(min)}</text>
+      <text x="${width - padding}" y="${height - 4}" text-anchor="end">高 ${formatNumber(max)}</text>
+    </svg>
+  `;
+}
+
+function scoreBar(label, score, detail = "") {
+  const value = Math.max(0, Math.min(100, Number(score) || 0));
+  return `
+    <div class="score-row">
+      <div class="score-row-head">
+        <span>${safe(label)}</span>
+        <strong>${formatNumber(value, 1)}</strong>
+      </div>
+      <div class="score-track"><span class="${scoreClass(value)}" style="width: ${value}%"></span></div>
+      ${detail ? `<div class="score-detail">${safe(detail)}</div>` : ""}
+    </div>
+  `;
+}
+
+function metricTile(label, value, hint = "") {
+  return `
+    <article class="metric-tile">
+      <span>${safe(label)}</span>
+      <strong>${safe(value)}</strong>
+      ${hint ? `<small>${safe(hint)}</small>` : ""}
+    </article>
+  `;
+}
+
+async function fetchStockAnalysis(code) {
+  const response = await fetch(`${stockAnalysisUrl}?code=${encodeURIComponent(code)}`, { cache: "no-store" });
+  const payload = await response.json().catch(() => ({}));
+  if (!response.ok || !payload.ok) {
+    throw new Error(payload.error || `${response.status} ${response.statusText}`);
+  }
+  return payload.analysis;
+}
+
+function renderSnapshotOnlyAnalysis(stock) {
+  const signal = stock.candidate || stock.smallMid;
+  const title = `${stock.code} ${stock.name || "未命名"}`;
+  if (!signal) {
+    els.stockAnalysisReport.innerHTML = `
+      <div class="analysis-empty">
+        <strong>${safe(title)}</strong><br />
+        目前只有股票索引資料，尚未進入今日候選或中小型雷達。若要判斷好壞，需要等待即時價格 API 或下一次 Pi 快照補齊技術資料。
+      </div>
+    `;
+    return;
+  }
+
+  const reasons = Array.isArray(signal.reasons) ? signal.reasons : [];
+  const risks = Array.isArray(signal.risk_flags) ? signal.risk_flags : [];
+  const invalidations = Array.isArray(signal.invalidations) ? signal.invalidations : [];
+  els.stockAnalysisReport.innerHTML = `
+    <article class="analysis-report">
+      <div class="analysis-hero">
+        <div>
+          <p class="eyebrow">Snapshot Analysis</p>
+          <h2>${safe(title)}</h2>
+          <p class="hint">即時 API 暫不可用，以下使用每日快照中的候選股資料。</p>
+        </div>
+        <div class="verdict ${scoreClass(signal.score)}">
+          <strong>${fmt(signal.score, "N/A")}</strong>
+          <span>${safe(signal.confidence || "觀察")}</span>
+        </div>
+      </div>
+      <div class="analysis-grid">
+        ${metricTile("價格", fmt(signal.price), "快照價")}
+        ${metricTile("1 日", pct(signal.pct_1d), "短線變化")}
+        ${metricTile("5 日", pct(signal.pct_5d), "一週動能")}
+        ${metricTile("量比", fmt(signal.vol_ratio), "成交熱度")}
+      </div>
+      <div class="analysis-columns">
+        <div>${scoreBar("候選分數", signal.score, "來自今日策略快照")}</div>
+        <div class="analysis-note">
+          <strong>觀察理由</strong>
+          <ul>${(reasons.length ? reasons : ["尚無理由"]).map((item) => `<li>${safe(item)}</li>`).join("")}</ul>
+          <strong>風險與失效</strong>
+          <ul>${[...risks, ...invalidations].slice(0, 5).map((item) => `<li>${safe(item)}</li>`).join("") || "<li>尚無風險提示</li>"}</ul>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+function renderStockAnalysis(stock, analysis) {
+  const signal = stock.candidate || stock.smallMid;
+  const metrics = analysis.metrics || {};
+  const scores = analysis.scores || {};
+  const title = `${stock.code} ${stock.name || "未命名"}`;
+  const verdictLabel = analysis.verdict?.label || "觀察";
+  const reasons = [...(analysis.reasons || []), ...(Array.isArray(signal?.reasons) ? signal.reasons.slice(0, 2) : [])];
+  const risks = [...(analysis.risks || []), ...(Array.isArray(signal?.risk_flags) ? signal.risk_flags.slice(0, 2) : [])];
+  const invalidations = Array.isArray(signal?.invalidations) ? signal.invalidations.slice(0, 3) : [];
+
+  els.stockAnalysisReport.innerHTML = `
+    <article class="analysis-report">
+      <div class="analysis-hero">
+        <div>
+          <p class="eyebrow">Stock Report</p>
+          <h2>${safe(title)}</h2>
+          <p class="hint">
+            ${safe(stock.market || "台股")} / ${safe(stock.group || "未分類")} /
+            來源：${safe(analysis.source || "Yahoo Finance")}
+          </p>
+        </div>
+        <div class="verdict ${scoreClass(scores.overall)}">
+          <strong>${formatNumber(scores.overall, 1)}</strong>
+          <span>${safe(verdictLabel)}</span>
+        </div>
+      </div>
+
+      <div class="analysis-grid">
+        ${metricTile("最新價", formatNumber(metrics.price), `1日 ${pct(metrics.return1d)}`)}
+        ${metricTile("20 日", pct(metrics.return20d), `5日 ${pct(metrics.return5d)}`)}
+        ${metricTile("RSI", formatNumber(metrics.rsi, 1), "14 日")}
+        ${metricTile("量比", formatNumber(metrics.volumeRatio, 2), `量 ${compactVolume(metrics.volume)}`)}
+        ${metricTile("MA20", formatNumber(metrics.sma20), metrics.price > metrics.sma20 ? "站上" : "跌破")}
+        ${metricTile("MA60", formatNumber(metrics.sma60), metrics.price > metrics.sma60 ? "站上" : "跌破")}
+        ${metricTile("52週區間", `${formatNumber(metrics.low52w)} - ${formatNumber(metrics.high52w)}`, "價格位置")}
+        ${metricTile("最大回撤", pct(metrics.maxDrawdown), `波動 ${formatNumber(metrics.volatility, 1)}%`)}
+      </div>
+
+      <div class="analysis-chart-card">
+        <div class="card-title">
+          <span>近 120 日價格走勢</span>
+          <span class="tag">${safe(analysis.symbol || stock.code)}</span>
+        </div>
+        ${buildSvgChart(analysis.chart)}
+      </div>
+
+      <div class="analysis-columns">
+        <div class="score-board">
+          ${scoreBar("趨勢結構", scores.trend, "MA20、MA60 與 20 日報酬")}
+          ${scoreBar("動能品質", scores.momentum, "RSI 與中短期漲幅")}
+          ${scoreBar("量能熱度", scores.volume, "成交量相對近 20 日均量")}
+          ${scoreBar("風險控管", scores.risk, "回撤、波動與過熱風險")}
+          ${scoreBar("綜合品質", scores.quality, "四項分數平均")}
+        </div>
+        <div class="analysis-note">
+          <strong>判讀重點</strong>
+          <ul>${(reasons.length ? reasons.slice(0, 6) : ["尚無明確偏多理由"]).map((item) => `<li>${safe(item)}</li>`).join("")}</ul>
+          <strong>風險與失效條件</strong>
+          <ul>${[...risks, ...invalidations].slice(0, 7).map((item) => `<li>${safe(item)}</li>`).join("") || "<li>尚無明確失效條件，仍需留意大盤與成交量變化。</li>"}</ul>
+        </div>
+      </div>
+
+      <p class="analysis-disclaimer">
+        更新：${safe(analysis.updated_at || "N/A")}。此報告為研究與觀察工具，不是保證獲利或下單建議。
+      </p>
+    </article>
+  `;
+}
+
+async function selectStockForAnalysis(stock) {
+  const title = `${stock.code} ${stock.name || ""}`.trim();
+  els.stockAnalysisReport.innerHTML = `<div class="analysis-empty">正在產生 ${safe(title)} 的個股分析報告...</div>`;
+  try {
+    const analysis = await fetchStockAnalysis(stock.code);
+    renderStockAnalysis(stock, analysis);
+  } catch (error) {
+    console.warn("Stock analysis API failed", error);
+    renderSnapshotOnlyAnalysis(stock);
+  }
+}
+
 function renderStockSearchResults(results, query) {
   if (!results.length) {
     els.stockResults.innerHTML = `
@@ -332,6 +552,7 @@ function renderStockSearchResults(results, query) {
             ${invalidations ? `失效條件：${safe(invalidations)}<br />` : ""}
             ${signal?.data_quality ? `資料品質：${safe(signal.data_quality)}` : "資料品質：僅股票索引，未納入今日快照分析"}
           </div>
+          <button class="analysis-button" type="button" data-code="${safe(item.code)}">查看視覺分析</button>
         </article>
       `;
     })
@@ -341,17 +562,31 @@ function renderStockSearchResults(results, query) {
 function setupStockSearch(snapshot, stockIndex) {
   const pool = buildStockPool(snapshot, stockIndex);
   setText(els.stockIndexCount, `股票索引 ${stockIndex.length} 檔`);
+  let currentResults = [];
 
   const update = () => {
     const query = els.stockQuery.value;
-    renderStockSearchResults(matchStocks(pool, query), query || "今日候選");
+    currentResults = matchStocks(pool, query);
+    renderStockSearchResults(currentResults, query || "今日候選");
   };
 
   els.stockQuery.addEventListener("input", update);
+  els.stockQuery.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" || !currentResults.length) return;
+    event.preventDefault();
+    selectStockForAnalysis(currentResults[0]);
+  });
+  els.stockResults.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-code]");
+    if (!button) return;
+    const stock = pool.find((item) => item.code === button.dataset.code);
+    if (stock) selectStockForAnalysis(stock);
+  });
   els.stockClear.addEventListener("click", () => {
     els.stockQuery.value = "";
     update();
     els.stockQuery.focus();
+    els.stockAnalysisReport.innerHTML = `<div class="analysis-empty">選擇一檔股票後，這裡會顯示個股視覺分析報告。</div>`;
   });
   update();
 }

@@ -239,6 +239,232 @@ h3 {
   min-height: 150px;
 }
 
+.analysis-button {
+  margin-top: 14px;
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 14px;
+  background: var(--ink);
+  color: #fff;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.stock-analysis-report {
+  margin-top: 18px;
+}
+
+.analysis-empty {
+  border: 1px dashed #d2c7b5;
+  border-radius: 20px;
+  padding: 22px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--ink);
+  line-height: 1.7;
+}
+
+.analysis-report {
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 22px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(226, 75, 59, 0.12), transparent 22rem),
+    #fff;
+}
+
+.analysis-hero {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+
+.analysis-hero h2 {
+  margin-bottom: 8px;
+}
+
+.verdict {
+  min-width: 122px;
+  border-radius: 22px;
+  padding: 16px;
+  background: #f7f2e8;
+  color: var(--ink);
+  text-align: center;
+}
+
+.verdict strong {
+  display: block;
+  font-size: 38px;
+  letter-spacing: -0.06em;
+}
+
+.verdict span {
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.score-good {
+  background: #1f7a45 !important;
+  color: #fff !important;
+}
+
+.score-watch {
+  background: #c98222 !important;
+  color: #fff !important;
+}
+
+.score-risk {
+  background: #b94034 !important;
+  color: #fff !important;
+}
+
+.analysis-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.metric-tile {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.metric-tile span,
+.metric-tile small {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.metric-tile strong {
+  display: block;
+  margin: 7px 0 2px;
+  color: var(--ink);
+  font-size: 22px;
+  line-height: 1.1;
+}
+
+.analysis-chart-card {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 16px;
+  background: #fff;
+  margin: 16px 0;
+}
+
+.price-chart {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.price-chart line {
+  stroke: #ded4c8;
+  stroke-width: 1;
+}
+
+.price-chart polyline {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.price-chart circle {
+  fill: var(--accent);
+}
+
+.price-chart text {
+  fill: var(--ink);
+  font: 12px "Microsoft JhengHei", sans-serif;
+}
+
+.chart-empty {
+  padding: 28px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.analysis-columns {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.9fr) minmax(0, 1.1fr);
+  gap: 18px;
+}
+
+.score-board {
+  display: grid;
+  gap: 12px;
+}
+
+.score-row {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 14px;
+  background: #fff;
+}
+
+.score-row-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 9px;
+  font-weight: 900;
+}
+
+.score-track {
+  height: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #efe8dc;
+}
+
+.score-track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.score-detail {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.analysis-note {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 16px;
+  background: #fff;
+  color: var(--ink);
+  line-height: 1.7;
+}
+
+.analysis-note strong {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.analysis-note ul {
+  margin: 0 0 16px;
+  padding-left: 20px;
+}
+
+.analysis-disclaimer {
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
 .card-title {
   display: flex;
   justify-content: space-between;
@@ -302,12 +528,22 @@ pre {
   .metrics,
   .two,
   .split,
-  .search-results {
+  .search-results,
+  .analysis-grid,
+  .analysis-columns {
     grid-template-columns: 1fr;
   }
 
   .search-row {
     grid-template-columns: 1fr;
+  }
+
+  .analysis-hero {
+    display: block;
+  }
+
+  .verdict {
+    margin-top: 14px;
   }
 
   .hero-meta {

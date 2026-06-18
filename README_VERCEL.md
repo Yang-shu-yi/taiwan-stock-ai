@@ -24,7 +24,11 @@ npm run test:web
 
 ## 台灣股票查詢
 
-網站查詢功能使用靜態股票索引，不在 Vercel 端即時呼叫 Python、Yahoo 或 TWSE。這樣部署最穩定，也避免 serverless cold start 與資料源 rate limit。
+網站查詢功能使用靜態股票索引搭配 Vercel API：
+
+- `web/data/tw_stock_index.json`：代號與中文名稱查詢。
+- `/api/stock-analysis?code=2330`：即時抓 Yahoo Finance chart，計算近一年技術分析。
+- 前端個股報告：總評分、趨勢/動能/量能/風險分數、近 120 日價格圖、關鍵指標、風險與失效條件。
 
 更新股票索引：
 
@@ -32,7 +36,7 @@ npm run test:web
 python scripts/export_tw_stock_index.py
 ```
 
-索引只保留 `twstock` 標記為「股票」的上市櫃台股，不把 ETF 混入主要查詢。查詢結果會再對照每日快照中的候選股與中小型雷達資料。
+索引只保留 `twstock` 標記為「股票」的上市櫃台股，不把 ETF 混入主要查詢。查詢結果會再對照每日快照中的候選股與中小型雷達資料。若 Vercel API 或 Yahoo chart 暫時失敗，前端會退回每日快照中的候選股分析。
 
 ## Vercel 設定
 
