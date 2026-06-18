@@ -8,6 +8,7 @@ const snapshotCandidates = [
   path.join(root, "runtime", "daily_candidates.json"),
   path.join(root, "tests", "fixtures", "sample_daily_candidates.json"),
 ];
+const stockIndexPath = path.join(root, "web", "data", "tw_stock_index.json");
 
 function copyFile(from, to) {
   fs.mkdirSync(path.dirname(to), { recursive: true });
@@ -30,18 +31,27 @@ function copySnapshot() {
   copyFile(snapshotPath, path.join(distDir, "data", "daily_candidates.json"));
 }
 
+function copyStockIndex() {
+  if (!fs.existsSync(stockIndexPath)) {
+    throw new Error("Missing web/data/tw_stock_index.json. Run python scripts/export_tw_stock_index.py.");
+  }
+  copyFile(stockIndexPath, path.join(distDir, "data", "tw_stock_index.json"));
+}
+
 function writeConfig() {
   const snapshotUrl = process.env.VERCEL_SNAPSHOT_URL || "/data/daily_candidates.json";
-  const content = `window.TSAI_CONFIG = ${JSON.stringify({ snapshotUrl }, null, 2)};\n`;
+  const stockIndexUrl = process.env.VERCEL_STOCK_INDEX_URL || "/data/tw_stock_index.json";
+  const content = `window.TSAI_CONFIG = ${JSON.stringify({ snapshotUrl, stockIndexUrl }, null, 2)};\n`;
   fs.writeFileSync(path.join(distDir, "config.js"), content, "utf-8");
 }
 
 copyStatic();
 copySnapshot();
+copyStockIndex();
 writeConfig();
 
 if (process.argv.includes("--check")) {
-  const required = ["index.html", "styles.css", "app.js", "config.js", "data/daily_candidates.json"];
+  const required = ["index.html", "styles.css", "app.js", "config.js", "data/daily_candidates.json", "data/tw_stock_index.json"];
   for (const file of required) {
     const target = path.join(distDir, file);
     if (!fs.existsSync(target)) {

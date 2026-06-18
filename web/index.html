@@ -12,79 +12,109 @@
         <div>
           <p class="eyebrow">Taiwan Stock AI</p>
           <h1>台股 AI 戰情室</h1>
-          <p class="subtitle">Vercel 版唯讀 Dashboard，資料來自 Pi 產出的 daily snapshot。</p>
+          <p class="subtitle">
+            盤前、盤後、盤中候選股與中小型潛力股雷達。資料由 Pi 排程產生，網站負責查詢與視覺化呈現。
+          </p>
         </div>
         <div class="hero-meta">
-          <span id="mode-pill">模式 N/A</span>
-          <span id="updated-pill">更新時間 N/A</span>
+          <span id="updated-at">更新時間載入中</span>
+          <span id="mode-label">模式載入中</span>
         </div>
       </section>
 
-      <section id="status-banner" class="banner">讀取資料中...</section>
+      <section id="status-banner" class="banner warn" hidden></section>
 
-      <section class="grid metrics" id="market-metrics"></section>
-
-      <section class="panel">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Market Focus</p>
-            <h2>今日主軸與重點股</h2>
-          </div>
-        </div>
-        <div class="split">
-          <div>
-            <h3>主軸</h3>
-            <div id="themes" class="card-list"></div>
-          </div>
-          <div>
-            <h3>重點股</h3>
-            <div id="candidates" class="card-list"></div>
-          </div>
-        </div>
+      <section class="grid metrics">
+        <article class="metric">
+          <div class="metric-label">台股加權</div>
+          <div id="tw-price" class="metric-value">--</div>
+          <div id="tw-delta" class="metric-delta">--</div>
+        </article>
+        <article class="metric">
+          <div class="metric-label">USD/TWD</div>
+          <div id="fx-rate" class="metric-value">--</div>
+          <div id="fx-delta" class="metric-delta">--</div>
+        </article>
+        <article class="metric">
+          <div class="metric-label">VIX</div>
+          <div id="vix-price" class="metric-value">--</div>
+          <div id="vix-delta" class="metric-delta">--</div>
+        </article>
+        <article class="metric">
+          <div class="metric-label">三大法人合計</div>
+          <div id="inst-total" class="metric-value">--</div>
+          <div class="metric-delta">法人資金方向</div>
+        </article>
       </section>
 
-      <section class="panel">
+      <section class="panel stock-search-panel">
         <div class="section-head">
           <div>
-            <p class="eyebrow">Small / Mid Cap Radar</p>
-            <h2>中小型優質股雷達</h2>
+            <p class="eyebrow">Search</p>
+            <h2>台灣股票查詢</h2>
+            <p class="hint">
+              輸入股票代號或中文名稱，會先查台股股票索引，再對照今日候選股、中小型雷達與資料品質。
+            </p>
           </div>
-          <p class="hint">優先觀察名單，不是直接買進建議。</p>
+          <span id="stock-index-count" class="pill">股票索引載入中</span>
         </div>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>排名</th>
-                <th>股票</th>
-                <th>分數</th>
-                <th>市值</th>
-                <th>均成交值</th>
-                <th>理由</th>
-              </tr>
-            </thead>
-            <tbody id="small-mid-table"></tbody>
-          </table>
+        <div class="search-row">
+          <input id="stock-query" class="search-input" type="search" placeholder="例如：2330、台積電、創意" autocomplete="off" />
+          <button id="stock-clear" class="search-button" type="button">清除</button>
         </div>
+        <div id="stock-search-results" class="search-results"></div>
       </section>
 
       <section class="grid two">
-        <div class="panel">
-          <p class="eyebrow">Strategy</p>
-          <h2>策略自檢</h2>
-          <div id="strategy" class="card-list"></div>
-        </div>
-        <div class="panel">
-          <p class="eyebrow">Data Quality</p>
-          <h2>資料狀態</h2>
-          <div id="data-status" class="card-list"></div>
-        </div>
+        <article class="panel">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Market Focus</p>
+              <h2>今日主軸</h2>
+            </div>
+          </div>
+          <div id="theme-list" class="card-list"></div>
+        </article>
+
+        <article class="panel">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Candidates</p>
+              <h2>優先候選股</h2>
+            </div>
+          </div>
+          <div id="candidate-list" class="card-list"></div>
+        </article>
       </section>
 
       <section class="panel">
-        <p class="eyebrow">Report Preview</p>
-        <h2>報告重點摘要</h2>
-        <pre id="report-preview"></pre>
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Small / Mid Cap</p>
+            <h2>中小型潛力股雷達</h2>
+          </div>
+        </div>
+        <div id="small-mid-list" class="card-list"></div>
+      </section>
+
+      <section class="grid two">
+        <article class="panel">
+          <p class="eyebrow">Data Quality</p>
+          <h2>資料狀態</h2>
+          <div id="data-status" class="table-wrap"></div>
+        </article>
+
+        <article class="panel">
+          <p class="eyebrow">Signal Review</p>
+          <h2>訊號成效</h2>
+          <div id="performance-summary" class="card-list"></div>
+        </article>
+      </section>
+
+      <section class="panel">
+        <p class="eyebrow">Raw Report</p>
+        <h2>報告摘要</h2>
+        <pre id="report-text">載入中</pre>
       </section>
     </main>
 

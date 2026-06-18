@@ -63,7 +63,7 @@ def test_dashboard_link_is_appended_once() -> None:
     once = _with_dashboard_link(message)
     twice = _with_dashboard_link(once)
     assert once == twice
-    assert once.count("https://taiwan-stock-ai-cmignppyqbx3qyslpthtnz.streamlit.app/") == 1
+    assert once.count("https://taiwan-stock-ai-pi.vercel.app/") == 1
 
 
 def test_market_report_flags_fallback_and_stale_data_without_internal_cache_keys() -> None:

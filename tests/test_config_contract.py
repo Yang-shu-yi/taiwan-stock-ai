@@ -1,4 +1,5 @@
 from pathlib import Path
+import json
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -20,6 +21,13 @@ def test_env_example_uses_report_bot_contract() -> None:
 
 def test_sample_snapshot_fixture_exists() -> None:
     assert (ROOT / "tests" / "fixtures" / "sample_daily_candidates.json").exists()
+
+
+def test_vercel_stock_search_index_exists() -> None:
+    path = ROOT / "web" / "data" / "tw_stock_index.json"
+    rows = json.loads(path.read_text(encoding="utf-8"))
+    assert any(item["code"] == "2330" and item["name"] == "台積電" for item in rows)
+    assert any(item["code"] == "2454" and item["name"] == "聯發科" for item in rows)
 
 
 def test_workflow_is_dry_run_only() -> None:

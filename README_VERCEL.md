@@ -1,74 +1,73 @@
-# Vercel Dashboard 遷移說明
+# Vercel Dashboard 部署指南
 
-本專案已新增 Vercel 靜態版 Dashboard，用來取代 Streamlit 介面。
+這個專案的網站已從 Streamlit 移到 Vercel 靜態站。Pi 負責產生盤前、盤後、盤中資料快照，Vercel 負責呈現 Dashboard 與台灣股票查詢。
 
 ## 架構
 
-- Pi 繼續負責盤前/盤後/盤中資料產生與通知。
-- Vercel 只負責顯示 JSON snapshot，不負責跑台股掃描。
-- 前端來源：`web/index.html`、`web/styles.css`、`web/app.js`
+- 前端檔案：`web/index.html`、`web/styles.css`、`web/app.js`
 - Build script：`scripts/build_vercel_site.mjs`
-- Vercel output：`web/dist`
+- Build 輸出：`web/dist`
+- 每日快照：`runtime/daily_candidates.json`，若不存在則使用 `tests/fixtures/sample_daily_candidates.json`
+- 台股查詢索引：`web/data/tw_stock_index.json`
 
-## 部署
-
-Vercel 專案設定：
-
-- Framework Preset：Other
-- Build Command：`npm run build`
-- Output Directory：`web/dist`
-
-本地測試：
+## 本地建置
 
 ```bash
 npm run build
 ```
 
-## 資料來源
+檢查必要輸出：
 
-預設會讀：
+```bash
+npm run test:web
+```
+
+## 台灣股票查詢
+
+網站查詢功能使用靜態股票索引，不在 Vercel 端即時呼叫 Python、Yahoo 或 TWSE。這樣部署最穩定，也避免 serverless cold start 與資料源 rate limit。
+
+更新股票索引：
+
+```bash
+python scripts/export_tw_stock_index.py
+```
+
+索引只保留 `twstock` 標記為「股票」的上市櫃台股，不把 ETF 混入主要查詢。查詢結果會再對照每日快照中的候選股與中小型雷達資料。
+
+## Vercel 設定
+
+- Framework Preset：Other
+- Build Command：`npm run build`
+- Output Directory：`web/dist`
+
+正式部署：
+
+```bash
+npx vercel deploy --prod --yes
+```
+
+## 快照資料
+
+預設讀取：
 
 ```text
 /data/daily_candidates.json
 ```
 
-Build 時會優先複製：
-
-1. `runtime/daily_candidates.json`
-2. `tests/fixtures/sample_daily_candidates.json`
-
-正式即時更新建議：
-
-- 短期：Pi 產出 snapshot 後，上傳到 Vercel Blob 或其他公開 JSON URL。
-- Vercel 設定 `VERCEL_SNAPSHOT_URL=https://.../daily_candidates.json`
-- Build script 會把這個 URL 寫入 `config.js`，前端會讀該 URL。
-
-Pi 上傳 Vercel Blob 範例：
-
-```bash
-npx vercel blob put runtime/daily_candidates.json \
-  --pathname daily_candidates.json \
-  --access public \
-  --allow-overwrite \
-  --rw-token "$BLOB_READ_WRITE_TOKEN"
-```
-
-取得 blob URL 後，將它填到 Vercel 專案環境變數：
+如果未來要改成外部 snapshot URL，可設定：
 
 ```text
-VERCEL_SNAPSHOT_URL=https://...public.blob.vercel-storage.com/daily_candidates.json
+VERCEL_SNAPSHOT_URL=https://example.com/daily_candidates.json
 ```
 
-## 為什麼不把資料掃描搬到 Vercel
+股票索引也可外部化：
 
-台股掃描依賴 yfinance、TWSE、新聞 RSS、技術指標與 Pi 排程。直接放進 Vercel Serverless 會遇到：
+```text
+VERCEL_STOCK_INDEX_URL=https://example.com/tw_stock_index.json
+```
 
-- 執行時間不可控。
-- Python 套件與 cold start 成本較高。
-- 盤中長輪詢不適合 Serverless。
-- 通知分流仍應由 Pi 控制。
+## 分工原則
 
-因此目前最佳分工是：
-
-- Pi：資料、策略、通知。
-- Vercel：Dashboard 顯示與分享。
+- Pi：抓資料、跑策略、產生報告、發 Telegram/LINE。
+- Vercel：展示資料、股票查詢、視覺化。
+- GitHub Actions：測試與 dry-run，不作為正式通知來源。
