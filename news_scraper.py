@@ -42,7 +42,11 @@ _SUMMARY_MAX_CHARS = 500
 
 
 def _log(msg: str) -> None:
-    print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] {msg}")
+    line = f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] {msg}"
+    try:
+        print(line)
+    except UnicodeEncodeError:
+        print(line.encode("utf-8", errors="replace").decode("utf-8", errors="replace"))
 
 
 # ==========================================

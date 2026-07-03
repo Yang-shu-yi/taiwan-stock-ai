@@ -2,7 +2,8 @@ import json
 import tempfile
 from pathlib import Path
 
-from signal_tracker import append_signal_history, summarize_performance
+import signal_tracker
+from signal_tracker import append_signal_history, evaluate_signal_performance, summarize_performance
 
 
 def test_append_signal_history_writes_core_and_small_mid_jsonl(tmp_path) -> None:
@@ -63,6 +64,47 @@ def test_summarize_performance() -> None:
     assert summary["top5_hit_rate"] == 0.6667
     assert summary["theme_hit_rate"]["半導體"] == 0.5
     assert summary["source_hit_rate"]["small_mid_radar"] == 1.0
+
+
+def test_history_fetch_failure_returns_empty_dataframe(monkeypatch) -> None:
+    class BrokenTicker:
+        def __init__(self, symbol: str) -> None:
+            self.symbol = symbol
+
+        def history(self, **kwargs):
+            raise TypeError("'NoneType' object is not subscriptable")
+
+    monkeypatch.setattr(signal_tracker.yf, "Ticker", BrokenTicker)
+
+    assert signal_tracker._history_for_symbol("2330.TW").empty
+
+
+def test_evaluate_signal_performance_skips_broken_signal(monkeypatch, tmp_path) -> None:
+    history_path = tmp_path / "signals.jsonl"
+    performance_path = tmp_path / "performance.jsonl"
+    history_path.write_text(
+        json.dumps(
+            {
+                "run_id": "2026-05-04:PRE:test",
+                "date": "2026-05-04",
+                "mode": "PRE",
+                "source": "core",
+                "code": "2330",
+                "rank": 1,
+            },
+            ensure_ascii=False,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    def broken_rows(signal: dict) -> list[dict]:
+        raise RuntimeError("history source failed")
+
+    monkeypatch.setattr(signal_tracker, "_performance_rows_for_signal", broken_rows)
+
+    assert evaluate_signal_performance(history_path, performance_path) == 0
+    assert not performance_path.exists()
 
 
 def summarize_performance_from_rows(rows: list[dict]) -> dict:

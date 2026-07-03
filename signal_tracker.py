@@ -105,12 +105,16 @@ def _iter_snapshot_signals(snapshot: dict[str, Any]) -> list[tuple[int, dict[str
 
 
 def _history_for_symbol(symbol: str) -> pd.DataFrame:
-    history = yf.Ticker(symbol).history(period="6mo", auto_adjust=False)
-    if history is None or history.empty:
+    try:
+        history = yf.Ticker(symbol).history(period="6mo", auto_adjust=False)
+        if history is None or history.empty:
+            return pd.DataFrame()
+        history = history.dropna(subset=["Close"]).copy()
+        history.index = pd.to_datetime(history.index).tz_localize(None)
+        return history
+    except Exception as exc:
+        print(f"[signal_tracker] history fetch failed for {symbol}: {exc}")
         return pd.DataFrame()
-    history = history.dropna(subset=["Close"]).copy()
-    history.index = pd.to_datetime(history.index).tz_localize(None)
-    return history
 
 
 def _history_for_code(code: str) -> pd.DataFrame:
@@ -122,9 +126,9 @@ def _performance_rows_for_signal(signal: dict[str, Any]) -> list[dict[str, Any]]
     if not code:
         return []
     history = _history_for_code(code)
-    benchmark = _history_for_symbol("^TWII")
     if history.empty:
         return []
+    benchmark = _history_for_symbol("^TWII")
 
     signal_date = pd.to_datetime(signal.get("date"), errors="coerce")
     if pd.isna(signal_date):
@@ -198,7 +202,12 @@ def evaluate_signal_performance(
     }
     rows: list[dict[str, Any]] = []
     for signal in signals:
-        for row in _performance_rows_for_signal(signal):
+        try:
+            performance_rows = _performance_rows_for_signal(signal)
+        except Exception as exc:
+            print(f"[signal_tracker] skip signal {signal.get('code')}: {exc}")
+            continue
+        for row in performance_rows:
             key = (row.get("run_id"), row.get("code"), row.get("source", "core"), row.get("horizon"))
             if key not in existing:
                 rows.append(row)
