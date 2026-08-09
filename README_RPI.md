@@ -52,8 +52,20 @@ nano .env
 - `MODE`
 - `TW_SCAN_LIMIT`
 - `TW_CANDIDATE_LIMIT`
+- `ACTIONABLE_CANDIDATE_LIMIT`
+- `EARLY_WATCH_LIMIT`
 - `INTRADAY_FOCUS_LIMIT`
-- `DRY_RUN=true`：本地驗證用，產生快照但不發送 Telegram / LINE
+- `DRY_RUN=true`：本地驗證用，不改正式資料也不發送 Telegram / LINE
+- `STRATEGY_VERSION=tw-entry-v1`
+- `EXECUTION_ENVIRONMENT=live`
+- `RUN_TYPE=scheduled`
+- `BROKER_COMMISSION_RATE`：以實際券商費率覆寫
+- `STOCK_SELL_TAX_RATE=0.003`
+- `SMALL_MID_SHADOW_MODE=true`
+- `ENABLE_DASHBOARD_PUBLISH=true`
+- `BLOB_READ_WRITE_TOKEN`（Vercel Blob 寫入權杖，只放在 Pi `.env`）
+- `DASHBOARD_BLOB_PATH=dashboard/latest.json`
+- `LAST_VALID_SNAPSHOT_FILE=runtime/last_valid_daily_candidates.json`
 
 
 ## 執行
@@ -69,6 +81,14 @@ python3 rpi_main.py
 ```bash
 DRY_RUN=true python3 rpi_main.py
 ```
+
+Dry run 只會寫 `runtime/research_daily_candidates.json`；正式快照、訊號歷史、績效、Google Sheets、Vercel Dashboard 與通知都不會改動。
+
+盤後若 Yahoo 歷史日線尚未納入當日 K 棒，流程會用 TWSE／TPEX 官方日收盤行情覆蓋最新 OHLCV，再進行進場可行性與提前雷達評分。
+
+正式盤前與盤後流程會在發送通知前，把同一份快照發布至 Vercel Blob。發布失敗會寫入 cron log，但不會阻止 Telegram／LINE 通知。
+
+若本次行情來源無法產出至少 5 檔完整候選，報告會沿用 `LAST_VALID_SNAPSHOT_FILE` 的最近有效 Top 5，並清楚標示資料日期。這些 fallback 候選只供當日閱讀，不會寫入正式訊號績效。
 
 ### 盤中警示流程
 
@@ -118,4 +138,6 @@ crontab -l
 - `daily_candidates.json` 會包含 `data_status`，Dashboard 可直接看資料是否過期或降級
 - 正式快照預設輸出到 `runtime/daily_candidates.json`，不再提交到 GitHub
 - `signal_history.jsonl` 與 `signal_performance.jsonl` 是本機追蹤檔，不要提交到 repo
+- v2 正式績效只讀 live / primary / 當前 strategy version；舊資料與 shadow 雷達不混算
+- 完整成本、walk-forward 與風控口徑見 `PERFORMANCE_SYSTEM_V2.md`
 - 重構後主流程已不再依賴手動 watchlist

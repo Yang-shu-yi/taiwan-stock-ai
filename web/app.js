@@ -1,5 +1,6 @@
 const config = window.TSAI_CONFIG || {};
 const snapshotUrl = config.snapshotUrl || "/data/daily_candidates.json";
+const snapshotFallbackUrl = config.snapshotFallbackUrl || "/data/daily_candidates.json";
 const stockIndexUrl = config.stockIndexUrl || "/data/tw_stock_index.json";
 const stockAnalysisUrl = config.stockAnalysisUrl || "/api/stock-analysis";
 
@@ -16,6 +17,9 @@ const els = {
   instTotal: document.querySelector("#inst-total"),
   themeList: document.querySelector("#theme-list"),
   candidateList: document.querySelector("#candidate-list"),
+  candidateFilter: document.querySelector("#candidate-filter"),
+  actionableList: document.querySelector("#actionable-list"),
+  earlyWatchList: document.querySelector("#early-watch-list"),
   smallMidList: document.querySelector("#small-mid-list"),
   dataStatus: document.querySelector("#data-status"),
   performanceSummary: document.querySelector("#performance-summary"),
@@ -26,6 +30,8 @@ const els = {
   stockAnalysisReport: document.querySelector("#stock-analysis-report"),
   stockIndexCount: document.querySelector("#stock-index-count"),
 };
+
+let activeCandidateFilter = "all";
 
 function fmt(value, fallback = "--") {
   return value === undefined || value === null || value === "" ? fallback : value;
@@ -47,10 +53,69 @@ function safe(value) {
     .replaceAll("'", "&#039;");
 }
 
+function parseTaipeiDate(value) {
+  if (!value) return null;
+  let normalized = String(value).trim().replace(" ", "T");
+  if (!/[zZ]$|[+-]\d{2}:?\d{2}$/.test(normalized)) normalized += "+08:00";
+  const parsed = new Date(normalized);
+  return Number.isNaN(parsed.getTime()) ? null : parsed;
+}
+
+function snapshotAgeHours(snapshot) {
+  const parsed = parseTaipeiDate(snapshot.generated_at || snapshot.updated_at);
+  return parsed ? Math.max(0, (Date.now() - parsed.getTime()) / 3600000) : null;
+}
+
+function freshnessText(snapshot) {
+  const hours = snapshotAgeHours(snapshot);
+  if (hours === null) return "時間未知";
+  if (hours < 1) return `${Math.max(0, Math.floor(hours * 60))} 分鐘前`;
+  if (hours < 24) return `${Math.floor(hours)} 小時前`;
+  return `${Math.floor(hours / 24)} 天前`;
+}
+
+function shortDate(value) {
+  const text = String(value || "");
+  return /^\d{4}-\d{2}-\d{2}$/.test(text) ? text.slice(5).replace("-", "/") : text;
+}
+
+function marketDataDate(snapshot) {
+  return snapshot.market_data_date || snapshot.market?.tw_index?.trading_date || "";
+}
+
+function marketReference(snapshot) {
+  const asOf = parseTaipeiDate(snapshot.market?.tw_index?.as_of);
+  if (asOf) {
+    return new Intl.DateTimeFormat("zh-TW", {
+      timeZone: "Asia/Taipei",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    }).format(asOf);
+  }
+  const date = marketDataDate(snapshot);
+  return date ? `${shortDate(date)} 收盤` : "日期未知";
+}
+
 function candidateTitle(item) {
   const code = safe(item.code);
   const name = safe(item.name || item.stock_name || "未命名");
   return `${code} ${name}`;
+}
+
+function entryStatusLabel(item) {
+  return item.entry_status_label || {
+    early_watch: "提前觀察",
+    scale_in: "可分批布局",
+    wait_pullback: "等待回測",
+    overextended: "過度延伸、不追",
+  }[item.entry_status] || "等待確認";
+}
+
+function entryStatusClass(item) {
+  return `status-${String(item.entry_status || "unknown").replaceAll("_", "-")}`;
 }
 
 async function loadJson(url, fallback) {
@@ -62,6 +127,17 @@ async function loadJson(url, fallback) {
     console.warn(`Failed to load ${url}`, error);
     return fallback;
   }
+}
+
+async function loadSnapshot() {
+  const primary = await loadJson(snapshotUrl, null);
+  if (primary && Object.keys(primary).length) {
+    primary.__source = "live";
+    return primary;
+  }
+  const fallback = await loadJson(snapshotFallbackUrl, {});
+  fallback.__source = "deployment-fallback";
+  return fallback;
 }
 
 function setText(element, value) {
@@ -76,8 +152,12 @@ function renderMetric(snapshot) {
   const vix = us.VIX || {};
   const inst = market.institutional || {};
 
-  setText(els.updatedAt, `上次更新：${fmt(snapshot.updated_at, "未知")}`);
-  setText(els.modeLabel, `模式：${fmt(snapshot.mode, "N/A")}`);
+  setText(
+    els.updatedAt,
+    `資料產生：${fmt(snapshot.updated_at, "未知")}（${freshnessText(snapshot)}）`,
+  );
+  const modeText = snapshot.mode === "PRE" ? "盤前" : snapshot.mode === "POST" ? "盤後" : fmt(snapshot.mode, "N/A");
+  setText(els.modeLabel, `報告：${modeText}｜行情 ${marketReference(snapshot)}`);
   setText(els.twPrice, fmt(twIndex.price));
   setText(els.twDelta, `${fmt(twIndex.chg)} / ${fmt(twIndex.pct)}%`);
   setText(els.fxRate, fmt(forex.rate));
@@ -91,6 +171,12 @@ function showStatusBanner(snapshot, stockIndex) {
   const issues = [];
   if (!snapshot || Object.keys(snapshot).length === 0) issues.push("每日快照讀取失敗");
   if (!stockIndex.length) issues.push("台股查詢索引讀取失敗");
+  if (snapshot.__source === "deployment-fallback") issues.push("即時快照讀取失敗，目前顯示部署備援資料");
+  if (snapshot.candidate_provenance?.mode === "last_valid_snapshot") {
+    issues.push(`候選名單沿用 ${shortDate(snapshot.candidate_provenance.as_of)} 最近有效快照`);
+  }
+  const ageHours = snapshotAgeHours(snapshot);
+  if (ageHours !== null && ageHours > 72) issues.push(`快照已 ${Math.floor(ageHours / 24)} 天未更新`);
   const stale = Object.values(snapshot.data_status || {}).filter((item) => item && item.stale_reason);
   if (stale.length) issues.push(`有 ${stale.length} 個資料源過期或使用快取`);
   if (!issues.length) {
@@ -127,27 +213,71 @@ function renderThemes(snapshot) {
 function renderCandidateCard(item, index) {
   const reasons = Array.isArray(item.reasons) ? item.reasons.slice(0, 3).join("、") : fmt(item.reasons, "");
   const risks = Array.isArray(item.risk_flags) ? item.risk_flags.slice(0, 2).join("、") : fmt(item.risk_flags, "");
+  const entryReasons = Array.isArray(item.entry_reasons) ? item.entry_reasons.slice(0, 2).join("、") : "";
+  const plan = item.entry_plan || {};
+  const status = entryStatusLabel(item);
+  const light = scoreLight(item.score);
   return `
-    <article class="card">
+    <article class="card candidate-card ${entryStatusClass(item)}">
       <div class="card-title">
         <span>${index + 1}. ${candidateTitle(item)}</span>
-        <span class="tag">分數 ${fmt(item.score, "N/A")}</span>
+        <span class="tag">${safe(status)}</span>
       </div>
       <div class="card-meta">
+        <span class="score-light score-light-${light.key}">${light.icon} ${light.label}｜綜合 ${fmt(item.score, "N/A")}</span><br />
         主題：${safe(item.theme || "未分類")}<br />
+        趨勢強度：${fmt(item.score, "N/A")} / 進場可行性：${fmt(item.entry_score, "N/A")}<br />
         價格：${fmt(item.price)} / 1日：${pct(item.pct_1d)} / 5日：${pct(item.pct_5d)}<br />
-        理由：${safe(reasons || "無")}<br />
-        風險：${safe(risks || "無")}
+        判讀：${safe(item.entry_action || status)}<br />
+        依據：${safe(entryReasons || reasons || "無")}<br />
+        風險：${safe(risks || "無")}<br />
+        ${plan.stop_price ? `規劃停損：${fmt(plan.stop_price)} / 風險報酬：${fmt(plan.reward_risk_ratio, "N/A")}<br />` : ""}
+        資料：${safe(item.data_quality || item.price_date || "本次快照")}
       </div>
     </article>
   `;
 }
 
+function scoreLight(score) {
+  const value = Number(score);
+  if (Number.isFinite(value) && value >= 75) return { key: "green", icon: "🟢", label: "綠燈" };
+  if (Number.isFinite(value) && value >= 55) return { key: "yellow", icon: "🟡", label: "黃燈" };
+  return { key: "red", icon: "🔴", label: "紅燈" };
+}
+
+function setupCandidateFilter(snapshot) {
+  if (!els.candidateFilter) return;
+  const buttons = [...els.candidateFilter.querySelectorAll("[data-score-filter]")];
+  for (const button of buttons) {
+    const selected = button.dataset.scoreFilter === activeCandidateFilter;
+    button.classList.toggle("active", selected);
+    button.setAttribute("aria-selected", String(selected));
+    button.onclick = () => {
+      activeCandidateFilter = button.dataset.scoreFilter || "all";
+      renderCandidates(snapshot);
+    };
+  }
+}
+
 function renderCandidates(snapshot) {
   const candidates = snapshot.tw_candidates || [];
-  els.candidateList.innerHTML = candidates.length
-    ? candidates.slice(0, 8).map(renderCandidateCard).join("")
-    : `<div class="card">目前沒有候選股資料。</div>`;
+  const filteredCandidates = activeCandidateFilter === "all"
+    ? candidates
+    : candidates.filter((item) => scoreLight(item.score).key === activeCandidateFilter);
+  els.candidateList.innerHTML = filteredCandidates.length
+    ? filteredCandidates.slice(0, 8).map(renderCandidateCard).join("")
+    : `<div class="card">目前沒有符合此燈號的候選股。</div>`;
+  setupCandidateFilter(snapshot);
+
+  const actionable = snapshot.actionable_candidates || [];
+  els.actionableList.innerHTML = actionable.length
+    ? actionable.slice(0, 5).map(renderCandidateCard).join("")
+    : `<div class="card">今日沒有同時通過趨勢、停損距離與風險報酬門檻的股票；空手等待也是有效決策。</div>`;
+
+  const earlyWatch = snapshot.early_watch_candidates || [];
+  els.earlyWatchList.innerHTML = earlyWatch.length
+    ? earlyWatch.slice(0, 5).map(renderCandidateCard).join("")
+    : `<div class="card">目前沒有新的轉強型態進入提前雷達。</div>`;
 
   const smallMid = snapshot.small_mid_candidates || [];
   els.smallMidList.innerHTML = smallMid.length
@@ -196,25 +326,39 @@ function renderDataStatus(snapshot) {
 
 function renderPerformance(snapshot) {
   const perf = snapshot.performance_summary || {};
+  const earlyPerf = snapshot.early_watch_performance_summary || {};
   const strategy = snapshot.strategy_optimization || {};
   const cards = [];
 
   cards.push(`
     <article class="card">
-      <div class="card-title"><span>近期訊號數</span><span class="tag">${fmt(perf.count, 0)}</span></div>
+      <div class="card-title"><span>正式績效樣本</span><span class="tag">${fmt(perf.count, 0)}</span></div>
       <div class="card-meta">
-        平均報酬：${fmt(perf.avg_return, "N/A")}<br />
-        勝率：${fmt(perf.win_rate, "N/A")}<br />
-        相對大盤：${fmt(perf.avg_excess_return, "N/A")}
+        訊號日：${fmt(perf.signal_dates, 0)}<br />
+        扣成本超額期望：${pct(perf.net_excess_expectancy_pct)}<br />
+        扣成本平均報酬：${pct(perf.net_avg_return_pct)}<br />
+        勝率（次要）：${perf.win_rate === undefined || perf.win_rate === null ? "N/A" : `${(Number(perf.win_rate) * 100).toFixed(1)}%`}
       </div>
     </article>
   `);
 
-  if (strategy.summary || strategy.action) {
+  cards.push(`
+    <article class="card">
+      <div class="card-title"><span>提前雷達獨立樣本</span><span class="tag">${fmt(earlyPerf.count, 0)}</span></div>
+      <div class="card-meta">
+        訊號日：${fmt(earlyPerf.signal_dates, 0)}<br />
+        扣成本超額期望：${pct(earlyPerf.net_excess_expectancy_pct)}<br />
+        扣成本平均報酬：${pct(earlyPerf.net_avg_return_pct)}<br />
+        狀態：${safe(earlyPerf.status || "collecting")}
+      </div>
+    </article>
+  `);
+
+  if (strategy.headline || strategy.primary_action) {
     cards.push(`
       <article class="card">
-        <div class="card-title"><span>策略自我檢查</span><span class="tag">${safe(strategy.action || "review")}</span></div>
-        <div class="card-meta">${safe(strategy.summary || "無摘要")}</div>
+        <div class="card-title"><span>策略狀態</span><span class="tag">${safe(strategy.posture || "normal")}</span></div>
+        <div class="card-meta">${safe(strategy.headline || "無摘要")}<br />${safe(strategy.primary_action || "")}</div>
       </article>
     `);
   }
@@ -225,13 +369,20 @@ function renderPerformance(snapshot) {
 function buildReportText(snapshot) {
   const market = snapshot.market || {};
   const twIndex = market.tw_index || {};
-  const candidates = snapshot.tw_candidates || [];
-  const names = candidates.slice(0, 5).map((item) => `${item.code} ${item.name}`).join("、");
+  const candidates = (snapshot.actionable_candidates || []).length
+    ? snapshot.actionable_candidates
+    : (snapshot.tw_candidates || []);
+  const names = candidates.slice(0, 3).map((item) => {
+    return `${item.code} ${item.name}｜趨勢 ${fmt(item.score, "N/A")}｜進場 ${fmt(item.entry_score, "N/A")}｜${entryStatusLabel(item)}`;
+  });
+  const reportLabel = snapshot.mode === "PRE" ? "盤前觀察" : "盤後觀察";
   return [
-    `模式：${fmt(snapshot.mode, "N/A")}`,
-    `台股：${fmt(twIndex.price)} (${fmt(twIndex.pct)}%)`,
-    `焦點候選：${names || "無"}`,
-    `資料更新：${fmt(snapshot.updated_at, "未知")}`,
+    `${reportLabel}｜${shortDate(snapshot.report_date || String(snapshot.updated_at || "").slice(0, 10))}`,
+    `行情基準：${marketReference(snapshot)}`,
+    `台股：${fmt(twIndex.price)}（${pct(twIndex.pct)}）`,
+    "行動分層：",
+    ...(names.length ? names.map((name) => `• ${name}`) : ["• 無"]),
+    `資料產生：${fmt(snapshot.updated_at, "未知")}（${freshnessText(snapshot)}）`,
     "",
     "提醒：本頁為研究與觀察工具，不是保證獲利或下單建議。"
   ].join("\n");
@@ -242,6 +393,7 @@ function normalizeText(value) {
 }
 
 function formatNumber(value, digits = 2, fallback = "--") {
+  if (value === null || value === undefined || value === "") return fallback;
   const number = Number(value);
   if (!Number.isFinite(number)) return fallback;
   return number.toLocaleString("zh-TW", {
@@ -277,6 +429,8 @@ function buildStockPool(snapshot, stockIndex) {
       type: stock.type,
       aliases: [stock.code, stock.name, stock.market, stock.group].map(normalizeText),
       candidate: null,
+      actionable: null,
+      earlyWatch: null,
       smallMid: null,
     });
   }
@@ -287,6 +441,27 @@ function buildStockPool(snapshot, stockIndex) {
     const existing = pool.get(code) || { code, aliases: [] };
     existing.name = existing.name || item.name;
     existing.candidate = item;
+    existing.aliases = [existing.code, existing.name, existing.market, existing.group].map(normalizeText);
+    pool.set(code, existing);
+  }
+
+  for (const item of snapshot.actionable_candidates || []) {
+    const code = String(item.code || "");
+    if (!code) continue;
+    const existing = pool.get(code) || { code, aliases: [] };
+    existing.name = existing.name || item.name;
+    existing.actionable = item;
+    existing.candidate = existing.candidate || item;
+    existing.aliases = [existing.code, existing.name, existing.market, existing.group].map(normalizeText);
+    pool.set(code, existing);
+  }
+
+  for (const item of snapshot.early_watch_candidates || []) {
+    const code = String(item.code || "");
+    if (!code) continue;
+    const existing = pool.get(code) || { code, aliases: [] };
+    existing.name = existing.name || item.name;
+    existing.earlyWatch = item;
     existing.aliases = [existing.code, existing.name, existing.market, existing.group].map(normalizeText);
     pool.set(code, existing);
   }
@@ -308,10 +483,10 @@ function matchStocks(pool, query) {
   const q = normalizeText(query);
   if (!q) {
     return pool
-      .filter((item) => item.candidate || item.smallMid)
+      .filter((item) => item.actionable || item.candidate || item.earlyWatch || item.smallMid)
       .sort((a, b) => {
-        const scoreA = Number(a.candidate?.score || a.smallMid?.score || 0);
-        const scoreB = Number(b.candidate?.score || b.smallMid?.score || 0);
+        const scoreA = Number(a.actionable?.entry_score || a.candidate?.entry_score || a.earlyWatch?.early_watch_score || a.smallMid?.score || 0);
+        const scoreB = Number(b.actionable?.entry_score || b.candidate?.entry_score || b.earlyWatch?.early_watch_score || b.smallMid?.score || 0);
         return scoreB - scoreA;
       })
       .slice(0, 8);
@@ -372,6 +547,31 @@ function scoreBar(label, score, detail = "") {
   `;
 }
 
+function optionalScoreBar(label, score, detail = "") {
+  if (score === null || score === undefined || score === "") {
+    return `
+      <div class="score-row">
+        <div class="score-row-head"><span>${safe(label)}</span><strong>N/A</strong></div>
+        ${detail ? `<div class="score-detail">${safe(detail)}</div>` : ""}
+      </div>
+    `;
+  }
+  return scoreBar(label, score, detail);
+}
+
+function companyAssessment(signal, analysis = {}) {
+  return signal?.company_assessment || analysis.company_assessment || {
+    company_quality_score: signal?.company_quality_score ?? signal?.quality_score,
+    valuation_attractiveness_score: signal?.valuation_attractiveness_score ?? signal?.valuation_score,
+    entry_timing_score: signal?.entry_timing_score ?? signal?.entry_score,
+    event_risk_level: signal?.event_risk_level,
+    opportunity_label: signal?.opportunity_label,
+    plain_language_advice: signal?.plain_language_advice,
+    fundamental_summary: signal?.fundamental_summary,
+    valuation_summary: signal?.valuation_summary,
+  };
+}
+
 function metricTile(label, value, hint = "") {
   return `
     <article class="metric-tile">
@@ -392,7 +592,7 @@ async function fetchStockAnalysis(code) {
 }
 
 function renderSnapshotOnlyAnalysis(stock) {
-  const signal = stock.candidate || stock.smallMid;
+  const signal = stock.actionable || stock.candidate || stock.earlyWatch || stock.smallMid;
   const title = `${stock.code} ${stock.name || "未命名"}`;
   if (!signal) {
     els.stockAnalysisReport.innerHTML = `
@@ -407,6 +607,7 @@ function renderSnapshotOnlyAnalysis(stock) {
   const reasons = Array.isArray(signal.reasons) ? signal.reasons : [];
   const risks = Array.isArray(signal.risk_flags) ? signal.risk_flags : [];
   const invalidations = Array.isArray(signal.invalidations) ? signal.invalidations : [];
+  const assessment = companyAssessment(signal);
   els.stockAnalysisReport.innerHTML = `
     <article class="analysis-report">
       <div class="analysis-hero">
@@ -417,7 +618,7 @@ function renderSnapshotOnlyAnalysis(stock) {
         </div>
         <div class="verdict ${scoreClass(signal.score)}">
           <strong>${fmt(signal.score, "N/A")}</strong>
-          <span>${safe(signal.confidence || "觀察")}</span>
+          <span>${safe(assessment.opportunity_label || entryStatusLabel(signal))}</span>
         </div>
       </div>
       <div class="analysis-grid">
@@ -425,10 +626,26 @@ function renderSnapshotOnlyAnalysis(stock) {
         ${metricTile("1 日", pct(signal.pct_1d), "短線變化")}
         ${metricTile("5 日", pct(signal.pct_5d), "一週動能")}
         ${metricTile("量比", fmt(signal.vol_ratio), "成交熱度")}
+        ${metricTile("綜合分數", fmt(signal.score), "保留原燈號")}
+        ${metricTile("進場可行性", fmt(signal.entry_score), entryStatusLabel(signal))}
+        ${metricTile("公司品質", fmt(assessment.company_quality_score, "N/A"), "月營收品質基線")}
+        ${metricTile("估值吸引力", fmt(assessment.valuation_attractiveness_score, "N/A"), "同業／市場相對排名")}
+        ${metricTile("進場時機", fmt(assessment.entry_timing_score, "N/A"), "價格與風險報酬")}
+        ${metricTile("事件風險", assessment.event_risk_level || "待確認", "新聞事件初篩")}
       </div>
       <div class="analysis-columns">
-        <div>${scoreBar("候選分數", signal.score, "來自今日策略快照")}</div>
+        <div>
+          ${scoreBar("綜合分數", signal.score, "原有燈號與排名")}
+          ${optionalScoreBar("公司品質", assessment.company_quality_score, "目前以月營收資料為基線")}
+          ${optionalScoreBar("估值吸引力", assessment.valuation_attractiveness_score, "本益比、股價淨值比與殖利率相對排名")}
+          ${optionalScoreBar("進場時機", assessment.entry_timing_score ?? signal.entry_score, "乖離、停損與風險報酬")}
+        </div>
         <div class="analysis-note">
+          <strong>${safe(assessment.opportunity_label || "持續觀察")}</strong>
+          <p>${safe(assessment.plain_language_advice || "等待資料補齊後再判讀。")}</p>
+          <strong>基本面白話判讀</strong>
+          <p>${safe(assessment.fundamental_summary || "基本面資料不足。")}</p>
+          <p>${safe(assessment.valuation_summary || "估值資料不足。")}</p>
           <strong>觀察理由</strong>
           <ul>${(reasons.length ? reasons : ["尚無理由"]).map((item) => `<li>${safe(item)}</li>`).join("")}</ul>
           <strong>風險與失效</strong>
@@ -440,14 +657,16 @@ function renderSnapshotOnlyAnalysis(stock) {
 }
 
 function renderStockAnalysis(stock, analysis) {
-  const signal = stock.candidate || stock.smallMid;
+  const signal = stock.actionable || stock.candidate || stock.earlyWatch || stock.smallMid;
+  const entry = signal || analysis.entry_opportunity || {};
   const metrics = analysis.metrics || {};
   const scores = analysis.scores || {};
   const title = `${stock.code} ${stock.name || "未命名"}`;
-  const verdictLabel = analysis.verdict?.label || "觀察";
+  const verdictLabel = entry.entry_status_label || (signal ? entryStatusLabel(signal) : (analysis.verdict?.label || "觀察"));
   const reasons = [...(analysis.reasons || []), ...(Array.isArray(signal?.reasons) ? signal.reasons.slice(0, 2) : [])];
   const risks = [...(analysis.risks || []), ...(Array.isArray(signal?.risk_flags) ? signal.risk_flags.slice(0, 2) : [])];
   const invalidations = Array.isArray(signal?.invalidations) ? signal.invalidations.slice(0, 3) : [];
+  const assessment = companyAssessment(signal, analysis);
 
   els.stockAnalysisReport.innerHTML = `
     <article class="analysis-report">
@@ -462,7 +681,7 @@ function renderStockAnalysis(stock, analysis) {
         </div>
         <div class="verdict ${scoreClass(scores.overall)}">
           <strong>${formatNumber(scores.overall, 1)}</strong>
-          <span>${safe(verdictLabel)}</span>
+          <span>${safe(assessment.opportunity_label || verdictLabel)}</span>
         </div>
       </div>
 
@@ -475,6 +694,10 @@ function renderStockAnalysis(stock, analysis) {
         ${metricTile("MA60", formatNumber(metrics.sma60), metrics.price > metrics.sma60 ? "站上" : "跌破")}
         ${metricTile("52週區間", `${formatNumber(metrics.low52w)} - ${formatNumber(metrics.high52w)}`, "價格位置")}
         ${metricTile("最大回撤", pct(metrics.maxDrawdown), `波動 ${formatNumber(metrics.volatility, 1)}%`)}
+        ${metricTile("公司品質", formatNumber(assessment.company_quality_score, 1), "月營收品質基線")}
+        ${metricTile("估值吸引力", formatNumber(assessment.valuation_attractiveness_score, 1), "同業／市場相對排名")}
+        ${metricTile("進場時機", formatNumber(assessment.entry_timing_score ?? entry.entry_score, 1), verdictLabel)}
+        ${metricTile("事件風險", assessment.event_risk_level || "待確認", "新聞事件初篩")}
       </div>
 
       <div class="analysis-chart-card">
@@ -492,8 +715,17 @@ function renderStockAnalysis(stock, analysis) {
           ${scoreBar("量能熱度", scores.volume, "成交量相對近 20 日均量")}
           ${scoreBar("風險控管", scores.risk, "回撤、波動與過熱風險")}
           ${scoreBar("綜合品質", scores.quality, "四項分數平均")}
+          ${entry.entry_score !== undefined ? scoreBar("進場可行性", entry.entry_score, "乖離、停損與風險報酬") : ""}
+          ${optionalScoreBar("公司品質", assessment.company_quality_score, "目前以月營收資料為基線")}
+          ${optionalScoreBar("估值吸引力", assessment.valuation_attractiveness_score, "官方估值相對排名")}
+          ${optionalScoreBar("進場時機", assessment.entry_timing_score ?? entry.entry_score, "價格、乖離與風險報酬")}
         </div>
         <div class="analysis-note">
+          <strong>${safe(assessment.opportunity_label || "持續觀察")}</strong>
+          <p>${safe(assessment.plain_language_advice || "等待資料補齊後再判讀。")}</p>
+          <strong>基本面白話判讀</strong>
+          <p>${safe(assessment.fundamental_summary || "基本面資料不足。")}</p>
+          <p>${safe(assessment.valuation_summary || "估值資料不足。")}</p>
           <strong>判讀重點</strong>
           <ul>${(reasons.length ? reasons.slice(0, 6) : ["尚無明確偏多理由"]).map((item) => `<li>${safe(item)}</li>`).join("")}</ul>
           <strong>風險與失效條件</strong>
@@ -532,9 +764,9 @@ function renderStockSearchResults(results, query) {
 
   els.stockResults.innerHTML = results
     .map((item) => {
-      const signal = item.candidate || item.smallMid;
+      const signal = item.actionable || item.candidate || item.earlyWatch || item.smallMid;
       const status = signal
-        ? `今日有納入觀察，分數 ${fmt(signal.score, "N/A")}，信心 ${fmt(signal.confidence, "N/A")}`
+        ? `今日有納入觀察，趨勢 ${fmt(signal.score, "N/A")}，進場 ${fmt(signal.entry_score, "N/A")}，${entryStatusLabel(signal)}`
         : "目前未在今日候選名單，先列為一般查詢結果。";
       const reasons = Array.isArray(signal?.reasons) ? signal.reasons.slice(0, 3).join("、") : "";
       const invalidations = Array.isArray(signal?.invalidations) ? signal.invalidations.slice(0, 2).join("、") : "";
@@ -604,7 +836,7 @@ function render(snapshot, stockIndex) {
 
 async function main() {
   const [snapshot, stockIndex] = await Promise.all([
-    loadJson(snapshotUrl, {}),
+    loadSnapshot(),
     loadJson(stockIndexUrl, []),
   ]);
   render(snapshot, Array.isArray(stockIndex) ? stockIndex : []);

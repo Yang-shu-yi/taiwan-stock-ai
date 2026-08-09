@@ -242,16 +242,26 @@ def format_index_delta(item: dict) -> str:
     return f"{chg} / {pct}%"
 
 
-def build_candidate_frame(snapshot: dict) -> pd.DataFrame:
+def build_candidate_frame(
+    snapshot: dict,
+    key: str = "tw_candidates",
+    rank_key: str = "rank",
+) -> pd.DataFrame:
     rows = []
-    for item in snapshot.get("tw_candidates", []):
+    for item in snapshot.get(key, []):
+        plan = item.get("entry_plan") or {}
         rows.append(
             {
-                "排名": item.get("rank"),
+                "排名": item.get(rank_key),
                 "代碼": item.get("code"),
                 "名稱": item.get("name"),
                 "主題": item.get("theme"),
                 "分數": item.get("score"),
+                "進場分數": item.get("entry_score"),
+                "狀態": item.get("entry_status_label"),
+                "建議": item.get("entry_action"),
+                "規劃停損": plan.get("stop_price"),
+                "風險報酬": plan.get("reward_risk_ratio"),
                 "1日%": item.get("pct_1d"),
                 "5日%": item.get("pct_5d"),
                 "RSI": item.get("rsi"),
@@ -339,9 +349,12 @@ def build_performance_frame(summary: dict) -> pd.DataFrame:
             {
                 "天期": f"{horizon}日",
                 "樣本": item.get("count"),
-                "平均報酬%": item.get("avg_return_pct"),
-                "相對大盤%": item.get("avg_excess_return_pct"),
-                "勝率": item.get("win_rate"),
+                "訊號日": item.get("signal_dates"),
+                "毛報酬%": item.get("gross_avg_return_pct"),
+                "淨報酬%": item.get("net_avg_return_pct"),
+                "淨超額期望%": item.get("net_excess_expectancy_pct"),
+                "勝率(次要)": item.get("win_rate"),
+                "Profit factor": item.get("profit_factor"),
             }
         )
     return pd.DataFrame(rows)
@@ -597,11 +610,29 @@ tw_index = market.get("tw_index", {})
 forex = market.get("forex", {})
 us_indices = market.get("us_indices", {})
 candidate_frame = build_candidate_frame(snapshot)
+actionable_frame = build_candidate_frame(
+    snapshot,
+    "actionable_candidates",
+    "actionable_rank",
+)
+early_watch_frame = build_candidate_frame(
+    snapshot,
+    "early_watch_candidates",
+    "early_watch_rank",
+)
 small_mid_frame = build_small_mid_frame(snapshot)
 alert_frame = build_alert_frame(load_alerts(str(ALERTS_FILE), limit=50))
 data_status_frame = build_data_status_frame(snapshot)
-performance_summary = snapshot.get("performance_summary") or summarize_performance()
+embedded_performance = snapshot.get("performance_summary") or {}
+performance_summary = (
+    embedded_performance
+    if embedded_performance.get("schema_version") == 2
+    else summarize_performance()
+)
 performance_frame = build_performance_frame(performance_summary)
+shadow_performance_summary = snapshot.get("shadow_performance_summary") or {}
+portfolio_risk = snapshot.get("portfolio_risk") or {}
+model_research = snapshot.get("model_research") or {}
 theme_summary = snapshot.get("theme_summary", [])
 news_summary = snapshot.get("news_summary", {})
 
@@ -653,6 +684,38 @@ with overview_tab:
         market.get("institutional", {}).get("total", "N/A"),
     )
 
+    action_col, radar_col = st.columns(2, gap="large")
+    with action_col:
+        st.markdown("### 可執行名單")
+        st.caption("只有同時通過乖離、停損距離與風險報酬門檻者，才列為可分批布局。")
+        if actionable_frame.empty:
+            st.info("今日沒有通過完整進場門檻的股票；空手等待也是有效決策。")
+        else:
+            st.dataframe(
+                actionable_frame,
+                width="stretch",
+                hide_index=True,
+                column_config={
+                    "分數": st.column_config.ProgressColumn("趨勢強度", min_value=0, max_value=100),
+                    "進場分數": st.column_config.ProgressColumn("進場可行性", min_value=0, max_value=100),
+                },
+            )
+    with radar_col:
+        st.markdown("### 提前雷達")
+        st.caption("捕捉剛轉強型態，容許較多誤報，績效與正式訊號分開記錄。")
+        if early_watch_frame.empty:
+            st.info("目前沒有新的轉強型態進入提前雷達。")
+        else:
+            st.dataframe(
+                early_watch_frame,
+                width="stretch",
+                hide_index=True,
+                column_config={
+                    "分數": st.column_config.ProgressColumn("趨勢強度", min_value=0, max_value=100),
+                    "進場分數": st.column_config.ProgressColumn("進場可行性", min_value=0, max_value=100),
+                },
+            )
+
     st.markdown("### 美股與波動脈絡")
     us_cols = st.columns(5)
     for col, label in zip(
@@ -687,6 +750,7 @@ with overview_tab:
             hide_index=True,
             column_config={
                 "分數": st.column_config.ProgressColumn("分數", min_value=0, max_value=100),
+                "進場分數": st.column_config.ProgressColumn("進場可行性", min_value=0, max_value=100),
                 "1日%": st.column_config.NumberColumn("1日%", format="%.2f%%"),
                 "5日%": st.column_config.NumberColumn("5日%", format="%.2f%%"),
                 "RSI": st.column_config.NumberColumn("RSI", format="%.1f"),
@@ -711,7 +775,7 @@ with overview_tab:
 
 with small_mid_tab:
     st.markdown("### 中小型優質股雷達")
-    st.caption("這裡專門找價格與市值相對不過熱、但量價結構與品質分數達標的中小型股。它是優先觀察名單，不是直接買進建議。")
+    st.caption("Shadow mode：只記錄與驗證，不會併入核心主推名單，也不影響正式策略 KPI。")
 
     if small_mid_frame.empty:
         st.info("目前沒有符合流動性、價格與品質條件的中小型股。可調整 SMALL_MID_CODES 或等待下一次資料更新。")
@@ -781,7 +845,11 @@ with analysis_tab:
             focus_item = next(
                 (
                     item
-                    for item in snapshot.get("tw_candidates", [])
+                    for item in [
+                        *snapshot.get("actionable_candidates", []),
+                        *snapshot.get("early_watch_candidates", []),
+                        *snapshot.get("tw_candidates", []),
+                    ]
                     if item.get("code") == selected_code
                 ),
                 None,
@@ -791,6 +859,8 @@ with analysis_tab:
             revenue = stock_analysis["revenue"]
             relative_strength = stock_analysis["relative_strength"]
             analysis = stock_analysis["analysis"]
+            entry_opportunity = stock_analysis.get("entry_opportunity") or {}
+            company_assessment = stock_analysis.get("company_assessment") or {}
 
             st.markdown(
                 f"""
@@ -806,7 +876,7 @@ with analysis_tab:
                 unsafe_allow_html=True,
             )
 
-            metric_cols = st.columns(5)
+            metric_cols = st.columns(6)
             metric_cols[0].metric(
                 "最新價",
                 f"{price['close']:.2f}",
@@ -834,6 +904,42 @@ with analysis_tab:
                 if revenue.get("yoy_pct") is None
                 else f"{revenue['yoy_pct']:+.2f}%",
             )
+            metric_cols[5].metric(
+                "進場可行性",
+                f"{entry_opportunity.get('entry_score', 0):.0f}",
+                entry_opportunity.get("entry_status_label", "等待確認"),
+            )
+
+            assessment_cols = st.columns(4)
+            quality_score = company_assessment.get("company_quality_score")
+            valuation_score = company_assessment.get("valuation_attractiveness_score")
+            timing_score = company_assessment.get("entry_timing_score")
+            assessment_cols[0].metric(
+                "公司品質",
+                "N/A" if quality_score is None else f"{quality_score:.0f}",
+                company_assessment.get("company_quality_confidence", "資料不足"),
+            )
+            assessment_cols[1].metric(
+                "估值吸引力",
+                "N/A" if valuation_score is None else f"{valuation_score:.0f}",
+            )
+            assessment_cols[2].metric(
+                "進場時機",
+                "N/A" if timing_score is None else f"{timing_score:.0f}",
+            )
+            assessment_cols[3].metric(
+                "事件風險",
+                company_assessment.get("event_risk_level", "待確認"),
+            )
+            st.info(
+                f"{company_assessment.get('opportunity_label', '持續觀察')}｜"
+                f"{company_assessment.get('plain_language_advice', '等待資料補齊後再判讀。')}"
+            )
+            st.caption(
+                f"基本面：{company_assessment.get('fundamental_summary', '資料不足')}｜"
+                f"估值：{company_assessment.get('valuation_summary', '資料不足')}｜"
+                f"事件：{company_assessment.get('event_risk_summary', '待確認')}"
+            )
 
             left_col, right_col = st.columns([1.35, 0.95], gap="large")
             with left_col:
@@ -845,6 +951,13 @@ with analysis_tab:
             with right_col:
                 st.metric("分析總分", f"{scores['總分']:.0f}")
                 st.plotly_chart(score_chart(scores), width="stretch")
+                plan = entry_opportunity.get("entry_plan") or {}
+                if plan:
+                    st.caption(
+                        f"規劃停損 {plan.get('stop_price', 'N/A')}｜"
+                        f"評估目標 {plan.get('target_price', 'N/A')}｜"
+                        f"風險報酬 {plan.get('reward_risk_ratio', 'N/A')}"
+                    )
 
                 if revenue:
                     revenue_cols = st.columns(2)
@@ -915,32 +1028,39 @@ with analysis_tab:
 
 with performance_tab:
     st.markdown("### 訊號成效")
-    st.caption("第一版只追蹤候選股訊號後續表現，不做資金曲線、手續費、滑價或倉位管理。")
-    metric_cols = st.columns(5)
+    st.caption(
+        f"正式口徑：live / primary / {performance_summary.get('strategy_version', 'N/A')}；"
+        f"主評估天期 {performance_summary.get('primary_horizon', 'N/A')} 日。勝率只作次要指標。"
+    )
+    metric_cols = st.columns(6)
     metric_cols[0].metric("樣本數", performance_summary.get("count", 0))
     metric_cols[1].metric(
-        "平均報酬",
-        "N/A"
-        if performance_summary.get("avg_return_pct") is None
-        else f"{performance_summary['avg_return_pct']:+.2f}%",
+        "訊號日",
+        performance_summary.get("signal_dates", 0),
     )
     metric_cols[2].metric(
-        "勝率",
+        "淨超額期望",
+        "N/A"
+        if performance_summary.get("net_excess_expectancy_pct") is None
+        else f"{performance_summary['net_excess_expectancy_pct']:+.2f}%",
+    )
+    metric_cols[3].metric(
+        "淨平均報酬",
+        "N/A"
+        if performance_summary.get("net_avg_return_pct") is None
+        else f"{performance_summary['net_avg_return_pct']:+.2f}%",
+    )
+    metric_cols[4].metric(
+        "最大回撤",
+        "N/A"
+        if performance_summary.get("max_drawdown_pct") is None
+        else f"{performance_summary['max_drawdown_pct']:+.2f}%",
+    )
+    metric_cols[5].metric(
+        "勝率（次要）",
         "N/A"
         if performance_summary.get("win_rate") is None
         else f"{performance_summary['win_rate']:.0%}",
-    )
-    metric_cols[3].metric(
-        "相對大盤",
-        "N/A"
-        if performance_summary.get("avg_excess_return_pct") is None
-        else f"{performance_summary['avg_excess_return_pct']:+.2f}%",
-    )
-    metric_cols[4].metric(
-        "最大回撤近似",
-        "N/A"
-        if performance_summary.get("max_drawdown_proxy_pct") is None
-        else f"{performance_summary['max_drawdown_proxy_pct']:+.2f}%",
     )
 
     if performance_frame.empty:
@@ -951,33 +1071,82 @@ with performance_tab:
             width="stretch",
             hide_index=True,
             column_config={
-                "平均報酬%": st.column_config.NumberColumn("平均報酬%", format="%.2f%%"),
-                "相對大盤%": st.column_config.NumberColumn("相對大盤%", format="%.2f%%"),
-                "勝率": st.column_config.NumberColumn("勝率", format="%.0%%"),
+                "毛報酬%": st.column_config.NumberColumn("毛報酬%", format="%.2f%%"),
+                "淨報酬%": st.column_config.NumberColumn("淨報酬%", format="%.2f%%"),
+                "淨超額期望%": st.column_config.NumberColumn("淨超額期望%", format="%.2f%%"),
+                "勝率(次要)": st.column_config.NumberColumn("勝率(次要)", format="%.0%%"),
             },
         )
-    theme_hit_rate = performance_summary.get("theme_hit_rate") or {}
-    if theme_hit_rate:
-        st.markdown("#### 主題命中率")
+    cost_assumptions = performance_summary.get("cost_assumptions") or {}
+    if cost_assumptions:
+        st.caption(
+            "成本假設：平價往返約 "
+            f"{cost_assumptions.get('round_trip_cost_at_flat_price_pct', 0):.3f}%；"
+            "含雙邊手續費、賣出證交稅與雙邊滑價，均可由環境變數覆寫。"
+        )
+    equity_curve = performance_summary.get("equity_curve") or []
+    if equity_curve:
+        st.markdown("#### 非重疊等權 Cohort 資金曲線")
+        equity_frame = pd.DataFrame(equity_curve)
+        st.line_chart(equity_frame, x="exit_date", y="equity")
+        st.caption(
+            "回撤由可重建資金曲線計算；同一持有期間不重複投入資本，避免把單筆最差報酬冒充最大回撤。"
+        )
+
+    theme_performance = performance_summary.get("theme_performance") or {}
+    if theme_performance:
+        st.markdown("#### 主題淨績效")
         st.dataframe(
             pd.DataFrame(
-                [{"主題": theme, "命中率": hit_rate} for theme, hit_rate in theme_hit_rate.items()]
+                [
+                    {
+                        "主題": theme,
+                        "樣本": stats.get("count"),
+                        "淨超額期望%": stats.get("net_excess_expectancy_pct"),
+                        "勝率(次要)": stats.get("win_rate"),
+                    }
+                    for theme, stats in theme_performance.items()
+                ]
             ),
             width="stretch",
             hide_index=True,
-            column_config={"命中率": st.column_config.NumberColumn("命中率", format="%.0%%")},
+            column_config={
+                "淨超額期望%": st.column_config.NumberColumn("淨超額期望%", format="%.2f%%"),
+                "勝率(次要)": st.column_config.NumberColumn("勝率(次要)", format="%.0%%"),
+            },
         )
-    source_hit_rate = performance_summary.get("source_hit_rate") or {}
-    if source_hit_rate:
-        st.markdown("#### 來源命中率")
-        st.dataframe(
-            pd.DataFrame(
-                [{"來源": source, "命中率": hit_rate} for source, hit_rate in source_hit_rate.items()]
-            ),
-            width="stretch",
-            hide_index=True,
-            column_config={"命中率": st.column_config.NumberColumn("命中率", format="%.0%%")},
+
+    st.markdown("#### 投組風控")
+    risk_cols = st.columns(4)
+    risk_cols[0].metric("風控狀態", portfolio_risk.get("status", "N/A"))
+    risk_cols[1].metric(
+        "最大主題權重",
+        "N/A" if not portfolio_risk.get("max_theme") else f"{portfolio_risk['max_theme']['weight']:.0%}",
+    )
+    risk_cols[2].metric(
+        "單向換手",
+        "N/A" if portfolio_risk.get("one_way_turnover") is None else f"{portfolio_risk['one_way_turnover']:.0%}",
+    )
+    risk_cols[3].metric("風控違規", len(portfolio_risk.get("breaches") or []))
+    if portfolio_risk.get("breaches"):
+        st.warning("；".join(portfolio_risk["breaches"]))
+
+    with st.expander("研究模型與 Shadow 雷達狀態"):
+        st.write(
+            {
+                "model_status": model_research.get("status", "N/A"),
+                "model_observations": model_research.get("observations", 0),
+                "walk_forward_folds": model_research.get("folds", 0),
+                "ready_for_selection": model_research.get("ready_for_selection", False),
+                "shadow_signal_count": shadow_performance_summary.get("count", 0),
+                "shadow_net_excess_expectancy_pct": shadow_performance_summary.get(
+                    "net_excess_expectancy_pct"
+                ),
+            }
         )
+        shadow_ranking = model_research.get("shadow_ranking") or []
+        if shadow_ranking:
+            st.dataframe(pd.DataFrame(shadow_ranking), width="stretch", hide_index=True)
 
 
 with report_tab:

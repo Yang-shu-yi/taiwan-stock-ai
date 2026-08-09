@@ -9,6 +9,8 @@ service_account.json
 alerts.jsonl
 signal_history.jsonl
 signal_performance.jsonl
+early_watch_history.jsonl
+early_watch_performance.jsonl
 .cache/
 runtime/
 cron_log.log
@@ -27,3 +29,4 @@ __pycache__/
 .DS_Store
 
 .vercel
+.env*

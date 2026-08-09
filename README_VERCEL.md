@@ -7,7 +7,8 @@
 - 前端檔案：`web/index.html`、`web/styles.css`、`web/app.js`
 - Build script：`scripts/build_vercel_site.mjs`
 - Build 輸出：`web/dist`
-- 每日快照：`runtime/daily_candidates.json`，若不存在則使用 `tests/fixtures/sample_daily_candidates.json`
+- 正式快照：Pi 在盤前／盤後流程完成後發布至 Vercel Blob `dashboard/latest.json`
+- 部署備援：`runtime/daily_candidates.json`，若不存在則使用 `tests/fixtures/sample_daily_candidates.json`
 - 台股查詢索引：`web/data/tw_stock_index.json`
 
 ## 本地建置
@@ -50,18 +51,38 @@ python scripts/export_tw_stock_index.py
 npx vercel deploy --prod --yes
 ```
 
-## 快照資料
+## 快照資料與更新流程
 
-預設讀取：
+正式站預設讀取公開 Blob：
 
 ```text
-/data/daily_candidates.json
+https://imqu8cpubada2jad.public.blob.vercel-storage.com/dashboard/latest.json
 ```
+
+Pi 的正式 `rpi_main.py` 執行順序為：產生快照 → 寫入本機 → 寫入訊號歷史 →
+發布 Blob → 發送 Telegram/LINE → 選用的 Google Sheets。Blob 快取時間為 60 秒；
+若發布失敗，會記錄錯誤但不阻止正式訊息發送。Dry run/research 不會發布。
+
+Pi 必要環境變數：
+
+```text
+ENABLE_DASHBOARD_PUBLISH=true
+BLOB_READ_WRITE_TOKEN=...
+DASHBOARD_BLOB_PATH=dashboard/latest.json
+```
+
+前端讀不到 Blob 時才退回部署內的 `/data/daily_candidates.json`，並顯示備援警告。
 
 如果未來要改成外部 snapshot URL，可設定：
 
 ```text
 VERCEL_SNAPSHOT_URL=https://example.com/daily_candidates.json
+```
+
+部署備援 URL 也可設定：
+
+```text
+VERCEL_SNAPSHOT_FALLBACK_URL=/data/daily_candidates.json
 ```
 
 股票索引也可外部化：
@@ -72,6 +93,6 @@ VERCEL_STOCK_INDEX_URL=https://example.com/tw_stock_index.json
 
 ## 分工原則
 
-- Pi：抓資料、跑策略、產生報告、發 Telegram/LINE。
-- Vercel：展示資料、股票查詢、視覺化。
+- Pi：抓資料、跑策略、產生報告、發布正式 Blob 快照、發 Telegram/LINE。
+- Vercel：讀取 Blob 最新快照並展示資料、股票查詢、視覺化。
 - GitHub Actions：測試與 dry-run，不作為正式通知來源。

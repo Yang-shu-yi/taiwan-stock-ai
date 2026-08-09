@@ -127,8 +127,8 @@ def fetch_json(
             url,
             ttl_minutes,
             cached=True,
-            fallback_used=True,
-            stale_reason="fresh_cache",
+            fallback_used=False,
+            stale_reason=None,
         )
         return cached.get("data")
 

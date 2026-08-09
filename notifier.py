@@ -1,4 +1,5 @@
 import os
+import re
 import time
 
 import requests
@@ -29,6 +30,26 @@ REPORT_TELEGRAM_BOT_TOKEN = os.getenv("REPORT_TELEGRAM_BOT_TOKEN")
 REPORT_TELEGRAM_CHAT_ID = os.getenv("REPORT_TELEGRAM_CHAT_ID")
 
 
+def safe_exception_text(exc: Exception) -> str:
+    text = f"{type(exc).__name__}: {exc}"
+    for secret in (
+        REPORT_TELEGRAM_BOT_TOKEN,
+        REPORT_TELEGRAM_CHAT_ID,
+        LINE_CHANNEL_TOKEN,
+        LINE_TARGET_ID,
+        os.getenv("BLOB_READ_WRITE_TOKEN"),
+    ):
+        if secret:
+            text = text.replace(secret, "<redacted>")
+    text = re.sub(
+        r"https://api\.telegram\.org/bot[^/\s]+",
+        "https://api.telegram.org/bot<redacted>",
+        text,
+    )
+    text = re.sub(r"Bearer\s+\S+", "Bearer <redacted>", text, flags=re.IGNORECASE)
+    return text[:1000]
+
+
 def _send_telegram_message(message: str, token: str, chat_id: str) -> None:
     url = f"https://api.telegram.org/bot{token}/sendMessage"
     payload = {"chat_id": chat_id, "text": message}
@@ -41,7 +62,7 @@ def _with_dashboard_link(message: str) -> str:
         return message
     if REPORT_DASHBOARD_URL in message:
         return message
-    suffix = f"\n\nDashboard: {REPORT_DASHBOARD_URL}"
+    suffix = f"\n\n🔗 完整分析\n{REPORT_DASHBOARD_URL}"
     return f"{message.rstrip()}{suffix}"
 
 
@@ -98,9 +119,9 @@ def notify_report(message: str) -> None:
         try:
             results[channel] = sender(final_message)
         except Exception as exc:
-            errors[channel] = str(exc)
+            errors[channel] = safe_exception_text(exc)
             results[channel] = False
-            print(f"[notify] {channel} failed: {exc}")
+            print(f"[notify] {channel} failed: {errors[channel]}")
 
     if any(results.values()):
         return

@@ -29,3 +29,24 @@ def test_notify_report_raises_only_when_all_enabled_channels_fail(monkeypatch) -
 
     with pytest.raises(RuntimeError, match="all enabled notification channels failed"):
         notifier.notify_report("盤前報告")
+
+
+def test_safe_exception_text_redacts_telegram_credentials(monkeypatch) -> None:
+    monkeypatch.setattr(notifier, "REPORT_TELEGRAM_BOT_TOKEN", "secret-token")
+    error = RuntimeError(
+        "failed https://api.telegram.org/botsecret-token/getUpdates?offset=1"
+    )
+
+    text = notifier.safe_exception_text(error)
+
+    assert "secret-token" not in text
+    assert "bot<redacted>/getUpdates" in text
+
+
+def test_safe_exception_text_redacts_blob_token(monkeypatch) -> None:
+    monkeypatch.setenv("BLOB_READ_WRITE_TOKEN", "blob-secret")
+
+    text = notifier.safe_exception_text(RuntimeError("upload failed for blob-secret"))
+
+    assert "blob-secret" not in text
+    assert "<redacted>" in text

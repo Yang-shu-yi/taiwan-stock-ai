@@ -4,10 +4,13 @@ import os
 from typing import Any
 
 import pandas as pd
-import ta
 import twstock
 import yfinance as yf
 
+from daily_quote_overlay import overlay_latest_quote
+from entry_opportunity import evaluate_entry_opportunity
+from strategy_contract import SHADOW_CHANNEL
+from strategy_features import extract_market_features
 from universe import get_theme_for_code, get_tw_name, tw_code_to_yahoo_symbol
 
 
@@ -32,6 +35,7 @@ def build_small_mid_cap_radar(
     *,
     exclude_codes: set[str] | None = None,
     limit: int | None = None,
+    latest_quotes: dict[str, dict[str, Any]] | None = None,
 ) -> list[dict[str, Any]]:
     if not _env_flag("ENABLE_SMALL_MID_RADAR", True):
         return []
@@ -44,7 +48,11 @@ def build_small_mid_cap_radar(
     for code in _small_mid_universe()[:max_scan]:
         if code in exclude_codes:
             continue
-        item = analyze_small_mid_candidate(code, tw_news)
+        item = analyze_small_mid_candidate(
+            code,
+            tw_news,
+            (latest_quotes or {}).get(code),
+        )
         if item is not None:
             candidates.append(item)
 
@@ -62,12 +70,17 @@ def build_small_mid_cap_radar(
     return candidates[:limit]
 
 
-def analyze_small_mid_candidate(code: str, tw_news: list[dict[str, Any]]) -> dict[str, Any] | None:
+def analyze_small_mid_candidate(
+    code: str,
+    tw_news: list[dict[str, Any]],
+    latest_quote: dict[str, Any] | None = None,
+) -> dict[str, Any] | None:
     if code not in twstock.codes:
         return None
 
     symbol = tw_code_to_yahoo_symbol(code)
     history = _recent_history(symbol)
+    history = overlay_latest_quote(history, latest_quote)
     metrics = _price_metrics(history) if history is not None else None
     if metrics is None:
         return None
@@ -78,12 +91,17 @@ def analyze_small_mid_candidate(code: str, tw_news: list[dict[str, Any]]) -> dic
         return None
 
     score = score_detail["score"]
+    entry = evaluate_entry_opportunity(metrics, score)
+    info = twstock.codes.get(code)
     return {
         "code": code,
         "name": get_tw_name(code),
         "symbol": symbol,
         "theme": get_theme_for_code(code),
+        "industry": getattr(info, "group", "") if info is not None else "",
         "source": "small_mid_radar",
+        "candidate_channel": SHADOW_CHANNEL,
+        "shadow_mode": True,
         "score": score,
         "small_mid_score": score,
         "quality_score": score_detail["quality_score"],
@@ -104,9 +122,17 @@ def analyze_small_mid_candidate(code: str, tw_news: list[dict[str, Any]]) -> dic
         "dividend_yield_pct": _round(fundamentals.get("dividend_yield_pct")),
         "news_hits": score_detail["news_hits"],
         "reasons": _reason_lines(metrics, fundamentals, score_detail),
-        "risk_flags": _risk_flags(metrics, fundamentals),
-        "invalidations": _invalidations(metrics),
+        "risk_flags": list(
+            dict.fromkeys(
+                [
+                    *entry["entry_risk_flags"],
+                    *_risk_flags(metrics, fundamentals),
+                ]
+            )
+        )[:4],
+        "invalidations": _entry_invalidations(metrics, entry),
         "data_quality": "基本面資料部分依 Yahoo 補充" if fundamentals.get("missing") else "正常",
+        **entry,
     }
 
 
@@ -128,14 +154,13 @@ def score_small_mid_candidate(
     technical_score = _technical_score(metrics)
     valuation_score = _valuation_score(fundamentals)
     quality_score = _quality_score(metrics, fundamentals)
-    theme_score = min(news_hits * 8, 16)
+    news_context_score = min(news_hits * 8, 16)
 
     total = round(
         quality_score * 0.30
-        + valuation_score * 0.20
-        + liquidity_score * 0.15
+        + valuation_score * 0.25
+        + liquidity_score * 0.20
         + technical_score * 0.25
-        + theme_score
     )
     return {
         "score": max(0, min(total, 100)),
@@ -143,7 +168,7 @@ def score_small_mid_candidate(
         "valuation_score": valuation_score,
         "liquidity_score": liquidity_score,
         "technical_score": technical_score,
-        "theme_score": theme_score,
+        "news_context_score": news_context_score,
         "news_hits": news_hits,
         "excluded": bool(excluded_reasons),
         "excluded_reasons": excluded_reasons,
@@ -154,7 +179,9 @@ def promote_small_mid_candidates(
     tw_candidates: list[dict[str, Any]],
     small_mid_candidates: list[dict[str, Any]],
 ) -> list[dict[str, Any]]:
-    promote_limit = int(os.getenv("SMALL_MID_PROMOTE_LIMIT", "2"))
+    if _env_flag("SMALL_MID_SHADOW_MODE", True):
+        return list(tw_candidates)
+    promote_limit = int(os.getenv("SMALL_MID_PROMOTE_LIMIT", "0"))
     if promote_limit <= 0 or not small_mid_candidates:
         return tw_candidates
 
@@ -191,31 +218,35 @@ def _recent_history(symbol: str, period: str = "6mo") -> pd.DataFrame | None:
         return None
 
 
-def _price_metrics(history: pd.DataFrame) -> dict[str, float] | None:
-    if history is None or len(history) < 60:
+def _price_metrics(history: pd.DataFrame) -> dict[str, Any] | None:
+    canonical = extract_market_features(history)
+    if canonical is None:
         return None
-
-    close = history["Close"].astype("float64")
-    volume = history["Volume"].fillna(0).astype("float64")
-    price = float(close.iloc[-1])
-    prev = float(close.iloc[-2])
-    ma20 = float(ta.trend.sma_indicator(close, 20).iloc[-1])
-    ma60 = float(ta.trend.sma_indicator(close, 60).iloc[-1])
-    rsi = float(ta.momentum.RSIIndicator(close, 14).rsi().iloc[-1])
-    avg_volume20 = float(volume.tail(20).mean())
-    avg_turnover_million = price * avg_volume20 / 1_000_000
     return {
-        "price": price,
-        "ma20": ma20,
-        "ma60": ma60,
-        "rsi": rsi,
-        "pct_1d": ((price / prev) - 1.0) * 100 if prev else 0.0,
-        "pct_5d": _pct_change(close, 5) or 0.0,
-        "pct_20d": _pct_change(close, 20) or 0.0,
-        "vol_ratio": float(volume.iloc[-1] / avg_volume20) if avg_volume20 else 1.0,
-        "avg_turnover_million": avg_turnover_million,
-        "volatility20": float(close.pct_change().tail(20).std() * 100),
+        **canonical,
+        "price": float(canonical["price"] or 0.0),
+        "ma20": float(canonical["ma20"] or 0.0),
+        "ma60": float(canonical["ma60"] or 0.0),
+        "rsi": float(canonical["rsi14"] or 0.0),
+        "pct_1d": float(canonical["pct_1d"] or 0.0),
+        "pct_5d": float(canonical["pct_5d"] or 0.0),
+        "pct_20d": float(canonical["pct_20d"] or 0.0),
+        "vol_ratio": float(canonical["vol_ratio"] or 1.0),
+        "avg_turnover_million": float(canonical["avg_turnover_million"] or 0.0),
+        "volatility20": float(canonical["volatility20"] or 0.0),
     }
+
+
+def _entry_invalidations(
+    metrics: dict[str, Any],
+    entry: dict[str, Any],
+) -> list[str]:
+    stop_price = entry.get("entry_plan", {}).get("stop_price")
+    values = []
+    if stop_price:
+        values.append(f"跌破規劃停損 {float(stop_price):.2f}")
+    values.extend(_invalidations(metrics))
+    return list(dict.fromkeys(values))[:2]
 
 
 def _fundamental_metrics(symbol: str) -> dict[str, float | bool | None]:
@@ -305,14 +336,10 @@ def _quality_score(metrics: dict[str, float], fundamentals: dict[str, float | bo
     market_cap = fundamentals.get("market_cap_billion")
     pe = fundamentals.get("trailing_pe")
 
-    if metrics["price"] <= IDEAL_MAX_PRICE:
-        score += 12
-    elif metrics["price"] <= MAX_PRICE:
-        score += 4
     if metrics["pct_20d"] > 0:
-        score += 12
+        score += 16
     if metrics["avg_turnover_million"] >= 80:
-        score += 10
+        score += 14
     if isinstance(market_cap, float) and market_cap >= IDEAL_MARKET_CAP_MIN_BILLION:
         score += 8
     if isinstance(pe, float) and 0 < pe <= 30:

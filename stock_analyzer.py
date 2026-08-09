@@ -8,7 +8,14 @@ import ta
 import twstock
 import yfinance as yf
 
+from company_assessment import build_company_assessment
 from data_layer import twse_json
+from entry_opportunity import evaluate_entry_opportunity
+from strategy_features import (
+    build_model_feature_vector,
+    extract_market_features,
+    score_canonical_features,
+)
 from universe import get_theme_for_code, tw_code_to_yahoo_symbol
 
 
@@ -135,7 +142,10 @@ def _indicator_text(name: str, passed: bool, detail: str) -> str:
     return f"{name}: {prefix} / {detail}"
 
 
-def analyze_tw_stock(code: str) -> dict:
+def analyze_tw_stock(
+    code: str,
+    news_items: list[dict] | None = None,
+) -> dict:
     if code not in twstock.codes:
         raise ValueError(f"Unknown stock code: {code}")
 
@@ -152,110 +162,57 @@ def analyze_tw_stock(code: str) -> dict:
     history = history.dropna().copy()
     benchmark = benchmark.dropna().copy()
 
-    close = history["Close"].astype("float64")
-    high = history["High"].astype("float64")
-    low = history["Low"].astype("float64")
-    volume = history["Volume"].astype("float64")
+    revenue = get_revenue_snapshot(code, info.market)
+    revenue_yoy = revenue.get("yoy_pct")
+    features = extract_market_features(history, benchmark)
+    if features is None:
+        raise RuntimeError(f"Insufficient canonical features for {code}")
+    score_result = score_canonical_features(features, revenue)
 
+    close = history["Close"].astype("float64")
     history["MA20"] = ta.trend.sma_indicator(close, 20)
     history["MA60"] = ta.trend.sma_indicator(close, 60)
     history["MA120"] = ta.trend.sma_indicator(close, 120)
-    history["RSI14"] = ta.momentum.RSIIndicator(close, 14).rsi()
 
-    macd = ta.trend.MACD(close, 26, 12, 9)
-    history["MACD"] = macd.macd()
-    history["MACD_SIGNAL"] = macd.macd_signal()
-    history["MACD_HIST"] = macd.macd_diff()
-    history["ATR14"] = ta.volatility.AverageTrueRange(
-        high, low, close, 14
-    ).average_true_range()
-    history["VOL20"] = volume.rolling(20).mean()
+    close_price = float(features["price"])
+    pct_1d = features["pct_1d"]
+    pct_5d = features["pct_5d"]
+    pct_20d = features["pct_20d"]
+    pct_60d = features["pct_60d"]
+    twii_20d = features["benchmark_20d"]
+    twii_60d = features["benchmark_60d"]
+    rs_20d = features["rs_20d"]
+    rs_60d = features["rs_60d"]
+    ma20 = float(features["ma20"])
+    ma60 = float(features["ma60"])
+    ma120 = _safe_float(features["ma120"])
+    rsi14 = float(features["rsi14"])
+    macd_hist = float(features["macd_hist"])
+    atr14 = float(features["atr14"])
+    vol_ratio = features["vol_ratio"]
+    recent_high_20 = float(features["recent_high_20"])
+    recent_low_20 = float(features["recent_low_20"])
+    recent_high_60 = float(features["recent_high_60"])
+    distance_to_ma20 = features["distance_to_ma20"]
+    distance_to_ma60 = features["distance_to_ma60"]
+    breakout_gap_20 = features["breakout_gap_20"]
 
-    latest = history.iloc[-1]
-    previous = history.iloc[-2]
-
-    close_price = float(latest["Close"])
-    pct_1d = ((close_price / float(previous["Close"])) - 1.0) * 100
-    pct_5d = _pct_change(close, 5)
-    pct_20d = _pct_change(close, 20)
-    pct_60d = _pct_change(close, 60)
-    twii_20d = _pct_change(benchmark["Close"].astype("float64"), 20)
-    twii_60d = _pct_change(benchmark["Close"].astype("float64"), 60)
-    rs_20d = None if pct_20d is None or twii_20d is None else pct_20d - twii_20d
-    rs_60d = None if pct_60d is None or twii_60d is None else pct_60d - twii_60d
-
-    ma20 = float(latest["MA20"])
-    ma60 = float(latest["MA60"])
-    ma120 = float(latest["MA120"])
-    rsi14 = float(latest["RSI14"])
-    macd_hist = float(latest["MACD_HIST"])
-    atr14 = float(latest["ATR14"])
-    vol_ratio = (
-        float(latest["Volume"]) / float(latest["VOL20"])
-        if _safe_float(latest["VOL20"])
-        else None
-    )
-
-    recent_high_20 = float(close.iloc[-21:-1].max()) if len(close) > 21 else close_price
-    recent_low_20 = float(close.iloc[-21:-1].min()) if len(close) > 21 else close_price
-    recent_high_60 = float(close.iloc[-61:-1].max()) if len(close) > 61 else close_price
-    distance_to_ma20 = (close_price / ma20 - 1.0) * 100 if ma20 else None
-    distance_to_ma60 = (close_price / ma60 - 1.0) * 100 if ma60 else None
-    breakout_gap_20 = (close_price / recent_high_20 - 1.0) * 100 if recent_high_20 else None
-
-    trend_score = 0
-    trend_score += 22 if close_price > ma20 else 0
-    trend_score += 23 if close_price > ma60 else 0
-    trend_score += 15 if close_price > ma120 else 0
-    trend_score += 15 if ma20 > ma60 else 0
-    trend_score += 10 if ma60 > ma120 else 0
-    trend_score += 15 if macd_hist > 0 else 0
-
-    momentum_score = 0
-    momentum_score += 20 if (pct_20d or 0) > 0 else 0
-    momentum_score += 20 if (pct_60d or 0) > 0 else 0
-    momentum_score += 20 if 50 <= rsi14 <= 72 else 8 if 45 <= rsi14 < 50 else 0
-    momentum_score += 20 if (vol_ratio or 0) >= 1.2 else 8 if (vol_ratio or 0) >= 0.9 else 0
-    momentum_score += 20 if (rs_20d or 0) > 0 else 0
-
-    revenue = get_revenue_snapshot(code, info.market)
-    revenue_yoy = revenue.get("yoy_pct")
-    revenue_mom = revenue.get("mom_pct")
-    cumulative_yoy = revenue.get("cumulative_yoy_pct")
-
-    revenue_score = 45
-    if revenue_yoy is not None:
-        if revenue_yoy >= 30:
-            revenue_score += 35
-        elif revenue_yoy >= 10:
-            revenue_score += 22
-        elif revenue_yoy < 0:
-            revenue_score -= 18
-    if revenue_mom is not None:
-        if revenue_mom > 0:
-            revenue_score += 10
-        elif revenue_mom < 0:
-            revenue_score -= 8
-    if cumulative_yoy is not None:
-        if cumulative_yoy > 0:
-            revenue_score += 10
-        elif cumulative_yoy < 0:
-            revenue_score -= 8
-    revenue_score = max(0, min(revenue_score, 100))
-
-    relative_score = 50
-    if rs_20d is not None:
-        relative_score += 25 if rs_20d > 5 else 15 if rs_20d > 0 else -15
-    if rs_60d is not None:
-        relative_score += 20 if rs_60d > 8 else 10 if rs_60d > 0 else -10
-    relative_score += 5 if close_price > recent_high_20 else 0
-    relative_score = max(0, min(relative_score, 100))
-
-    overall_score = round(
-        trend_score * 0.35
-        + momentum_score * 0.30
-        + revenue_score * 0.20
-        + relative_score * 0.15
+    components = score_result["components"]
+    trend_score = components["trend"]
+    momentum_score = components["momentum"]
+    revenue_score = components["fundamental"]
+    relative_score = components["relative_strength"]
+    liquidity_score = components["liquidity"]
+    overall_score = round(score_result["score"])
+    entry_opportunity = evaluate_entry_opportunity(features, overall_score)
+    company_assessment = build_company_assessment(
+        code=code,
+        name=info.name,
+        market=info.market,
+        revenue=revenue,
+        metrics=features,
+        entry=entry_opportunity,
+        news_items=news_items,
     )
 
     breakout_ready = (
@@ -263,6 +220,9 @@ def analyze_tw_stock(code: str) -> dict:
         and (vol_ratio or 0) >= 1.2
         and close_price > ma20
         and close_price > ma60
+        and distance_to_ma20 is not None
+        and distance_to_ma20 <= 6
+        and (pct_5d or 0) <= 10
     )
     pullback_setup = (
         close_price > ma20
@@ -288,8 +248,12 @@ def analyze_tw_stock(code: str) -> dict:
     else:
         bias = "中性偏保守"
         action = "先觀察價格是否重新站回 MA20 / MA60，再決定是否納入追蹤。"
+    trend_bias = bias
+    trend_action = action
+    bias = entry_opportunity["entry_status_label"]
+    action = entry_opportunity["entry_action"]
 
-    risk_flags: list[str] = []
+    risk_flags: list[str] = list(entry_opportunity["entry_risk_flags"])
     if rsi14 >= 75:
         risk_flags.append("RSI 偏熱，短線追價風險高")
     if (vol_ratio or 0) < 0.8:
@@ -301,6 +265,7 @@ def analyze_tw_stock(code: str) -> dict:
     if rs_20d is not None and rs_20d < 0:
         risk_flags.append("近 20 日表現落後大盤")
 
+    risk_flags = list(dict.fromkeys(risk_flags))
     if not risk_flags:
         risk_flags.append("目前沒有明顯破壞結構的訊號，但仍需留意大盤風險")
 
@@ -353,16 +318,24 @@ def analyze_tw_stock(code: str) -> dict:
             "rs_60d": rs_60d,
         },
         "revenue": revenue,
+        "feature_version": score_result["feature_version"],
+        "feature_vector": build_model_feature_vector(features, revenue),
+        "entry_opportunity": entry_opportunity,
+        "company_assessment": company_assessment,
         "scores": {
             "趨勢結構": trend_score,
             "動能續航": momentum_score,
             "營收動能": revenue_score,
             "相對強弱": relative_score,
+            "流動性": liquidity_score,
+            "進場可行性": entry_opportunity["entry_score"],
             "總分": overall_score,
         },
         "analysis": {
             "bias": bias,
             "action": action,
+            "trend_bias": trend_bias,
+            "trend_action": trend_action,
             "indicator_checks": indicator_checks,
             "risk_flags": risk_flags,
             "setup_flags": {

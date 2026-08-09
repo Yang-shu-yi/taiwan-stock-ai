@@ -9,6 +9,8 @@ const snapshotCandidates = [
   path.join(root, "tests", "fixtures", "sample_daily_candidates.json"),
 ];
 const stockIndexPath = path.join(root, "web", "data", "tw_stock_index.json");
+const defaultSnapshotUrl =
+  "https://imqu8cpubada2jad.public.blob.vercel-storage.com/dashboard/latest.json";
 
 function copyFile(from, to) {
   fs.mkdirSync(path.dirname(to), { recursive: true });
@@ -39,9 +41,15 @@ function copyStockIndex() {
 }
 
 function writeConfig() {
-  const snapshotUrl = process.env.VERCEL_SNAPSHOT_URL || "/data/daily_candidates.json";
+  const snapshotUrl = process.env.VERCEL_SNAPSHOT_URL || defaultSnapshotUrl;
+  const snapshotFallbackUrl =
+    process.env.VERCEL_SNAPSHOT_FALLBACK_URL || "/data/daily_candidates.json";
   const stockIndexUrl = process.env.VERCEL_STOCK_INDEX_URL || "/data/tw_stock_index.json";
-  const content = `window.TSAI_CONFIG = ${JSON.stringify({ snapshotUrl, stockIndexUrl }, null, 2)};\n`;
+  const content = `window.TSAI_CONFIG = ${JSON.stringify(
+    { snapshotUrl, snapshotFallbackUrl, stockIndexUrl },
+    null,
+    2,
+  )};\n`;
   fs.writeFileSync(path.join(distDir, "config.js"), content, "utf-8");
 }
 

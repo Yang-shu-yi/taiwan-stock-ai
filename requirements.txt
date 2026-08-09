@@ -17,3 +17,4 @@ uvicorn
 pydantic
 beautifulsoup4
 pytest
+vercel>=0.7.1,<1

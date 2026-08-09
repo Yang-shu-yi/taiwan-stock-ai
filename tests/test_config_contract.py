@@ -16,7 +16,10 @@ def test_env_example_uses_report_bot_contract() -> None:
     assert "VERCEL_SNAPSHOT_URL=" in text
     assert "BLOB_READ_WRITE_TOKEN=" in text
     assert "ENABLE_SMALL_MID_RADAR=true" in text
-    assert "SMALL_MID_PROMOTE_LIMIT=2" in text
+    assert "SMALL_MID_SHADOW_MODE=true" in text
+    assert "SMALL_MID_PROMOTE_LIMIT=0" in text
+    assert "STRATEGY_VERSION=tw-entry-v1" in text
+    assert "STOCK_SELL_TAX_RATE=0.003" in text
 
 
 def test_sample_snapshot_fixture_exists() -> None:

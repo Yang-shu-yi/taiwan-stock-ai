@@ -13,7 +13,7 @@
           <p class="eyebrow">Taiwan Stock AI</p>
           <h1>台股 AI 戰情室</h1>
           <p class="subtitle">
-            盤前、盤後、盤中候選股與中小型潛力股雷達。資料由 Pi 排程產生，網站負責查詢與視覺化呈現。
+            Pi 於盤前、盤後產生正式觀察快照並同步更新；網站顯示資料基準日、品質與研究雷達。
           </p>
         </div>
         <div class="hero-meta">
@@ -71,11 +71,35 @@
       </section>
 
       <section class="grid two">
+        <article class="panel action-panel">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Actionable</p>
+              <h2>可執行名單</h2>
+              <p class="hint">同時通過趨勢、乖離、停損距離與風險報酬門檻，才列為可分批布局。</p>
+            </div>
+          </div>
+          <div id="actionable-list" class="card-list"></div>
+        </article>
+
+        <article class="panel radar-panel">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Early Radar</p>
+              <h2>提前雷達</h2>
+              <p class="hint">追蹤剛站回 MA20、RSI 穿越 50、MACD 改善與相對強弱加速；容許較多誤報。</p>
+            </div>
+          </div>
+          <div id="early-watch-list" class="card-list"></div>
+        </article>
+      </section>
+
+      <section class="grid two">
         <article class="panel">
           <div class="section-head">
             <div>
               <p class="eyebrow">Market Focus</p>
-              <h2>今日主軸</h2>
+              <h2>觀察池相對強勢</h2>
             </div>
           </div>
           <div id="theme-list" class="card-list"></div>
@@ -85,7 +109,14 @@
           <div class="section-head">
             <div>
               <p class="eyebrow">Candidates</p>
-              <h2>優先候選股</h2>
+              <h2>趨勢強度觀察</h2>
+              <p class="hint">保留原本的趨勢確認排名；高分不等於適合現在追價。</p>
+              <div id="candidate-filter" class="signal-filter" role="tablist" aria-label="依綜合分數燈號篩選">
+                <button type="button" class="signal-filter-button active" data-score-filter="all" aria-selected="true">全部</button>
+                <button type="button" class="signal-filter-button signal-filter-green" data-score-filter="green" aria-selected="false">🟢 綠燈 ≥ 75</button>
+                <button type="button" class="signal-filter-button signal-filter-yellow" data-score-filter="yellow" aria-selected="false">🟡 黃燈 55–74</button>
+                <button type="button" class="signal-filter-button signal-filter-red" data-score-filter="red" aria-selected="false">🔴 紅燈 &lt; 55</button>
+              </div>
             </div>
           </div>
           <div id="candidate-list" class="card-list"></div>
@@ -96,7 +127,8 @@
         <div class="section-head">
           <div>
             <p class="eyebrow">Small / Mid Cap</p>
-            <h2>中小型潛力股雷達</h2>
+            <h2>中小型研究雷達（Shadow）</h2>
+            <p class="hint">只記錄研究績效，不進入正式主推名單。</p>
           </div>
         </div>
         <div id="small-mid-list" class="card-list"></div>

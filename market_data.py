@@ -11,7 +11,13 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 from typing import Any
 
-from data_layer import fetch_json, record_status, twse_json, yahoo_chart
+from data_layer import (
+    fetch_json,
+    get_data_status,
+    record_status,
+    twse_json,
+    yahoo_chart,
+)
 
 
 _NA = "N/A"
@@ -57,6 +63,44 @@ def _recent_twse_dates(days: int = 7) -> list[str]:
     ]
 
 
+def _normalize_twse_date(value: Any) -> str | None:
+    digits = "".join(ch for ch in str(value or "") if ch.isdigit())
+    try:
+        if len(digits) == 7:
+            year = int(digits[:3]) + 1911
+            parsed = datetime(year, int(digits[3:5]), int(digits[5:7]))
+        elif len(digits) == 8:
+            parsed = datetime.strptime(digits, "%Y%m%d")
+        else:
+            return None
+    except ValueError:
+        return None
+    return parsed.strftime("%Y-%m-%d")
+
+
+def _refresh_data_status_date(
+    key: str,
+    trading_date: str | None,
+    *,
+    as_of: str | None = None,
+) -> None:
+    if not trading_date:
+        return
+    previous = get_data_status().get(key) or {}
+    record_status(
+        key,
+        bool(previous.get("ok", True)),
+        str(previous.get("source") or key),
+        int(previous.get("ttl_minutes") or 15),
+        error=previous.get("error"),
+        cached=bool(previous.get("cached")),
+        trading_date=trading_date,
+        as_of=as_of or previous.get("as_of"),
+        fallback_used=bool(previous.get("fallback_used")),
+        stale_reason=previous.get("stale_reason"),
+    )
+
+
 def _yahoo_quote(symbol: str) -> dict[str, Any]:
     try:
         data = yahoo_chart(symbol, interval="1d", range_="2d")
@@ -65,18 +109,50 @@ def _yahoo_quote(symbol: str) -> dict[str, Any]:
         price = _to_float(meta.get("regularMarketPrice"))
         previous = _to_float(meta.get("previousClose") or meta.get("chartPreviousClose"))
         if price is None or previous is None:
-            return {"price": None, "chg": None, "pct": None, "name": ""}
+            return {
+                "price": None,
+                "chg": None,
+                "pct": None,
+                "name": "",
+                "trading_date": None,
+                "as_of": None,
+                "market_state": None,
+            }
         change = price - previous
         pct = (change / previous * 100.0) if previous else 0.0
+        market_time = _to_float(meta.get("regularMarketTime"))
+        market_dt = (
+            datetime.fromtimestamp(market_time, tz=LOCAL_TZ)
+            if market_time is not None
+            else None
+        )
+        trading_date = market_dt.strftime("%Y-%m-%d") if market_dt else None
+        as_of = market_dt.isoformat(timespec="seconds") if market_dt else None
+        _refresh_data_status_date(
+            f"yahoo_{symbol}_1d_2d",
+            trading_date,
+            as_of=as_of,
+        )
         return {
             "price": price,
             "chg": change,
             "pct": pct,
             "name": meta.get("shortName") or meta.get("longName") or symbol,
+            "trading_date": trading_date,
+            "as_of": as_of,
+            "market_state": meta.get("marketState"),
         }
     except Exception as exc:
         _log(f"Yahoo quote failed for {symbol}: {exc}")
-        return {"price": None, "chg": None, "pct": None, "name": ""}
+        return {
+            "price": None,
+            "chg": None,
+            "pct": None,
+            "name": "",
+            "trading_date": None,
+            "as_of": None,
+            "market_state": None,
+        }
 
 
 def get_tw_index() -> dict[str, str]:
@@ -86,6 +162,9 @@ def get_tw_index() -> dict[str, str]:
         "chg": _format_signed(quote["chg"], 0),
         "pct": _format_signed(quote["pct"], 2),
         "turnover": _NA,
+        "trading_date": quote.get("trading_date"),
+        "as_of": quote.get("as_of"),
+        "market_state": quote.get("market_state"),
     }
 
     try:
@@ -96,6 +175,8 @@ def get_tw_index() -> dict[str, str]:
         )
         if isinstance(rows, list) and rows:
             latest = rows[-1]
+            turnover_date = _normalize_twse_date(latest.get("Date") or latest.get("日期"))
+            _refresh_data_status_date("twse_turnover", turnover_date)
             raw_value = _to_float(latest.get("TradeValue"))
             if raw_value is not None:
                 result["turnover"] = f"{raw_value / 1e8:.0f}億"
@@ -122,6 +203,8 @@ def get_forex_twd() -> dict[str, str]:
     return {
         "rate": _format_plain(quote["price"], 3),
         "chg": _format_signed(quote["chg"], 3),
+        "trading_date": quote.get("trading_date"),
+        "as_of": quote.get("as_of"),
     }
 
 

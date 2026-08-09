@@ -17,7 +17,7 @@ from message_formatter import (
     format_intraday_alert,
     format_telegram_help,
 )
-from notifier import notify_report, send_report_message
+from notifier import notify_report, safe_exception_text, send_report_message
 from universe import get_tw_name, tw_code_to_yahoo_symbol
 
 
@@ -148,8 +148,8 @@ def poll_telegram(last_update_id: int) -> int:
             reply = handle_command(message.get("text", ""))
             if reply:
                 send_report_message(reply)
-    except Exception:
-        log(f"Telegram polling failed: {traceback.format_exc()}")
+    except Exception as exc:
+        log(f"Telegram polling failed: {safe_exception_text(exc)}")
     return last_update_id
 
 
@@ -173,6 +173,16 @@ def main() -> None:
                 continue
 
             focus_codes = get_intraday_focus_codes(INTRADAY_FOCUS_LIMIT, SNAPSHOT_FILE)
+            snapshot = load_daily_snapshot(SNAPSHOT_FILE)
+            focus_context = {}
+            for candidate in [
+                *snapshot.get("tw_candidates", []),
+                *snapshot.get("early_watch_candidates", []),
+                *snapshot.get("actionable_candidates", []),
+            ]:
+                code = str(candidate.get("code") or "")
+                if code:
+                    focus_context[code] = candidate
             log(f"Intraday focus list: {', '.join(focus_codes)}")
 
             for code in focus_codes:
@@ -180,6 +190,10 @@ def main() -> None:
                     item = analyze_symbol(code)
                     if not item:
                         continue
+                    daily_context = focus_context.get(code) or {}
+                    item["entry_status"] = daily_context.get("entry_status")
+                    item["entry_status_label"] = daily_context.get("entry_status_label")
+                    item["entry_score"] = daily_context.get("entry_score")
                     last_sent = last_alert_ts.get(code, 0.0)
                     if now_ts - last_sent < ALERT_COOLDOWN_MIN * 60:
                         continue

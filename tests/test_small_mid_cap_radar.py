@@ -53,7 +53,8 @@ def test_score_small_mid_candidate_excludes_illiquid_stock() -> None:
     assert "成交值不足" in result["excluded_reasons"]
 
 
-def test_promote_small_mid_candidates_adds_new_high_score_names() -> None:
+def test_shadow_mode_never_promotes_small_mid_candidates(monkeypatch) -> None:
+    monkeypatch.setenv("SMALL_MID_SHADOW_MODE", "true")
     current = [{"code": "2330", "score": 90}]
     radar = [
         {"code": "6274", "score": 82, "small_mid_score": 82},
@@ -63,4 +64,4 @@ def test_promote_small_mid_candidates_adds_new_high_score_names() -> None:
 
     result = promote_small_mid_candidates(current, radar)
 
-    assert [item["code"] for item in result] == ["2330", "6274"]
+    assert [item["code"] for item in result] == ["2330"]

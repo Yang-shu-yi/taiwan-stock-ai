@@ -1,0 +1,369 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "Taiwan Stock AI 系統專業化診斷",
+    "description": "以本機訊號紀錄、績效資料與程式碼稽核，判斷勝率可信度並提出分階段改造方案。",
+    "generatedAt": "2026-07-16T12:00:00+08:00",
+    "cards": [
+      {
+        "id": "signal_dates_card",
+        "description": "目前可視為獨立市場情境的訊號日期數。",
+        "dataset": "headline_metrics",
+        "sourceId": "report_sql",
+        "filter": {"scope": "audit"},
+        "metrics": [
+          {"label": "訊號日", "field": "distinct_signal_dates", "format": "number", "unit": " 天"}
+        ]
+      },
+      {
+        "id": "unique_signals_card",
+        "description": "依日期、股票與來源去重後的訊號數。",
+        "dataset": "headline_metrics",
+        "sourceId": "report_sql",
+        "filter": {"scope": "audit"},
+        "metrics": [
+          {"label": "有效訊號", "field": "unique_date_signals", "format": "number", "unit": " 筆"}
+        ]
+      },
+      {
+        "id": "entry_consistency_card",
+        "description": "紀錄訊號價與績效進場價在 1 基點內相同的比例。",
+        "dataset": "headline_metrics",
+        "sourceId": "report_sql",
+        "filter": {"scope": "audit"},
+        "metrics": [
+          {"label": "進場價一致", "field": "same_entry_rate", "format": "percent"}
+        ]
+      },
+      {
+        "id": "radar_loss_share_card",
+        "description": "中小型雷達占現行最近 200 列彙總淨損失的比例。",
+        "dataset": "headline_metrics",
+        "sourceId": "report_sql",
+        "filter": {"scope": "audit"},
+        "metrics": [
+          {"label": "雷達損失占比", "field": "radar_net_loss_share", "format": "percent"}
+        ]
+      }
+    ],
+    "charts": [
+      {
+        "id": "horizon_return_chart",
+        "title": "各持有期平均毛報酬",
+        "subtitle": "依日期、股票、來源去重；尚未扣除交易成本。",
+        "headerMarkdown": "長持有期的點估計較高，但所有報酬信賴區間仍跨過零。",
+        "type": "bar",
+        "dataset": "horizon_performance",
+        "sourceId": "report_sql",
+        "valueFormat": "percent",
+        "yAxisTitle": "平均毛報酬",
+        "encodings": {
+          "x": {"field": "horizon_label", "type": "ordinal", "label": "持有期"},
+          "y": {"field": "mean_return_rate", "type": "quantitative", "label": "平均毛報酬", "format": "percent"},
+          "tooltip": [
+            {"field": "win_rate", "type": "quantitative", "label": "勝率", "format": "percent"},
+            {"field": "mean_excess_rate", "type": "quantitative", "label": "平均超額報酬", "format": "percent"},
+            {"field": "return_ci_low", "type": "quantitative", "label": "95% 下界", "format": "percent"},
+            {"field": "return_ci_high", "type": "quantitative", "label": "95% 上界", "format": "percent"},
+            {"field": "signal_dates", "type": "quantitative", "label": "訊號日", "format": "number"}
+          ]
+        }
+      },
+      {
+        "id": "source_return_chart",
+        "title": "候選來源平均毛報酬",
+        "subtitle": "各來源彙總 1、3、5、10 日績效列；核心 5 個訊號日，雷達 2 個訊號日。",
+        "headerMarkdown": "核心名單與中小型雷達呈現相反方向，不應再共用一個總勝率。",
+        "type": "bar",
+        "dataset": "source_performance",
+        "sourceId": "report_sql",
+        "valueFormat": "percent",
+        "yAxisTitle": "平均毛報酬",
+        "encodings": {
+          "x": {"field": "source_label", "type": "nominal", "label": "候選來源"},
+          "y": {"field": "mean_return_rate", "type": "quantitative", "label": "平均毛報酬", "format": "percent"},
+          "color": {"field": "source_label", "type": "nominal", "label": "候選來源"},
+          "tooltip": [
+            {"field": "unique_signals", "type": "quantitative", "label": "有效訊號", "format": "number"},
+            {"field": "signal_dates", "type": "quantitative", "label": "訊號日", "format": "number"},
+            {"field": "win_rate", "type": "quantitative", "label": "勝率", "format": "percent"},
+            {"field": "mean_excess_rate", "type": "quantitative", "label": "平均超額報酬", "format": "percent"},
+            {"field": "profit_factor", "type": "quantitative", "label": "毛利因子", "format": "number"}
+          ]
+        }
+      }
+    ],
+    "tables": [
+      {
+        "id": "source_detail_table",
+        "title": "候選來源績效明細",
+        "subtitle": "跨持有期的診斷彙總，不等同於可交易投組報酬。",
+        "dataset": "source_performance",
+        "sourceId": "report_sql",
+        "defaultSort": {"field": "mean_return_rate", "direction": "desc"},
+        "columns": [
+          {"field": "source_label", "label": "來源", "type": "text"},
+          {"field": "unique_signals", "label": "有效訊號", "format": "number"},
+          {"field": "signal_dates", "label": "訊號日", "format": "number"},
+          {"field": "mean_return_rate", "label": "平均毛報酬", "format": "percent"},
+          {"field": "win_rate", "label": "勝率", "format": "percent"},
+          {"field": "mean_excess_rate", "label": "平均超額", "format": "percent"},
+          {"field": "profit_factor", "label": "毛利因子", "format": "number"}
+        ]
+      },
+      {
+        "id": "roadmap_table",
+        "title": "分階段改造路線",
+        "subtitle": "先修可信度，再提升模型，最後才建立投組與風險層。",
+        "dataset": "roadmap",
+        "sourceId": "report_sql",
+        "columns": [
+          {"field": "phase", "label": "階段", "type": "text"},
+          {"field": "goal", "label": "目標", "type": "text"},
+          {"field": "changes", "label": "主要修改", "type": "text"},
+          {"field": "exit_gate", "label": "完成條件", "type": "text"}
+        ]
+      }
+    ],
+    "sources": [
+      {"id": "analysis_notebook", "label": "可重現績效診斷", "path": "analysis/system_performance_diagnostic.ipynb"},
+      {"id": "report_sql", "label": "報告資料轉換查詢", "path": "analysis/system_performance_report.sql"},
+      {"id": "signal_history", "label": "本機訊號歷史", "path": "signal_history.jsonl"},
+      {"id": "signal_performance", "label": "本機績效歷史", "path": "signal_performance.jsonl"},
+      {"id": "signal_tracker", "label": "績效追蹤與指標程式", "path": "signal_tracker.py"},
+      {"id": "candidate_selector", "label": "核心候選評分程式", "path": "candidate_selector.py"},
+      {"id": "small_mid_radar", "label": "中小型雷達程式", "path": "small_mid_cap_radar.py"},
+      {"id": "rpi_main", "label": "每日執行流程", "path": "rpi_main.py"},
+      {"id": "twse_guide", "label": "臺灣證券交易所投資指南", "href": "https://www.twse.com.tw/zh/about/company/guide.html"},
+      {"id": "timeseries_split", "label": "scikit-learn TimeSeriesSplit", "href": "https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html"},
+      {"id": "probability_calibration", "label": "scikit-learn 機率校準", "href": "https://scikit-learn.org/stable/modules/calibration.html"},
+      {"id": "backtest_overfitting", "label": "The Probability of Backtest Overfitting", "href": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2326253"},
+      {"id": "deflated_sharpe", "label": "The Deflated Sharpe Ratio", "href": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2465675"}
+    ],
+    "blocks": [
+      {
+        "id": "executive_summary",
+        "type": "markdown",
+        "sourceId": "analysis_notebook",
+        "body": "## Executive Summary\n\n這套系統目前比較像「有價值的市場資訊整理原型」，還不是可用勝率證明的專業決策引擎。現行最近 200 列指標顯示平均報酬 -2.64%、勝率 35.0%；但改用日期／股票／來源去重後，平均毛報酬變成 +0.48%、勝率 44.9%。差異代表問題首先出在計量口徑，而非單純選股能力。\n\n最重要的分群是候選來源：核心名單跨持有期平均毛報酬 +2.30%、勝率 52.8%；中小型雷達為 -3.84%、26.3%。然而核心只有 5 個訊號日，雷達更只有 2 個，所有持有期報酬的 95% 信賴區間都跨過零，現階段不能做穩定獲利宣稱。\n\n結論是：先修量測合約、拆分產品與停止實驗資料污染正式績效，再談模型升級。若直接用目前總勝率調整權重，很容易把資料偏差當成策略訊號。"
+      },
+      {
+        "id": "headline_metrics_strip",
+        "type": "metric-strip",
+        "cardIds": ["signal_dates_card", "unique_signals_card", "entry_consistency_card", "radar_loss_share_card"]
+      },
+      {
+        "id": "measurement_findings",
+        "type": "markdown",
+        "sourceId": "signal_tracker",
+        "body": "## 目前的績效數字為何不夠專業\n\n- 「最近 200 筆」其實是績效檔最後 200 列，包含四種持有期且只涵蓋 4 個訊號日，不是 200 筆獨立交易。\n- 同一日期可被手動或 DRY RUN 重複寫入；資料沒有 environment、run_type、experiment_id、strategy_version，無法分辨正式、測試與重跑。\n- POST 訊號有時用訊號當日收盤價，有時因午夜或週末改成下一個交易日收盤價。79 筆配對中僅 43.0% 在 1 基點內一致，平均進場差距 2.30%，最大 20.88%。\n- top3_hit_rate 與 top5_hit_rate 現在是跨持有期列的正報酬比例，不是逐日 Top 3／Top 5 命中率；max_drawdown_proxy 則是單筆最差報酬，不是資金曲線最大回撤。\n- 儀表板快照中的績效可能比 signal_performance.jsonl 更舊，顯示值與重新計算值可能不一致。"
+      },
+      {
+        "id": "horizon_interpretation",
+        "type": "markdown",
+        "sourceId": "analysis_notebook",
+        "body": "### 持有期訊號尚未達統計確定性\n\n日期層級去重後，1 日與 3 日平均報酬為負；5 日與 10 日轉正。這可能代表訊號需要較長時間發酵，也可能只是五個市場日中的偶然結果。因群聚信賴區間全部跨零，正確做法是保留假說、擴充樣本，不是立即把 10 日持有設成答案。"
+      },
+      {"id": "horizon_chart_block", "type": "chart", "chartId": "horizon_return_chart"},
+      {
+        "id": "source_interpretation",
+        "type": "markdown",
+        "sourceId": "analysis_notebook",
+        "body": "### 核心名單與中小型雷達必須拆開\n\n在現行最近 200 列讀法中，中小型雷達占彙總淨損失約 80.3%。日期層級去重後，核心仍為正、雷達仍為負。雷達的一個 2026 年 6 月 4 日批次表現很差，而整個雷達僅有兩個訊號日，因此建議先改為 shadow mode：照常記錄但不進入主推名單與主 KPI。"
+      },
+      {"id": "source_chart_block", "type": "chart", "chartId": "source_return_chart"},
+      {"id": "source_table_block", "type": "table", "tableId": "source_detail_table"},
+      {
+        "id": "scoring_findings",
+        "type": "markdown",
+        "sourceId": "candidate_selector",
+        "body": "### 評分看起來精確，但尚未校準\n\n核心候選只有 9 個不同分數，22.4% 的紀錄直接達到 100 分；分數與後續報酬的 Spearman 相關在各持有期約為 -0.13 到 -0.30。樣本很小，不能斷言反向有效，但足以說明 100 分不應被解讀成高勝率。\n\n目前 candidate_selector.py 與 stock_analyzer.py 使用兩套不同權重與特徵；動態市場名單又把成交金額與價格變動乘常數後直接相加，量綱不一致；主題強度用候選分數總和，也會天然偏好成分股較多的主題。這些規則適合原型探索，不適合作為已驗證的信心分數。"
+      },
+      {
+        "id": "recommendations",
+        "type": "markdown",
+        "sourceId": "analysis_notebook",
+        "body": "## Recommendations\n\n**P0 — 先建立可信績效合約。** 每筆訊號產生 immutable signal_id，並寫入 environment、run_type、strategy_version、feature_timestamp、decision_timestamp、market_session、candidate_channel 與 data_quality_snapshot。DRY RUN 不得寫入正式績效。POST 訊號固定用下一個可交易價格進場，例如次日開盤或明確 VWAP；每個持有期都套用實際手續費、證交稅與滑價。\n\n**P1 — 拆分產品與資料管線。** 核心名單、中小型雷達與僅供觀察的候選分開建帳；主儀表板只呈現 live／primary 訊號。統一 candidate_selector 與 stock_analyzer 的特徵定義和版本，所有行情與基本面資料都走可快取、可追蹤狀態的 data layer。\n\n**P2 — 再升級模型。** 先用正規化特徵與簡單、可解釋的 logistic／ranking baseline，採時間順序 walk-forward 驗證；對預測機率做校準，並逐一進行技術面、基本面、新聞與主題特徵的 ablation。新聞分數在證明有增益前不應直接加權。\n\n**P3 — 補上投組與風險層。** 增加市場 regime、單股與產業曝險、流動性容量、換手成本與真實資金曲線最大回撤。決策目標從「猜對幾次」改為「扣成本後的期望值與風險」。"
+      },
+      {
+        "id": "kpi_framework",
+        "type": "markdown",
+        "sourceId": "analysis_notebook",
+        "body": "### 建議 KPI 架構\n\n- **主結果 KPI：** 固定可執行進出場規則下，分持有期的扣成本超額期望報酬。\n- **排序 KPI：** Top 3／Top 5 相對大盤超額報酬、rank IC，以及相對完整候選池的 lift。\n- **信心 KPI：** 校準曲線與 Brier score；例如標示 70% 的訊號，長期應接近 70% 達成定義好的成功事件。\n- **風險護欄：** 真實資金曲線最大回撤、換手率、單股／產業集中度、流動性容量。\n- **資料護欄：** 有效資料率、來源失敗率、資料新鮮度、live 訊號覆蓋率。\n\n勝率保留為次要 KPI，且必須同時標示持有期、樣本數、訊號日數、95% 信賴區間、策略版本與成本假設。"
+      },
+      {
+        "id": "standards_context",
+        "type": "markdown",
+        "sourceId": "twse_guide",
+        "body": "### 成本與驗證標準\n\n臺灣證券交易所公開資訊顯示，股票賣出證交稅一般為成交金額 0.3%，券商手續費另由券商訂定；因此只看毛報酬很容易高估可交易價值。本報告的 0.6 個百分點來回成本只是敏感度情境：日期層級去重後，平均報酬會由 +0.48% 變成 -0.12%，勝率由 44.9% 變成 41.8%。正式系統應改用實際費率與滑價。\n\n時間序列資料應維持訓練在前、驗證在後的 walk-forward 切分，避免用未來資料評估過去；若反覆嘗試大量規則，還要追蹤多重測試與回測過度擬合風險。"
+      },
+      {
+        "id": "roadmap_intro",
+        "type": "markdown",
+        "sourceId": "analysis_notebook",
+        "body": "### 建議執行順序\n\n以下門檻是產品治理建議，不是統計定律。第一個正式版本可先進行約三個月 shadow monitoring；至少累積 60 個不同交易日、200 筆同版本 live 訊號，且資料與進場規則完全固定後，再評估是否對外顯示策略勝率。"
+      },
+      {"id": "roadmap_table_block", "type": "table", "tableId": "roadmap_table"},
+      {
+        "id": "further_questions",
+        "type": "markdown",
+        "sourceId": "analysis_notebook",
+        "body": "## Further questions\n\n1. Raspberry Pi 正式環境是否有比本機更新、且未包含 DRY RUN 的完整 signal history？\n2. 產品承諾是「每日研究摘要」還是「可照做的交易訊號」？兩者需要的責任、風險提示與 KPI 不同。\n3. 使用者預期的進場時刻、持有期、券商費率與可接受滑價是多少？\n4. 中小型雷達的角色是獨立實驗產品，還是要升級為主推名單？\n5. 是否能保存每次候選池全量資料，讓 Top N 的 lift 與未入選基準可被正確計算？"
+      },
+      {
+        "id": "caveats",
+        "type": "markdown",
+        "sourceId": "analysis_notebook",
+        "body": "## Caveats and assumptions\n\n- 本機資料截至 2026 年 6 月 13 日，早於本次 2026 年 7 月 16 日稽核；可能與 Raspberry Pi 正式狀態不同。\n- 本機只有 POST 訊號，沒有 PRE cohort；結論不能直接外推到盤前版本。\n- 64 筆日期層級訊號只分布在 5 個市場日，雷達更只有 2 日；信賴區間很寬。\n- 跨持有期彙總不是投組資金曲線，也不能用來計算專業 Sharpe ratio 或最大回撤。\n- 0.6 個百分點成本是示意情境，不是使用者的實際券商費率。\n- 本報告是系統與資料品質診斷，不構成投資建議。"
+      }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "generatedAt": "2026-07-16T12:00:00+08:00",
+    "status": "ready",
+    "datasets": {
+      "headline_metrics": [
+        {
+          "scope": "audit",
+          "distinct_signal_dates": 5,
+          "unique_date_signals": 64,
+          "same_entry_rate": 0.43038,
+          "radar_net_loss_share": 0.8027
+        }
+      ],
+      "horizon_performance": [
+        {
+          "horizon": 1,
+          "horizon_label": "1 日",
+          "rows": 64,
+          "signal_dates": 5,
+          "mean_return_rate": -0.00738,
+          "median_return_rate": -0.01074,
+          "win_rate": 0.32812,
+          "mean_excess_rate": -0.00436,
+          "excess_win_rate": 0.375,
+          "return_ci_low": -0.02774,
+          "return_ci_high": 0.01814
+        },
+        {
+          "horizon": 3,
+          "horizon_label": "3 日",
+          "rows": 64,
+          "signal_dates": 5,
+          "mean_return_rate": -0.00801,
+          "median_return_rate": -0.01289,
+          "win_rate": 0.42188,
+          "mean_excess_rate": -0.00579,
+          "excess_win_rate": 0.375,
+          "return_ci_low": -0.04877,
+          "return_ci_high": 0.04173
+        },
+        {
+          "horizon": 5,
+          "horizon_label": "5 日",
+          "rows": 64,
+          "signal_dates": 5,
+          "mean_return_rate": 0.00623,
+          "median_return_rate": 0.00167,
+          "win_rate": 0.51562,
+          "mean_excess_rate": 0.01726,
+          "excess_win_rate": 0.53125,
+          "return_ci_low": -0.057,
+          "return_ci_high": 0.08602
+        },
+        {
+          "horizon": 10,
+          "horizon_label": "10 日",
+          "rows": 64,
+          "signal_dates": 5,
+          "mean_return_rate": 0.02828,
+          "median_return_rate": 0.00529,
+          "win_rate": 0.53125,
+          "mean_excess_rate": 0.02196,
+          "excess_win_rate": 0.45312,
+          "return_ci_low": -0.00408,
+          "return_ci_high": 0.07419
+        }
+      ],
+      "source_performance": [
+        {
+          "source": "core",
+          "source_label": "核心名單",
+          "rows": 180,
+          "unique_signals": 45,
+          "signal_dates": 5,
+          "mean_return_rate": 0.023,
+          "median_return_rate": 0.00701,
+          "win_rate": 0.52778,
+          "mean_excess_rate": 0.02593,
+          "excess_win_rate": 0.52222,
+          "profit_factor": 1.763
+        },
+        {
+          "source": "small_mid_radar",
+          "source_label": "中小型雷達",
+          "rows": 76,
+          "unique_signals": 19,
+          "signal_dates": 2,
+          "mean_return_rate": -0.03837,
+          "median_return_rate": -0.02386,
+          "win_rate": 0.26316,
+          "mean_excess_rate": -0.03692,
+          "excess_win_rate": 0.22368,
+          "profit_factor": 0.169
+        }
+      ],
+      "roadmap": [
+        {
+          "order": 1,
+          "phase": "P0｜1–2 週",
+          "goal": "讓績效可相信",
+          "changes": "固定 signal ID、版本、live/research 分流、可交易進場與成本；重寫指標口徑",
+          "exit_gate": "同一輸入可重現；DRY RUN 零污染；儀表板與離線重算一致"
+        },
+        {
+          "order": 2,
+          "phase": "P1｜2–4 週",
+          "goal": "拆分產品與特徵",
+          "changes": "核心與雷達分帳；雷達 shadow mode；統一 selector 與 analyzer 特徵管線",
+          "exit_gate": "每個來源獨立 KPI；完整候選池、資料狀態與版本可追溯"
+        },
+        {
+          "order": 3,
+          "phase": "P2｜4–8 週",
+          "goal": "建立可驗證模型",
+          "changes": "walk-forward baseline、機率校準、特徵消融、漂移監控",
+          "exit_gate": "至少 60 個交易日／200 筆同版本 live 訊號；out-of-sample 淨超額為正"
+        },
+        {
+          "order": 4,
+          "phase": "P3｜持續",
+          "goal": "建立投組與風控",
+          "changes": "regime、曝險限制、流動性、換手、實際最大回撤與容量",
+          "exit_gate": "風險護欄自動監控；策略變更需版本化與重新驗證"
+        }
+      ]
+    }
+  },
+  "sources": [
+    {"id": "analysis_notebook", "label": "可重現績效診斷", "path": "analysis/system_performance_diagnostic.ipynb", "description": "由本機 JSONL 來源重算資料品質、績效、群聚信賴區間、進場一致性與成本敏感度。"},
+    {"id": "report_sql", "label": "報告資料轉換查詢", "path": "analysis/system_performance_report.sql", "description": "DuckDB 相容的來源查詢，記錄報告資料集的去重與彙總邏輯。"},
+    {"id": "signal_history", "label": "本機訊號歷史", "path": "signal_history.jsonl", "description": "83 筆訊號歷史列。"},
+    {"id": "signal_performance", "label": "本機績效歷史", "path": "signal_performance.jsonl", "description": "316 筆 1／3／5／10 日績效列。"},
+    {"id": "signal_tracker", "label": "績效追蹤與指標程式", "path": "signal_tracker.py", "description": "訊號保存、績效評估與摘要指標實作。"},
+    {"id": "candidate_selector", "label": "核心候選評分程式", "path": "candidate_selector.py", "description": "技術、量價、新聞與主題分數規則。"},
+    {"id": "small_mid_radar", "label": "中小型雷達程式", "path": "small_mid_cap_radar.py", "description": "中小型候選篩選與評分規則。"},
+    {"id": "rpi_main", "label": "每日執行流程", "path": "rpi_main.py", "description": "正式與 DRY RUN 共用的訊號寫入流程。"},
+    {"id": "twse_guide", "label": "臺灣證券交易所投資指南", "href": "https://www.twse.com.tw/zh/about/company/guide.html", "description": "股票交易稅與券商手續費說明。"},
+    {"id": "timeseries_split", "label": "scikit-learn TimeSeriesSplit", "href": "https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html", "description": "時間順序資料的交叉驗證方法。"},
+    {"id": "probability_calibration", "label": "scikit-learn 機率校準", "href": "https://scikit-learn.org/stable/modules/calibration.html", "description": "機率預測與校準曲線方法。"},
+    {"id": "backtest_overfitting", "label": "The Probability of Backtest Overfitting", "href": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2326253", "description": "多策略嘗試下的回測過度擬合風險。"},
+    {"id": "deflated_sharpe", "label": "The Deflated Sharpe Ratio", "href": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2465675", "description": "非正態報酬與多重測試下的績效膨脹修正。"}
+  ],
+  "package_info": {
+    "originUrl": "artifact://taiwan-stock-ai-system-performance-review"
+  }
+}
